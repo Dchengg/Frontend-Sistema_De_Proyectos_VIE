@@ -49,5 +49,23 @@
     background-color: #EF3341;
 }
 
+.window-content{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.formRow{
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 10%;
+    margin-top: 3%;
+}
+
+.fullRowInput{
+    max-width: none;
+    width:100%
+}
+
 
 

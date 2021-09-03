@@ -5,5 +5,53 @@
     Layout = "~/Views/Shared/ProyectoSideMenu.cshtml";
 }
 
-<h2>Index</h2>
-
+<div style="width:100%">
+    <form class="container-fluid">
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" />
+            </div>
+            <div class="form-inline col-md-4"">
+                <label for="fechaIngresoInput">Fecha de ingreso</label>
+                <input type="date" class="form-control" id="fechaIngresoInput" />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <textarea class="form-control fullRowInput" id="nombreProyectoInput" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="objGeneralInput">Objetivo General</label>
+                <textarea class="form-control fullRowInput" id="objGeneralInput" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="obsEspecificosInput">Objetivos Especificos</label>
+                <textarea class="form-control fullRowInput" id="obsEspecificosInput" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-12">
+                <label>Estado del proyecto</label>
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        Dropdown
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
