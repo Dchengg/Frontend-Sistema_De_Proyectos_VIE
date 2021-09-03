@@ -1,0 +1,71 @@
+﻿.body{
+   font-family: Helvetica;
+   padding: 0;
+}
+
+.page-title {
+    padding: 2%;
+    background: rgba(234, 234, 234, 0.5);
+}
+
+.page-title h3 {
+    font-family: Helvetica;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 12px;
+    color: #002854;
+}
+
+.sideMenu {
+    background: #002854;
+    border-radius: 3px;
+    width: 20%;
+    padding:0;
+}
+
+.sideMenu a{
+    color: #ffffff;
+    font-size: 12px;
+    line-height: 24px;
+}
+
+.sideMenu a:hover{
+    color: #000000
+}
+
+.sideMenu a:focus {
+    color: #000000;
+    border-left: 5px solid #EF3341
+}
+
+.returnBtn {
+    position: absolute;
+    border-radius: 0px 5px 5px 0px;
+    font-weight: bold;
+    height: 100%;
+    width: 15%;
+    color: #ffffff;
+    border-color: #EF3341;
+    background-color: #EF3341;
+}
+
+.window-content{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+}
+
+.formRow{
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 10%;
+    margin-top: 3%;
+}
+
+.fullRowInput{
+    max-width: none;
+    width:100%
+}
+
+
+
