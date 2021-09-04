@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "AreaFrascati";
+    Layout = "~/Views/Shared/ProyectoSideMenu.cshtml";
+}
+
+
+<div style="width:100%">
+    <form class="container-fluid">
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <textarea class="form-control fullRowInput" id="nombreProyectoInput" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label class="col-xs-5">Área frascati</label>
+                <select class="form-control col-xs-5">
+                    <option>Ciencias naturales</option>
+                    <option>Tecnología e ingeniería</option>
+                    <option>Ciencias médicas</option>
+                    <option>Ciencias agriculturales</option>
+                    <option>Ciencias sociales</option>
+                    <option>Humanidades</option>
+                </select>
+            </div>
+
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label class="col-xs-5">Sub-áreas</label>
+                <select class="form-control col-xs-5">
+                    <option>Matemáticas</option>
+                    <option>Ciencias físicas</option>
+                    <option>Ciencias químicas</option>
+                    <option>Ciencias de computación e información</option>
+                    <option>Ciencias ambientales</option>
+                    <option>Ciencias biológicas</option>
+                </select>
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="wrapperBotonAgregar">
+                <input class="botonAgregar" type="button" value="Agregar">
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="areasFrascati"></label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered disenoTabla">
+                        <tr id="ROW1">
+                            <th>Código de área</th>
+                            <th>Sub-área</th>
+                            <th>Área</th>
+                            <th> </th>
+                        </tr>
+                        <tr>
+                            <th>x</th>
+                            <th>x</th>
+                            <th>x</th>
+                            <th> <div> <input class="botonEliminar" type="button" value="Eliminar"> </div></th>
+                        </tr>
+                        <tr>
+                            <th>x </th>
+                            <th>x </th>
+                            <th>x </th>
+                            <th> </th>
+                        </tr>
+                        <tr>
+                            <th>x</th>
+                            <th>x </th>
+                            <th>x </th>
+                            <th> </th>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
