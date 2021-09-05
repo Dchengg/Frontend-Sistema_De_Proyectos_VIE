@@ -1,27 +1,27 @@
 ﻿
 @{
-    ViewBag.Title = "BuscardorProyectos";
+    ViewBag.Title = "BuscadorProyectos";
     Layout = "~/Views/Shared/MainMenu.cshtml";
 }
 
 <div class="container-fluid">
-    <h2>Buscardor de Proyectos</h2>
-    <div class="row">
+    <h2>Buscador de Proyectos</h2>
+    <div class="row formRow">
         <div class="col-md-12 form-inline">
-            <label for="parametrosInput">Parámetros de busqueda</label>
-            <input type="text" class="form-control" id="parametrosInput" />
+            <label class="col-md-5" for="parametrosInput">Parámetros de busqueda</label>
+            <input type="text" class="col-md-5" form-control" id="parametrosInput" />
         </div>
     </div>
-    <div class="row">
+    <div class="row formRow">
         <div class="col-md-12 form-inline">
-            <label>Criterio de búsqueda</label>
-            <select class="form-control">
+            <label  class="col-md-5" >Criterio de búsqueda</label>
+            <select class="col-md-5 form-control">
                 <option>Criterios de busqueda</option>
                 <option>Código</option>
             </select>
         </div>
     </div>
-    <table class="table table-striped table-bordered disenoTabla">
+    <table class="table table-striped table-bordered disenoTabla formRow">
         <tr id="ROW1">
             <th>Código</th>
             <th>Nombre del proyecto</th>

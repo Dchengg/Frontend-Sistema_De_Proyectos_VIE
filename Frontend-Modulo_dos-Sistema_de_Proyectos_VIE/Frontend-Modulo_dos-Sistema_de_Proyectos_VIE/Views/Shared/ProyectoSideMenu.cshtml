@@ -13,7 +13,7 @@
     <div>
         <nav style="border-width:0; margin:0" class="navbar">
             <div style="padding-left:0" class="container-fluid">
-                <button type="button" class="btn btn-default btn-lg returnBtn">
+                <button type="button" onclick="location.href='@Url.Action("BuscadorProyectos","Home")'" class="btn btn-default btn-lg returnBtn">
                     <span style="top:2px;margin-right:10px" class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
                     Regresar
                 </button>
@@ -35,11 +35,11 @@
         <div class="row">
             <div class="col-sm-2 col-md-2 sidebar sideMenu">
                 <ul class="nav nav-sidebar">
-                    <li><a href="#">Datos del proyecto</a></li>
+                    <li><a href="@Url.Action("DatosProyecto","SeguimientoProyecto")">Datos del proyecto</a></li>
                     <li><a href="#">Investigadores Asociados</a></li>
                     <li><a href="#">Cambiar investigador coordinador</a></li>
                     <li><a href="#">Objetivos de Desarrollo Sostenible</a></li>
-                    <li><a href="#">Áreas Franscati</a></li>
+                    <li><a href="@Url.Action("AreaFrascati","SeguimientoProyecto")">Áreas Franscati</a></li>
                     <li><a href="#">Población beneficiaria</a></li>
                     <li><a href="#">Ubicación geográfica</a></li>
                     <li><a href="#">Palabras claves</a></li>
