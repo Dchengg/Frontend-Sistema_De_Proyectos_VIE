@@ -20,3 +20,11 @@
     margin-bottom: auto;
     font-size: 25px;
 }
+
+.mainMenu img{
+    display: block;
+    margin: auto;
+    padding: 20px 0px;
+    width: 137px;
+    height: 58px;
+}
