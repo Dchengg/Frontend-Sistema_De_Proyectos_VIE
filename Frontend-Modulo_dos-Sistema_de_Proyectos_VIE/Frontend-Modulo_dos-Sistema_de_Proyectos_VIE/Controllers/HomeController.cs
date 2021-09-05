@@ -22,8 +22,14 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 
         public ActionResult Contact()
         {
+
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+
+        public ActionResult BuscadorProyectos()
+        {
             return View();
         }
     }
