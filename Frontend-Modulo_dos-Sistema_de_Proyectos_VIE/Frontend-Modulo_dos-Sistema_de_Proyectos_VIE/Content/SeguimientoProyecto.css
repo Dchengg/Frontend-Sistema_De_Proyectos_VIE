@@ -90,5 +90,38 @@
     width:100%
 }
 
+.wrapperBotonAgregar {
+    text-align: center;
+}
 
+.botonAgregar {
+    width: 100px;
+    height: 30px;
+    background-color: #002854;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    color: white;
+    margin: 0 auto;
+    display: block;
+}
+
+.botonEliminar {
+    width: 100px;
+    height: 25px;
+    background-color: #EF3341;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    color: white;
+    margin: 0 auto;
+    display: block;
+}
+
+.disenoTabla {
+    table-layout: fixed;
+}
+
+.table tr#ROW1 {
+    background-color: #002854;
+    color: white;
+}
 

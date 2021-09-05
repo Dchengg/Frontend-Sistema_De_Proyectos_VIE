@@ -168,6 +168,7 @@
     <Content Include="Views\SeguimientoProyecto\DatosProyecto.cshtml" />
     <Content Include="Views\Shared\MainMenu.cshtml" />
     <Content Include="Views\Home\BuscardorProyectos.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\AreaFrascati.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
