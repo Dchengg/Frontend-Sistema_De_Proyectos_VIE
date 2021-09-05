@@ -22,7 +22,6 @@
     border-radius: 3px;
     width: 15%;
     height: 100%;
-    position: relative;
     padding:0;
 }
 
@@ -45,10 +44,6 @@
     background: #555;
 }
 
-.sidMenu li{
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
 
 .sideMenu a{
     color: #ffffff;
