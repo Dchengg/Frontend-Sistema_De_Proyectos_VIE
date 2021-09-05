@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <div>
-        <nav style="border-width:0; margin:0" class="navbar">
+    <div class="row">
+        <nav style="border-width:0; margin:0" class="navbar navbar-fixed-top">
             <div style="padding-left:0" class="container-fluid">
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -27,7 +27,7 @@
     </div>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar sideMenu mainMenu">
+            <div class="sidebar sideMenu mainMenu">
                 <ul class="nav nav-sidebar">
                     <li>
                         <a href="#">
@@ -37,44 +37,44 @@
                     </li>
                     <li>
                         <a href="#">
-                            <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                             Convocatorias
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>
                             Formulación de propuestas
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
                             Seguimiento de proyectos
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
                             Evaluaciones
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
                             Reportes
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
                             Configuraciones
                         </a>
                     </li>
                 </ul>
             </div>
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-                @RenderBody()
+            <div class="main content-page">
+                @RenderBody()   
             </div>
         </div>
     </div>
