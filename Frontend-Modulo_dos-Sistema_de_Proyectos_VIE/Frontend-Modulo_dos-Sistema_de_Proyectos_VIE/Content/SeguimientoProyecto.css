@@ -86,7 +86,6 @@
 .formRow{
     margin-left: auto;
     margin-right: auto;
-    padding-right: 10%;
     margin-top: 4%;
 }
 
@@ -95,9 +94,6 @@
     width:100%
 }
 
-.wrapperBotonAgregar {
-    text-align: center;
-}
 
 .botonAgregar {
     width: 100px;
@@ -120,13 +116,3 @@
     margin: 0 auto;
     display: block;
 }
-
-.disenoTabla {
-    table-layout: fixed;
-}
-
-.table tr#ROW1 {
-    background-color: #002854;
-    color: white;
-}
-

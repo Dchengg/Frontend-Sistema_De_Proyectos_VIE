@@ -13,10 +13,5 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         {
             return View();
         }
-
-        public ActionResult AreaFrascati()
-        {
-            return View();
-        }
     }
 }
