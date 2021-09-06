@@ -102,7 +102,7 @@
     border-radius: 8px;
     color: white;
     margin: 0 auto;
-    display: inline-block;
+    display: block;
 }
 
 .botonEliminar {
