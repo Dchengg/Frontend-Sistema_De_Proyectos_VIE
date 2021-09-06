@@ -166,6 +166,7 @@
     <Content Include="Views\Shared\ProyectoSideMenu.cshtml" />
     <Content Include="Views\SeguimientoProyecto\DatosProyecto.cshtml" />
     <Content Include="Views\SeguimientoProyecto\AreaFrascati.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\agregarODS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
