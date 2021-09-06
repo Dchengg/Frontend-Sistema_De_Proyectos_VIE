@@ -19,7 +19,13 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View();
         }
 
-        public ActionResult agregarODS() {
+        public ActionResult agregarODS() 
+        {
+            return View();
+        }
+
+        public ActionResult poblacionBeneficiaria() 
+        {
             return View();
         }
     }

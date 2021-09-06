@@ -1,9 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "AreaFrascati";
+    ViewBag.Title = "poblacionBeneficiaria";
     Layout = "~/Views/Shared/ProyectoSideMenu.cshtml";
 }
-
 
 <div style="width:100%">
     <form class="container-fluid">
@@ -16,39 +15,25 @@
         <div class="row formRow">
             <div class="form-inline col-md-8">
                 <label for="codigoProyectoInput">Código del proyecto</label>
-                <input type="text" class="form-control" id="codigoProyectoInput" />
+                <input style="font-size: 14px;" type="text" class="form-control" id="codigoProyectoInput" />
             </div>
         </div>
         <div class="row formRow">
             <div class="form-inline col-md-8">
-                <label class="col-xs-3">Área frascati</label>
+                <label class="col-xs-5">Población beneficiaria</label>
                 <select class="form-control col-xs-5">
-                    <option>Ciencias naturales</option>
-                    <option>Tecnología e ingeniería</option>
-                    <option>Ciencias médicas</option>
-                    <option>Ciencias agriculturales</option>
-                    <option>Ciencias sociales</option>
-                    <option>Humanidades</option>
+                    <option>Región Central</option>
+                    <option>Región Chorotega</option>
+                    <option>Región pacífico</option>
+                    <option>Región caribe</option>
+                    <option>Región cabécar</option>
                 </select>
             </div>
 
         </div>
         <div class="row formRow">
-            <div class="form-inline col-md-8">
-                <label class="col-xs-5">Sub-áreas</label>
-                <select class="form-control col-xs-5">
-                    <option>Matemáticas</option>
-                    <option>Ciencias físicas</option>
-                    <option>Ciencias químicas</option>
-                    <option>Ciencias de computación e información</option>
-                    <option>Ciencias ambientales</option>
-                    <option>Ciencias biológicas</option>
-                </select>
-            </div>
-        </div>
-        <div class="row formRow">
             <div class="wrapperBotonAgregar">
-                <input class="botonAgregar" type="button" value="Agregar">
+                <input style="width: 150px;" class="botonAgregar" type="button" value="Agregar región">
             </div>
         </div>
         <div class="row formRow">
@@ -86,4 +71,5 @@
             </div>
         </div>
     </form>
-    </div>
+</div>
+
