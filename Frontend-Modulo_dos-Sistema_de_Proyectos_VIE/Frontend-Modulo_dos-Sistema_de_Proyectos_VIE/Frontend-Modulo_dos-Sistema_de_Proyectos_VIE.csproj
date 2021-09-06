@@ -170,6 +170,7 @@
     <Content Include="Views\Shared\MainMenu.cshtml" />
     <Content Include="Views\Home\BuscadorProyectos.cshtml" />
     <Content Include="Views\SeguimientoProyecto\AreaFrascati.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\agregarODS.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\BuscadorProyecto\" />
