@@ -6,7 +6,8 @@
 }
 
 <div style="width:100%" class="window-content">
-    <form class="container-fluid">
+    @using (Html.BeginForm("DatosProyecto","SeguimientoProyecto",FormMethod.Post))
+    {
         <div class="row formRow">
             <div class="form-inline col-md-8">
                 <label for="codigoProyectoInput">Código del proyecto</label>
@@ -26,7 +27,7 @@
         <div class="row formRow">
             <div class="form-group col-md-12">
                 <label for="descripcionInput">Descripción</label>
-                <textarea class="form-control fullRowInput" id="descripcionInput" rows="3">@Html.DisplayFor(Proyecto => Proyecto.Descripcion) </textarea>
+                @Html.TextAreaFor(Proyecto => Proyecto.Descripcion, new { @class = "form-control fullRowInput" })
             </div>
         </div>
         <div class="row formRow">
@@ -131,5 +132,5 @@
                 <button type="submit" class="btn btn-default">Guardar</button>
             </div>
         </div>
-    </form>
+    }
 </div>

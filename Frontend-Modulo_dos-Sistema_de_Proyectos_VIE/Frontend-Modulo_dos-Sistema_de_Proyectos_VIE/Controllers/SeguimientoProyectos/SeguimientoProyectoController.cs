@@ -9,15 +9,23 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 {
     public class SeguimientoProyectoController : Controller
     {
+        readonly Proyecto ProyectoPrueba = new Proyecto
+        {
+            CodigoProyecto = "1234567",
+            NombreProyecto = "Proyecto de prueba",
+            Descripcion = "Esto es una descripción"
+        };
+
         // GET: SeguimientoProyecto
         public ActionResult DatosProyecto()
         {
-            Proyecto ProyectoPrueba = new Proyecto
-            {
-                CodigoProyecto = "1234567",
-                NombreProyecto = "Proyecto de prueba",
-                Descripcion = "Esto es una descripción"
-            };
+            return View(ProyectoPrueba);
+        }
+
+        [HttpPost]
+        public ActionResult DatosProyecto(Proyecto proyecto)
+        {
+            ProyectoPrueba.Descripcion = proyecto.Descripcion;
             return View(ProyectoPrueba);
         }
 
