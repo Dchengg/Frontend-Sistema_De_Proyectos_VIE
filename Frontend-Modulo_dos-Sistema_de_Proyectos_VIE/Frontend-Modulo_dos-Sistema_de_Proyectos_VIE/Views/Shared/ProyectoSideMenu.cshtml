@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.title</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/SeguimientoProyecto.css")
     @Scripts.Render("~/bundles/modernizr")
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="page-title">
-                <h3>Datos del proyecto</h3>
+                <h3>@ViewBag.title</h3>
             </div>
         </nav>
     </div>
