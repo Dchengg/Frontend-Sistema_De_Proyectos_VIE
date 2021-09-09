@@ -4,8 +4,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
-
-
+using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
+using Newtonsoft.Json;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
@@ -13,8 +13,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
     {
         public ActionResult Index()
         {
-            ProyectoController.getProyectos();
-            return View("BuscadorProyectos");
+            List<Proyecto> proyectos = ProyectoController.getProyectos();
+            return View("BuscadorProyectos",proyectos);
         }
 
         public ActionResult About()

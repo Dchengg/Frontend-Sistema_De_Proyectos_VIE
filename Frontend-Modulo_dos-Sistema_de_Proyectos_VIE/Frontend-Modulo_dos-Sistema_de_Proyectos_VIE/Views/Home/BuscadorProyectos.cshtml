@@ -1,20 +1,20 @@
-﻿
+﻿@model IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Proyecto>
 @{
     ViewBag.Title = "BuscadorProyectos";
     Layout = "~/Views/Shared/MainMenu.cshtml";
 }
 
+
 <div class="container-fluid">
     <h2>Buscador de Proyectos</h2>
     <div class="row formRow">
-        <div class="col-md-12 form-inline">
             <label class="col-md-5" for="parametrosInput">Parámetros de busqueda</label>
             <input type="text" class="col-md-5" form-control" id="parametrosInput" />
         </div>
     </div>
     <div class="row formRow">
         <div class="col-md-12 form-inline">
-            <label  class="col-md-5" >Criterio de búsqueda</label>
+            <label class="col-md-5">Criterio de búsqueda</label>
             <select class="col-md-5 form-control">
                 <option>Criterios de busqueda</option>
                 <option>Código</option>
@@ -31,15 +31,20 @@
             <th>Oficial del proyecto</th>
             <th>Acciones</th>
         </tr>
-        <tr>
-            <th>x</th>
-            <th>x</th>
-            <th>x</th>
-            <th>x</th>
-            <th>x</th>
-            <th>x</th>
-            <th>x</th>
-        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th>@item.Codigo</th>
+                <th>@item.Nombre</th>
+                <th>@item.InvestigadorCoordinador</th>
+                <th>@item.FechaInicio</th>
+                <th>@item.FechaFinalizacion</th>
+                <th>@item.OficialDeProyecto</th>
+                <th>
+                    <button>Ver/Modificar datos del proyecto</button>
+                </th>
+            </tr>
+        }
     </table>
 </div>
 

@@ -24,8 +24,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                     var response = result.Content.ReadAsStringAsync();
                     response.Wait();
                     proyectos = JsonConvert.DeserializeObject<List<Proyecto>>(response.Result);
-                    System.Diagnostics.Debug.WriteLine("IM HERE");
-                    System.Diagnostics.Debug.WriteLine(proyectos[1].codigo);
                 }
                 else
                 {
