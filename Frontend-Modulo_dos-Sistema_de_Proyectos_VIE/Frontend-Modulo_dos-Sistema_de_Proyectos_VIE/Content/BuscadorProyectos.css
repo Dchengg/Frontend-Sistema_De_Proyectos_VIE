@@ -1,5 +1,5 @@
 ﻿.mainMenu {
-    position: fixed;
+    position: fixed !important;
     height: 100%;
 }
 

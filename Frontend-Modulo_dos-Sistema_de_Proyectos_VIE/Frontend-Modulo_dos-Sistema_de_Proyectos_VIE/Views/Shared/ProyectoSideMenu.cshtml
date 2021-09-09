@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@model Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Proyecto
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.title</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/SeguimientoProyecto.css")
     @Scripts.Render("~/bundles/modernizr")
@@ -27,12 +28,12 @@
                 </div>
             </div>
             <div class="page-title">
-                <h3>Datos del proyecto</h3>
+                <h3>@ViewBag.title</h3>
             </div>
         </nav>
     </div>
     <div class="container-fluid">
-        <div class="row">
+        <div style="display:flex" class="row">
             <div class="col-sm-2 col-md-2 sidebar sideMenu">
                 <ul class="nav nav-sidebar">
                     <li><a href="@Url.Action("DatosProyecto","SeguimientoProyecto")">Datos del proyecto</a></li>
