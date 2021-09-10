@@ -11,9 +11,10 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
-            using (var client = new HttpClient())
+            /*using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("https://localhost:44394/api/");
                 //HTTP GET
@@ -30,7 +31,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 {
                     System.Diagnostics.Debug.WriteLine(result);
                 }
-            }
+            }*/
             return View("BuscadorProyectos");
         }
 
