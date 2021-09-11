@@ -32,5 +32,36 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 return proyectos;
             }
         }
+
+        public static Proyecto getProyecto(String codigo)
+        {
+            using (var client = new HttpClient())
+            {
+               
+          
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Proyecto")
+                {
+                    Query = string.Format("id={0}", codigo)
+                };
+                var responseTask = client.GetAsync(builder.Uri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                Proyecto proyecto = new Proyecto();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    System.Diagnostics.Debug.WriteLine(response);
+                    response.Wait();
+                    proyecto = JsonConvert.DeserializeObject<Proyecto>(response.Result);
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("ERROR");
+                    System.Diagnostics.Debug.WriteLine(result);
+                
+                }
+                return proyecto;
+            }
+        }
     }
 }

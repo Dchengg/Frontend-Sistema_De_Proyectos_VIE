@@ -14,7 +14,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         public ActionResult Index()
         {
             List<Proyecto> proyectos = ProyectoController.getProyectos();
-            return View("BuscadorProyectos",proyectos);
+            return View("BuscadorProyectos", proyectos);
         }
 
         public ActionResult About()
@@ -32,9 +32,5 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             return View();
         }
 
-        public ActionResult BuscadorProyectos()
-        {
-            return View();
-        }
     }
 }
