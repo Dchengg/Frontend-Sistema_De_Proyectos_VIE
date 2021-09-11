@@ -167,6 +167,7 @@
     <Content Include="Views\SeguimientoProyecto\AreaFrascati.cshtml" />
     <Content Include="Views\SeguimientoProyecto\agregarODS.cshtml" />
     <Content Include="Views\SeguimientoProyecto\poblacionBeneficiaria.cshtml" />
+    <Content Include="Views\Home\FichaInvestigador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\BuscadorProyecto\" />

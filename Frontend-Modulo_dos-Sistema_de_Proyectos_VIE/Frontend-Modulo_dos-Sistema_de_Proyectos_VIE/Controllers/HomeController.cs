@@ -13,26 +13,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
     {
 
         public ActionResult Index()
-        {
-            /*using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://localhost:44394/api/");
-                //HTTP GET
-                var responseTask = client.GetAsync("Proyecto");
-                responseTask.Wait();
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var response = result.Content.ReadAsStringAsync();
-                    response.Wait();
-                    System.Diagnostics.Debug.WriteLine(response.Result);
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine(result);
-                }
-            }*/
-            return View("BuscadorProyectos");
+        { 
+            return View("FichaInvestigador");
         }
 
         public ActionResult About()
