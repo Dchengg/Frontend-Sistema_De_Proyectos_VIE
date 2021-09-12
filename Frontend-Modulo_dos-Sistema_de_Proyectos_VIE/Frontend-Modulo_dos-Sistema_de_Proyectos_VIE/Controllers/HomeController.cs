@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -13,8 +14,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
     {
 
         public ActionResult Index()
-        { 
-            return View("FichaInvestigador");
+        {
+            HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Investigador/4").Result;
+            var investigador = response.Content.ReadAsAsync<oInvestigador>().Result;
+            return View(investigador);
+
         }
 
         public ActionResult About()
