@@ -1,4 +1,4 @@
-﻿@model Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador.oInvestigador;
+﻿@model IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador.oInvestigador>
 @{
     ViewBag.Title = "FichaInvestigador";
     Layout = "~/Views/Shared/MainMenu.cshtml";
@@ -6,17 +6,14 @@
 
 <div class="container-fluid">
     <h3 class="blue font-weight-bold">Información Personal</h3>
-
-        @Html.BeginForm()
-
-        @
+     
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid mt-5">
     <h3 class="blue font-weight-bold">Perfiles Académicos</h3>
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid mt-5">
     <h3 class="blue font-weight-bold">Estudios Realizados</h3>
     <div class="row align-items-center justify-items-center mt-3">
         <div class="col-md-3 form-inline">
@@ -53,7 +50,7 @@
             </div>
         </div>
     </div>
-    <div class="row align-items-center justify-items-center mt-3">
+    <div class="row align-items-center justify-items-center mt-5">
         <table class="table table-striped ">
             <thead class="table-heading">
                 <tr id="ROW1">
@@ -90,7 +87,7 @@
 
 
 
-<div class="container-fluid">
+<div class="container-fluid mt-5">
     <h3 class="blue font-weight-bold">Idiomas</h3>
     <div class="row align-items-center justify-items-center mt-3">
         <div class="col-md-3 form-inline">
@@ -131,7 +128,7 @@
             </div>
         </div>
     </div>
-    <div class="row align-items-center justify-items-center mt-3">
+    <div class="row align-items-center justify-items-center mt-5">
         <table class="table table-striped ">
             <thead class="table-heading">
                 <tr id="ROW1">
@@ -166,52 +163,46 @@
     </div>
 </div>
 
-<div class="container-fluid">
-    <h3 class="blue font-weight-bold">Estudios Realizados</h3>
+<div class="container-fluid mt-5">
+    <h3 class="blue font-weight-bold">Experiencia en Investigación</h3>
     <div class="row align-items-center justify-items-center mt-3">
-        <div class="col-md-3 form-inline">
-            <label class="col-md-6" for="gradoAcadInput">Grado Académico</label>
-            <input type="text" class="col-md-6" form-control" id="gradoAcadInput" />
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="nombrePuestoInput">Nombre del Puesto</label>
+            <input type="text" class="col-md-6" form-control" id="nombrePuestoInput" />
         </div>
-        <div class="col-md-3 form-inline">
-            <label class="col-md-6">Institución</label>
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6">Unidad Departamental</label>
             <select class="col-md-6 form-control">
-                <option>Institución</option>
+                <option>Unidad departamental</option>
             </select>
-        </div>
-        <div class="col-md-3 form-inline">
-            <label class="col-md-6">País</label>
-            <select class="col-md-6 form-control">
-                <option>País</option>
-            </select>
-        </div>
+        </div> 
     </div>
     <div class="row align-items-center justify-items-center mt-3">
-        <div class="col-md-3 form-inline">
-            <label class="col-md-6" for="anioGradInput">Año de Graduación</label>
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="anioInicioInput">Año de Inicio</label>
             <input type="text" class="col-md-6" form-control" id="anioGradInput" />
         </div>
-        <div class="col-md-3 form-inline">
-            <label class="col-md-6" for="areaEstInput">Área de Estudio</label>
-            <input type="text" class="col-md-6" form-control" id="areaEstInput" />
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="anioTerminoInput">Año de Término</label>
+            <input type="text" class="col-md-6" form-control" id="anioTerminoInput" />
         </div>
     </div>
     <div class="row align-items-center justify-items-center mt-3">
         <div class="col-md-3 form-inline">
             <div class="wrapperBotonAgregar">
-                <input class="btnGrande btnAzul" type="button" value="Agregar Estudio">
+                <input class="btnGrande btnAzul" type="button" value="Agregar Experiencia">
             </div>
         </div>
     </div>
-    <div class="row align-items-center justify-items-center mt-3">
+    <div class="row align-items-center justify-items-center mt-5">
         <table class="table table-striped ">
             <thead class="table-heading">
                 <tr id="ROW1">
-                    <th>Grado Académico</th>
-                    <th>Institución</th>
-                    <th>País</th>
+                    <th>Nombre del Puesto</th>
+                    <th>Unidad Departamental</th>
+                    <th>Año de Inicio</th>
                     <th>Año de Graduación</th>
-                    <th>Área de Estudio</th>
+                    <th>Año de Término</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                 </tr>
