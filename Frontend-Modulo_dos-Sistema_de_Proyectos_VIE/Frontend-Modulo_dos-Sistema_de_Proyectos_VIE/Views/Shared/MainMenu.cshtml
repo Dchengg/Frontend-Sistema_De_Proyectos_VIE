@@ -7,28 +7,16 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/BuscadorProyectos.css")
     @Styles.Render("~/Content/SeguimientoProyecto.css")
+    @Styles.Render("~/Content/FichaInvestigador.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 
 <body>
-    <div class="row">
-        <nav style="border-width:0; margin:0" class="navbar navbar-fixed-top">
-            <div style="padding-left:0" class="container-fluid">
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Settings</a></li>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Help</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </div>
+     
     <div class="container-fluid">
         <div class="row">
             <div class="sidebar sideMenu mainMenu">
-                <img src="~/Assets/TEC-logo-white.png" alt="TEC-logo-white"/>
+                <img src="~/Assets/TEC-logo-white.png" alt="TEC-logo-white" />
                 <ul class="nav nav-sidebar">
                     <li>
                         <a href="#">
@@ -75,7 +63,7 @@
                 </ul>
             </div>
             <div class="main content-page">
-                @RenderBody()   
+                @RenderBody()
             </div>
         </div>
     </div>

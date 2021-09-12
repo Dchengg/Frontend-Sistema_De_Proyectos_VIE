@@ -5,51 +5,231 @@
 }
 
 <div class="container-fluid">
-    <h2>Información Personal</h2>
+    <h3 class="blue font-weight-bold">Información Personal</h3>
 </div>
 
 <div class="container-fluid">
-    <h2>Perfiles Académicos</h2>
+    <h3 class="blue font-weight-bold">Perfiles Académicos</h3>
 </div>
 
 <div class="container-fluid">
-    <h2>Estudios Realizados</h2>
-    <div class="row formRow">
-        <div class="col-md-12 form-inline">
-            <label class="col-md-5" for="parametrosInput">Parámetros de busqueda</label>
-            <input type="text" class="col-md-5" form-control" id="parametrosInput" />
+    <h3 class="blue font-weight-bold">Estudios Realizados</h3>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-3 form-inline">
+            <label class="col-md-6" for="gradoAcadInput">Grado Académico</label>
+            <input type="text" class="col-md-6" form-control" id="gradoAcadInput" />
         </div>
-    </div>
-    <div class="row formRow">
-        <div class="col-md-12 form-inline">
-            <label class="col-md-5">Criterio de búsqueda</label>
-            <select class="col-md-5 form-control">
-                <option>Criterios de busqueda</option>
-                <option>Código</option>
+        <div class="col-md-3 form-inline">
+            <label class="col-md-6">Institución</label>
+            <select class="col-md-6 form-control">
+                <option>Institución</option>
+            </select>
+        </div>
+        <div class="col-md-3 form-inline">
+            <label class="col-md-6">País</label>
+            <select class="col-md-6 form-control">
+                <option>País</option>
             </select>
         </div>
     </div>
-    <table class="table table-striped table-bordered disenoTabla formRow">
-        <tr id="ROW1">
-            <th>Código</th>
-            <th>Nombre del proyecto</th>
-            <th>Investigador coordinador</th>
-            <th>Fecha de inicio</th>
-            <th>Fecha de finalización</th>
-            <th>Oficial del proyecto</th>
-            <th>Acciones</th>
-        </tr>
-        <tr>
-            <th>x</th>
-            <th>x</th>
-            <th>x</th>
-            <th>x</th>
-            <th>x</th>
-            <th>x</th>
-            <th>x</th>
-        </tr>
-    </table>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-3 form-inline">
+            <label class="col-md-6" for="anioGradInput">Año de Graduación</label>
+            <input type="text" class="col-md-6" form-control" id="anioGradInput" />
+        </div>
+        <div class="col-md-3 form-inline">
+            <label class="col-md-6" for="areaEstInput">Área de Estudio</label>
+            <input type="text" class="col-md-6" form-control" id="areaEstInput" />
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-3 form-inline">
+            <div class="wrapperBotonAgregar">
+                <input class="btnGrande btnAzul" type="button" value="Agregar Estudio">
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <table class="table table-striped ">
+            <thead class="table-heading">
+                <tr id="ROW1">
+                    <th>Grado Académico</th>
+                    <th>Institución</th>
+                    <th>País</th>
+                    <th>Año de Graduación</th>
+                    <th>Área de Estudio</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tr>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+            </tr>
+            <tr>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+            </tr>
+        </table>
+    </div>
 </div>
 
 
 
+<div class="container-fluid">
+    <h3 class="blue font-weight-bold">Idiomas</h3>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-3 form-inline">
+            <label class="col-md-6">Idioma</label>
+            <select class="col-md-6 form-control">
+                <option>Idioma</option>
+            </select>
+        </div>
+        <div class="col-md-3 form-inline">
+            <label class="col-md-6">Nivel de habla</label>
+            <select class="col-md-6 form-control">
+                <option>Nivel de habla</option>
+            </select>
+        </div>
+        <div class="col-md-3 form-inline">
+            <label class="col-md-6">Nivel de lectura</label>
+            <select class="col-md-6 form-control">
+                <option>Nivel de lectura</option>
+            </select>
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-3 form-inline">
+            <label class="col-md-6" >Nivel de escritura</label>
+            <select class="col-md-6 form-control">
+                <option>Nivel de escritura</option>
+            </select>
+        </div>
+        <div class="col-md-3 form-inline">
+            <label class="col-md-6">Idioma natal</label>
+            <input type="text" class="col-md-6" form-control" />
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-3 form-inline">
+            <div class="wrapperBotonAgregar">
+                <input class="btnGrande btnAzul" type="button" value="Agregar Idioma">
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <table class="table table-striped ">
+            <thead class="table-heading">
+                <tr id="ROW1">
+                    <th>Idioma</th>
+                    <th>Nivel de habla</th>
+                    <th>Nivel de lectura</th>
+                    <th>Nivel de escritura</th>
+                    <th>Idioma natal</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tr>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+            </tr>
+            <tr>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <h3 class="blue font-weight-bold">Estudios Realizados</h3>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-3 form-inline">
+            <label class="col-md-6" for="gradoAcadInput">Grado Académico</label>
+            <input type="text" class="col-md-6" form-control" id="gradoAcadInput" />
+        </div>
+        <div class="col-md-3 form-inline">
+            <label class="col-md-6">Institución</label>
+            <select class="col-md-6 form-control">
+                <option>Institución</option>
+            </select>
+        </div>
+        <div class="col-md-3 form-inline">
+            <label class="col-md-6">País</label>
+            <select class="col-md-6 form-control">
+                <option>País</option>
+            </select>
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-3 form-inline">
+            <label class="col-md-6" for="anioGradInput">Año de Graduación</label>
+            <input type="text" class="col-md-6" form-control" id="anioGradInput" />
+        </div>
+        <div class="col-md-3 form-inline">
+            <label class="col-md-6" for="areaEstInput">Área de Estudio</label>
+            <input type="text" class="col-md-6" form-control" id="areaEstInput" />
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-3 form-inline">
+            <div class="wrapperBotonAgregar">
+                <input class="btnGrande btnAzul" type="button" value="Agregar Estudio">
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <table class="table table-striped ">
+            <thead class="table-heading">
+                <tr id="ROW1">
+                    <th>Grado Académico</th>
+                    <th>Institución</th>
+                    <th>País</th>
+                    <th>Año de Graduación</th>
+                    <th>Área de Estudio</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tr>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+            </tr>
+            <tr>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+            </tr>
+        </table>
+    </div>
+</div>
