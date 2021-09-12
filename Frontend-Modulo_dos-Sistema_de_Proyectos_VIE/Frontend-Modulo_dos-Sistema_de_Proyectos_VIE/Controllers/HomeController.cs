@@ -4,8 +4,8 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
-
-
+using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
+using Newtonsoft.Json;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
@@ -13,25 +13,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
     {
         public ActionResult Index()
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("https://localhost:44394/api/");
-                //HTTP GET
-                var responseTask = client.GetAsync("Proyecto");
-                responseTask.Wait();
-                var result = responseTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    var response = result.Content.ReadAsStringAsync();
-                    response.Wait();
-                    System.Diagnostics.Debug.WriteLine(response.Result);
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine(result);
-                }
-            }
-            return View("BuscadorProyectos");
+            List<Proyecto> proyectos = ProyectoController.getProyectos();
+            return View("BuscadorProyectos", proyectos);
         }
 
         public ActionResult About()
@@ -49,9 +32,5 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             return View();
         }
 
-        public ActionResult BuscadorProyectos()
-        {
-            return View();
-        }
     }
 }

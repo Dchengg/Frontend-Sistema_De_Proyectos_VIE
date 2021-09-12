@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,24 +10,22 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 {
     public class SeguimientoProyectoController : Controller
     {
-        readonly Proyecto ProyectoPrueba = new Proyecto
-        {
-            CodigoProyecto = "1234567",
-            NombreProyecto = "Proyecto de prueba",
-            Descripcion = "Esto es una descripción"
-        };
+        Proyecto Proyecto = new Proyecto();
 
         // GET: SeguimientoProyecto
-        public ActionResult DatosProyecto()
+        public ActionResult DatosProyecto(String codigo)
         {
-            return View(ProyectoPrueba);
+
+            Proyecto = ProyectoController.getProyecto(codigo);
+            ViewData["objetivosEspecificos"] = ProyectoController.getObjetivosProyecto(codigo);
+            return View(Proyecto);
         }
 
         [HttpPost]
         public ActionResult DatosProyecto(Proyecto proyecto)
         {
-            ProyectoPrueba.Descripcion = proyecto.Descripcion;
-            return View(ProyectoPrueba);
+            Proyecto.Descripcion = proyecto.Descripcion;
+            return View(Proyecto);
         }
 
         public ActionResult AreaFrascati()
