@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,9 +15,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         // GET: SeguimientoProyecto
         public ActionResult DatosProyecto(String codigo)
         {
-            System.Diagnostics.Debug.WriteLine("IM HERE");
-            System.Diagnostics.Debug.WriteLine(codigo);
+
             Proyecto = ProyectoController.getProyecto(codigo);
+            ViewData["objetivosEspecificos"] = ProyectoController.getObjetivosProyecto(codigo);
             return View(Proyecto);
         }
 

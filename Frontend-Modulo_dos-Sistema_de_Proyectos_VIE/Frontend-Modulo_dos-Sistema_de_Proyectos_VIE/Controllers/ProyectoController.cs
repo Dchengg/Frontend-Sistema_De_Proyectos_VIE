@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Web.Mvc;
 using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
@@ -37,8 +38,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         {
             using (var client = new HttpClient())
             {
-               
-          
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/Proyecto")
                 {
                     Query = string.Format("id={0}", codigo)
@@ -61,6 +60,35 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 
                 }
                 return proyecto;
+            }
+        }
+
+        public static List<ObjetivoEspecifico> getObjetivosProyecto(String codigo)
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Objetivos")
+                {
+                    Query = string.Format("id={0}", codigo)
+                };
+                var responseTask = client.GetAsync(builder.Uri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<ObjetivoEspecifico> objetivos = new List<ObjetivoEspecifico>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    System.Diagnostics.Debug.WriteLine(response);
+                    response.Wait();
+                    objetivos = JsonConvert.DeserializeObject<List<ObjetivoEspecifico>>(response.Result);
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("ERROR");
+                    System.Diagnostics.Debug.WriteLine(result);
+
+                }
+                return objetivos;
             }
         }
     }
