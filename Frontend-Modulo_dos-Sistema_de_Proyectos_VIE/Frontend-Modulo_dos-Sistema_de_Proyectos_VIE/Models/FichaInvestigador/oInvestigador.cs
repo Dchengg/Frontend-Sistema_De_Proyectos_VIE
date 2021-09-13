@@ -10,7 +10,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         
         public string identificacion { get; set; }
        
-        public string CadenaBase64Foto { get; set; }
+        public string foto { get; set; }
     
         public string nombre { get; set; }
         
