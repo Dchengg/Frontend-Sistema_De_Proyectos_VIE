@@ -11,12 +11,14 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
     public class SeguimientoProyectoController : Controller
     {
         Proyecto Proyecto = new Proyecto();
+        string CodigoAux;
 
         // GET: SeguimientoProyecto
         public ActionResult DatosProyecto(String codigo)
         {
 
             Proyecto = ProyectoController.getProyecto(codigo);
+            CodigoAux = codigo;
             ViewData["objetivosEspecificos"] = ProyectoController.getObjetivosProyecto(codigo);
             return View(Proyecto);
         }
@@ -25,22 +27,29 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult DatosProyecto(Proyecto proyecto)
         {
             Proyecto.Descripcion = proyecto.Descripcion;
+            CodigoAux = proyecto.Codigo;
             return View(Proyecto);
         }
 
-        public ActionResult AreaFrascati()
+        public ActionResult AreaFrascati(string codigo)
         {
-            return View();
+            Console.WriteLine(CodigoAux);
+            List<Frascati> Frascatis = FrascatiController.getFrascati(CodigoAux);
+            
+            return View("AreaFrascati",Frascatis);
         }
 
         public ActionResult agregarODS() 
         {
-            return View();
+            
+            List<ODS> ODSs = ODSController.getODS(CodigoAux);
+            return View("agregarODS", ODSs);
         }
 
         public ActionResult poblacionBeneficiaria() 
         {
-            return View();
+            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblacion(CodigoAux);
+            return View("poblacionBeneficiaria", poblaciones);
         }
     }
 }
