@@ -45,7 +45,7 @@
                 <th>@item.FechaFinalizacion</th>
                 <th>@item.OficialDeProyecto</th>
                 <th>
-                    <button onclick="location.href='@Url.Action("DatosProyecto","SeguimientoProyecto", new { codigo=item.Codigo })'">
+                    <button onclick="location.href = '@Url.Action("DatosProyecto","SeguimientoProyecto", new { codigo=item.Codigo })'">
                         Ver/Modificar datos del proyecto
                     </button>
                 </th>

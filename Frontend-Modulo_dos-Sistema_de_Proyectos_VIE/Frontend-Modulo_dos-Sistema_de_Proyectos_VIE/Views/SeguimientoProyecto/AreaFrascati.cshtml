@@ -1,7 +1,9 @@
-﻿
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Frascati>
+
 @{
     ViewBag.Title = "Áreas Frascati";
     Layout = "~/Views/Shared/ProyectoSideMenu.cshtml";
+
 }
 
 
@@ -62,28 +64,19 @@
                             <th>Área</th>
                             <th> </th>
                         </tr>
-                        <tr>
-                            <th>x</th>
-                            <th>x</th>
-                            <th>x</th>
-                            <th> <div> <input class="botonEliminar" type="button" value="Eliminar"> </div></th>
-                        </tr>
-                        <tr>
-                            <th>x </th>
-                            <th>x </th>
-                            <th>x </th>
-                            <th> </th>
-                        </tr>
-                        <tr>
-                            <th>x</th>
-                            <th>x </th>
-                            <th>x </th>
-                            <th> </th>
-                        </tr>
+                        @foreach (var frascati in Model)
+                        {
+                            <tr>
+                                <th>@frascati.IdArea</th>
+                                <th>@frascati.SubArea</th>
+                                <th>@frascati.Area</th>
+                                <th> <div> <input class="botonEliminar" type="button" value="Eliminar"> </div></th>
+                            </tr>
+                        }
 
                     </table>
                 </div>
             </div>
         </div>
     </form>
-    </div>
+</div>

@@ -1,6 +1,6 @@
-﻿
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ODS>
 @{
-    ViewBag.Title = "agregarODS";
+    ViewBag.Title = "Objetivos de Desarrollo Sostenible";
     Layout = "~/Views/Shared/ProyectoSideMenu.cshtml";
 }
 
@@ -59,24 +59,15 @@
                             <th>Área</th>
                             <th> </th>
                         </tr>
-                        <tr>
-                            <th>x</th>
-                            <th>x</th>
-                            <th>x</th>
-                            <th> <div> <input class="botonEliminar" type="button" value="Eliminar"> </div></th>
-                        </tr>
-                        <tr>
-                            <th>x </th>
-                            <th>x </th>
-                            <th>x </th>
-                            <th> </th>
-                        </tr>
-                        <tr>
-                            <th>x</th>
-                            <th>x </th>
-                            <th>x </th>
-                            <th> </th>
-                        </tr>
+                        @foreach (var ods in Model)
+                        {
+                            <tr>
+                                <th>@ods.CodigoDeArea</th>
+                                <th>@ods.SubArea</th>
+                                <th>@ods.Area</th>
+                                <th> <div> <input class="botonEliminar" type="button" value="Eliminar"> </div></th>
+                            </tr>
+                        }
 
                     </table>
                 </div>

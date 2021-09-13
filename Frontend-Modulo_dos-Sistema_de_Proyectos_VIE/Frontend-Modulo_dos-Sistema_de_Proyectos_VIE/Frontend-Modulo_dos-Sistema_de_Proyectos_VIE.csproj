@@ -128,12 +128,18 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ODSController.cs" />
+    <Compile Include="Controllers\PoblacionBeneficiariaController.cs" />
     <Compile Include="Controllers\ProyectoController.cs" />
+    <Compile Include="Controllers\FrascatiController.cs" />
     <Compile Include="Controllers\SeguimientoProyectos\SeguimientoProyectoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Frascati.cs" />
     <Compile Include="Models\ObjetivoEspecifico.cs" />
+    <Compile Include="Models\ODS.cs" />
+    <Compile Include="Models\Poblacion.cs" />
     <Compile Include="Models\Proyecto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -186,6 +192,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\BuscadorProyecto\" />
+    <Folder Include="Views\ODS\" />
+    <Folder Include="Views\PoblacionBeneficiaria\" />
     <Folder Include="Views\Proyecto\" />
     <Folder Include="Views\SeguimientoProyectos\" />
   </ItemGroup>
