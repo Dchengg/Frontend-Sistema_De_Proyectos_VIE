@@ -7,24 +7,22 @@
 
 <div class="container-fluid">
     <h2>Buscador de Proyectos</h2>
-    <div class="row formRow">
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <div class="row formRow">
             <label class="col-md-5" for="parametrosInput">Parámetros de busqueda</label>
-            <input type="text" class="col-md-5" form-control" id="parametrosInput" />
-            <button onclick="location.href='@Url.Action("ResultadoBusqueda","Home")'">
-                        Buscar
+            <input type="text" class="col-md-5" form-control" id="parametrosInput" name="parametrosInput"/>
+            <button type="submit">
+                Buscar
             </button>
         </div>
-    </div>
-    <div class="row formRow">
-        <div class="col-md-12 form-inline">
-            <label class="col-md-5">Criterio de búsqueda</label>
-            @Html.DropDownList("criterioBusqueda", new List<SelectListItem>
-            {
-               new SelectListItem{ Text="Código", Value = "codigo" },
-               new SelectListItem{ Text="Nombre del proyecto", Value = "nombreProyecto" }
-            }, "Escoja un criterio de busqueda"))
+        <div class="row formRow">
+            <div class="col-md-12 form-inline">
+                <label class="col-md-5">Criterio de búsqueda</label>
+                @Html.DropDownList("criteriosBusqueda", ViewData["criteriosBusqueda"] as SelectList, "Escoja un criterio de busqueda")
+            </div>
         </div>
-    </div>
+    }
     <table class="table table-striped table-bordered disenoTabla formRow">
         <tr id="ROW1">
             <th>Código</th>

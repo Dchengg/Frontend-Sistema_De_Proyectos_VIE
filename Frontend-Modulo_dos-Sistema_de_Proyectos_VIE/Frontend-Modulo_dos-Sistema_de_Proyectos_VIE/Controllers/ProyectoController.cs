@@ -91,5 +91,34 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 return objetivos;
             }
         }
+
+        public static List<Proyecto> buscarProyectos(String criteriosBusqueda, String parametros)
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Proyecto")
+                {
+                    Query = string.Format("criterioBusqueda={0}&parametros={1}", criteriosBusqueda, parametros)
+                };
+                var responseTask = client.GetAsync(builder.Uri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Proyecto> proyectos= new List<Proyecto>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    System.Diagnostics.Debug.WriteLine(response);
+                    response.Wait();
+                    proyectos = JsonConvert.DeserializeObject<List<Proyecto>>(response.Result);
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("ERROR");
+                    System.Diagnostics.Debug.WriteLine(result);
+
+                }
+                return proyectos;
+            }
+        }
     }
 }
