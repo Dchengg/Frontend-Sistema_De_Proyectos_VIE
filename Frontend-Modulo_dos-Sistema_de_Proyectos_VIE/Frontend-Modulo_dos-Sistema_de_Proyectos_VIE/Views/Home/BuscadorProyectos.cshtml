@@ -10,15 +10,19 @@
     <div class="row formRow">
             <label class="col-md-5" for="parametrosInput">Parámetros de busqueda</label>
             <input type="text" class="col-md-5" form-control" id="parametrosInput" />
+            <button onclick="location.href='@Url.Action("ResultadoBusqueda","Home")'">
+                        Buscar
+            </button>
         </div>
     </div>
     <div class="row formRow">
         <div class="col-md-12 form-inline">
             <label class="col-md-5">Criterio de búsqueda</label>
-            <select class="col-md-5 form-control">
-                <option>Criterios de busqueda</option>
-                <option>Código</option>
-            </select>
+            @Html.DropDownList("criterioBusqueda", new List<SelectListItem>
+            {
+               new SelectListItem{ Text="Código", Value = "codigo" },
+               new SelectListItem{ Text="Nombre del proyecto", Value = "nombreProyecto" }
+            }, "Escoja un criterio de busqueda"))
         </div>
     </div>
     <table class="table table-striped table-bordered disenoTabla formRow">

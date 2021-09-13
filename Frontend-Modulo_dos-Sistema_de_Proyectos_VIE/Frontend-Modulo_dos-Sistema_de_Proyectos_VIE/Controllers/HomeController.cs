@@ -17,6 +17,14 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             return View("BuscadorProyectos", proyectos);
         }
 
+        public ActionResult ResultadoBusqueda()
+        {
+            String criterioBusqueda = Request.Form["criterioBusqueda"].ToString();
+            System.Diagnostics.Debug.WriteLine(criterioBusqueda);
+            List<Proyecto> proyectos = ProyectoController.getProyectos();
+            return View("BuscadorProyectos", proyectos);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
