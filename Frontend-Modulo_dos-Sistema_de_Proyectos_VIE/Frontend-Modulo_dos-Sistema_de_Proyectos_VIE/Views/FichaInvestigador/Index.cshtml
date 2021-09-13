@@ -1,0 +1,154 @@
+﻿@model Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador.oInvestigador
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div>
+    <h4>oInvestigador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.identificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.identificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CadenaBase64Foto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CadenaBase64Foto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellido1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellido1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apellido2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apellido2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.loginInvestigador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.loginInvestigador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.paisNacimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.paisNacimiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nacionalidad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nacionalidad)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apartadoPostal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apartadoPostal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.seudonimoBibliografico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.seudonimoBibliografico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.categoriaAcademica)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categoriaAcademica)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaIngreso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaIngreso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.porcentajeNombramiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.porcentajeNombramiento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.consentimiento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.consentimiento)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

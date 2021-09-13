@@ -15,9 +15,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 
         public ActionResult Index()
         {
-            /*HttpResponseMessage response = GlobalVariables.WebApiClient.GetAsync("Investigador/4").Result;
-            var investigador = response.Content.ReadAsAsync<oInvestigador>().Result;*/
-            return View("FichaInvestigador");
+          
+            return View();
 
         }
 

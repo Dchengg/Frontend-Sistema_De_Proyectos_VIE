@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador.oInvestigador>
+﻿@model Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador.oInvestigador
 @{
     ViewBag.Title = "FichaInvestigador";
     Layout = "~/Views/Shared/MainMenu.cshtml";
@@ -6,7 +6,96 @@
 
 <div class="container-fluid">
     <h3 class="blue font-weight-bold">Información Personal</h3>
-     
+    @using (Html.BeginForm(
+           "Investigador", "Home", FormMethod.Get, new { id = "formInvestigador" }
+        ))
+    {<div class="row">
+            <div class="col-lg-2">Nombre</div>
+            <div class="col-lg-10">
+                @Html.TextBoxFor(investigador => investigador.nombre, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-2">Apellido</div>
+            <div class="col-lg-10">
+                @Html.TextBoxFor(investigador => investigador.apellido1, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-2">Apellido</div>
+            <div class="col-lg-10">
+                @Html.TextBoxFor(investigador => investigador.apellido2, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-2">Nacionalidad</div>
+            <div class="col-lg-10">
+                @Html.TextBoxFor(investigador => investigador.Nacionalidad, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-2">Pais Nacimiento</div>
+            <div class="col-lg-10">
+                @Html.TextBoxFor(investigador => investigador.paisNacimiento, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2">Dirección</div>
+            <div class="col-lg-10">
+                @Html.TextBoxFor(investigador => investigador.direccion, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-2">Seudononimo Bibliografico</div>
+            <div class="col-lg-10">
+                @Html.TextBoxFor(investigador => investigador.seudonimoBibliografico, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-2">Apartado Postal</div>
+            <div class="col-lg-10">
+                @Html.TextBoxFor(investigador => investigador.apartadoPostal, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-2">Categoría Académica</div>
+            <div class="col-lg-10">
+                @Html.TextBoxFor(investigador => investigador.categoriaAcademica, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-2">Consentimiento</div>
+            <div class="col-lg-10">
+                @Html.TextBoxFor(investigador => investigador.consentimiento, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-2">Fecha Ingreso</div>
+            <div class="col-lg-10">
+                @Html.TextBoxFor(investigador => investigador.fechaIngreso, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-2">Tipo</div>
+            <div class="col-lg-10">
+                @Html.TextBoxFor(investigador => investigador.tipo, new { @class = "form-control" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-12"><input type="submit" value="Submit" class="btn btn-primary"></div>
+
+        </div>}
 </div>
 
 <div class="container-fluid mt-5">
