@@ -27,7 +27,21 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         public string paisNacimiento { get; set; }
         
         public string Nacionalidad { get; set; }
-        
+
+        public string celular { get; set; }
+
+        public string telOficina { get; set; }
+
+        public string fax { get; set; }
+
+        public string email { get; set; }
+
+        public string unidadLab { get; set; }
+
+        public string sexo { get; set; }
+
+        public string situacionLab { get; set; }
+
         public string apartadoPostal { get; set; }
         
         public string seudonimoBibliografico { get; set; }

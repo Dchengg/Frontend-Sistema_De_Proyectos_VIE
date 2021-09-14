@@ -14,9 +14,10 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
         // GET: FichaInvestigador
         public ActionResult Index()
         {
-            HttpResponseMessage respuesta = GlobalVariables.WebApiClient.GetAsync("Investigador/4").Result;
-            var respuestaAPI = respuesta.Content.ReadAsAsync<oRespuesta<oInvestigador>>().Result;
-            return View(respuestaAPI.ObjetoRespuesta);
+            //HttpResponseMessage respuesta = GlobalVariables.WebApiClient.GetAsync("Investigador/4").Result;
+           // var respuestaAPI = respuesta.Content.ReadAsAsync<oRespuesta<oInvestigador>>().Result;
+            var dummy = new oRespuesta<oInvestigador>(); 
+            return View(dummy.ObjetoRespuesta);
         }
 
         // GET: FichaInvestigador/Details/5

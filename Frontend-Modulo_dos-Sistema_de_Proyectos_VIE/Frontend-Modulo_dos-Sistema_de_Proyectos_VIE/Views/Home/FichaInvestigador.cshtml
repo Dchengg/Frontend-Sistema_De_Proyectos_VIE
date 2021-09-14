@@ -1,4 +1,4 @@
-﻿@model Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador.oInvestigador
+﻿@model Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador.oInvestigador 
 @{
     ViewBag.Title = "FichaInvestigador";
     Layout = "~/Views/Shared/MainMenu.cshtml";
@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col-lg-2">Nacionalidad</div>
             <div class="col-lg-10">
-                @Html.TextBoxFor(investigador => investigador.Nacionalidad, new { @class = "form-control" })
+                @Html.DropDownListFor(investigador => investigador.Nacionalidad, new SelectList( "Id", "NombreRegion" ))
             </div>
         </div>
         <br />
@@ -103,35 +103,41 @@
 </div>
 
 <div class="container-fluid mt-5">
+
     <h3 class="blue font-weight-bold">Estudios Realizados</h3>
-    <div class="row align-items-center justify-items-center mt-3">
-        <div class="col-md-3 form-inline">
-            <label class="col-md-6" for="gradoAcadInput">Grado Académico</label>
-            <input type="text" class="col-md-6" form-control" id="gradoAcadInput" />
+    @using (Html.BeginForm(
+           "Investigador", "Home", FormMethod.Get, new { id = "formEstudioRealizado" }
+        ))
+    {
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-3 form-inline">
+                <label class="col-md-6" for="gradoAcadInput">Grado Académico</label>
+                @Html.TextBoxFor(investigador => investigador.nombre, new { @class = "form-control" })
+            </div>
+            <div class="col-md-3 form-inline">
+                <label class="col-md-6">Institución</label>
+                <select class="col-md-6 form-control">
+                    <option>Institución</option>
+                </select>
+            </div>
+            <div class="col-md-3 form-inline">
+                <label class="col-md-6">País</label>
+                <select class="col-md-6 form-control">
+                    <option>País</option>
+                </select>
+            </div>
         </div>
-        <div class="col-md-3 form-inline">
-            <label class="col-md-6">Institución</label>
-            <select class="col-md-6 form-control">
-                <option>Institución</option>
-            </select>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-3 form-inline">
+                <label class="col-md-6" for="anioGradInput">Año de Graduación</label>
+                <input type="text" class="col-md-6" form-control" id="anioGradInput" />
+            </div>
+            <div class="col-md-3 form-inline">
+                <label class="col-md-6" for="areaEstInput">Área de Estudio</label>
+                <input type="text" class="col-md-6" form-control" id="areaEstInput" />
+            </div>
         </div>
-        <div class="col-md-3 form-inline">
-            <label class="col-md-6">País</label>
-            <select class="col-md-6 form-control">
-                <option>País</option>
-            </select>
-        </div>
-    </div>
-    <div class="row align-items-center justify-items-center mt-3">
-        <div class="col-md-3 form-inline">
-            <label class="col-md-6" for="anioGradInput">Año de Graduación</label>
-            <input type="text" class="col-md-6" form-control" id="anioGradInput" />
-        </div>
-        <div class="col-md-3 form-inline">
-            <label class="col-md-6" for="areaEstInput">Área de Estudio</label>
-            <input type="text" class="col-md-6" form-control" id="areaEstInput" />
-        </div>
-    </div>
+    }
     <div class="row align-items-center justify-items-center mt-3">
         <div class="col-md-3 form-inline">
             <div class="wrapperBotonAgregar">
@@ -173,8 +179,7 @@
         </table>
     </div>
 </div>
-
-
+}
 
 <div class="container-fluid mt-5">
     <h3 class="blue font-weight-bold">Idiomas</h3>
@@ -200,7 +205,7 @@
     </div>
     <div class="row align-items-center justify-items-center mt-3">
         <div class="col-md-3 form-inline">
-            <label class="col-md-6" >Nivel de escritura</label>
+            <label class="col-md-6">Nivel de escritura</label>
             <select class="col-md-6 form-control">
                 <option>Nivel de escritura</option>
             </select>
@@ -264,7 +269,7 @@
             <select class="col-md-6 form-control">
                 <option>Unidad departamental</option>
             </select>
-        </div> 
+        </div>
     </div>
     <div class="row align-items-center justify-items-center mt-3">
         <div class="col-md-6 form-inline">
@@ -315,5 +320,82 @@
                 <th>x</th>
             </tr>
         </table>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-2">Apellido</div>
+    <div class="col-lg-10">
+        @Html.TextBoxFor(investigador => investigador.apellido1, new { @class = "form-control" })
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-2">Apellido</div>
+    <div class="col-lg-10">
+        @Html.TextBoxFor(investigador => investigador.apellido2, new { @class = "form-control" })
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-2">Nacionalidad</div>
+    <div class="col-lg-10">
+        @Html.TextBoxFor(investigador => investigador.Nacionalidad, new { @class = "form-control" })
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-2">Pais Nacimiento</div>
+    <div class="col-lg-10">
+        @Html.TextBoxFor(investigador => investigador.paisNacimiento, new { @class = "form-control" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-2">Dirección</div>
+    <div class="col-lg-10">
+        @Html.TextBoxFor(investigador => investigador.direccion, new { @class = "form-control" })
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-2">Seudononimo Bibliografico</div>
+    <div class="col-lg-10">
+        @Html.TextBoxFor(investigador => investigador.seudonimoBibliografico, new { @class = "form-control" })
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-2">Apartado Postal</div>
+    <div class="col-lg-10">
+        @Html.TextBoxFor(investigador => investigador.apartadoPostal, new { @class = "form-control" })
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-2">Categoría Académica</div>
+    <div class="col-lg-10">
+        @Html.TextBoxFor(investigador => investigador.categoriaAcademica, new { @class = "form-control" })
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-2">Consentimiento</div>
+    <div class="col-lg-10">
+        @Html.TextBoxFor(investigador => investigador.consentimiento, new { @class = "form-control" })
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-2">Fecha Ingreso</div>
+    <div class="col-lg-10">
+        @Html.TextBoxFor(investigador => investigador.fechaIngreso, new { @class = "form-control" })
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-2">Tipo</div>
+    <div class="col-lg-10">
+        @Html.TextBoxFor(investigador => investigador.tipo, new { @class = "form-control" })
     </div>
 </div>
