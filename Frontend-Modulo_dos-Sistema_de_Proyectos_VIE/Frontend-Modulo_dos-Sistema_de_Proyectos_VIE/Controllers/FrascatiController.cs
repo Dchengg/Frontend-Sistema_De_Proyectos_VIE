@@ -18,7 +18,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/Frascati")
                 {
-                    Query = string.Format("codigoProyecto={0}", Id)
+                    Query = string.Format("id={0}", Id)
                 };
 
                 var responseTask = client.GetAsync(builder.Uri);

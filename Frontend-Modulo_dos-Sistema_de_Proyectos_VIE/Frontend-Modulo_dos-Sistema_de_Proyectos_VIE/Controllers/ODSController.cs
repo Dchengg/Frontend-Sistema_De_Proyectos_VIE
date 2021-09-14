@@ -18,7 +18,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             {
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/ODS")
                 {
-                    Query = string.Format("codigoProyecto={0}", CodigoProyecto)
+                    Query = string.Format("id={0}", CodigoProyecto)
                 };
 
                 var responseTask = client.GetAsync(builder.Uri);

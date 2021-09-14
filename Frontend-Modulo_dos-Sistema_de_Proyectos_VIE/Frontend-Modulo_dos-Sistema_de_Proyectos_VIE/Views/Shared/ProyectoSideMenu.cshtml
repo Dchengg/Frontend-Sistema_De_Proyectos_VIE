@@ -36,12 +36,12 @@
         <div style="display:flex" class="row">
             <div class="col-sm-2 col-md-2 sidebar sideMenu">
                 <ul class="nav nav-sidebar">
-                    <li><a href="@Url.Action("DatosProyecto","SeguimientoProyecto")">Datos del proyecto</a></li>
+                    <li><a href="@Url.Action("DatosProyecto","SeguimientoProyecto", new { codigo=ViewData["codigoProyecto"]})">Datos del proyecto</a></li>
                     <li><a href="#">Investigadores Asociados</a></li>
                     <li><a href="#">Cambiar investigador coordinador</a></li>
-                    <li><a href="@Url.Action("agregarODS","SeguimientoProyecto")">Objetivos de Desarrollo Sostenible</a></li>
-                    <li><a href="@Url.Action("AreaFrascati","SeguimientoProyecto")">Áreas Franscati</a></li>
-                    <li><a href="@Url.Action("poblacionBeneficiaria","SeguimientoProyecto")">Población beneficiaria</a></li>
+                    <li><a href="@Url.Action("agregarODS","SeguimientoProyecto", new { codigo=ViewData["codigoProyecto"]})">Objetivos de Desarrollo Sostenible</a></li>
+                    <li><a href="@Url.Action("AreaFrascati","SeguimientoProyecto", new { codigo=ViewData["codigoProyecto"]})">Áreas Franscati</a></li>
+                    <li><a href="@Url.Action("poblacionBeneficiaria","SeguimientoProyecto", new { codigo=ViewData["codigoProyecto"]})">Población beneficiaria</a></li>
                     <li><a href="#">Ubicación geográfica</a></li>
                     <li><a href="#">Palabras claves</a></li>
                     <li><a href="#">Presupuesto</a></li>

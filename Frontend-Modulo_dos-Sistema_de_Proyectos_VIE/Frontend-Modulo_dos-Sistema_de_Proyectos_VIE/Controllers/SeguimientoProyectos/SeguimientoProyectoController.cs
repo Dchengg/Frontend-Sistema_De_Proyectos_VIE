@@ -11,44 +11,36 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
     public class SeguimientoProyectoController : Controller
     {
         Proyecto Proyecto = new Proyecto();
-        string CodigoAux;
 
         // GET: SeguimientoProyecto
         public ActionResult DatosProyecto(String codigo)
         {
 
             Proyecto = ProyectoController.getProyecto(codigo);
-            CodigoAux = codigo;
+            ViewData["codigoProyecto"] = codigo;
             ViewData["objetivosEspecificos"] = ProyectoController.getObjetivosProyecto(codigo);
             return View(Proyecto);
         }
 
-        [HttpPost]
-        public ActionResult DatosProyecto(Proyecto proyecto)
+        public ActionResult AreaFrascati(String codigo)
         {
-            Proyecto.Descripcion = proyecto.Descripcion;
-            CodigoAux = proyecto.Codigo;
-            return View(Proyecto);
-        }
-
-        public ActionResult AreaFrascati(string codigo)
-        {
-            Console.WriteLine(CodigoAux);
-            List<Frascati> Frascatis = FrascatiController.getFrascati(CodigoAux);
-            
+            System.Diagnostics.Debug.WriteLine(codigo);
+            List<Frascati> Frascatis = FrascatiController.getFrascati(codigo);
+            ViewData["codigoProyecto"] = codigo;
             return View("AreaFrascati",Frascatis);
         }
 
-        public ActionResult agregarODS() 
+        public ActionResult agregarODS(String codigo) 
         {
-            
-            List<ODS> ODSs = ODSController.getODS(CodigoAux);
+            List<ODS> ODSs = ODSController.getODS(codigo);
+            ViewData["codigoProyecto"] = codigo;
             return View("agregarODS", ODSs);
         }
 
-        public ActionResult poblacionBeneficiaria() 
+        public ActionResult poblacionBeneficiaria(String codigo) 
         {
-            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblacion(CodigoAux);
+            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblacion(codigo);
+            ViewData["codigoProyecto"] = codigo;
             return View("poblacionBeneficiaria", poblaciones);
         }
     }
