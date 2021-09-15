@@ -8,6 +8,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
 {
     public class ODS
     {
+        [JsonProperty("id")]
+        public String Id { get; set; }
         [JsonProperty("codigoProyecto")]
         public String Codigoproyecto { get; set; }
         [JsonProperty("codigoDeArea")]

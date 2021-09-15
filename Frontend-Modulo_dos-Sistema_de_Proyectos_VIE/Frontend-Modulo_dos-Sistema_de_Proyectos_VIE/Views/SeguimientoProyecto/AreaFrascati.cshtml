@@ -68,13 +68,17 @@
                         </tr>
                         @foreach (var frascati in Model)
                         {
-            <tr>
-                <th>@frascati.IdArea</th>
-                <th>@frascati.SubArea</th>
-                <th>@frascati.Area</th>
-                <th> <div> <input class="botonEliminar" type="button" value="Eliminar"> </div></th>
-            </tr>}
+                            <tr>
+                                @using (Html.BeginForm("EliminarAreasFrascati", "SeguimientoProyecto", new {idArea = frascati.IdArea, codigo = ViewData["codigoProyecto"] }, FormMethod.Post))
 
+                                {
+                                    <th>@frascati.IdArea</th>
+                                    <th>@frascati.SubArea</th>
+                                    <th>@frascati.Area</th>
+                                    <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                                }
+                            </tr>
+                         }
                     </table>
                 </div>
             </div>

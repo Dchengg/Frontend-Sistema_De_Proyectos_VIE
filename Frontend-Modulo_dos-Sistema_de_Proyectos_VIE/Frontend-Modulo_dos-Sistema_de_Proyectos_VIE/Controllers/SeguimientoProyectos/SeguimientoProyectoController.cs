@@ -41,6 +41,19 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["codigoProyecto"] = codigo;
             return View("AreaFrascati", Frascatis);
         }
+        [HttpPost]
+        /* incomplete */
+        public ActionResult EliminarAreasFrascati(String idArea, string codigo) {
+            
+            System.Diagnostics.Debug.WriteLine(idArea);
+            System.Diagnostics.Debug.WriteLine(codigo);
+            String resultPost = FrascatiController.deleteAreaFrascati(idArea);
+            System.Diagnostics.Debug.WriteLine(resultPost);
+
+            List<Frascati> Frascatis = FrascatiController.getFrascati(codigo);
+            ViewData["codigoProyecto"] = codigo;
+            return View("AreaFrascati", Frascatis);
+        }
 
         public ActionResult agregarODS(String codigo) 
         {
@@ -55,7 +68,18 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["codigoProyecto"] = codigo;
             return View("poblacionBeneficiaria", poblaciones);
         }
+        [HttpPost]
+        public ActionResult poblacionBeneficiaria(FormCollection form, String codigo)
+        {
+            String poblacion = form["poblacionDropdown"].ToString();
+            System.Diagnostics.Debug.WriteLine(poblacion);
+            String resultPost = PoblacionBeneficiariaController.createPoblacion(codigo, poblacion);
+            System.Diagnostics.Debug.WriteLine(resultPost);
+            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblacion(codigo);
+            ViewData["codigoProyecto"] = codigo;
+            return View("poblacionBeneficiaria", poblaciones);
+        }
 
-        
+
     }
 }

@@ -68,5 +68,28 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             }
         }
 
+        public static String deleteAreaFrascati(String id) {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Frascati/1")
+                {
+
+                    Query = string.Format("id={0}", id)
+                };
+                var values = new Dictionary<string, string>
+                {
+                    {"id", id}
+                };
+                var content = new FormUrlEncodedContent(values);
+                var responseTask = client.PostAsync(builder.Uri, content);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                var responseResult = "Failed";
+                if (result.IsSuccessStatusCode) responseResult = "Sucess";
+                return responseResult;
+            }
+        }
+
     }
 }
