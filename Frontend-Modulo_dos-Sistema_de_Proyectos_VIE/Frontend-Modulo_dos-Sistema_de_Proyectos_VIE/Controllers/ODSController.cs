@@ -40,5 +40,32 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 return ODSs;
             }
         }
+
+        [HttpPost]
+        public static String CreateODS(String area, String subArea, String codigo)
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/ODS/3")
+                {
+
+                    Query = string.Format("codigoProyecto={0}&area={1}&subArea={2}", codigo, area, subArea)
+                };
+                var values = new Dictionary<string, string>
+                {
+                    {"codigoProyecto", codigo},
+                    {"area", area},
+                    {"subarea", subArea}
+                };
+                var content = new FormUrlEncodedContent(values);
+                var responseTask = client.PostAsync(builder.Uri, content);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                var responseResult = "Failed";
+                if (result.IsSuccessStatusCode) responseResult = "Sucess";
+                return responseResult;
+            }
+        }
     }
 }

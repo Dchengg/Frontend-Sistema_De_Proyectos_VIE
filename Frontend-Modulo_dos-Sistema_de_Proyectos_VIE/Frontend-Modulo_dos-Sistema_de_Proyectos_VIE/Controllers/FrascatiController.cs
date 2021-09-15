@@ -42,7 +42,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         }
 
         [HttpPost]
-        public static String createAreaFrascati(String area, String subArea, String codigo)
+        public static String CreateAreaFrascati(String area, String subArea, String codigo)
         {
             using (var client = new HttpClient())
             {

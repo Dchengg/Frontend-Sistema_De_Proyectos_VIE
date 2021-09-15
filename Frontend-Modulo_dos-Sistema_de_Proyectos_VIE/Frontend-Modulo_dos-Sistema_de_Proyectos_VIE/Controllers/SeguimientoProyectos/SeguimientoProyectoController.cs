@@ -34,8 +34,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult AreaFrascati(FormCollection form, String codigo)
         {
             String area = form["areaDropdown"].ToString();
-            String subArea = form["subareaDropdown"].ToString();
-            String resultPost = FrascatiController.createAreaFrascati(area, subArea, codigo);
+            String subArea = form["subAreaDropdown"].ToString();
+            String resultPost = FrascatiController.CreateAreaFrascati(area, subArea, codigo);
             System.Diagnostics.Debug.WriteLine(resultPost);
             List<Frascati> Frascatis = FrascatiController.getFrascati(codigo);
             ViewData["codigoProyecto"] = codigo;
@@ -55,14 +55,26 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View("AreaFrascati", Frascatis);
         }
 
-        public ActionResult agregarODS(String codigo) 
+        public ActionResult AgregarODS(String codigo) 
         {
             List<ODS> ODSs = ODSController.getODS(codigo);
             ViewData["codigoProyecto"] = codigo;
             return View("agregarODS", ODSs);
         }
 
-        public ActionResult poblacionBeneficiaria(String codigo) 
+        [HttpPost]
+        public ActionResult AgregarODS(FormCollection form, String codigo)
+        {
+            String area = form["areaDropdown"].ToString();
+            String subArea = form["subAreaDropdown"].ToString();
+            String resultPost = ODSController.CreateODS(area, subArea, codigo);
+            System.Diagnostics.Debug.WriteLine(resultPost);
+            List<ODS> ODSs = ODSController.getODS(codigo);
+            ViewData["codigoProyecto"] = codigo;
+            return View("agregarODS", ODSs);
+        }
+
+        public ActionResult PoblacionBeneficiaria(String codigo) 
         {
             List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblacion(codigo);
             ViewData["codigoProyecto"] = codigo;
