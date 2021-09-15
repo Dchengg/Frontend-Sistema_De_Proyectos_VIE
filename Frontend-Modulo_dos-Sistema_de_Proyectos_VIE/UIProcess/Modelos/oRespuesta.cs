@@ -5,20 +5,20 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BackendFase1.Objetos.Clases
+namespace UIProcess.Modelos
 {
- 
+    [DataContract]
     public class oRespuesta<TipoGenerico>
     {
-       
+        [DataMember]
         public int CodigoRespuesta { get; set; }
-    
+        [DataMember]
         public string MensajeRespuesta { get; set; }
 
-       
+        [DataMember]
         public TipoGenerico ObjetoRespuesta { get; set; }
 
-
+        [DataMember]
         public bool Estado { get; set; }
     }
 }

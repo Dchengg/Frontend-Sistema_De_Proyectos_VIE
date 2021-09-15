@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using UIProcess.Modelos;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 {
@@ -26,7 +27,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         
         public string paisNacimiento { get; set; }
         
-        public string Nacionalidad { get; set; }
+        public string nacionalidad { get; set; }
 
         public string celular { get; set; }
 
@@ -55,5 +56,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         public int porcentajeNombramiento { get; set; }
         
         public int consentimiento { get; set; }
+
+        public List<oEstudioRealizado> EstudiosRealizados { get; set; }
+
+        public List<oIdioma> Idiomas { get; set; }
+
+        public List<oTituloAcademico> titulos { get; set; }
     }
 }

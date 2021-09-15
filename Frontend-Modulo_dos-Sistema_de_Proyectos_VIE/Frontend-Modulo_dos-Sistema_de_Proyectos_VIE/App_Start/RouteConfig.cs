@@ -16,7 +16,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Inicio", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
