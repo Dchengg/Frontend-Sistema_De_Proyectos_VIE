@@ -15,7 +15,7 @@
         <div class="row formRow">
             <div class="form-inline col-md-8">
                 <label for="codigoProyectoInput">Código del proyecto</label>
-                <input type="text" class="form-control" value="@ViewData["codigoProyecto"]" id="codigoProyectoInput" />
+                <input type="text" class="form-control" value="@ViewData["codigoProyecto"]" id="codigoProyectoInput" disabled/>
             </div>
         </div>
         @using (Html.BeginForm("poblacionBeneficiaria", "SeguimientoProyecto", new { codigo = ViewData["codigoProyecto"] }, FormMethod.Post))
