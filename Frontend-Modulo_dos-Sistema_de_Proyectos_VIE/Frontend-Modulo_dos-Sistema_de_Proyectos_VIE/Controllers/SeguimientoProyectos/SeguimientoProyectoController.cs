@@ -30,6 +30,18 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View("AreaFrascati",Frascatis);
         }
 
+        [HttpPost]
+        public ActionResult AreaFrascati(FormCollection form, String codigo)
+        {
+            String area = form["areaDropdown"].ToString();
+            String subArea = form["subareaDropdown"].ToString();
+            String resultPost = FrascatiController.createAreaFrascati(area, subArea, codigo);
+            System.Diagnostics.Debug.WriteLine(resultPost);
+            List<Frascati> Frascatis = FrascatiController.getFrascati(codigo);
+            ViewData["codigoProyecto"] = codigo;
+            return View("AreaFrascati", Frascatis);
+        }
+
         public ActionResult agregarODS(String codigo) 
         {
             List<ODS> ODSs = ODSController.getODS(codigo);
@@ -43,5 +55,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["codigoProyecto"] = codigo;
             return View("poblacionBeneficiaria", poblaciones);
         }
+
+        
     }
 }

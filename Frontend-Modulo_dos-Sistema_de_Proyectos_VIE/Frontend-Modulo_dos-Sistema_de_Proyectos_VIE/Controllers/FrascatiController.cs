@@ -41,5 +41,32 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             }
         }
 
+        [HttpPost]
+        public static String createAreaFrascati(String area, String subArea, String codigo)
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Frascati/3")
+                {
+                   
+                    Query = string.Format("codigoProyecto={0}&area={1}&subArea={2}", codigo, area, subArea)
+                };
+                var values = new Dictionary<string, string>
+                {
+                    {"codigoProyecto", codigo},
+                    {"area", area},
+                    {"subarea", subArea}
+                };
+                var content = new FormUrlEncodedContent(values);
+                var responseTask = client.PostAsync(builder.Uri, content);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                var responseResult = "Failed";
+                if (result.IsSuccessStatusCode) responseResult = "Sucess";
+                return responseResult;
+            }
+        }
+
     }
 }
