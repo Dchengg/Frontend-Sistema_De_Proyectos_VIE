@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/MainMenu.cshtml";
 }
 
-<div class="container-fluid">
+<div class="container-fluid ml-3">
     <h3 class="blue font-weight-bold">Información Personal</h3>
     @using (Html.BeginForm(
            "Index", "FichaInvestigador", FormMethod.Post, new { id = "formInvestigador" }
@@ -46,16 +46,72 @@
                         <label>Nacionalidad</label>
                     </div>
                     <div class="col-md-5 ">
-                        @Html.DropDownListFor(vista => vista.catalogos.modeloPais, new SelectList(ViewBag.catalogoPais))
-                    </div>
+                        <select class=" form-control">
+                            <option>Afgano</option>
+                            <option>Andorrano</option>
+                            <option>Angolano</option>
+                            <option>Antiguano</option>
+                            <option>Argelino</option>
+                            <option>Armênio</option>
+                            <option>Argentino</option>
+                            <option>Austríaco</option>
+                            <option>Bahamense</option>
+                            <option>Bangladês</option>
+                            <option>Barbadiano</option>
+                            <option>Baremita</option>
+                            <option>Bielorrusso</option>
+                            <option>Belga</option>
+                            <option>Boliviano</option>
+                            <option>Bósnio</option>
+                            <option>Cabo-verdiano</option>
+                            <option>Camaronense</option>
+                        </select>
+</div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-md-5 ">
                         <label>Pais Nacimiento</label>
                     </div>
-                    <div class="col-md-5 ">
-                        @Html.DropDownListFor(vista => vista.investigador.nacionalidad, new SelectList(ViewBag.catalogoPais))
+                    <div class="col-md-5 "> 
+                        <select class=" form-control">
+                            <option>Afganistán</option>
+                            <option>Albania</option>
+                            <option>Alemania</option>
+                            <option>Algeria</option>
+                            <option>Andorra</option>
+                            <option>Angola</option>
+                            <option>Anguilla</option>
+                            <option>Antigua y Barbuda</option>
+                            <option>Antillas Holandesas</option>
+                            <option>Arabia Saudita</option>
+                            <option>Argentina</option>
+                            <option>Armenia</option>
+                            <option>Aruba</option>
+                            <option>Australia</option>
+                            <option>Austria</option>
+                            <option>Azerbaiyán</option>
+                            <option>Bahamas</option>
+                            <option>Bahrein</option>
+                            <option>Bangladesh</option>
+                            <option>Barbados</option>
+                            <option>Bélgica</option>
+                            <option>Belice</option>
+                            <option>Benín</option>
+                            <option>Bermudas</option>
+                            <option>Bielorrusia</option>
+                            <option>Bolivia</option>
+                            <option>Bosnia y Herzegovina</option>
+                            <option>Botsuana</option>
+                            <option>Brasil</option>
+                            <option>Brunéi</option>
+                            <option>Bulgaria</option>
+                            <option>Burkina Faso</option>
+                            <option>Burundi</option>
+                            <option>Bután</option>
+                            <option>Cabo Verde</option>
+                            <option>Camboya</option>
+                        </select>
                     </div>
                 </div>
 
@@ -104,8 +160,11 @@
                         <label>Unidad en la que Labora **</label>
                     </div>
                     <div class="col-md-5 ">
-                        @Html.DropDownListFor(vista => vista.investigador.unidadLab, new SelectList(ViewBag.catalogoUnidadAcademica))
-                    </div>
+                        <select class=" form-control">
+                            <option>DOP</option>
+                            <option>VIE</option> 
+                        </select>
+</div>
                 </div>
 
             </div>
@@ -166,7 +225,11 @@
                         <label>Sexo</label>
                     </div>
                     <div class="col-md-5 ">
-                        @Html.DropDownListFor(vista => vista.investigador.sexo, new SelectList(ViewBag.catalogoSexo))
+                        <select class=" form-control">
+                            <option>Femenino</option>
+                            <option>Masculino</option>
+                            <option>Prefiero no decirlo</option>
+                        </select>
                     </div>
                 </div>
 
@@ -175,7 +238,10 @@
                         <label>Situación Laboral</label>
                     </div>
                     <div class="col-md-5 ">
-                        @Html.DropDownListFor(vista => vista.investigador.situacionLab, new SelectList(ViewBag.catalogoSituacionLaboral))
+                        <select class=" form-control">
+                            <option>Empleado</option>
+                            <option>Desempleado</option> 
+                        </select>
                     </div>
                 </div>
 
@@ -193,7 +259,11 @@
                         <label>Categoría Académica</label>
                     </div>
                     <div class="col-md-5 ">
-                        @Html.DropDownListFor(vista => vista.investigador.categoriaAcademica, new SelectList(ViewBag.catalogoCategoriaAcademica))
+                        <select class=" form-control">
+                            <option> </option>
+                            <option> </option>
+                            <option> </option>
+                        </select>
                     </div>
                 </div>
 
@@ -208,18 +278,34 @@
                     </div>
                 </div>
 
-            </div>
-            <div class="row">
-                <div class="col-lg-12"><input type="submit" value="Submit" class="btn btn-primary"></div>
-
-            </div>
-        </div>}
+            </div> 
+                 
+            </div>}
 </div>
 <div class="container-fluid mt-5">
     <h3 class="blue font-weight-bold">Perfiles Académicos</h3>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6">Tipo de perfil</label>
+            <input type="text" class="col-md-6 form-control" id="gradoAcadInput" />
+        </div> 
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6">URL del perfil</label>
+            <input type="text" class="col-md-6 form-control" id="gradoAcadInput" />
+        </div> 
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-12 form-inline align-items-center">
+            <div class="wrapperBotonAgregar">
+                <input class="btnGrande btnAzul" type="button" value="Agregar Perfil">
+            </div>
+        </div>
+    </div> 
 </div>
 
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-5 ml-3">
 
     <h3 class="blue font-weight-bold">Estudios Realizados</h3>
     @using (Html.BeginForm(
@@ -227,17 +313,22 @@
         ))
     {
         <div class="row align-items-center justify-items-center mt-3">
-            <div class="col-md-3 form-inline">
+            <div class="col-md-4 form-inline">
                 <label class="col-md-6" for="gradoAcadInput">Grado Académico</label>
-                @Html.TextBoxFor(vista => vista.investigador.nombre, new { @class = "form-control" })
+                <input type="text" class="col-md-6 form-control" id="gradoAcadInput" />
             </div>
-            <div class="col-md-3 form-inline">
+            <div class="col-md-4 form-inline">
                 <label class="col-md-6">Institución</label>
                 <select class="col-md-6 form-control">
-                    <option>Institución</option>
+                    <option>TEC</option>
+                    <option>UNA</option>
+                    <option>UTN</option>
+                    <option>UCR</option>
+                    <option>Universidad Latina</option>
+                    <option>Universidad Internacional de las Américas</option>
                 </select>
             </div>
-            <div class="col-md-3 form-inline">
+            <div class="col-md-4 form-inline">
                 <label class="col-md-6">País</label>
                 <select class="col-md-6 form-control">
                     <option>País</option>
@@ -245,18 +336,18 @@
             </div>
         </div>
         <div class="row align-items-center justify-items-center mt-3">
-            <div class="col-md-3 form-inline">
+            <div class="col-md-4 form-inline">
                 <label class="col-md-6" for="anioGradInput">Año de Graduación</label>
-                <input type="text" class="col-md-6" form-control" id="anioGradInput" />
+                <input type="text" class="col-md-6 form-control"  id="anioGradInput" />
             </div>
-            <div class="col-md-3 form-inline">
+            <div class="col-md-4 form-inline">
                 <label class="col-md-6" for="areaEstInput">Área de Estudio</label>
-                <input type="text" class="col-md-6" form-control" id="areaEstInput" />
+                <input type="text" class="col-md-6 form-control" id="areaEstInput" />
             </div>
         </div>
     }
     <div class="row align-items-center justify-items-center mt-3">
-        <div class="col-md-3 form-inline">
+        <div class="col-md-12 form-inline">
             <div class="wrapperBotonAgregar">
                 <input class="btnGrande btnAzul" type="button" value="Agregar Estudio">
             </div>
@@ -296,42 +387,59 @@
         </table>
     </div>
 </div>
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-5 ml-3">
     <h3 class="blue font-weight-bold">Idiomas</h3>
     <div class="row align-items-center justify-items-center mt-3">
-        <div class="col-md-3 form-inline">
+        <div class="col-md-4 form-inline">
             <label class="col-md-6">Idioma</label>
             <select class="col-md-6 form-control">
-                <option>Idioma</option>
+                <option>Alemán</option>
+                <option>Inglés</option>
+                <option>Español</option>
+                <option>Francés</option>
+                <option>Italiano</option>
             </select>
         </div>
-        <div class="col-md-3 form-inline">
+        <div class="col-md-4 form-inline">
             <label class="col-md-6">Nivel de habla</label>
             <select class="col-md-6 form-control">
-                <option>Nivel de habla</option>
+                <option>Avanzado</option>
+                <option>Intermedio</option>
+                <option>Bajo</option>
+                
             </select>
         </div>
-        <div class="col-md-3 form-inline">
+        <div class="col-md-4 form-inline">
             <label class="col-md-6">Nivel de lectura</label>
             <select class="col-md-6 form-control">
-                <option>Nivel de lectura</option>
+                <option>Avanzado</option>
+                <option>Intermedio</option>
+                <option>Bajo</option>
+
             </select>
         </div>
     </div>
     <div class="row align-items-center justify-items-center mt-3">
-        <div class="col-md-3 form-inline">
+        <div class="col-md-4 form-inline">
             <label class="col-md-6">Nivel de escritura</label>
             <select class="col-md-6 form-control">
-                <option>Nivel de escritura</option>
+                <option>Avanzado</option>
+                <option>Intermedio</option>
+                <option>Bajo</option>
+
             </select>
         </div>
-        <div class="col-md-3 form-inline">
+        <div class="col-md-4 form-inline">
             <label class="col-md-6">Idioma natal</label>
-            <input type="text" class="col-md-6" form-control" />
+            <select class="col-md-6 form-control">
+                <option>Si</option>
+                <option>No</option> 
+
+            </select>
         </div>
     </div>
     <div class="row align-items-center justify-items-center mt-3">
-        <div class="col-md-3 form-inline">
+        <div class="col-md-12 form-inline align-items-center">
             <div class="wrapperBotonAgregar">
                 <input class="btnGrande btnAzul" type="button" value="Agregar Idioma">
             </div>
@@ -372,12 +480,12 @@
     </div>
 </div>
 
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-5 ml-3">
     <h3 class="blue font-weight-bold">Experiencia en Investigación</h3>
     <div class="row align-items-center justify-items-center mt-3">
         <div class="col-md-6 form-inline">
             <label class="col-md-6" for="nombrePuestoInput">Nombre del Puesto</label>
-            <input type="text" class="col-md-6" form-control" id="nombrePuestoInput" />
+            <input type="text" class="col-md-6 form-control" id="nombrePuestoInput" />
         </div>
         <div class="col-md-6 form-inline">
             <label class="col-md-6">Unidad Departamental</label>
@@ -389,11 +497,11 @@
     <div class="row align-items-center justify-items-center mt-3">
         <div class="col-md-6 form-inline">
             <label class="col-md-6" for="anioInicioInput">Año de Inicio</label>
-            <input type="text" class="col-md-6" form-control" id="anioGradInput" />
+            <input type="text" class="col-md-6 form-control" id="anioGradInput" />
         </div>
         <div class="col-md-6 form-inline">
             <label class="col-md-6" for="anioTerminoInput">Año de Término</label>
-            <input type="text" class="col-md-6" form-control" id="anioTerminoInput" />
+            <input type="text" class="col-md-6 form-control" id="anioTerminoInput" />
         </div>
     </div>
     <div class="row align-items-center justify-items-center mt-3">

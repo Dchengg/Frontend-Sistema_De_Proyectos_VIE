@@ -14,7 +14,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 
         public ActionResult Index()
         {
-            HttpResponseMessage respuesta = GlobalVariables.WebApiClient.GetAsync("Inicio").Result;
+            /*HttpResponseMessage respuesta = GlobalVariables.WebApiClient.GetAsync("Inicio").Result;
             var datosIniciales = respuesta.Content.ReadAsAsync<oRespuesta<oCatalogos>>().Result;
 
             // Ligado de catalogos
@@ -32,7 +32,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             oCatalogosGlobal.catalogoAreaIdioma = datosIniciales.ObjetoRespuesta.catalogoAreaIdioma;
             oCatalogosGlobal.catalogoNivelIdioma = datosIniciales.ObjetoRespuesta.catalogoNivelIdioma;
             oCatalogosGlobal.catalogoUnidadAcademica = datosIniciales.ObjetoRespuesta.catalogoUnidadAcademica;
-            oCatalogosGlobal.catalogoSexo = datosIniciales.ObjetoRespuesta.catalogoSexo;
+            oCatalogosGlobal.catalogoSexo = datosIniciales.ObjetoRespuesta.catalogoSexo;*/
 
             return View();
 
