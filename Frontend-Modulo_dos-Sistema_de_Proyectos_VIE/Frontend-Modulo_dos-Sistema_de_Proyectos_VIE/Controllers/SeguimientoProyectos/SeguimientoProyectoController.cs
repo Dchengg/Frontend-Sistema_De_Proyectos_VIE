@@ -40,6 +40,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             String resultPost = FrascatiController.CreateAreaFrascati(area, subArea, codigo);
             System.Diagnostics.Debug.WriteLine(resultPost);
             List<Frascati> Frascatis = FrascatiController.getFrascati(codigo);
+            Proyecto Proy = ProyectoController.getProyecto(codigo);
+            ViewData["nombreProyecto"] = Proy.Nombre;
             ViewData["codigoProyecto"] = codigo;
             return View("AreaFrascati", Frascatis);
         }
@@ -74,6 +76,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             String resultPost = ODSController.CreateODS(area, subArea, codigo);
             System.Diagnostics.Debug.WriteLine(resultPost);
             List<ODS> ODSs = ODSController.getODS(codigo);
+            Proyecto Proy = ProyectoController.getProyecto(codigo);
+            ViewData["nombreProyecto"] = Proy.Nombre;
             ViewData["codigoProyecto"] = codigo;
             return View("agregarODS", ODSs);
         }
@@ -94,6 +98,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             String resultPost = PoblacionBeneficiariaController.createPoblacion(codigo, poblacion);
             System.Diagnostics.Debug.WriteLine(resultPost);
             List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblacion(codigo);
+            Proyecto Proy = ProyectoController.getProyecto(codigo);
+            ViewData["nombreProyecto"] = Proy.Nombre;
             ViewData["codigoProyecto"] = codigo;
             return View("poblacionBeneficiaria", poblaciones);
         }
