@@ -9,72 +9,73 @@
         <div class="row formRow">
             <div class="form-group col-md-12">
                 <label for="nombreProyectoInput">Nombre del proyecto</label>
-                <textarea class="form-control fullRowInput" id="nombreProyectoInput" rows="3"></textarea>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["nombreProyecto"]" disabled />
+            </div>
+        </div>
+    </div>
+    <div class="row formRow">
+        <div class="form-inline col-md-8">
+            <label for="codigoProyectoInput">Código del proyecto</label>
+            <input type="text" class="form-control" value="@ViewData["codigoProyecto"]" id="codigoProyectoInput" />
+        </div>
+    </div>
+    @using (Html.BeginForm("agregarODS", "SeguimientoProyecto", new { codigo = ViewData["codigoProyecto"] }, FormMethod.Post))
+    {
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label class="col-xs-5">Áreas de Prioridad</label>
+                <select class="form-control col-xs-5" name="areaDropdown">
+                    <option>Personas</option>
+                    <option>Prosperidad</option>
+                    <option>Paz</option>
+                    <option>Alianzas</option>
+                    <option>Planeta</option>
+                </select>
             </div>
         </div>
         <div class="row formRow">
             <div class="form-inline col-md-8">
-                <label for="codigoProyectoInput">Código del proyecto</label>
-                <input type="text" class="form-control" id="codigoProyectoInput" />
+                <label class="col-xs-5">Sub-áreas</label>
+                <select class="form-control col-xs-5" name="subAreaDropdown">
+                    <option>Matemáticas</option>
+                    <option>Hambre</option>
+                    <option>Pobreza</option>
+                    <option>Salud</option>
+                    <option>Desigualdad</option>
+                </select>
             </div>
         </div>
-        @using (Html.BeginForm("agregarODS", "SeguimientoProyecto", new { codigo=ViewData["codigoProyecto"]} ,FormMethod.Post))
-        {
-            <div class="row formRow">
-                <div class="form-inline col-md-8">
-                    <label class="col-xs-5">Áreas de Prioridad</label>
-                    <select class="form-control col-xs-5" name="areaDropdown">
-                        <option>Personas</option>
-                        <option>Prosperidad</option>
-                        <option>Paz</option>
-                        <option>Alianzas</option>
-                        <option>Planeta</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row formRow">
-                <div class="form-inline col-md-8">
-                    <label class="col-xs-5">Sub-áreas</label>
-                    <select class="form-control col-xs-5" name="subAreaDropdown">
-                        <option>Matemáticas</option>
-                        <option>Hambre</option>
-                        <option>Pobreza</option>
-                        <option>Salud</option>
-                        <option>Desigualdad</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row formRow">
-                <div class="wrapperBotonAgregar">
-                    <button class="botonAgregar" type="submit">Agregar</button>
-                </div>
-            </div>
-        }
         <div class="row formRow">
-            <div class="form-group col-md-12">
-                <label for="areasFrascati"></label>
-                <div class="table-responsive">
-                    <table class="table table-striped table-bordered disenoTabla">
-                        <tr id="ROW1">
-                            <th>Código de área</th>
-                            <th>Sub-área</th>
-                            <th>Área</th>
-                            <th> </th>
+            <div class="wrapperBotonAgregar">
+                <button class="botonAgregar" type="submit">Agregar</button>
+            </div>
+        </div>
+    }
+    <div class="row formRow">
+        <div class="form-group col-md-12">
+            <label for="areasFrascati"></label>
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered disenoTabla">
+                    <tr id="ROW1">
+                        <th>Código de área</th>
+                        <th>Sub-área</th>
+                        <th>Área</th>
+                        <th> </th>
+                    </tr>
+                    @foreach (var ods in Model)
+                    {
+                        <tr>
+                            <th>@ods.CodigoDeArea</th>
+                            <th>@ods.SubArea</th>
+                            <th>@ods.Area</th>
+                            <th> <div> <input class="botonEliminar" type="button" value="Eliminar"> </div></th>
                         </tr>
-                        @foreach (var ods in Model)
-                        {
-                            <tr>
-                                <th>@ods.CodigoDeArea</th>
-                                <th>@ods.SubArea</th>
-                                <th>@ods.Area</th>
-                                <th> <div> <input class="botonEliminar" type="button" value="Eliminar"> </div></th>
-                            </tr>
-                            }
+                    }
 
-                    </table>
-                </div>
+                </table>
             </div>
         </div>
     </div>
+</div>
 </div>
 

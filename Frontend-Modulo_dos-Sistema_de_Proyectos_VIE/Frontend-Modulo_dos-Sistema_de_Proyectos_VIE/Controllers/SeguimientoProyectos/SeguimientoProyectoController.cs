@@ -26,7 +26,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         {
             System.Diagnostics.Debug.WriteLine(codigo);
             List<Frascati> Frascatis = FrascatiController.getFrascati(codigo);
+            Proyecto Proy = ProyectoController.getProyecto(codigo);
             ViewData["codigoProyecto"] = codigo;
+            ViewData["nombreProyecto"] = Proy.Nombre;
             return View("AreaFrascati",Frascatis);
         }
 
@@ -58,7 +60,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult AgregarODS(String codigo) 
         {
             List<ODS> ODSs = ODSController.getODS(codigo);
+            Proyecto Proy = ProyectoController.getProyecto(codigo);
             ViewData["codigoProyecto"] = codigo;
+            ViewData["nombreProyecto"] = Proy.Nombre;
             return View("agregarODS", ODSs);
         }
 
@@ -77,7 +81,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult PoblacionBeneficiaria(String codigo) 
         {
             List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblacion(codigo);
+            Proyecto Proy = ProyectoController.getProyecto(codigo);
             ViewData["codigoProyecto"] = codigo;
+            ViewData["nombreProyecto"] = Proy.Nombre;
             return View("poblacionBeneficiaria", poblaciones);
         }
         [HttpPost]

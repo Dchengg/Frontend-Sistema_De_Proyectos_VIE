@@ -4,6 +4,7 @@
     ViewBag.Title = "Áreas Frascati";
     Layout = "~/Views/Shared/ProyectoSideMenu.cshtml";
 
+
 }
 
 
@@ -12,13 +13,13 @@
         <div class="row formRow">
             <div class="form-group col-md-12">
                 <label for="nombreProyectoInput">Nombre del proyecto</label>
-                <textarea class="form-control fullRowInput" id="nombreProyectoInput" rows="3"></textarea>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["nombreProyecto"]" disabled />
             </div>
         </div>
         <div class="row formRow">
             <div class="form-inline col-md-8">
                 <label for="codigoProyectoInput">Código del proyecto</label>
-                <input type="text" class="form-control" id="codigoProyectoInput" />
+                <input type="text" class="form-control" value="@ViewData["codigoProyecto"]" id="codigoProyectoInput" />
             </div>
         </div>
         @using (Html.BeginForm("AreaFrascati", "SeguimientoProyecto", new { codigo=ViewData["codigoProyecto"] },FormMethod.Post))
