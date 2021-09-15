@@ -5,7 +5,7 @@
 }
 
 <div style="width:100%">
-    <form class="container-fluid">
+    <div class="container-fluid">
         <div class="row formRow">
             <div class="form-group col-md-12">
                 <label for="nombreProyectoInput">Nombre del proyecto</label>
@@ -18,36 +18,38 @@
                 <input type="text" class="form-control" id="codigoProyectoInput" />
             </div>
         </div>
-        <div class="row formRow">
-            <div class="form-inline col-md-8">
-                <label class="col-xs-5">Áreas de Prioridad</label>
-                <select class="form-control col-xs-5">
-                    <option>Personas</option>
-                    <option>Prosperidad</option>
-                    <option>Paz</option>
-                    <option>Alianzas</option>
-                    <option>Planeta</option>
-                </select>
+        @using (Html.BeginForm("agregarODS", "SeguimientoProyecto", new { codigo=ViewData["codigoProyecto"]} ,FormMethod.Post))
+        {
+            <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    <label class="col-xs-5">Áreas de Prioridad</label>
+                    <select class="form-control col-xs-5" name="areaDropdown">
+                        <option>Personas</option>
+                        <option>Prosperidad</option>
+                        <option>Paz</option>
+                        <option>Alianzas</option>
+                        <option>Planeta</option>
+                    </select>
+                </div>
             </div>
-
-        </div>
-        <div class="row formRow">
-            <div class="form-inline col-md-8">
-                <label class="col-xs-5">Sub-áreas</label>
-                <select class="form-control col-xs-5">
-                    <option>Matemáticas</option>
-                    <option>Hambre</option>
-                    <option>Pobreza</option>
-                    <option>Salud</option>
-                    <option>Desigualdad</option>
-                </select>
+            <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    <label class="col-xs-5">Sub-áreas</label>
+                    <select class="form-control col-xs-5" name="subAreaDropdown">
+                        <option>Matemáticas</option>
+                        <option>Hambre</option>
+                        <option>Pobreza</option>
+                        <option>Salud</option>
+                        <option>Desigualdad</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="row formRow">
-            <div class="wrapperBotonAgregar">
-                <input class="botonAgregar" type="button" value="Agregar">
+            <div class="row formRow">
+                <div class="wrapperBotonAgregar">
+                    <button class="botonAgregar" type="submit">Agregar</button>
+                </div>
             </div>
-        </div>
+        }
         <div class="row formRow">
             <div class="form-group col-md-12">
                 <label for="areasFrascati"></label>
@@ -67,12 +69,12 @@
                                 <th>@ods.Area</th>
                                 <th> <div> <input class="botonEliminar" type="button" value="Eliminar"> </div></th>
                             </tr>
-                        }
+                            }
 
                     </table>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 
