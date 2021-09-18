@@ -22,7 +22,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             criteriosBusqueda.Add(new SelectListItem { Text = "Oficial de proyecto", Value = "Oficial de proyecto"});
             criteriosBusqueda.Add(new SelectListItem { Text = "Investigador coordinador", Value = "Investigador coordinador" });
             ViewData["criteriosBusqueda"] = criteriosBusqueda;
-            return View("BuscadorProyectos", proyectos);
+            return View("UIBuscadorProyectos", proyectos);
         }
 
         [HttpPost]
@@ -46,7 +46,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             criteriosBusqueda.Add(new SelectListItem { Text = "Oficial de proyecto", Value = "Oficial de proyecto" });
             criteriosBusqueda.Add(new SelectListItem { Text = "Investigador coordinador", Value = "Investigador coordinador" });
             ViewData["criteriosBusqueda"] = criteriosBusqueda;
-            return View("BuscadorProyectos", proyectos);
+            return View("UIBuscadorProyectos", proyectos);
         }
 
         public ActionResult About()

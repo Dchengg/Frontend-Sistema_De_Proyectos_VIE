@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Áreas Frascati";
-    Layout = "~/Views/Shared/ProyectoSideMenu.cshtml";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
 
 
 }
@@ -13,16 +13,16 @@
         <div class="row formRow">
             <div class="form-group col-md-12">
                 <label for="nombreProyectoInput">Nombre del proyecto</label>
-                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["nombreProyecto"]" disabled />
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
             </div>
         </div>
         <div class="row formRow">
             <div class="form-inline col-md-8">
                 <label for="codigoProyectoInput">Código del proyecto</label>
-                <input type="text" class="form-control" value="@ViewData["codigoProyecto"]" id="codigoProyectoInput" disabled/>
+                <input type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled/>
             </div>
         </div>
-        @using (Html.BeginForm("AreaFrascati", "SeguimientoProyecto", new { codigo=ViewData["codigoProyecto"] },FormMethod.Post))
+        @using (Html.BeginForm("UIAreaFrascati", "SeguimientoProyecto", new { codigo=ViewData["CodigoProyecto"] },FormMethod.Post))
         {
             <div class="row formRow">
                 <div class="form-inline col-md-8">
@@ -70,7 +70,7 @@
                         @foreach (var frascati in Model)
                         {
                             <tr>
-                                @using (Html.BeginForm("EliminarAreasFrascati", "SeguimientoProyecto", new {idArea = frascati.IdArea, codigo = ViewData["codigoProyecto"] }, FormMethod.Post))
+                                @using (Html.BeginForm("UIEliminarAreasFrascati", "SeguimientoProyecto", new {idArea = frascati.IdArea, codigo = ViewData["CodigoProyecto"] }, FormMethod.Post))
 
                                 {
                                     <th>@frascati.IdArea</th>

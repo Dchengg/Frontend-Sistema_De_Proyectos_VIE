@@ -8,6 +8,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
 {
     public class Proyecto
     {
+        #region Variables y Constantes
         [JsonProperty("codigo")]
         public String Codigo { get; set; }
         [JsonProperty("nombre")]
@@ -44,5 +45,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
         public DateTime? FechaSuspension { get; set; }
         [JsonProperty("investigadorCoordinador")]
         public String InvestigadorCoordinador { get; set; }
+        #endregion
     }
 }

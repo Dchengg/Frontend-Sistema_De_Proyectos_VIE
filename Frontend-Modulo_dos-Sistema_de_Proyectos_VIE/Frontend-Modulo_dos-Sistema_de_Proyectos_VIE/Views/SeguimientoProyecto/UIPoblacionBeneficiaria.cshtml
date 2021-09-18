@@ -1,7 +1,7 @@
 ﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Poblacion>
 @{
     ViewBag.Title = "Población Beneficiaria";
-    Layout = "~/Views/Shared/ProyectoSideMenu.cshtml";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
 }
 
 <div style="width:100%">
@@ -9,21 +9,21 @@
         <div class="row formRow">
             <div class="form-group col-md-12">
                 <label for="nombreProyectoInput">Nombre del proyecto</label>
-                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["nombreProyecto"]" disabled />
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
             </div>
         </div>
         <div class="row formRow">
             <div class="form-inline col-md-8">
                 <label for="codigoProyectoInput">Código del proyecto</label>
-                <input type="text" class="form-control" value="@ViewData["codigoProyecto"]" id="codigoProyectoInput" disabled/>
+                <input type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled/>
             </div>
         </div>
-        @using (Html.BeginForm("poblacionBeneficiaria", "SeguimientoProyecto", new { codigo = ViewData["codigoProyecto"] }, FormMethod.Post))
+        @using (Html.BeginForm("UIPoblacionBeneficiaria", "SeguimientoProyecto", new { codigo = ViewData["CodigoProyecto"] }, FormMethod.Post))
         {
             <div class="row formRow">
                 <div class="form-inline col-md-8">
                     <label class="col-xs-5">Población beneficiaria</label>
-                    <select class="form-control col-xs-5" name="poblacionDropdown">
+                    <select class="form-control col-xs-5" name="PoblacionDropdown">
                         <option>Región Central</option>
                         <option>Región Chorotega</option>
                         <option>Región pacífico</option>
@@ -35,7 +35,7 @@
             </div>
             <div class="row formRow">
                 <div class="wrapperBotonAgregar">
-                    <button style="width: 150px;" class="botonAgregar" type="submit">Agregar región</button>
+                    <button style="width: 150px;" class="botonAgregar" type="submit">Agregar Población</button>
                 </div>
             </div>
         }

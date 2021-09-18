@@ -1,0 +1,138 @@
+﻿@model Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Proyecto
+
+@{
+    ViewBag.Title = "Datos del proyecto";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ObjetivoEspecifico> objetivosEspecificos = ViewData["objetivosEspecificos"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ObjetivoEspecifico>;
+}
+
+<div style="width:100%" class="window-content">
+    @using (Html.BeginForm("UIDatosProyecto","SeguimientoProyecto",FormMethod.Post))
+    {
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@Html.DisplayFor(Proyecto => Proyecto.Codigo)" disabled />
+            </div>
+            <div class="form-inline col-md-4">
+                <label for="fechaIngresoInput">Fecha de ingreso</label>
+                @Html.TextBoxFor(Proyecto => Proyecto.FechaIngreso, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <textarea class="form-control fullRowInput" id="nombreProyectoInput" rows="3">@Html.DisplayFor(Proyecto => Proyecto.Nombre)</textarea>
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="descripcionInput">Descripción</label>
+                @Html.TextAreaFor(Proyecto => Proyecto.Descripcion, new { @class = "form-control fullRowInput", @rows="8"})
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="justificacionInput">Justificación</label>
+                @Html.TextAreaFor(Proyecto => Proyecto.Justificacion, new { @class = "form-control fullRowInput", @rows = "8" })
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="objGeneralInput">Objetivo General</label>
+                @Html.TextAreaFor(Proyecto => Proyecto.ObjetivoGeneral, new { @class = "form-control fullRowInput", @rows = "8" })
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="obsEspecificosInput">Objetivos Especificos</label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <tr id="ROW1">
+                            <th>Objetivo Especifico</th>
+                        </tr>
+                        @foreach(var objetivo in objetivosEspecificos)
+                        {
+                            <tr>
+                                <th>@objetivo.Objetivo</th>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5">Estado del proyecto</label>
+                <select class="form-control col-xs-5">
+                    <option value="Inactivo" @( "Inactivo" == Model.Estado ? "selected" : "")>Inactivo</option>
+                    <option value="Activo" @( "Activo" == Model.Estado ? "selected" : "")>Activo</option>
+                </select>
+            </div>
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="numActaVIEInput">Número de acta VIE</label>
+                <input type="text" class="form-control col-xs-5" id="numActaVIEInput" value="@Html.DisplayFor(Proyecto => Proyecto.NumeroActaVIE)" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5">Tipos de proyecto</label>
+                <select class="form-control col-xs-5">
+                    <option value="Investigación" @( "Investigación" == Model.Estado ? "selected" : "")>Investigación</option>
+                    <option value="Ayuda Social" @( "Ayuda Social" == Model.Estado ? "selected" : "")>Ayuda social</option>
+                </select>
+            </div>
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="numActaEscuelaInput">Número de acta escuela</label>
+                <input type="text" class="form-control col-xs-5" id="numActaEscuelaInput" value="@Html.DisplayFor(Proyecto => Proyecto.NumeroActaEscuela)" disabled/>
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5">Tipos de proceso</label>
+                <select class="form-control col-xs-5">
+                    <option>Investigación</option>
+                    <option>Ayuda social</option>
+                </select>
+            </div>
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="fechaAprobaciónInput">Fecha de aprobación</label>
+                @Html.TextBoxFor(Proyecto => Proyecto.FechaAprobacion, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="fechaSuspensionInput">Fecha de suspensión</label>
+                @Html.TextBoxFor(Proyecto => Proyecto.FechaSuspension, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+            </div>
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="fechaInicioInput">Fecha de inicio</label>
+                @Html.TextBoxFor(Proyecto => Proyecto.FechaInicio, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date"})
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="oficialProyectoInput">Oficial del proyecto</label>
+                <input type="text" class="form-control col-xs-5" id="oficialProyectoInput" value="@Html.DisplayFor(Proyecto => Proyecto.OficialDeProyecto)" disabled />
+            </div>
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="fechaFinalInput">Fecha de finalización</label>
+                @Html.TextBoxFor(Proyecto => Proyecto.FechaFinalizacion, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5">Modalidad del proyecto</label>
+                <select class="form-control col-xs-5">
+                    <option>Activo</option>
+                    <option>Presencial</option>
+                </select>
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <button type="submit" class="btn btn-default">Guardar</button>
+            </div>
+        </div>
+    }
+</div>

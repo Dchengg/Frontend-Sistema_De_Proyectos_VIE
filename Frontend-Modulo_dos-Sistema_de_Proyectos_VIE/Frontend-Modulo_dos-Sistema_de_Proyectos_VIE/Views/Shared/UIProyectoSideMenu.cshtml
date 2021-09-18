@@ -1,0 +1,68 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/SeguimientoProyecto.css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+    <div>
+        <nav style="border-width:0; margin:0" class="navbar">
+            <div style="padding-left:0" class="container-fluid">
+                <button type="button" onclick="location.href='@Url.Action("Index","Home")'" class="btn btn-default btn-lg returnBtn">
+                    <span style="top:2px;margin-right:10px" class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                    Regresar
+                </button>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">Dashboard</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="#">Profile</a></li>
+                        <li><a href="#">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="page-title">
+                <h3>@ViewBag.title</h3>
+            </div>
+        </nav>
+    </div>
+    <div class="container-fluid">
+        <div style="display:flex" class="row">
+            <div class="col-sm-2 col-md-2 sidebar sideMenu">
+                <ul class="nav nav-sidebar">
+                    <li><a href="@Url.Action("UIDatosProyecto","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Datos del proyecto</a></li>
+                    <li><a href="#">Investigadores Asociados</a></li>
+                    <li><a href="#">Cambiar investigador coordinador</a></li>
+                    <li><a href="@Url.Action("UIAgregarODS","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Objetivos de Desarrollo Sostenible</a></li>
+                    <li><a href="@Url.Action("UIAreaFrascati","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Áreas Frascati</a></li>
+                    <li><a href="@Url.Action("UIPoblacionBeneficiaria","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Población beneficiaria</a></li>
+                    <li><a href="#">Ubicación geográfica</a></li>
+                    <li><a href="#">Palabras claves</a></li>
+                    <li><a href="#">Presupuesto</a></li>
+                    <li><a href="#">Departamentos</a></li>
+                    <li><a href="#">Programación de informes</a></li>
+                    <li><a href="#">Ampliar fechas</a></li>
+                    <li><a href="#">Ingresar informes</a></li>
+                    <li><a href="#">Compras</a></li>
+                    <li><a href="#">Contratos</a></li>
+                    <li><a href="#">Cronograma</a></li>
+                    <li><a href="#">Incidencias</a></li>
+                    <li><a href="#">Bitacoras</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-10 col-md-9 main">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

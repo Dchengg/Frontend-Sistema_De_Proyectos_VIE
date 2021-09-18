@@ -8,6 +8,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
 {
     public class ODS
     {
+        #region Variables y Constantes
         [JsonProperty("id")]
         public String Id { get; set; }
         [JsonProperty("codigoProyecto")]
@@ -20,5 +21,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
         public String Area { get; set; }
         [JsonProperty("Proyecto")]
         public String Proyecto { get; set; }
+        #endregion
     }
 }

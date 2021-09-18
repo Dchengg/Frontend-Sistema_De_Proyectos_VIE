@@ -182,13 +182,13 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\ProyectoSideMenu.cshtml" />
-    <Content Include="Views\SeguimientoProyecto\DatosProyecto.cshtml" />
     <Content Include="Views\Shared\MainMenu.cshtml" />
-    <Content Include="Views\Home\BuscadorProyectos.cshtml" />
-    <Content Include="Views\SeguimientoProyecto\AreaFrascati.cshtml" />
-    <Content Include="Views\SeguimientoProyecto\agregarODS.cshtml" />
-    <Content Include="Views\SeguimientoProyecto\poblacionBeneficiaria.cshtml" />
+    <Content Include="Views\Shared\UIProyectoSideMenu.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIAgregarODS.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIAreaFrascati.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIDatosProyecto.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIPoblacionBeneficiaria.cshtml" />
+    <Content Include="Views\Home\UIBuscadorProyectos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\BuscadorProyecto\" />

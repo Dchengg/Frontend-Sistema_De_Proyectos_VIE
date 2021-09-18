@@ -11,14 +11,19 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 {
     public class FrascatiController : Controller
     {
-        // GET: Frascati
-        public static List<Frascati> getFrascati(string Id)
+        #region Métodos
+        /// <summary>
+        /// Recupera las áreas frascati del proyecto, dado el codigo del proyecto
+        /// </summary>
+        /// <param name="idAreaFrascati"></param>
+        /// <returns>Lista de las áreas frascati del proyecto</returns>
+        public static List<Frascati> getFrascatis(string idAreaFrascati)
         {
             using (var client = new HttpClient()) {
 
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/Frascati")
                 {
-                    Query = string.Format("id={0}", Id)
+                    Query = string.Format("id={0}", idAreaFrascati)
                 };
 
                 var responseTask = client.GetAsync(builder.Uri);
@@ -40,9 +45,15 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
                 return frascatis;
             }
         }
-
+        /// <summary>
+        /// Agrega un área frascati al proyecto y llama a la API para agregarla a la base de datos
+        /// </summary>
+        /// <param name="area"></param>
+        /// <param name="subArea"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>String de respuesta de exito o fracaso de agregar el área frascati a la base de datos</returns>
         [HttpPost]
-        public static String CreateAreaFrascati(String area, String subArea, String codigo)
+        public static String AgregarAreaFrascati(String area, String subArea, String codigoProyecto)
         {
             using (var client = new HttpClient())
             {
@@ -50,11 +61,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/Frascati/3")
                 {
                    
-                    Query = string.Format("codigoProyecto={0}&area={1}&subArea={2}", codigo, area, subArea)
+                    Query = string.Format("codigoProyecto={0}&area={1}&subArea={2}", codigoProyecto, area, subArea)
                 };
                 var values = new Dictionary<string, string>
                 {
-                    {"codigoProyecto", codigo},
+                    {"codigoProyecto", codigoProyecto},
                     {"area", area},
                     {"subarea", subArea}
                 };
@@ -67,19 +78,23 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
                 return responseResult;
             }
         }
-
-        public static String deleteAreaFrascati(String id) {
+        /// <summary>
+        /// Elimina el area frascati selecionada en la interfaz del proyecto y llama a la API para eliminarlo de la base de datos
+        /// </summary>
+        /// <param name="idAreaFrascati"></param>
+        /// <returns>String de respuesta de exito o fracaso de agregar el área frascati a la base de datos</returns>
+        public static String EliminarAreaFrascati(String idAreaFrascati) {
             using (var client = new HttpClient())
             {
 
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/Frascati/1")
                 {
 
-                    Query = string.Format("id={0}", id)
+                    Query = string.Format("id={0}", idAreaFrascati)
                 };
                 var values = new Dictionary<string, string>
                 {
-                    {"id", id}
+                    {"id", idAreaFrascati}
                 };
                 var content = new FormUrlEncodedContent(values);
                 var responseTask = client.PostAsync(builder.Uri, content);
@@ -90,6 +105,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
                 return responseResult;
             }
         }
-
+        #endregion
     }
 }

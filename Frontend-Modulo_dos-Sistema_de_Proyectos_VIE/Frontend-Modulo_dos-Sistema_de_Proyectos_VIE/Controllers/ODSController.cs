@@ -11,14 +11,19 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
     public class ODSController : Controller
     {
-        // GET: ODS
-        public static List<ODS> getODS(String CodigoProyecto)
+        #region Métodos
+        /// <summary>
+        /// Busca y devuelve lista de ODSs que pertenecen al proyecto en especifico
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Lista de objetivos de desarrollo sostenible que pertenecen al proyecto</returns>
+        public static List<ODS> getODSs(String codigoProyecto)
         {
             using (var client = new HttpClient())
             {
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/ODS")
                 {
-                    Query = string.Format("id={0}", CodigoProyecto)
+                    Query = string.Format("id={0}", codigoProyecto)
                 };
 
                 var responseTask = client.GetAsync(builder.Uri);
@@ -40,9 +45,15 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 return ODSs;
             }
         }
-
+        /// <summary>
+        /// Crea un ODS asociado al proyecto y llama a la API para agregarlo a la base de datos
+        /// </summary>
+        /// <param name="area"></param>
+        /// <param name="subArea"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>String de respuesta de exito o fracaso de agregar el ODS a la base de datos</returns>
         [HttpPost]
-        public static String CreateODS(String area, String subArea, String codigo)
+        public static String AgregarODS(String area, String subArea, String codigoProyecto)
         {
             using (var client = new HttpClient())
             {
@@ -50,11 +61,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/ODS/3")
                 {
 
-                    Query = string.Format("codigoProyecto={0}&area={1}&subArea={2}", codigo, area, subArea)
+                    Query = string.Format("codigoProyecto={0}&area={1}&subArea={2}", codigoProyecto, area, subArea)
                 };
                 var values = new Dictionary<string, string>
                 {
-                    {"codigoProyecto", codigo},
+                    {"codigoProyecto", codigoProyecto},
                     {"area", area},
                     {"subarea", subArea}
                 };
@@ -67,5 +78,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 return responseResult;
             }
         }
+        #endregion
     }
 }
