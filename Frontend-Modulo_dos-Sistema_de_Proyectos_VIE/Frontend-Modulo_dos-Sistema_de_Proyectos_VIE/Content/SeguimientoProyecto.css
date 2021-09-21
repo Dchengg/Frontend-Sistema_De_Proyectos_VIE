@@ -131,3 +131,23 @@
     color: white;
 }
 
+.botonAzul {
+    background-color: #002854;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border-color: transparent;
+    color: white;
+    margin: 0 auto;
+    display: block;
+}
+
+.botonAzul:hover {
+    background-color: #001833 !important;
+    color: white !important;
+}
+
+.botonAzul:focus {
+    background-color: #012f63 !important;
+    color: white !important;
+}
+
