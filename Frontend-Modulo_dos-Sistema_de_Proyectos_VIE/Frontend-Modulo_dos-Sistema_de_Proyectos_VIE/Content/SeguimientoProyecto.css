@@ -24,6 +24,23 @@
     padding:0;
 }
 
+.sideMenu a {
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 20px 15px !important;
+}
+
+.sideMenu li a:hover{
+    background-color: #001833 !important;
+    color: white !important;
+}
+
+.sideMenu li a:focus {
+    background-color: #012f63 !important;
+    color: white !important;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -43,13 +60,6 @@
     background: #555;
 }
 
-
-.sideMenu a{
-    color: #ffffff;
-    font-size: 16px;
-    line-height: 24px;
-    padding: 20px 15px !important;
-}
 
 .sideMenu a:hover{
     color: #000000
