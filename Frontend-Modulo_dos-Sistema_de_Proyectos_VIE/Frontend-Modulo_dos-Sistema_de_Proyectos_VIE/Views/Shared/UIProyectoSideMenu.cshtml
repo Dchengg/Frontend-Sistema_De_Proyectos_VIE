@@ -49,11 +49,11 @@
                     <li><a href="#">Programación de informes</a></li>
                     <li><a href="#">Ampliar fechas</a></li>
                     <li><a href="#">Ingresar informes</a></li>
-                    <li><a href="#">Compras</a></li>
+                    <li><a href="@Url.Action("UICompras","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Compras</a></li>
                     <li><a href="#">Contratos</a></li>
                     <li><a href="#">Cronograma</a></li>
-                    <li><a href="#">Incidencias</a></li>
-                    <li><a href="#">Bitacoras</a></li>
+                    <li><a href="@Url.Action("UIIncidencias","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Incidencias</a></li>
+                    <li><a href="@Url.Action("UIBitacora","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Bitácoras</a></li>
                 </ul>
             </div>
             <div class="col-sm-10 col-md-9 main">

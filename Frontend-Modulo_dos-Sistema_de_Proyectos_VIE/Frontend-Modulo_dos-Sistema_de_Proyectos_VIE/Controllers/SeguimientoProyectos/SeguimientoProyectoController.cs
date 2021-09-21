@@ -35,9 +35,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         {
             System.Diagnostics.Debug.WriteLine(codigoProyecto);
             List<Frascati> Frascatis = FrascatiController.getFrascatis(codigoProyecto);
-            Proyecto Proy = ProyectoController.getProyecto(codigoProyecto);
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
-            ViewData["NombreProyecto"] = Proy.Nombre;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIAreaFrascati", Frascatis);
         }
 
@@ -55,8 +55,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             String resultPost = FrascatiController.AgregarAreaFrascati(area, subArea, codigoProyecto);
             System.Diagnostics.Debug.WriteLine(resultPost);
             List<Frascati> Frascatis = FrascatiController.getFrascatis(codigoProyecto);
-            Proyecto Proy = ProyectoController.getProyecto(codigoProyecto);
-            ViewData["NombreProyecto"] = Proy.Nombre;
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
             ViewData["codigoProyecto"] = codigoProyecto;
             return View("UIAreaFrascati", Frascatis);
         }
@@ -90,9 +90,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult UIAgregarODS(String codigoProyecto)
         {
             List<ODS> ODSs = ODSController.getODSs(codigoProyecto);
-            Proyecto Proy = ProyectoController.getProyecto(codigoProyecto);
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["codigoProyecto"] = codigoProyecto;
-            ViewData["NombreProyecto"] = Proy.Nombre;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIAgregarODS", ODSs);
         }
 
@@ -110,8 +110,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             String resultPost = ODSController.AgregarODS(area, subArea, codigoProyecto);
             System.Diagnostics.Debug.WriteLine(resultPost);
             List<ODS> ODSs = ODSController.getODSs(codigoProyecto);
-            Proyecto Proy = ProyectoController.getProyecto(codigoProyecto);
-            ViewData["NombreProyecto"] = Proy.Nombre;
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
             ViewData["CodigoProyecto"] = codigoProyecto;
             return View("UIAgregarODS", ODSs);
         }
@@ -124,9 +124,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult UIPoblacionBeneficiaria(String codigoProyecto)
         {
             List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
-            Proyecto Proy = ProyectoController.getProyecto(codigoProyecto);
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
-            ViewData["NombreProyecto"] = Proy.Nombre;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIPoblacionBeneficiaria", poblaciones);
         }
 
@@ -144,10 +144,49 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             String resultPost = PoblacionBeneficiariaController.AgregarPoblacion(codigoProyecto, poblacion);
             System.Diagnostics.Debug.WriteLine(resultPost);
             List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
-            Proyecto Proy = ProyectoController.getProyecto(codigoProyecto);
-            ViewData["NombreProyecto"] = Proy.Nombre;
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
             ViewData["CodigoProyecto"] = codigoProyecto;
             return View("UIPoblacionBeneficiaria", poblaciones);
+        }
+
+        /// <summary>
+        /// Llama al controlador de compras y recoge las compras para enviarlas a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista de las compras del proyecto</returns>
+        public ActionResult UICompras(String codigoProyecto) {
+            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UICompras");
+        }
+
+        /// <summary>
+        /// Llama al controlador de bitácoras y recoge las bitácoras del proyecto para enviarlas a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista de las bitácoras del proyecto</returns>
+        public ActionResult UIBitacora(String codigoProyecto) {
+            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIBitacora");
+        }
+
+        /// <summary>
+        /// Llama al controlador de incidencias y recoge las incidencias del proyecto para enviarlas a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista de las incidencias del proyecto</returns>
+        public ActionResult UIIncidencias(String codigoProyecto){
+            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIIncidencias");
         }
 
         #endregion

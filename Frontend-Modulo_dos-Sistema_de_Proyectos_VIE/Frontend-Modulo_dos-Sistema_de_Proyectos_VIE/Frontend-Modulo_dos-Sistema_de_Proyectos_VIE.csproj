@@ -189,6 +189,9 @@
     <Content Include="Views\SeguimientoProyecto\UIDatosProyecto.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIPoblacionBeneficiaria.cshtml" />
     <Content Include="Views\Home\UIBuscadorProyectos.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UICompras.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIBitacora.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIIncidencias.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\BuscadorProyecto\" />
