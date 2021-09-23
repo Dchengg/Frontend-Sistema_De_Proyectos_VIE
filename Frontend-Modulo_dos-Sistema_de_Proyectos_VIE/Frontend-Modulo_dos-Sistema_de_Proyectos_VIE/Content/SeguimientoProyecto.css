@@ -60,6 +60,9 @@
     background: #555;
 }
 
+.sideMenu li{
+    width: 100%;
+}
 
 .sideMenu a:hover{
     color: #000000

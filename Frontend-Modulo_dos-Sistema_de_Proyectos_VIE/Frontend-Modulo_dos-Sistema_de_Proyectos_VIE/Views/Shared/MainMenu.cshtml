@@ -8,79 +8,75 @@
     @Styles.Render("~/Content/BuscadorProyectos.css")
     @Styles.Render("~/Content/SeguimientoProyecto.css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/all.min.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div class="row">
-        <nav style="border-width:0; margin:0" class="navbar navbar-fixed-top">
-            <div style="padding-left:0" class="container-fluid">
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#">Dashboard</a></li>
-                        <li><a href="#">Settings</a></li>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Help</a></li>
-                    </ul>
-                </div>
-            </div>
+    <nav class="navbar fixed-top flex-md-nowrap fa-align-left">
+        <nav class="my-2 my-md-0 mr-md-3">
+            <a class="p-2 text-dark" href="#">Features</a>
+            <a class="p-2 text-dark" href="#">Enterprise</a>
+            <a class="p-2 text-dark" href="#">Support</a>
+            <a class="p-2 text-dark" href="#">Pricing</a>
         </nav>
-    </div>
+    </nav>
     <div class="container-fluid">
         <div class="row">
             <div class="sidebar sideMenu mainMenu">
-                <img src="~/Assets/TEC-logo-white.png" alt="TEC-logo-white"/>
+                <img src="~/Assets/TEC-logo-white.png" alt="TEC-logo-white" />
                 <ul class="nav nav-sidebar">
                     <li>
                         <a href="#">
-                            <span class="glyphicon glyphicon-th-large" aria-hidden="true"></span>
-                            Ficha del investigador
+                            <i class="fas fa-th-large"></i>
+                            <p>Ficha del investigador</p>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                            Convocatorias
+                            <i class="fas fa-book-open"></i>
+                            <p>Convocatorias</p>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>
-                            Formulación de propuestas
+                            <i class="far fa-copy"></i>
+                            <p>Formulación de propuestas</p>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
-                            Seguimiento de proyectos
+                            <i class="far fa-calendar-alt"></i>
+                            <p>Seguimiento de proyectos</p>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <span class="glyphicon glyphicon-education" aria-hidden="true"></span>
-                            Evaluaciones
+                            <i class="fas fa-tasks"></i>
+                            <p>Evaluaciones</p>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>
-                            Reportes
+                            <i class="far fa-star"></i>
+                            <p>Reportes</p>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                            Configuraciones
+                            <i class="fas fa-cog"></i>
+                            <p>Configuraciones</p>
                         </a>
                     </li>
                 </ul>
             </div>
             <div class="main content-page">
-                @RenderBody()   
+                @RenderBody()
             </div>
         </div>
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+  
 </body>
 </html>

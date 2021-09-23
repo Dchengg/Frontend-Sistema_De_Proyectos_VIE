@@ -3,11 +3,17 @@
     height: 100%;
 }
 
+.mainMenu a i{
+    font-size: 25px;
+    margin-right: 20px;
+}
+
 
 .mainMenu a{
    display: flex !important;
    flex-direction: row;
    align-content: center;
+   text-decoration: none !important;
 }
 
 .content-page{
