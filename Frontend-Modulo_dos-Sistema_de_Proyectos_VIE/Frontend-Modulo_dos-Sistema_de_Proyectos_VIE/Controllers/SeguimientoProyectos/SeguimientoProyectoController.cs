@@ -19,7 +19,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de los objetivos del proyecto</returns>
         public ActionResult UIDatosProyecto(String codigoProyecto)
-        {
+        {   
             Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["objetivosEspecificos"] = ProyectoController.getObjetivosProyecto(codigoProyecto);

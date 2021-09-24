@@ -12,6 +12,26 @@
 
 <body>
     <div>
+        <nav style="border-width:0; margin:0; padding:0" class="navbar fa-align-left">
+            <div style="padding-left:0" class="container-fluid fa-align-left">
+                <button type="button" onclick="location.href='@Url.Action("Index","Home")'" class="btn btn-default btn-lg regresarBtn">
+                    <span style="top:2px;margin-right:10px" class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                    Regresar
+                </button>
+                <nav class="my-2 my-md-0 mr-md-3">
+                    <a class="p-2 text-dark" href="#">Features</a>
+                    <a class="p-2 text-dark" href="#">Enterprise</a>
+                    <a class="p-2 text-dark" href="#">Support</a>
+                    <a class="p-2 text-dark" href="#">Pricing</a>
+                </nav>
+            </div>
+            <div class="page-title">
+                <h3>@ViewBag.title</h3>
+            </div>
+        </nav>
+    </div>
+    @*
+    <div>
         <nav style="border-width:0; margin:0" class="navbar">
             <div style="padding-left:0" class="container-fluid">
                 <button type="button" onclick="location.href='@Url.Action("Index","Home")'" class="btn btn-default btn-lg returnBtn">
@@ -32,6 +52,7 @@
             </div>
         </nav>
     </div>
+    *@
     <div class="container-fluid">
         <div style="display:flex" class="row">
             <div class="col-sm-2 col-md-2 sidebar sideMenu">

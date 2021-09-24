@@ -15,18 +15,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         public ActionResult Index()
         {
 
-            ///List<Proyecto> proyectos = ProyectoController.getProyectos();
-            List<Proyecto> proyectos = new List<Proyecto>();
-            proyectos.Add(new Proyecto
-            {
-                Codigo = "123",
-                Nombre = "test",
-                OficialDeProyecto = "Juanca",
-                InvestigadorCoordinador = "Diego",
-                FechaAprobacion = new DateTime(),
-                FechaInicio =   new DateTime(),
-                FechaFinalizacion =  new DateTime(),
-            });
+            List<Proyecto> proyectos = ProyectoController.getProyectos();
             List<SelectListItem> criteriosBusqueda = new List<SelectListItem>();
             criteriosBusqueda.Add(new SelectListItem { Text = "Todos los proyectos", Value = "" });
             criteriosBusqueda.Add(new SelectListItem { Text = "Código del proyecto", Value = "Código de proyecto"});
