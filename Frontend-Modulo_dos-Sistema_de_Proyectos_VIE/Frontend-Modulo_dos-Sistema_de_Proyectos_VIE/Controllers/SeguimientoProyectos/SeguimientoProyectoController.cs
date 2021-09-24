@@ -40,7 +40,13 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIAreaFrascati", Frascatis);
         }
-
+        public ActionResult UIPresupuesto(String codigoProyecto)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIPresupuesto");
+        }
         /// <summary>
         /// Llama al controlador de áreas frascati y le envia un nuevo área frascati que se debe agregar a la base de datos
         /// </summary>
@@ -60,6 +66,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["codigoProyecto"] = codigoProyecto;
             return View("UIAreaFrascati", Frascatis);
         }
+
 
         /// <summary>
         /// Llama al controlador de áreas frascati y le envia el ID del área frascati que se debe eliminar de la base de datos
@@ -129,7 +136,13 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIPoblacionBeneficiaria", poblaciones);
         }
-
+        public ActionResult UIPalabrasClave(String codigoProyecto)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIPalabrasClave");
+        }
         /// <summary>
         /// Llama al controlador de poblacion beneficiaria y le envia una nueva población que se debe agregar a la base de datos
         /// </summary>
