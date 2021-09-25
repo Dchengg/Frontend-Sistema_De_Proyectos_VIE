@@ -202,6 +202,32 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View("UIIncidencias");
         }
 
+        /// <summary>
+        /// Llama al controlador de informes y recoge los informes tanto entregados como por entregar del proyecto para enviarlos a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns></returns>
+        public ActionResult UIProgramacionInformes(String codigoProyecto){
+            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIProgramacionInformes");
+        }
+
+        /// <summary>
+        /// Llama al controlador de informes y recoge los departamentos del proyecto para enviarlos a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns></returns>
+        public ActionResult UIDepartamentos(String codigoProyecto) {
+            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIDepartamentos");
+        }
+
         #endregion
     }
 }

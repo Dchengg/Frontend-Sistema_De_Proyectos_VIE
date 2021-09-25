@@ -15,7 +15,7 @@
         <div class="row formRow">
             <div class="form-inline col-md-8">
                 <label for="codigoProyectoInput">Código del proyecto</label>
-                <input type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled/>
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled/>
             </div>
         </div>
         @using (Html.BeginForm("UIPoblacionBeneficiaria", "SeguimientoProyecto", new { codigo = ViewData["CodigoProyecto"] }, FormMethod.Post))
@@ -23,7 +23,7 @@
             <div class="row formRow">
                 <div class="form-inline col-md-8">
                     <label class="col-xs-5">Población beneficiaria</label>
-                    <select class="form-control col-xs-5" name="PoblacionDropdown">
+                    <select style="margin-left:5px" class="form-control col-xs-5" name="PoblacionDropdown">
                         <option>Región Central</option>
                         <option>Región Chorotega</option>
                         <option>Región pacífico</option>

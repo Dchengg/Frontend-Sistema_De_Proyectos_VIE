@@ -15,7 +15,7 @@
         <div class="row formRow">
             <div class="form-inline col-md-8">
                 <label for="codigoProyectoInput">Código del proyecto</label>
-                <input type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled />
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled />
             </div>
         </div>
         @using (Html.BeginForm("UICompras", "SeguimientoProyecto", new { codigo = ViewData["CodigoProyecto"] }, FormMethod.Post))
@@ -23,25 +23,25 @@
             <div class="row formRow">
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Nombre del Producto</label>
-                    <input type="text" class="form-control" id="nombreDelProducto" />
+                    <input style="margin-left:5px" type="text" class="form-control" id="nombreDelProducto" />
                 </div>
             </div>
             <div class="row formRow">
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Cantidad</label>
-                    <input type="text" class="form-control" id="cantidadDelProducto" />
+                    <input style="margin-left:5px" type="text" class="form-control" id="cantidadDelProducto" />
                 </div>
             </div>
             <div class="row formRow">
                  <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Precio total de la compra</label>
-                    <input type="text" class="form-control" id="precioTotalDeLaCompra" />
+                    <input style="margin-left:5px" type="text" class="form-control" id="precioTotalDeLaCompra" />
                  </div>
             </div>
             
             <div class="row formRow">
                 <div class="wrapperBotonAgregar">
-                    <button class="botonAgregar" type="submit">Agregar</button>
+                    <button class="botonAgregar" type="submit">Agregar compra</button>
                 </div>
             </div>
         }

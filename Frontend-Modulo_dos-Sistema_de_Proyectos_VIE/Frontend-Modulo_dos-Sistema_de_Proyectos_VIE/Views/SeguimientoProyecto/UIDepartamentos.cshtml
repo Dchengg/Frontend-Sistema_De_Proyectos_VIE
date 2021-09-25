@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Bitácora";
+    ViewBag.Title = "Departamentos";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
 }
 
@@ -14,41 +14,46 @@
         </div>
         <div class="row formRow">
             <div class="form-inline col-md-8">
-                <label for="codigoProyectoInput">Código del proyecto</label>
-                <input type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled />
+                <label for="codigoProyectoInput">Código del proyecto </label>
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled />
             </div>
         </div>
-        @using (Html.BeginForm("UIBitacora", "SeguimientoProyecto", new { codigo = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        @using (Html.BeginForm("UIProgramacionInformes", "SeguimientoProyecto", new { codigo = ViewData["CodigoProyecto"] }, FormMethod.Post))
         {
             <div class="row formRow">
                 <div class="form-inline col-md-8">
-                    <label for="codigoProyectoInput">Entrada</label>
-                    <div>
-                        <textarea clas cols="100" rows="2" id="Entrada"></textarea>
-                    </div> 
+                    <label for="codigoProyectoInput">Departamento </label>
+                    <select style="margin-left:5px" class="form-control col-xs-5" name="tipoInformeDropdown">
+                        <option>Mecátronica</option>
+                        <option>Administración de empresas</option>
+                    </select>
                 </div>
             </div>
             <div class="row formRow">
                 <div class="form-inline col-md-8">
-                    <label for="codigoProyectoInput">Fecha</label>
-                    <input type="date" class="form-control" id="Fecha" />
+                    <label for="codigoProyectoInput">Tipo departamento </label>
+                    <select style="margin-left:5px" class="form-control col-xs-5" name="tipoInformeDropdown">
+                        <option>Participante</option>
+                        <option>Proponente</option>
+                    </select>
                 </div>
             </div>
+
             <div class="row formRow">
                 <div class="wrapperBotonAgregar">
-                    <button class="botonAgregar" type="submit">Agregar</button>
+                    <button class="botonAgregar" type="submit">Agregar departamento</button>
                 </div>
             </div>
         }
         <div class="row formRow">
             <div class="form-group col-md-12">
-                <label for="areasFrascati"></label>
+                <label for="UIDepartamentos"></label>
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered disenoTabla">
                         <tr id="ROW1">
-                            <th>Usuario responsable</th>
-                            <th>Entrada</th>
-                            <th>Fecha</th>
+                            <th>Departamento</th>
+                            <th>Tipo</th>                            
+                            <th> </th>
                         </tr>
 
 
@@ -56,7 +61,8 @@
 
                             <th>xxxxx</th>
                             <th>xxxxx</th>
-                            <th>xxxxx</th>
+
+                            <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
 
                         </tr>
 

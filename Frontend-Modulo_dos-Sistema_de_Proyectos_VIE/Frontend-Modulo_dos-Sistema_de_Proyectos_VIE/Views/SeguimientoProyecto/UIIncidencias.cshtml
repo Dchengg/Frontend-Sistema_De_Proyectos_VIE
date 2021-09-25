@@ -16,7 +16,7 @@
         <div class="row formRow">
             <div class="form-inline col-md-8">
                 <label for="codigoProyectoInput">Código del proyecto</label>
-                <input type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled />
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled />
             </div>
         </div>
         @using (Html.BeginForm("UIIncidencias", "SeguimientoProyecto", new { codigo = ViewData["CodigoProyecto"] }, FormMethod.Post))
@@ -24,21 +24,21 @@
             <div class="row formRow">
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Titulo de la incidencia</label>
-                    <input type="text" class="form-control" id="títuloIncidencia" />
+                    <input style="margin-left:5px" type="text" class="form-control" id="títuloIncidencia" />
                 </div>
             </div>
             <div class="row formRow">
-                <div class="form-inline col-md-8">
+                <div class="form-inline col-md-12">
                     <label for="codigoProyectoInput">Descripción</label>
                     <div>
-                        <textarea clas cols="100" rows="6" id="descripcionIncidencia"></textarea>
+                        <textarea style="margin-left:5px" clas cols="200" rows="4" id="descripcionIncidencia"></textarea>
                     </div>
                 </div>
             </div>
 
             <div class="row formRow">
                 <div class="wrapperBotonAgregar">
-                    <button class="botonAgregar" type="submit">Agregar</button>
+                    <button class="botonAgregar" type="submit">Agregar incidencia</button>
                 </div>
             </div>
         }

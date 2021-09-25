@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Programación de Informes";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+}
+
+<div style="width:100%">
+    <div class="container-fluid">
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto </label>
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled />
+            </div>
+        </div>
+        @using (Html.BeginForm("UIProgramacionInformes", "SeguimientoProyecto", new { codigo = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        {
+         <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    <label for="codigoProyectoInput">Tipo de informe </label>
+                    <select style="margin-left:5px" class="form-control col-xs-5" name="tipoInformeDropdown">
+                        <option>Avance</option>
+                        <option>Final</option>
+                    </select>
+                </div>
+         </div>
+         <div class="row formRow">
+                <div class="form-inline col-md-12">
+                    <label for="tituloDelInforme">Título del informe </label>
+                    <div>
+                        <input style="margin-left:5px" type="text" class="form-control" id="títuloDelInforme" />
+                    </div>
+                </div>
+         </div>
+
+         <div>
+            <div class="row formRow">
+                <div class="form-inline col-md-12">
+                    <label for="fechaProgramada">Fecha programada </label>
+                        <div>
+                            <input style="margin-left:5px" type="date" class="form-control" id="Fecha" />
+                        </div>
+                    </div>
+            </div>
+         </div>
+
+         <div class="row formRow">
+            <div class="wrapperBotonAgregar">
+                <button class="botonAgregar" type="submit">Agregar programación de informe</button>
+            </div>
+         </div>
+         }
+                <div class="row formRow">
+                    <div class="form-group col-md-12">
+                        <label for="areasFrascati"></label>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered disenoTabla">
+                                <tr id="ROW1">
+                                    <th>Fecha prevista</th>
+                                    <th>Fecha entrega</th>
+                                    <th>Estado</th>
+                                    <th>Tipo de informe</th>
+                                    <th> </th>
+                                </tr>
+
+
+                                <tr>
+
+                                    <th>xxxxx</th>
+                                    <th>xxxxx</th>
+                                    <th>xxxxx</th>
+                                    <th>xxxxx</th>
+
+                                    <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</div>

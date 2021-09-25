@@ -16,7 +16,7 @@
         <div class="row formRow">
             <div class="form-inline col-md-8">
                 <label for="codigoProyectoInput">Código del proyecto</label>
-                <input type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled />
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled />
             </div>
         </div>
         @using (Html.BeginForm("UIPalabrasClave", "SeguimientoProyecto", new { codigo = ViewData["CodigoProyecto"] }, FormMethod.Post))
@@ -25,7 +25,7 @@
                 <div class="form-inline col-md-8">
                     
                         <label for="palabraInput">Palabra Clave:</label>
-                        <input type="text"  class="form-control" id="palabraInput" name="palabraInput"><br>
+                        <input style="margin-left:5px" type="text"  class="form-control" id="palabraInput" name="palabraInput"><br>
                 </div>
             </div>
             <div class="row formRow">

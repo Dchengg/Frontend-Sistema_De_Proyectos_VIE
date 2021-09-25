@@ -19,7 +19,7 @@
         <div class="row formRow">
             <div class="form-inline col-md-8">
                 <label for="codigoProyectoInput">Código del proyecto</label>
-                <input type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled/>
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled/>
             </div>
         </div>
         @using (Html.BeginForm("UIAreaFrascati", "SeguimientoProyecto", new { codigo=ViewData["CodigoProyecto"] },FormMethod.Post))
@@ -27,7 +27,7 @@
             <div class="row formRow">
                 <div class="form-inline col-md-8">
                     <label class="col-xs-5">Área frascati</label>
-                    <select class="form-control col-xs-5" name="areaDropdown">
+                    <select style="margin-left:5px" class="form-control col-xs-5" name="areaDropdown">
                         <option>Ciencias naturales</option>
                         <option>Tecnología e ingeniería</option>
                         <option>Ciencias médicas</option>
@@ -40,7 +40,7 @@
             <div class="row formRow">
                 <div class="form-inline col-md-8">
                     <label class="col-xs-5">Sub-áreas</label>
-                    <select class="form-control col-xs-5" name="subAreaDropdown">
+                    <select style="margin-left:5px" class="form-control col-xs-5" name="subAreaDropdown">
                         <option>Matemáticas</option>
                         <option>Ciencias físicas</option>
                         <option>Ciencias químicas</option>
