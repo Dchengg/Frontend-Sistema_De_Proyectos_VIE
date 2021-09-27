@@ -66,14 +66,14 @@
                             <option>Cabo-verdiano</option>
                             <option>Camaronense</option>
                         </select>
-</div>
+                    </div>
                 </div>
 
                 <div class="row mt-3">
                     <div class="col-md-5 ">
                         <label>Pais Nacimiento</label>
                     </div>
-                    <div class="col-md-5 "> 
+                    <div class="col-md-5 ">
                         <select class=" form-control">
                             <option>Afganistán</option>
                             <option>Albania</option>
@@ -124,7 +124,7 @@
                             @Html.TextBoxFor(vista => vista.investigador.nacimiento, new { @class = "form-control" })
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
-                        
+
                     </div>
                 </div>
 
@@ -162,9 +162,9 @@
                     <div class="col-md-5 ">
                         <select class=" form-control">
                             <option>DOP</option>
-                            <option>VIE</option> 
+                            <option>VIE</option>
                         </select>
-</div>
+                    </div>
                 </div>
 
             </div>
@@ -199,7 +199,7 @@
                     </div>
                     <div class="col-md-5">
                         @Html.TextBoxFor(vista => vista.investigador.seudonimoBibliografico, new { @class = "form-control " })
-                    </div> 
+                    </div>
                 </div>
 
                 <div class="row mt-3">
@@ -240,7 +240,7 @@
                     <div class="col-md-5 ">
                         <select class=" form-control">
                             <option>Empleado</option>
-                            <option>Desempleado</option> 
+                            <option>Desempleado</option>
                         </select>
                     </div>
                 </div>
@@ -278,9 +278,9 @@
                     </div>
                 </div>
 
-            </div> 
-                 
-            </div>}
+            </div>
+
+        </div>}
 </div>
 <div class="container-fluid mt-5">
     <h3 class="blue font-weight-bold">Perfiles Académicos</h3>
@@ -288,13 +288,13 @@
         <div class="col-md-6 form-inline">
             <label class="col-md-6">Tipo de perfil</label>
             <input type="text" class="col-md-6 form-control" id="gradoAcadInput" />
-        </div> 
+        </div>
     </div>
     <div class="row align-items-center justify-items-center mt-3">
         <div class="col-md-6 form-inline">
             <label class="col-md-6">URL del perfil</label>
             <input type="text" class="col-md-6 form-control" id="gradoAcadInput" />
-        </div> 
+        </div>
     </div>
     <div class="row align-items-center justify-items-center mt-3">
         <div class="col-md-12 form-inline align-items-center">
@@ -302,7 +302,7 @@
                 <input class="btnGrande btnAzul" type="button" value="Agregar Perfil">
             </div>
         </div>
-    </div> 
+    </div>
 </div>
 
 <div class="container-fluid mt-5 ml-3">
@@ -338,7 +338,7 @@
         <div class="row align-items-center justify-items-center mt-3">
             <div class="col-md-4 form-inline">
                 <label class="col-md-6" for="anioGradInput">Año de Graduación</label>
-                <input type="text" class="col-md-6 form-control"  id="anioGradInput" />
+                <input type="text" class="col-md-6 form-control" id="anioGradInput" />
             </div>
             <div class="col-md-4 form-inline">
                 <label class="col-md-6" for="areaEstInput">Área de Estudio</label>
@@ -406,7 +406,7 @@
                 <option>Avanzado</option>
                 <option>Intermedio</option>
                 <option>Bajo</option>
-                
+
             </select>
         </div>
         <div class="col-md-4 form-inline">
@@ -433,7 +433,7 @@
             <label class="col-md-6">Idioma natal</label>
             <select class="col-md-6 form-control">
                 <option>Si</option>
-                <option>No</option> 
+                <option>No</option>
 
             </select>
         </div>
@@ -535,6 +535,325 @@
             </tr>
             <tr>
                 <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="container-fluid mt-5 ml-3">
+    <h3 class="blue font-weight-bold">Participación en Proyectos, Redes, Grupos de Trabajo, Asociaciones, Comités Editoriales, Otros.</h3>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="nombrePuestoInput">Nombre del Puesto</label>
+            <input type="text" class="col-md-6 form-control" id="nombrePuestoInput" />
+        </div>
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6">Entidad</label>
+            <select class="col-md-6 form-control">
+                <option>Entidad</option>
+            </select>
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="anioInicioInput">Año de Inicio</label>
+            <input type="text" class="col-md-6 form-control" id="anioGradInput" />
+        </div>
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="anioTerminoInput">Año de Término</label>
+            <input type="text" class="col-md-6 form-control" id="anioTerminoInput" />
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-3 form-inline">
+            <div class="wrapperBotonAgregar">
+                <input class="btnGrande btnAzul" type="button" value="Agregar Participación">
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-5">
+        <table class="table table-striped ">
+            <thead class="table-heading">
+                <tr id="ROW1">
+                    <th>Nombre del Puesto</th>
+                    <th>Entidad</th>
+                    <th>Año de Inicio</th>
+                    <th>Año de Graduación</th>
+                    <th>Año de Término</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tr>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+            </tr>
+            <tr>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<div class="container-fluid mt-5 ml-3">
+    <h3 class="blue font-weight-bold">Premios Obtenidos</h3>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="nombrePremioInput">Nombre del premio</label>
+            <input type="text" class="col-md-6 form-control" id="nombrePremioInput" />
+        </div>
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6">Año</label>
+            <select class="col-md-6 form-control">
+                <option>Año</option>
+            </select>
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="institucionInput">Institución</label>
+            <input type="text" class="col-md-6 form-control" id="institucionInput" />
+        </div>
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="paisInput">País</label>
+            <input type="text" class="col-md-6 form-control" id="paisInput" />
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-3 form-inline">
+            <div class="wrapperBotonAgregar">
+                <input class="btnGrande btnAzul" type="button" value="Agregar Premio">
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-5">
+        <table class="table table-striped ">
+            <thead class="table-heading">
+                <tr id="ROW1">
+                    <th>Nombre del premio</th>
+                    <th>Año</th>
+                    <th>Institución</th>
+                    <th>País</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tr>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+            </tr>
+            <tr>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="container-fluid mt-5 ml-3">
+    <h3 class="blue font-weight-bold">Áreas Frascati</h3> 
+</div>
+
+<div class="container-fluid mt-5 ml-3">
+    <h3 class="blue font-weight-bold">Artículos Revista</h3>
+</div>
+
+<div class="container-fluid mt-5 ml-3">
+    <h3 class="blue font-weight-bold">Patentes de Innovación</h3>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="nombrePatenteInput">Nombre de la patente</label>
+            <input type="text" class="col-md-6 form-control" id="nombrePatenteInput" />
+        </div>
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="numPatenteInput">Número de la patente</label>
+            <input type="text" class="col-md-6 form-control" id="numPatenteInput" />
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="inscritoEnInput">Inscrito en</label>
+            <input type="text" class="col-md-6 form-control" id="inscritoEnInput" />
+        </div>
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6">Año</label>
+            <select class="col-md-6 form-control">
+                <option>Año</option>
+            </select>
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-3 form-inline">
+            <div class="wrapperBotonAgregar">
+                <input class="btnGrande btnAzul" type="button" value="Agregar Patente">
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-5">
+        <table class="table table-striped ">
+            <thead class="table-heading">
+                <tr id="ROW1">
+                    <th>Nombre de la patente</th>
+                    <th>Número de patente</th>
+                    <th>Inscrito en</th>
+                    <th>Año</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tr>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th> 
+            </tr>
+            <tr>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th> 
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="container-fluid mt-5 ml-3">
+    <h3 class="blue font-weight-bold">Licenciamientos</h3>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="productoLicenciadoInput">Producto licenciado</label>
+            <input type="text" class="col-md-6 form-control" id="productoLicenciadoInput" />
+        </div>
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="licenciadaAInput">Licenciada a</label>
+            <input type="text" class="col-md-6 form-control" id="licenciadaAInput" />
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3"> 
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6">Año</label>
+            <select class="col-md-6 form-control">
+                <option>Año</option>
+            </select>
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-3 form-inline">
+            <div class="wrapperBotonAgregar">
+                <input class="btnGrande btnAzul" type="button" value="Agregar Licenciamiento">
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-5">
+        <table class="table table-striped ">
+            <thead class="table-heading">
+                <tr id="ROW1">
+                    <th>Producto licenciado</th>
+                    <th>Licenciada a</th> 
+                    <th>Año</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tr>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+            </tr>
+            <tr>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="container-fluid mt-5 ml-3">
+    <h3 class="blue font-weight-bold">Software</h3>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="tituloInput">Título</label>
+            <input type="text" class="col-md-6 form-control" id="tituloInput" />
+        </div>
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6" for="plataformaInput">Plataforma</label>
+            <input type="text" class="col-md-6 form-control" id="licenciadaAInput" />
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-6 form-inline">
+            <label class="col-md-6">Año</label>
+            <select class="col-md-6 form-control">
+                <option>Año</option>
+            </select>
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-3">
+        <div class="col-md-3 form-inline">
+            <div class="wrapperBotonAgregar">
+                <input class="btnGrande btnAzul" type="button" value="Agregar Software">
+            </div>
+        </div>
+    </div>
+    <div class="row align-items-center justify-items-center mt-5">
+        <table class="table table-striped ">
+            <thead class="table-heading">
+                <tr id="ROW1">
+                    <th>Título</th>
+                    <th>Plataforma</th>
+                    <th>Año</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tr>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+                <th>x</th>
+            </tr>
+            <tr>
                 <th>x</th>
                 <th>x</th>
                 <th>x</th>
