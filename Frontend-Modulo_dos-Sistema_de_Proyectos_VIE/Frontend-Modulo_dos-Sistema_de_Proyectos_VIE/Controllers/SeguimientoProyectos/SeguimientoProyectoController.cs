@@ -169,7 +169,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las compras del proyecto</returns>
         public ActionResult UICompras(String codigoProyecto) {
-            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
+            
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
@@ -182,7 +182,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las bitácoras del proyecto</returns>
         public ActionResult UIBitacora(String codigoProyecto) {
-            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
@@ -195,7 +194,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las incidencias del proyecto</returns>
         public ActionResult UIIncidencias(String codigoProyecto){
-            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
+           
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
@@ -203,12 +202,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         }
 
         /// <summary>
-        /// Llama al controlador de informes y recoge los informes tanto entregados como por entregar del proyecto para enviarlos a la vista
+        /// Llama al controlador de programación de informes y recoge los informes tanto entregados como por entregar del proyecto para enviarlos a la vista
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns></returns>
         public ActionResult UIProgramacionInformes(String codigoProyecto){
-            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
+            
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
@@ -216,16 +215,97 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         }
 
         /// <summary>
-        /// Llama al controlador de informes y recoge los departamentos del proyecto para enviarlos a la vista
+        /// Llama al controlador de departamentos y recoge los departamentos del proyecto para enviarlos a la vista
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns></returns>
         public ActionResult UIDepartamentos(String codigoProyecto) {
-            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
+            
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIDepartamentos");
+        }
+
+        /// <summary>
+        /// Llama al controlador de ubicación geográfica y recoge la información del proyecto para enviarla a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns></returns>
+        public ActionResult UIUbicacionGeografica(String codigoProyecto){
+            
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIUbicacionGeografica");
+        }
+
+        /// <summary>
+        /// Llama al controlador de contratos y recoge los contratos del proyecto para enviarlos a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns></returns>
+        public ActionResult UIContratos(String codigoProyecto){
+            
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIContratos");
+
+        }
+
+        /// <summary>
+        /// Llama al controlador de informes y recoge los informes del proyecto para enviarlos a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns></returns>
+        public ActionResult UIIngresarInforme(String codigoProyecto) {
+            
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIIngresarInforme");
+        }
+
+        /// <summary>
+        /// Llama al controlador de ampliar fechas y levanta el servicio de ampliar fechas
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns></returns>
+        public ActionResult UIAmpliarFechas(String codigoProyecto) {
+            
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIAmpliarFechas");
+        }
+
+        /// <summary>
+        /// Llama al controlador de investigadores asociados y recoge los investigadores del proyecto para enviarlos a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns></returns>
+        public ActionResult UIInvestigadoresAsociados(String codigoProyecto)
+        {
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIInvestigadoresAsociados");
+        }
+
+        /// <summary>
+        /// Llama al controlador de cambiar investigador coordinador y recoge el coordinador y los otros investigadores del proyecto para enviarlos a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns></returns>
+        public ActionResult UICambiarInvestigadorCoordinador(String codigoProyecto)
+        {
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UICambiarInvestigadorCoordinador");
         }
 
         #endregion

@@ -346,6 +346,12 @@
     <Content Include="Views\SeguimientoProyecto\UIPalabrasClave.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIProgramacionInformes.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIDepartamentos.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIUbicacionGeografica.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIContratos.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIIngresarInforme.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIAmpliarFechas.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIInvestigadoresAsociados.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UICambiarInvestigadorCoordinador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\BuscadorProyecto\" />
@@ -392,7 +398,6 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties content_4bootstrap-theme_1css_1map__JsonSchema="" />
     </VisualStudio>
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
