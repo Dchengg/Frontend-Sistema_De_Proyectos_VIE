@@ -12,7 +12,7 @@ namespace UIProcess.Modelos
         public static List<oProvincia> catalogoProvincia;
         public static List<oCanton> catalogoCanton;
         public static List<oDistrito> catalogoDistrito;
-        public static List<oCategoriaAcademica> catalogoCategoriaAcademica;
+        public static List<oCategoriaAcademica> catalogoCategoriaAcademica; 
         public static List<oSituacionLaboral> catalogoSituacionLaboral;
         public static List<oInstitucion> catalogoInstitucion;
         public static List<oAreaEstudio> catalogoAreaEstudio;

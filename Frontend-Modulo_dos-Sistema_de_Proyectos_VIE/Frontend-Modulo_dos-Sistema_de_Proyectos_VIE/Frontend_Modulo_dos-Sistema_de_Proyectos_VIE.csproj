@@ -63,6 +63,7 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,9 +121,38 @@
     </Compile>
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="Models\Convocatoria\oConvocatoria.cs" />
+    <Compile Include="Models\FichaInvestigador\oArticulo.cs" />
+    <Compile Include="Models\FichaInvestigador\oCategoriaAcademica.cs" />
+    <Compile Include="Models\FichaInvestigador\oEstudioRealizado.cs" />
+    <Compile Include="Models\FichaInvestigador\oExperienciaAcademica.cs" />
+    <Compile Include="Models\FichaInvestigador\oIdioma.cs" />
+    <Compile Include="Models\FichaInvestigador\oLibro.cs" />
+    <Compile Include="Models\FichaInvestigador\oLicenciamiento.cs" />
     <Compile Include="Models\FichaInvestigador\oModelosCatalogosInvestigador.cs" />
-    <Compile Include="Models\FichaInvestigador\oInvestigador.cs" />
+    <Compile Include="Models\FichaInvestigador\oInvestigadorConsultar.cs" />
+    <Compile Include="Models\FichaInvestigador\oPatente.cs" />
+    <Compile Include="Models\FichaInvestigador\oPonencia.cs" />
+    <Compile Include="Models\FichaInvestigador\oSoftware.cs" />
+    <Compile Include="Models\FichaInvestigador\oSubdisciplina.cs" />
+    <Compile Include="Models\FichaInvestigador\oUnidadAcademica.cs" />
     <Compile Include="Models\FichaInvestigador\oVistaInvestigador.cs" />
+    <Compile Include="Models\Inicio\mCatalogos.cs" />
+    <Compile Include="Models\Inicio\mCatalogoDisciplinaCientifica.cs" />
+    <Compile Include="Models\Inicio\mCatalogoEditorial.cs" />
+    <Compile Include="Models\Inicio\mCatalogoEntidad.cs" />
+    <Compile Include="Models\Inicio\mCatalogoIdioma.cs" />
+    <Compile Include="Models\Inicio\mCatalogoIndiceRevista.cs" />
+    <Compile Include="Models\Inicio\mCatalogoInstitucion.cs" />
+    <Compile Include="Models\Inicio\mCatalogoNivelIdioma.cs" />
+    <Compile Include="Models\Inicio\mCatalogoPais.cs" />
+    <Compile Include="Models\Inicio\mCatalogoParticipacionLibro.cs" />
+    <Compile Include="Models\Inicio\mCatalogoRevista.cs" />
+    <Compile Include="Models\Inicio\mCatalogoSituacionLaboral.cs" />
+    <Compile Include="Models\Inicio\mCatalogoSubdisciplinaCientifica.cs" />
+    <Compile Include="Models\Inicio\mCatalogoTipoIdentificacion.cs" />
+    <Compile Include="Models\Inicio\mCatalogoTipoPerfil.cs" />
+    <Compile Include="Models\Inicio\mCatalogoTituloAcademico.cs" />
+    <Compile Include="Models\Inicio\mCatalogoUnidadAcademica.cs" />
     <Compile Include="Models\SeguimientoProyectos\Proyecto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

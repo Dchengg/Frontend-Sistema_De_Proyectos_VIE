@@ -7,7 +7,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 {
     public class oVistaInvestigador
     {
-        public oInvestigador investigador;
+        public oInvestigadorConsultar investigador;
         public oModelosCatalogosInvestigador catalogos;
     }
 }

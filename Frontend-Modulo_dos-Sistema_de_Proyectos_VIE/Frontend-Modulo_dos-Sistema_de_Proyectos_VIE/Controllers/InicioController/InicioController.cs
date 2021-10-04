@@ -1,4 +1,4 @@
-﻿using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador;
+﻿using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Inicio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,11 +14,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 
         public ActionResult Index()
         {
-            /*HttpResponseMessage respuesta = GlobalVariables.WebApiClient.GetAsync("Inicio").Result;
-            var datosIniciales = respuesta.Content.ReadAsAsync<oRespuesta<oCatalogos>>().Result;
+            HttpResponseMessage respuesta = GlobalVariables.WebApiClient.GetAsync("Inicio").Result;
+            var datosIniciales = respuesta.Content.ReadAsAsync<oRespuesta<mCatalogos>>().Result;
 
             // Ligado de catalogos
-            oCatalogosGlobal.catalogoTipoIdentificacion = datosIniciales.ObjetoRespuesta.catalogoTipoIdentificacion;
+            /*oCatalogosGlobal.catalogoTipoIdentificacion = datosIniciales.ObjetoRespuesta.catalogoTipoIdentificacion;
             oCatalogosGlobal.catalogoPais = datosIniciales.ObjetoRespuesta.catalogoPais;
             oCatalogosGlobal.catalogoProvincia = datosIniciales.ObjetoRespuesta.catalogoProvincia;
             oCatalogosGlobal.catalogoCanton = datosIniciales.ObjetoRespuesta.catalogoCanton;
