@@ -100,6 +100,15 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         {
             System.Diagnostics.Debug.WriteLine(codigoProyecto);
             List<Frascati> Frascatis = FrascatiController.getFrascatis(codigoProyecto);
+
+            List<Frascati> frascatiPicker = FrascatiController.getFrascatis();
+
+            TempData["frascatiPicker"] = frascatiPicker;
+            List<SubFrascati> subfrascatiPicker = FrascatiController.getSubFrascatis();
+
+            TempData["subfrascatiPicker"] = subfrascatiPicker;
+
+
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
@@ -121,7 +130,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         [HttpPost]
         public ActionResult UIAreaFrascati(FormCollection formDropdownAreaFrascati, String codigoProyecto)
         {
-            List<Poblacion> poblacionPicker = FrascatiController.getPoblaciones();
+            List<Frascati> poblacionPicker = FrascatiController.getFrascatis();
 
             TempData["poblacionPicker"] = poblacionPicker;
             String area = formDropdownAreaFrascati["areaDropdown"].ToString();
@@ -440,9 +449,47 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <returns></returns>
         public ActionResult UIProgramacionInformes(String codigoProyecto){
 
+            List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
+
+            TempData["informePicker"] = informePicker;
+
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Informe> informes = InformeController.getInformes(codigoProyecto);
             
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIProgramacionInformes", informes);
+        }
+        /// <summary>
+        /// Llama al controlador de programación de informes y recoge los informes tanto entregados como por entregar del proyecto para enviarlos a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns></returns>
+        ///         
+        [HttpPost]
+        public ActionResult UIProgramacionInformes(FormCollection formProgramacionInformes, String codigoProyecto)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+
+            String idTipoInforme = formProgramacionInformes["formProgramacionInformes"].ToString();
+            System.Diagnostics.Debug.WriteLine(idTipoInforme);
+            
+            String títuloDelInforme = formProgramacionInformes["títuloDelInforme"].ToString();
+            System.Diagnostics.Debug.WriteLine(títuloDelInforme);
+
+
+            String fechaProgramada = formProgramacionInformes["fechaProgramada"].ToString();
+            System.Diagnostics.Debug.WriteLine(fechaProgramada);
+           // String resultPost = InformeController.AgregarInforme(títuloDelInforme, idTipoInforme, , codigoProyecto);
+           // System.Diagnostics.Debug.WriteLine(resultPost);
+
+
+            List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
+
+            TempData["informePicker"] = informePicker;
+
+            List<Informe> informes = InformeController.getInformes(codigoProyecto);
+
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIProgramacionInformes", informes);
@@ -453,7 +500,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns></returns>
-       [HttpPost]
+        [HttpPost]
 
         public ActionResult UIDepartamentos(FormCollection formDepartamentoDropdown, String codigoProyecto) {
 
@@ -550,7 +597,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
         /// <summary>
         /// Llama al controlador de informes y recoge los informes del proyecto para enviarlos a la vista
-        /// </summary>
+        /// </summary>  
         /// <param name="codigoProyecto"></param>
         /// <returns></returns>
         public ActionResult UIIngresarInforme(String codigoProyecto) {

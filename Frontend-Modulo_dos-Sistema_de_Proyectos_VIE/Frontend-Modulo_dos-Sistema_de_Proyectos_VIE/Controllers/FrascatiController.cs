@@ -73,6 +73,33 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
                 return Frascati;
             }
         }
+
+        public static List<SubFrascati> getSubFrascatis()
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/subfrascati");
+
+                var responseTask = client.GetAsync(builder.Uri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<SubFrascati> SubFrascati = new List<SubFrascati>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    SubFrascati = JsonConvert.DeserializeObject<List<SubFrascati>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return SubFrascati;
+            }
+        }
         /// <summary>
         /// Agrega un área frascati al proyecto y llama a la API para agregarla a la base de datos
         /// </summary>

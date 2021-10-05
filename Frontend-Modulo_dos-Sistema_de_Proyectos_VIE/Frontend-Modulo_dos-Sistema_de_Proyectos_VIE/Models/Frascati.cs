@@ -22,6 +22,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
         public String Area { get; set; }
         [JsonProperty("Proyecto")]
         public String Proyecto { get; set; }
+        [JsonProperty("SubFrascatis")]
+        public List<SubFrascati> subs { get; set; }
         #endregion
+
     }
 }

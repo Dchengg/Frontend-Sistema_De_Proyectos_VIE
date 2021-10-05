@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Programación de Informes";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoInforme> informePicker = TempData["informePicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoInforme>;
+
 }
 
 <div style="width:100%">
@@ -24,8 +26,12 @@
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Tipo de informe </label>
                     <select style="margin-left:5px" class="form-control col-xs-5" name="tipoInformeDropdown">
-                        <option>Avance</option>
-                        <option>Final</option>
+                        @foreach (var tipo in informePicker)
+                        {
+                            <option value=@tipo.Id>@tipo.TipoInforme1</option>
+
+
+                        }
                     </select>
                 </div>
             </div>
@@ -33,7 +39,7 @@
                 <div class="form-inline col-md-12">
                     <label for="tituloDelInforme">Título del informe </label>
                     <div>
-                        <input style="margin-left:5px" type="text" class="form-control" id="títuloDelInforme" />
+                        <input style="margin-left:5px" type="text" class="form-control" id="títuloDelInforme" name="títuloDelInforme" />
                     </div>
                 </div>
             </div>
@@ -43,7 +49,7 @@
                     <div class="form-inline col-md-12">
                         <label for="fechaProgramada">Fecha programada </label>
                         <div>
-                            <input style="margin-left:5px" type="date" class="form-control" id="Fecha" />
+                            <input style="margin-left:5px" type="date" class="form-control" id="fechaProgramada"  name="fechaProgramada" />
                         </div>
                     </div>
                 </div>
