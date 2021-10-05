@@ -121,6 +121,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         [HttpPost]
         public ActionResult UIAreaFrascati(FormCollection formDropdownAreaFrascati, String codigoProyecto)
         {
+            List<Poblacion> poblacionPicker = FrascatiController.getPoblaciones();
+
+            TempData["poblacionPicker"] = poblacionPicker;
             String area = formDropdownAreaFrascati["areaDropdown"].ToString();
             String subArea = formDropdownAreaFrascati["subAreaDropdown"].ToString();
             String resultPost = FrascatiController.AgregarAreaFrascati(area, subArea, codigoProyecto);
@@ -145,7 +148,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /* incomplete */
         public ActionResult UIAreasFrascati(String idArea, string codigoProyecto)
         {
+            List<Frascati> areaPicker = FrascatiController.getFrascatis();
 
+            TempData["areaPicker"] = areaPicker;
             System.Diagnostics.Debug.WriteLine(idArea);
             System.Diagnostics.Debug.WriteLine(codigoProyecto);
             String resultPost = FrascatiController.EliminarAreaFrascati(idArea);

@@ -179,7 +179,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         {
             using (var client = new HttpClient())
             {
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Objetivos")
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/ObjetivosEspecificos")
                 {
                     Query = string.Format("id={0}", codigo)
                 };

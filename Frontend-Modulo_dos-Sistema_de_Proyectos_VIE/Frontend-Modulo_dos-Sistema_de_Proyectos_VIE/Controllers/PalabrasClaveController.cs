@@ -73,7 +73,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         /// </summary>
         /// <param name="idPalabraClave"></param>
         /// <returns>String de respuesta de exito o fracaso de eliminar la palabra clave de la base de datos</returns>
-        /// 
+        ///     
         [HttpDelete]
         public static String EliminarPalabraClave(String idPalabraClave)
         {
