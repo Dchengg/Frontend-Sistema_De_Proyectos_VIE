@@ -13,6 +13,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
         #region Métodos
 
+
         /// <summary>
         /// Llama al controlador de proyectos y recoge los objetivos del proyecto para enviarlos a la vista
         /// </summary>
@@ -262,19 +263,56 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             System.Diagnostics.Debug.WriteLine(resultPost);
             List<Departamento> departamentos = DepartamentosController.getDepartamento(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Departamento> departamentosPicker = DepartamentosController.getDepartamentos();
+            List<TipoDepartamento> tipoDepartamentosPicker = DepartamentosController.getTiposDepartamento();
+
+            TempData["tipoDepartamentosPicker"] = tipoDepartamentosPicker;
+
+            TempData["departamentoPicker"] = departamentosPicker;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             ViewData["CodigoProyecto"] = codigoProyecto;
             return View("UIDepartamentos", departamentos);
 
         }
 
-
-        public ActionResult UIDepartamentos( String codigoProyecto)
+        [HttpDelete]
+        public ActionResult UIDepartamentos(String idDepartamento, String codigoProyecto)
         {
-            List<Departamento> departamentosPicker = DepartamentosController.getDepartamentos(codigoProyecto);
+
+
+            String resultPost = DepartamentosController.EliminarDepartamento(idDepartamento);
+            System.Diagnostics.Debug.WriteLine(resultPost);
+
+
+
+
 
             List<Departamento> departamentos = DepartamentosController.getDepartamento(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Departamento> departamentosPicker = DepartamentosController.getDepartamentos();
+            List<TipoDepartamento> tipoDepartamentosPicker = DepartamentosController.getTiposDepartamento();
+
+            TempData["tipoDepartamentosPicker"] = tipoDepartamentosPicker;
+
+            TempData["departamentoPicker"] = departamentosPicker;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            return View("UIDepartamentos", departamentos);
+
+        }
+        public ActionResult UIDepartamentos( String codigoProyecto)
+        {
+
+            List<Departamento> departamentos = DepartamentosController.getDepartamento(codigoProyecto);
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Departamento> departamentosPicker = DepartamentosController.getDepartamentos();
+
+            List<TipoDepartamento> tipoDepartamentosPicker = DepartamentosController.getTiposDepartamento();
+
+
+            TempData["tipoDepartamentosPicker"] = tipoDepartamentosPicker;
+
+            TempData["departamentoPicker"] = departamentosPicker;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             ViewData["CodigoProyecto"] = codigoProyecto;
             return View("UIDepartamentos", departamentos);

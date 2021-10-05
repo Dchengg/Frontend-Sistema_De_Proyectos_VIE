@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "Departamentos";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Departamento> departamentosPicker = TempData["departamentoPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Departamento>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoDepartamento> tipoDepartamentosPicker = TempData["tipoDepartamentosPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoDepartamento>;
+
 }
 
 <div style="width:100%">
@@ -24,8 +27,15 @@
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Departamento </label>
                     <select style="margin-left:5px" class="form-control col-xs-5" name="DepartamentoDropdown">
-                        <option>Mecátronica</option>
-                        <option>Administración de empresas</option>
+
+
+                        @foreach (var departamento in departamentosPicker)
+                        {
+                            <option value=@departamento.Id>@departamento.NombreProyecto</option>
+
+ 
+                        }
+
                     </select>
                 </div>
             </div>
@@ -33,8 +43,12 @@
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Tipo departamento </label>
                     <select style="margin-left:5px" class="form-control col-xs-5" name="tipoDepartamentoDropdown">
-                        <option>Participante</option>
-                        <option>Proponente</option>
+                        @foreach (var tipo in tipoDepartamentosPicker)
+                        {
+                            <option value=@tipo.Id>@tipo.TipoDepartamento1</option>
+
+
+                        }
                     </select>
                 </div>
             </div>
@@ -56,17 +70,23 @@
                             <th> </th>
                         </tr>
 
-                   @foreach (var departamento in Model)
-                    {
-                        <tr>
+                        @foreach (var departamento in Model)
+                        {
 
-                        <th>@departamento.Id</th>
-                        <th>@departamento.Id</th>
+                      
 
-                        <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                    <tr>
+                        @using (Html.BeginForm("UIDepartamentos", "SeguimientoProyecto", new { idDepartamento = departamento.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        {
+                            @Html.HttpMethodOverride(HttpVerbs.Delete)
+                            <th>@departamento.NombreProyecto</th>
+                            <th>@departamento.Id</th>
 
-                        </tr>
-                    }
+                            <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                        }
+                    </tr>
+
+                        }
                     </table>
                 </div>
             </div>

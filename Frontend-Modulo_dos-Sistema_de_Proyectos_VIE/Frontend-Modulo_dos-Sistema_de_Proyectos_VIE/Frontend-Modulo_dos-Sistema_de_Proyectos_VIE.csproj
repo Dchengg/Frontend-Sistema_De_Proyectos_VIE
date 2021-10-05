@@ -152,6 +152,7 @@
     <Compile Include="Models\ODS.cs" />
     <Compile Include="Models\Poblacion.cs" />
     <Compile Include="Models\Proyecto.cs" />
+    <Compile Include="Models\TipoDepartamento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -367,6 +368,7 @@
     <Folder Include="Views\PoblacionBeneficiaria\" />
     <Folder Include="Views\Proyecto\" />
     <Folder Include="Views\SeguimientoProyectos\" />
+    <Folder Include="Views\TipoDepartamento\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -18,7 +18,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         /// </summary>
         /// <param name="idDepartamento"></param>
         /// <returns>Lista de las áreas frascati del proyecto</returns>
-        public static List<Departamento> getDepartamentos(String idDepartamento)
+        public static List<Departamento> getDepartamento(String idDepartamento)
         {
             using (var client = new HttpClient())
             {
@@ -50,6 +50,41 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         }
         #endregion
 
+        #region Métodos
+        /// <summary>
+        /// Recupera las áreas frascati del proyecto, dado el codigo del proyecto
+        /// </summary>
+        /// <param name="idDepartamento"></param>
+        /// <returns>Lista de las áreas frascati del proyecto</returns>
+        public static List<TipoDepartamento> getTiposDepartamento()
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/TipoDepartamento");
+     
+
+
+                var responseTask = client.GetAsync(builder.Uri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<TipoDepartamento> departamento = new List<TipoDepartamento>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    departamento = JsonConvert.DeserializeObject<List<TipoDepartamento>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return departamento;
+            }
+        }
+        #endregion
 
         #region Métodos
         /// <summary>
@@ -57,15 +92,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         /// </summary>
         /// <param name="idDepartamento"></param>
         /// <returns>Lista de las áreas frascati del proyecto</returns>
-        public static List<Departamento> getDepartamento(string idDepartamento)
+        public static List<Departamento> getDepartamentos()
         {
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Departamento")
-                {
-                    Query = string.Format("id={0}", idDepartamento)
-                };
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Departamento");
 
                 var responseTask = client.GetAsync(builder.Uri);
                 responseTask.Wait();
@@ -133,17 +165,14 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Departamento/")
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Departamento/1")
                 {
 
                     Query = string.Format("id={0}", idDepartamento)
                 };
-                var values = new Dictionary<string, string>
-                {
-                    {"id", idDepartamento}
-                };
-                var content = new FormUrlEncodedContent(values);
-                var responseTask = client.PostAsync(builder.Uri, content);
+
+
+                var responseTask = client.DeleteAsync(builder.Uri.AbsoluteUri);
                 responseTask.Wait();
                 var result = responseTask.Result;
                 var responseResult = "Failed";
