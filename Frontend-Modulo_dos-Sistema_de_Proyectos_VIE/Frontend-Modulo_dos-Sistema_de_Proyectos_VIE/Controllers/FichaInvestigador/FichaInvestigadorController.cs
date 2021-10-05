@@ -1,4 +1,5 @@
 ﻿using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador;
+using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Inicio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,33 +16,33 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
         public ActionResult Index()
         {
             HttpResponseMessage respuesta = GlobalVariables.WebApiClient.GetAsync("Investigador/123456789").Result;
-            var investigador = respuesta.Content.ReadAsAsync<oRespuesta<oInvestigadorConsultar>>().Result;
-            /*
-             oVistaInvestigador objetoVista = new oVistaInvestigador();
-             objetoVista.investigador = investigador.ObjetoRespuesta;
-             objetoVista.catalogos = new oModelosCatalogosInvestigador();
+            var investigador = respuesta.Content.ReadAsAsync<oRespuesta<InvestigadorConsultar>>().Result;
+            
+            mVistaInvestigador objetoVista = new mVistaInvestigador();
+            objetoVista.investigador = investigador.ObjetoRespuesta;
+            objetoVista.catalogos = mCatalogosInvestigador;
 
-             // Asociacion de catalogos
-             objetoVista.catalogos.modeloTipoIdentificacion = oCatalogosGlobal.catalogoTipoIdentificacion;
-             objetoVista.catalogos.modeloPais = oCatalogosGlobal.catalogoPais;
-             objetoVista.catalogos.modeloCategoriaAcademica = oCatalogosGlobal.catalogoCategoriaAcademica;
-             objetoVista.catalogos.modeloSituacionLaboral = oCatalogosGlobal.catalogoSituacionLaboral;
-             objetoVista.catalogos.modeloInstitucion = oCatalogosGlobal.catalogoInstitucion;
-             objetoVista.catalogos.modeloTituloAcademico = oCatalogosGlobal.catalogoTituloAcademico;
-             objetoVista.catalogos.modeloIdioma = oCatalogosGlobal.catalogoIdioma;
-             objetoVista.catalogos.modeloNivelIdioma = oCatalogosGlobal.catalogoNivelIdioma;
-             objetoVista.catalogos.modeloUnidadAcademica = oCatalogosGlobal.catalogoUnidadAcademica;
+            // Asociacion de catalogos
+            objetoVista.catalogos.CatalogoTipoIdentificacion = UipCatalogos.CatalogoTipoIdentificacion;
+            objetoVista.catalogos.modeloPais = UipCatalogosGlobal.catalogoPais;
+            objetoVista.catalogos.modeloCategoriaAcademica = UipCatalogosGlobal.catalogoCategoriaAcademica;
+            objetoVista.catalogos.modeloSituacionLaboral = UipCatalogosGlobal.catalogoSituacionLaboral;
+            objetoVista.catalogos.modeloInstitucion = UipCatalogosGlobal.catalogoInstitucion;
+            objetoVista.catalogos.modeloTituloAcademico = UipCatalogosGlobal.catalogoTituloAcademico;
+            objetoVista.catalogos.modeloIdioma = UipCatalogosGlobal.catalogoIdioma;
+            objetoVista.catalogos.modeloNivelIdioma = UipCatalogosGlobal.catalogoNivelIdioma;
+            objetoVista.catalogos.modeloUnidadAcademica = UipCatalogosGlobal.catalogoUnidadAcademica;
 
-             ViewBag.catalogoTipoIdentificacion = oCatalogosGlobal.catalogoTipoIdentificacion;
-             ViewBag.catalogoPais = oCatalogosGlobal.catalogoPais;
-             ViewBag.catalogoCategoriaAcademica = oCatalogosGlobal.catalogoCategoriaAcademica;
-             ViewBag.catalogoSituacionLaboral = oCatalogosGlobal.catalogoSituacionLaboral;
-             ViewBag.catalogoInstitucion = oCatalogosGlobal.catalogoInstitucion;
-             ViewBag.catalogoTituloAcademico = oCatalogosGlobal.catalogoTituloAcademico;
-             ViewBag.catalogoIdioma = oCatalogosGlobal.catalogoIdioma;
-             ViewBag.catalogoAreaIdioma = oCatalogosGlobal.catalogoAreaIdioma;
-             ViewBag.catalogoNivelIdioma = oCatalogosGlobal.catalogoNivelIdioma;
-             ViewBag.catalogoUnidadAcademica = oCatalogosGlobal.catalogoUnidadAcademica;
+             ViewBag.catalogoTipoIdentificacion = UipCatalogosGlobal.catalogoTipoIdentificacion;
+             ViewBag.catalogoPais = UipCatalogosGlobal.catalogoPais;
+             ViewBag.catalogoCategoriaAcademica = UipCatalogosGlobal.catalogoCategoriaAcademica;
+             ViewBag.catalogoSituacionLaboral = UipCatalogosGlobal.catalogoSituacionLaboral;
+             ViewBag.catalogoInstitucion = UipCatalogosGlobal.catalogoInstitucion;
+             ViewBag.catalogoTituloAcademico = UipCatalogosGlobal.catalogoTituloAcademico;
+             ViewBag.catalogoIdioma = UipCatalogosGlobal.catalogoIdioma;
+             ViewBag.catalogoAreaIdioma = UipCatalogosGlobal.catalogoAreaIdioma;
+             ViewBag.catalogoNivelIdioma = UipCatalogosGlobal.catalogoNivelIdioma;
+             ViewBag.catalogoUnidadAcademica = UipCatalogosGlobal.catalogoUnidadAcademica;
 */
 
             //return View(objetoVista);

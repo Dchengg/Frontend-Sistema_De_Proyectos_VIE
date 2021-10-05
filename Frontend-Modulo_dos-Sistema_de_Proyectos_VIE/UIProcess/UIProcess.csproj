@@ -42,27 +42,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\Class1.cs" />
-    <Compile Include="Modelos\oAreaEstudio.cs" />
-    <Compile Include="Modelos\oAreaIdioma.cs" />
-    <Compile Include="Modelos\oCanton.cs" />
-    <Compile Include="Modelos\oCatalogosGlobal.cs" />
-    <Compile Include="Modelos\oCatalogos.cs" />
-    <Compile Include="Modelos\oCategoriaAcademica.cs" />
-    <Compile Include="Modelos\oDireccion.cs" />
-    <Compile Include="Modelos\oDistrito.cs" />
-    <Compile Include="Modelos\oEstudioRealizado.cs" />
-    <Compile Include="Modelos\oIdioma.cs" />
-    <Compile Include="Modelos\oInstitucion.cs" />
-    <Compile Include="Modelos\oNivelIdioma.cs" />
-    <Compile Include="Modelos\oPais.cs" />
-    <Compile Include="Modelos\oProvincia.cs" />
-    <Compile Include="Modelos\oRespuesta.cs" />
-    <Compile Include="Modelos\oSexo.cs" />
-    <Compile Include="Modelos\oSituacionLaboral.cs" />
-    <Compile Include="Modelos\oTipoIdentificacion.cs" />
-    <Compile Include="Modelos\oTituloAcademico.cs" />
-    <Compile Include="Modelos\oUnidadAcademica.cs" />
+    <Compile Include="Modelos\UipInvestigadorConsultar.cs" />
+    <Compile Include="Modelos\UipCatalogoDisciplinaCientifica.cs" />
+    <Compile Include="Modelos\UipCatalogoEditorial.cs" />
+    <Compile Include="Modelos\UipCatalogoEntidad.cs" />
+    <Compile Include="Modelos\UipCatalogoIdioma.cs" />
+    <Compile Include="Modelos\UipCatalogoIndiceRevista.cs" />
+    <Compile Include="Modelos\UipCatalogoInstitucion.cs" />
+    <Compile Include="Modelos\UipCatalogoNivelIdioma.cs" />
+    <Compile Include="Modelos\UipCatalogoPais.cs" />
+    <Compile Include="Modelos\UipCatalogoParticipacionLibro.cs" />
+    <Compile Include="Modelos\UipCatalogoRevista.cs" />
+    <Compile Include="Modelos\UipCatalogos.cs" />
+    <Compile Include="Modelos\UipCatalogoSituacionLaboral.cs" />
+    <Compile Include="Modelos\UipCatalogoSubdisciplinaCientifica.cs" />
+    <Compile Include="Modelos\UipCatalogoTipoIdentificacion.cs" />
+    <Compile Include="Modelos\UipCatalogoTipoPerfil.cs" />
+    <Compile Include="Modelos\UipCatalogoTituloAcademico.cs" />
+    <Compile Include="Modelos\UipCatalogoUnidadAcademica.cs" />
+    <Compile Include="Modelos\UipCatalogosGlobal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,4 @@
-﻿@model Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador.oVistaInvestigador
+﻿@model Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador.mVistaInvestigador
 @{
     ViewBag.Title = "Ficha del Investigador";
     Layout = "~/Views/Shared/MainMenu.cshtml";
@@ -13,10 +13,10 @@
             <div class="col-md-6 mt-3">
                 <div class="row">
                     <div class="col-md-5 ">
-                        <label>Identificación</label>
+                        <label>Número de Identidad</label>
                     </div>
                     <div class="col-md-5 ">
-                        @Html.TextBoxFor(vista => vista.investigador.identificacion, new { @class = "form-control " })
+                        @Html.TextBoxFor(vista => vista.investigador.NumeroIdentidad, new { @class = "form-control " })
                     </div>
                 </div>
 
@@ -25,7 +25,7 @@
                         <label>Nombre</label>
                     </div>
                     <div class="col-md-5 ">
-                        @Html.TextBoxFor(vista => vista.investigador.nombre, new { @class = "form-control " })
+                        @Html.TextBoxFor(vista => vista.investigador.Nombre, new { @class = "form-control " })
                     </div>
                 </div>
 
@@ -34,10 +34,11 @@
                         <label>Apellidos</label>
                     </div>
                     <div class="col-md-4 ">
-                        @Html.TextBoxFor(vista => vista.investigador.apellido1, new { @class = "form-control " })
+                        @Html.TextBoxFor(vista => vista.investigador.PrimerApellido, new { @class = "form-control " })
                     </div>
                     <div class="col-md-4 ">
-                        @Html.TextBoxFor(vista => vista.investigador.apellido2, new { @class = "form-control " })
+                        @Html.TextBoxFor(vista => vista.investigador.SegundoApellido != null ? vista.investigador.SegundoApellido : "No indica" , 
+                                         new { @class = "form-control " })
                     </div>
                 </div>
 
@@ -46,6 +47,7 @@
                         <label>Nacionalidad</label>
                     </div>
                     <div class="col-md-5 ">
+                        @Html.DropDownList("FromModel", Model.investigador.)
                         <select class=" form-control">
                             <option>Afgano</option>
                             <option>Andorrano</option>
