@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Informe>
 @{
     ViewBag.Title = "Programación de Informes";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
@@ -20,7 +20,7 @@
         </div>
         @using (Html.BeginForm("UIProgramacionInformes", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
         {
-         <div class="row formRow">
+            <div class="row formRow">
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Tipo de informe </label>
                     <select style="margin-left:5px" class="form-control col-xs-5" name="tipoInformeDropdown">
@@ -28,61 +28,63 @@
                         <option>Final</option>
                     </select>
                 </div>
-         </div>
-         <div class="row formRow">
+            </div>
+            <div class="row formRow">
                 <div class="form-inline col-md-12">
                     <label for="tituloDelInforme">Título del informe </label>
                     <div>
                         <input style="margin-left:5px" type="text" class="form-control" id="títuloDelInforme" />
                     </div>
                 </div>
-         </div>
+            </div>
 
-         <div>
-            <div class="row formRow">
-                <div class="form-inline col-md-12">
-                    <label for="fechaProgramada">Fecha programada </label>
+            <div>
+                <div class="row formRow">
+                    <div class="form-inline col-md-12">
+                        <label for="fechaProgramada">Fecha programada </label>
                         <div>
                             <input style="margin-left:5px" type="date" class="form-control" id="Fecha" />
                         </div>
                     </div>
-            </div>
-         </div>
-
-         <div class="row formRow">
-            <div class="wrapperBotonAgregar">
-                <button class="botonAgregar" type="submit">Agregar Programación de Informe</button>
-            </div>
-         </div>
-         }
-                <div class="row formRow">
-                    <div class="form-group col-md-12">
-                        <label for="areasFrascati"></label>
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered disenoTabla" style="table-layout: auto;">
-                                <tr id="ROW1">
-                                    <th>Fecha prevista</th>
-                                    <th>Fecha entrega</th>
-                                    <th>Estado</th>
-                                    <th>Tipo de informe</th>
-                                    <th> </th>
-                                </tr>
-
-
-                                <tr>
-
-                                    <th>xxxxx</th>
-                                    <th>xxxxx</th>
-                                    <th>xxxxx</th>
-                                    <th>xxxxx</th>
-
-                                    <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
-
-                                </tr>
-
-                            </table>
-                        </div>
-                    </div>
                 </div>
             </div>
+
+            <div class="row formRow">
+                <div class="wrapperBotonAgregar">
+                    <button class="botonAgregar" type="submit">Agregar Programación de Informe</button>
+                </div>
+            </div>
+        }
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="areasFrascati"></label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered disenoTabla" style="table-layout: auto;">
+                        <tr id="ROW1">
+                            <th>Título del informe</th>
+                            <th>Fecha prevista</th>
+                            <th>Fecha de entrega</th>
+                            <th>Estado</th>
+                            <th>Tipo de informe</th>
+                            <th> </th>
+                        </tr>
+
+                        @foreach (var Informe in Model)
+                        {
+                            <tr>
+                                <th>@Informe.TituloInforme</th>
+                                <th>@Informe.FechaProgramada</th>
+                                <th>@Informe.FechaEntrega</th>
+                                <th>@Informe.Estado</th>
+                                <th>@Informe.TipoInforme</th>
+                                <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+    </div>
+    </div>
 </div>

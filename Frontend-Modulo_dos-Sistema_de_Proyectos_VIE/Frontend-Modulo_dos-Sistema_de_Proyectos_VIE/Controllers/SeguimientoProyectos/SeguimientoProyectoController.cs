@@ -221,7 +221,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View("UIPalabrasClave", palabrasClave);
 
         }
-
+        /// <summary>
+        /// Llama al controlador de palabras clave y inserta una nueva plabra clave a la base de datos
+        /// </summary>
+        /// <param name="fromInputPalabraClave"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista con la nueva palabra clave insertada</returns>
         [HttpPost]
         public ActionResult UIPalabrasClave(FormCollection fromInputPalabraClave, String codigoProyecto)
         {
@@ -335,9 +340,44 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         }
 
         /// <summary>
+        /// Llama al controlador de compras e inserta una nueva compra a la base de datos
+        /// </summary>
+        /// <param name="fromInputPalabraClave"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista con la nueva compra recien insertada</returns>
+        [HttpPost]
+        public ActionResult UICompras(FormCollection formInputCompra, String codigoProyecto)
+        {
+            String nombreDelProducto = formInputCompra["nombreDelProducto"].ToString();
+            String cantidadDelProducto = formInputCompra["cantidadDelProducto"].ToString();
+            String precioTotalDeLaCompra = formInputCompra["precioTotalDeLaCompra"].ToString();
+
+
+            ViewData["CodigoProyecto"] = codigoProyecto;
+
+            String Result = ComprasController.AgregarCompra(nombreDelProducto, cantidadDelProducto, precioTotalDeLaCompra, codigoProyecto);
+            System.Diagnostics.Debug.WriteLine(Result);
+
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Compras> compras = ComprasController.getCompras(codigoProyecto);
+            long total = 0;
+            foreach (Compras elem in compras)
+            {
+                int precio = Int32.Parse(elem.PrecioTotal);
+                total = total + precio;
+
+            }
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            ViewData["Total"] = total;
+            return View("UICompras", compras);
+        }
+
+        /// <summary>
         /// Elimina la compra selecionada de la interfaz y llama al controlador para eliminarla en la base de datos
         /// </summary>
-        /// <param name="idPalabraClave"></param>
+        /// <param name="idCompra"></param>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista actualizada sin la compra eliminada</returns>
         [HttpDelete]
@@ -394,11 +434,13 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns></returns>
         public ActionResult UIProgramacionInformes(String codigoProyecto){
-            
+
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Informe> informes = InformeController.getInformes(codigoProyecto);
+            
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIProgramacionInformes");
+            return View("UIProgramacionInformes", informes);
         }
 
         /// <summary>

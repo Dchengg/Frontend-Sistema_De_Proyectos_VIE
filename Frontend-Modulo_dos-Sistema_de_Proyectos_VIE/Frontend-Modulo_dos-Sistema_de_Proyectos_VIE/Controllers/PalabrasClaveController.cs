@@ -12,6 +12,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
     public class PalabrasClaveController : Controller
     {
         #region Métodos
+        /// <summary>
+        /// Llama a la api para obtener todas las palabras clave de un proyecto
+        /// </summary>
+        /// <param name="idPalabrasClave"></param>
+        /// <returns>Las palabras clave en forma de lista</returns>
         public static List<PalabrasClave> getPalabrasClave(string idPalabrasClave)
         {
             using (var client = new HttpClient())
@@ -42,12 +47,19 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
+        /// <summary>
+        /// Llama a la api para insertar una nueva palabra clave a la base de datos
+        /// </summary>
+        /// <param name="PalabraClave"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>String de respuesta de exito o fracaso de agregar la palabra clave de la base de datos</returns>
+        [HttpPost]
         public static String AgregarPalabraClave(String PalabraClave, String codigoProyecto)
         {
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/PalabraClave/2")
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/PalabrasClave/1")
                 {
 
                     Query = string.Format("codigoProyecto={0}&palabraClave={1}", codigoProyecto, PalabraClave)
@@ -55,7 +67,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 var values = new Dictionary<string, string>
                 {
                     {"codigoProyecto", codigoProyecto},
-                    {"PalabraClave", PalabraClave},
+                    {"palabraClave", PalabraClave}
                     
                 };
                 var content = new FormUrlEncodedContent(values);
