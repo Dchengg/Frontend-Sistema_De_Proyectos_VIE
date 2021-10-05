@@ -219,12 +219,35 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns></returns>
-        public ActionResult UIDepartamentos(String codigoProyecto) {
-            
+       [HttpPost]
+
+        public ActionResult UIDepartamentos(FormCollection formDepartamentoDropdown, String codigoProyecto) {
+
+            String departamento = formDepartamentoDropdown["DepartamentoDropdown"].ToString();
+            System.Diagnostics.Debug.WriteLine(departamento);
+            String idTipoDepartamento = formDepartamentoDropdown["tipoDepartamentoDropdown"].ToString();
+            System.Diagnostics.Debug.WriteLine(idTipoDepartamento);
+            String resultPost = DepartamentosController.AgregarDepartamento(idTipoDepartamento, departamento, codigoProyecto );
+            System.Diagnostics.Debug.WriteLine(resultPost);
+            List<Departamento> departamentos = DepartamentosController.getDepartamento(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            //ViewData["NombreProyecto"] = Proyecto.Nombre;
             ViewData["CodigoProyecto"] = codigoProyecto;
+            return View("UIDepartamentos", departamentos);
+
+        }
+
+
+        public ActionResult UIDepartamentos( String codigoProyecto)
+        {
+            List<Departamento> departamentosPicker = DepartamentosController.getDepartamentos();
+
+            List<Departamento> departamentos = DepartamentosController.getDepartamento(codigoProyecto);
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIDepartamentos");
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            return View("UIDepartamentos", departamentos);
+
         }
 
         /// <summary>

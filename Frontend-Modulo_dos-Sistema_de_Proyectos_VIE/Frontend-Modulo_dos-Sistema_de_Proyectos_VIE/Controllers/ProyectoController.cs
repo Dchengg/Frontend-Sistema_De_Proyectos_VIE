@@ -45,13 +45,13 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 var responseTask = client.GetAsync(builder.Uri);
                 responseTask.Wait();
                 var result = responseTask.Result;
-                Proyecto proyecto = new Proyecto();
+                List<Proyecto> proyecto = new List<Proyecto>();
                 if (result.IsSuccessStatusCode)
                 {
                     var response = result.Content.ReadAsStringAsync();
                     System.Diagnostics.Debug.WriteLine(response);
                     response.Wait();
-                    proyecto = JsonConvert.DeserializeObject<Proyecto>(response.Result);
+                    proyecto = JsonConvert.DeserializeObject<List<Proyecto>>(response.Result);
                 }
                 else
                 {
@@ -59,7 +59,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                     System.Diagnostics.Debug.WriteLine(result);
                 
                 }
-                return proyecto;
+                return proyecto[0];
             }
         }
 
