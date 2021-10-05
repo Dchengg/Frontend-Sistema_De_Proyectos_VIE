@@ -18,12 +18,15 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         /// </summary>
         /// <param name="idDepartamento"></param>
         /// <returns>Lista de las áreas frascati del proyecto</returns>
-        public static List<Departamento> getDepartamentos()
+        public static List<Departamento> getDepartamentos(String idDepartamento)
         {
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Departamento");
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Departamento") 
+                {
+                    Query = string.Format("id={0}", idDepartamento)
+                };
 
 
                 var responseTask = client.GetAsync(builder.Uri);

@@ -15,10 +15,10 @@
         <div class="row formRow">
             <div class="form-inline col-md-8">
                 <label for="codigoProyectoInput">Código del proyecto </label>
-                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled />
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
             </div>
         </div>
-        @using (Html.BeginForm("UIInvestigadoresAsociados", "SeguimientoProyecto", new { codigo = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        @using (Html.BeginForm("UIInvestigadoresAsociados", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
         {
 
 

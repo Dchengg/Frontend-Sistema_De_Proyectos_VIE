@@ -129,7 +129,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ComprasController.cs" />
+    <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InformeController.cs" />
     <Compile Include="Controllers\ODSController.cs" />
     <Compile Include="Controllers\PalabrasClaveController.cs" />
     <Compile Include="Controllers\PoblacionBeneficiariaController.cs" />
@@ -140,6 +143,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Compras.cs" />
+    <Compile Include="Models\Departamento.cs" />
+    <Compile Include="Models\Informe.cs" />
+    <Compile Include="Models\PalabraClave.cs" />
     <Compile Include="Models\Frascati.cs" />
     <Compile Include="Models\ObjetivoEspecifico.cs" />
     <Compile Include="Models\ODS.cs" />
@@ -355,6 +362,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\BuscadorProyecto\" />
+    <Folder Include="Views\Informe\" />
     <Folder Include="Views\ODS\" />
     <Folder Include="Views\PoblacionBeneficiaria\" />
     <Folder Include="Views\Proyecto\" />

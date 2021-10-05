@@ -18,7 +18,7 @@
                 <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled/>
             </div>
         </div>
-        @using (Html.BeginForm("UIPoblacionBeneficiaria", "SeguimientoProyecto", new { codigo = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        @using (Html.BeginForm("UIPoblacionBeneficiaria", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
         {
             <div class="row formRow">
                 <div class="form-inline col-md-8">

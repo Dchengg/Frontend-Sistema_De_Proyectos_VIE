@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Compras>
 @{
     ViewBag.Title = "Compras";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
@@ -18,7 +18,7 @@
                 <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled />
             </div>
         </div>
-        @using (Html.BeginForm("UICompras", "SeguimientoProyecto", new { codigo = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        @using (Html.BeginForm("UICompras", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
         {
             <div class="row formRow">
                 <div class="form-inline col-md-8">
@@ -33,12 +33,12 @@
                 </div>
             </div>
             <div class="row formRow">
-                 <div class="form-inline col-md-8">
+                <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Precio total de la compra</label>
                     <input style="margin-left:5px" type="text" class="form-control" id="precioTotalDeLaCompra" />
-                 </div>
+                </div>
             </div>
-            
+
             <div class="row formRow">
                 <div class="wrapperBotonAgregar">
                     <button class="botonAgregar" type="submit">Agregar Compra</button>
@@ -49,33 +49,35 @@
         <div class="row formRow">
             <div class="form-group col-md-12">
                 <label for="totalComprasInput">Total de compras</label>
-                <input type="text" class="form-control" id="totalComprasInput" value="$xxxx" disabled />
+                <input type="text" class="form-control" id="totalComprasInput" value="@ViewData["Total"]" disabled />
             </div>
         </div>
         <div class="row formRow">
             <div class="form-group col-md-12">
                 <label for="areasFrascati"></label>
                 <div class="table-responsive">
-                    <table class="table table-striped table-bordered disenoTabla">
+                    <table class="table table-striped table-bordered disenoTabla" style="table-layout: auto;">
                         <tr id="ROW1">
                             <th>Nombre del producto</th>
                             <th>Cantidad</th>
                             <th>Precio</th>
                             <th> </th>
                         </tr>
-                        
-                        
-                            <tr>
-                                
 
-                                
-                                    <th>xxxxx</th>
-                                    <th>xxxxx</th>
-                                    <th>xxxxx</th>
-                                    <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
-                                
-                            </tr>
-                        
+                    @foreach (var compra in Model)
+                    {
+                    <tr>
+
+
+
+                        <th>@compra.NombreProducto</th>
+                        <th>@compra.Cantidad</th>
+                        <th>@compra.PrecioTotal</th>
+                        <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+
+                    </tr>
+                    }
+
                     </table>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.PalabrasClave>
 @{
     ViewBag.Title = "Palabras Clave";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
@@ -16,10 +16,10 @@
         <div class="row formRow">
             <div class="form-inline col-md-8">
                 <label for="codigoProyectoInput">Código del proyecto</label>
-                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled />
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
             </div>
         </div>
-        @using (Html.BeginForm("UIPalabrasClave", "SeguimientoProyecto", new { codigo = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        @using (Html.BeginForm("UIPalabrasClave", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
         {
             <div class="row formRow">
                 <div class="form-inline col-md-8">
@@ -30,7 +30,7 @@
             </div>
             <div class="row formRow">
                 <div class="wrapperBotonAgregar">
-                    <button style="width: 150px;" class="botonAgregar" type="submit">Agregar Palabra Clave</button>
+                    <button style="width: 150px;" class="botonAgregar" type="submit">Agregar Palabra</button>
                 </div>
             </div>
         }
@@ -43,8 +43,18 @@
                             <th>Código de Palabra</th>
                             <th>Palabra</th>
                             <th> </th>
-                       </tr>
+                        </tr>
+                        @foreach (var palabraClave in Model)
+                        {
+                            <tr>
 
+                                
+                                <th>@palabraClave.Id</th>
+                                <th>@palabraClave.PalabraClave</th>
+                                <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                                
+                            </tr>
+                        }
 
                     </table>
                 </div>

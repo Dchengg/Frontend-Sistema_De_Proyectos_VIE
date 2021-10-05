@@ -11,7 +11,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
         #region Variables y Constantes
         [JsonProperty("codigo")]
         public String Codigo { get; set; }
-        [JsonProperty("nombre")]
+        [JsonProperty("NombreDelProyecto")]
         public String Nombre { get; set; }
         [JsonProperty("descripcion")]
         public String Descripcion { get; set; }
@@ -31,20 +31,29 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
         public String NumeroActaVIE { get; set; }
         [JsonProperty("numeroDeActaEscuela")]
         public String NumeroActaEscuela { get; set; }
-        [JsonProperty("oficialDeProyecto")]
-        public String OficialDeProyecto { get; set; }
+        [JsonProperty("NombreOficial")]
+        public String NombreOficial { get; set; }
         [JsonProperty("modalidad")]
         public String Modalidad { get; set; }
         [JsonProperty("fechaAprobacion")]
         public DateTime? FechaAprobacion { get; set; }
-        [JsonProperty("fechaInicio")]
-        public DateTime? FechaInicio { get; set; }
-        [JsonProperty("fechaFinalizacion")]
-        public DateTime? FechaFinalizacion { get; set; }
+        [JsonProperty("FechaInicioEjecucion")]
+        public DateTime? FechaInicioEjecucion { get; set; }
+        [JsonProperty("FechaFinEjecucion")]
+        public DateTime? FechaFinEjecucion { get; set; }
         [JsonProperty("fechaSuspension")]
         public DateTime? FechaSuspension { get; set; }
-        [JsonProperty("investigadorCoordinador")]
-        public String InvestigadorCoordinador { get; set; }
+        [JsonProperty("NombreCoordinador")]
+        public String NombreCoordinador { get; set; }
+        [JsonProperty("Apellido1Oficial")]
+        public String Apellido1Oficial { get; set; }
+        [JsonProperty("Apellido2Oficial")]
+        public String Apellido2Oficial { get; set; }
+        [JsonProperty("Apellido1Coordinador")]
+        public String Apellido1Coordinador { get; set; }
+        [JsonProperty("Apellido2Coordinador")]
+        public String Apellido2Coordinador { get; set; }
+
         #endregion
     }
 }

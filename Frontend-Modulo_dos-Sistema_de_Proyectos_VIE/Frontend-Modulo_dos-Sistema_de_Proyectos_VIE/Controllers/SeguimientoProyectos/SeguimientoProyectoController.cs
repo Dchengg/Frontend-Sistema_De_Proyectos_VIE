@@ -74,9 +74,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="idArea"></param>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las áreas frascati del proyecto con el área frascati eliminado</returns>
-        [HttpPost]
+        
+        /*maybe*/
+        [HttpDelete]
         /* incomplete */
-        public ActionResult UIEliminarAreasFrascati(String idArea, string codigoProyecto)
+        public ActionResult UIAreasFrascati(String idArea, string codigoProyecto)
         {
 
             System.Diagnostics.Debug.WriteLine(idArea);
@@ -139,9 +141,28 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult UIPalabrasClave(String codigoProyecto)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<PalabrasClave> palabrasClave = PalabrasClaveController.getPalabrasClave(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIPalabrasClave");
+            return View("UIPalabrasClave", palabrasClave);
+
+        }
+
+        [HttpPost]
+        public ActionResult UIPalabrasClave(FormCollection fromInputPalabraClave, String codigoProyecto)
+        {
+            String palabraClave = fromInputPalabraClave["palabraInput"].ToString();
+            ViewData["CodigoProyecto"] = codigoProyecto;
+
+            String Result = PalabrasClaveController.AgregarPalabraClave(palabraClave, codigoProyecto);
+            System.Diagnostics.Debug.WriteLine(Result);
+
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<PalabrasClave> palabrasClave = PalabrasClaveController.getPalabrasClave(codigoProyecto);
+            
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIPalabrasClave",palabrasClave);
         }
         /// <summary>
         /// Llama al controlador de poblacion beneficiaria y le envia una nueva población que se debe agregar a la base de datos
@@ -171,9 +192,19 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult UICompras(String codigoProyecto) {
             
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Compras> compras = ComprasController.getCompras(codigoProyecto);
+            long total = 0;
+            foreach(Compras elem in compras)
+            {
+                int precio = Int32.Parse(elem.PrecioTotal);
+                total = total + precio;
+
+            }
+
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UICompras");
+            ViewData["Total"] = total;
+            return View("UICompras", compras);
         }
 
         /// <summary>
@@ -231,7 +262,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             System.Diagnostics.Debug.WriteLine(resultPost);
             List<Departamento> departamentos = DepartamentosController.getDepartamento(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
-            //ViewData["NombreProyecto"] = Proyecto.Nombre;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
             ViewData["CodigoProyecto"] = codigoProyecto;
             return View("UIDepartamentos", departamentos);
 
@@ -240,7 +271,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
         public ActionResult UIDepartamentos( String codigoProyecto)
         {
-            List<Departamento> departamentosPicker = DepartamentosController.getDepartamentos();
+            List<Departamento> departamentosPicker = DepartamentosController.getDepartamentos(codigoProyecto);
 
             List<Departamento> departamentos = DepartamentosController.getDepartamento(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
@@ -285,9 +316,10 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult UIIngresarInforme(String codigoProyecto) {
             
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Informe> informes = InformeController.getInformes(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIIngresarInforme");
+            return View("UIIngresarInforme", informes);
         }
 
         /// <summary>

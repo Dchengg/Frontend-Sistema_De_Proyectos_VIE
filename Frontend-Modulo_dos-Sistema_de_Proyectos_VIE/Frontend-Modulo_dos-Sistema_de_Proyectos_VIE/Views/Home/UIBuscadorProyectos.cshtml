@@ -38,10 +38,10 @@
             <tr>
                 <th>@item.Codigo</th>
                 <th>@item.Nombre</th>
-                <th>@item.InvestigadorCoordinador</th>
-                <th>@item.FechaInicio</th>
-                <th>@item.FechaFinalizacion</th>
-                <th>@item.OficialDeProyecto</th>
+                <th>@item.NombreCoordinador @item.Apellido1Coordinador @item.Apellido2Coordinador</th>
+                <th>@item.FechaInicioEjecucion</th>
+                <th>@item.FechaFinEjecucion</th>
+                <th>@item.NombreOficial @item.Apellido1Oficial @item.Apellido2Oficial</th>
                 <th>
                     <button class="botonAzul" onclick="location.href = '@Url.Action("UIDatosProyecto","SeguimientoProyecto", new { codigoProyecto=item.Codigo })'">
                         Ver/Modificar datos del proyecto
