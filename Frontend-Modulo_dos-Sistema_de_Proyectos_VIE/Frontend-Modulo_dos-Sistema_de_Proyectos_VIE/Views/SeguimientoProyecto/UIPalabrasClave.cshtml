@@ -46,14 +46,15 @@
                         </tr>
                         @foreach (var palabraClave in Model)
                         {
-                            <tr>
-
-                                
+                        <tr>
+                            @using (Html.BeginForm("UIPalabrasClave", "SeguimientoProyecto", new { idPalabraClave = palabraClave.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                            {
+                                @Html.HttpMethodOverride(HttpVerbs.Delete)
                                 <th>@palabraClave.Id</th>
                                 <th>@palabraClave.PalabraClave</th>
                                 <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
-                                
-                            </tr>
+                            }
+                        </tr>
                         }
 
                     </table>

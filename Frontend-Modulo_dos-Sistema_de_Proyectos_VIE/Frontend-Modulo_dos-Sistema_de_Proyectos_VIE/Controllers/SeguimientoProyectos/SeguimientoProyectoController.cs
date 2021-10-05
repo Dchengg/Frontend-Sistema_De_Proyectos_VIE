@@ -195,12 +195,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las poblaciones beneficiarias del proyecto</returns>
-        /// 
-
-
-
-
-
         public ActionResult UIPoblacionBeneficiaria(String codigoProyecto)
         {
             List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
@@ -213,6 +207,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIPoblacionBeneficiaria", poblaciones);
         }
+        /// <summary>
+        /// Llama al controlador de palabras clave y recoge las palabras clave del proyecto para enviarlas a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista de las palabras clave del proyecto</returns>
         public ActionResult UIPalabrasClave(String codigoProyecto)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
@@ -240,6 +239,27 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View("UIPalabrasClave",palabrasClave);
         }
         /// <summary>
+        /// Elimina la palabra clave selecionada de la interfaz y llama al controlador para eliminarla en la base de datos
+        /// </summary>
+        /// <param name="idPalabraClave"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista actualizada sin la palabra clave eliminada</returns>
+        [HttpDelete]
+        public ActionResult UIPalabrasClave(String idPalabraClave, String codigoProyecto)
+        {
+
+            String resultPost = PalabrasClaveController.EliminarPalabraClave(idPalabraClave);
+            System.Diagnostics.Debug.WriteLine(resultPost);
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<PalabrasClave> palabrasClave = PalabrasClaveController.getPalabrasClave(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIPalabrasClave", palabrasClave);
+
+        }
+
+        /// <summary>
         /// Llama al controlador de poblacion beneficiaria y le envia una nueva población que se debe agregar a la base de datos
         /// </summary>
         /// <param name="formDrowpDownPoblacion"></param>
@@ -264,14 +284,10 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         }
 
         /// <summary>
-        /// Llama al controlador de compras y recoge las compras para enviarlas a la vista
+        /// Elimina la poblacion selecionada y llama al controaldor para eliminarla de la base de datos
         /// </summary>
         /// <param name="codigoProyecto"></param>
-        /// <returns>Vista de las compras del proyecto</returns>
-        /// 
-
-
-
+        /// <returns>Vista actualizada sin la poblacion que se eliminó</returns>
         [HttpDelete]
         public ActionResult UIPoblacionBeneficiaria(String idPoblacion, String codigoProyecto)
         {
@@ -295,7 +311,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
         }
 
-
+        /// <summary>
+        /// Llama al controlador de compras y recoge las compras del proyecto para enviarlas a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista de las compras del proyecto</returns>
         public ActionResult UICompras(String codigoProyecto) {
             
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
@@ -312,6 +332,35 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             ViewData["Total"] = total;
             return View("UICompras", compras);
+        }
+
+        /// <summary>
+        /// Elimina la compra selecionada de la interfaz y llama al controlador para eliminarla en la base de datos
+        /// </summary>
+        /// <param name="idPalabraClave"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista actualizada sin la compra eliminada</returns>
+        [HttpDelete]
+        public ActionResult UICompras(String idCompra, String codigoProyecto)
+        {
+
+            String resultPost = ComprasController.EliminarCompra(idCompra);
+            System.Diagnostics.Debug.WriteLine(resultPost);
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Compras> compras = ComprasController.getCompras(codigoProyecto);
+            long total = 0;
+            foreach (Compras elem in compras)
+            {
+                int precio = Int32.Parse(elem.PrecioTotal);
+                total = total + precio;
+
+            }
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            ViewData["Total"] = total;
+            return View("UICompras", compras);
+
         }
 
         /// <summary>

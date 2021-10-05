@@ -154,10 +154,10 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
         /// <summary>
-        /// Elimina el area frascati selecionada en la interfaz del proyecto y llama a la API para eliminarlo de la base de datos
+        /// Elimina el departamento selecionado en la interfaz del proyecto y llama a la API para eliminarlo de la base de datos
         /// </summary>
-        /// <param name="idAreaFrascati"></param>
-        /// <returns>String de respuesta de exito o fracaso de agregar el área frascati a la base de datos</returns>
+        /// <param name="idDepartamento"></param>
+        /// <returns>String de respuesta de exito o fracaso de eliminar el departamento de la base de datos</returns>
         /// 
         [HttpDelete]
         public static String EliminarDepartamento(String idDepartamento)

@@ -50,7 +50,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/PalabraClave/2")
                 {
 
-                    Query = string.Format("codigoProyecto={0}&PalabraClave={1}", codigoProyecto, PalabraClave)
+                    Query = string.Format("codigoProyecto={0}&palabraClave={1}", codigoProyecto, PalabraClave)
                 };
                 var values = new Dictionary<string, string>
                 {
@@ -60,6 +60,34 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 };
                 var content = new FormUrlEncodedContent(values);
                 var responseTask = client.PostAsync(builder.Uri, content);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                var responseResult = "Failed";
+                if (result.IsSuccessStatusCode) responseResult = "Sucess";
+                return responseResult;
+            }
+        }
+
+        /// <summary>
+        /// Elimina la palabra clave selecionada en la interfaz del proyecto y llama a la API para eliminarla de la base de datos
+        /// </summary>
+        /// <param name="idPalabraClave"></param>
+        /// <returns>String de respuesta de exito o fracaso de eliminar la palabra clave de la base de datos</returns>
+        /// 
+        [HttpDelete]
+        public static String EliminarPalabraClave(String idPalabraClave)
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/PalabrasClave/1")
+                {
+
+                    Query = string.Format("id={0}", idPalabraClave)
+                };
+
+
+                var responseTask = client.DeleteAsync(builder.Uri.AbsoluteUri);
                 responseTask.Wait();
                 var result = responseTask.Result;
                 var responseResult = "Failed";

@@ -67,15 +67,17 @@
                     @foreach (var compra in Model)
                     {
                     <tr>
-
-
-
-                        <th>@compra.NombreProducto</th>
-                        <th>@compra.Cantidad</th>
-                        <th>@compra.PrecioTotal</th>
-                        <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                        @using (Html.BeginForm("UICompras", "SeguimientoProyecto", new { idCompra = compra.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        {
+                            @Html.HttpMethodOverride(HttpVerbs.Delete)
+                            <th>@compra.NombreProducto</th>
+                            <th>@compra.Cantidad</th>
+                            <th>@compra.PrecioTotal</th>
+                            <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                        }
 
                     </tr>
+                         
                     }
 
                     </table>
