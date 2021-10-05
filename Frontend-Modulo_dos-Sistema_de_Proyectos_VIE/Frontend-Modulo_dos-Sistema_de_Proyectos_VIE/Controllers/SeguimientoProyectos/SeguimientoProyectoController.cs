@@ -20,12 +20,76 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de los objetivos del proyecto</returns>
         public ActionResult UIDatosProyecto(String codigoProyecto)
-        {   
+        {
+
+
+            List<EstadoProyecto>estadoPicker = ProyectoController.getEstadoProyecto();
+
+            TempData["estadoPicker"] = estadoPicker;
+
+
+            List<TipoProceso> procesoPicker = ProyectoController.getTiposProceso();
+
+            TempData["procesoPicker"] = procesoPicker;
+
+            List<TipoProyecto> tipoproyectoPicker = ProyectoController.getTiposProyecto();
+
+            TempData["tipoproyectoPicker"] = tipoproyectoPicker;
+
+            List<ModalidadProyecto> modalidadPicker = ProyectoController.getModalidad();
+
+            TempData["modalidadPicker"] = modalidadPicker;
             Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["objetivosEspecificos"] = ProyectoController.getObjetivosProyecto(codigoProyecto);
             return View(Proyecto);
         }
+
+        [HttpPost]
+        public ActionResult UIDatosProyecto(FormCollection formProyecto, String codigoProyecto)
+        {
+            Proyecto = ProyectoController.getProyecto(codigoProyecto);
+
+
+            String nombreProyectoInput = formProyecto["nombreProyectoInput"].ToString();
+
+
+            String descripcionInput = formProyecto["descripcionInput"].ToString();
+
+            String justificacionInput = formProyecto["justificacionInput"].ToString();
+
+            String objetivoGeneralInput = formProyecto["objetivoGeneralInput"].ToString();
+
+
+            String resultPost =  ProyectoController.ModificarProyecto(codigoProyecto, nombreProyectoInput, objetivoGeneralInput, Proyecto.NumeroActaVIE, Proyecto.NumeroActaEscuela, descripcionInput, justificacionInput);
+
+
+            System.Diagnostics.Debug.WriteLine(resultPost);
+
+
+            List<EstadoProyecto> estadoPicker = ProyectoController.getEstadoProyecto();
+
+            TempData["estadoPicker"] = estadoPicker;
+
+
+            List<TipoProceso> procesoPicker = ProyectoController.getTiposProceso();
+
+            TempData["procesoPicker"] = procesoPicker;
+
+            List<TipoProyecto> tipoproyectoPicker = ProyectoController.getTiposProyecto();
+
+            TempData["tipoproyectoPicker"] = tipoproyectoPicker;
+
+            List<ModalidadProyecto> modalidadPicker = ProyectoController.getModalidad();
+            Proyecto = ProyectoController.getProyecto(codigoProyecto);
+
+            TempData["modalidadPicker"] = modalidadPicker;
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["objetivosEspecificos"] = ProyectoController.getObjetivosProyecto(codigoProyecto);
+            return View(Proyecto);
+
+        }
+
 
         /// <summary>
         /// Llama al controlador de áreas frascati y recoge las áreas frascati del proyecto para enviarlas a la vista
@@ -131,10 +195,20 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las poblaciones beneficiarias del proyecto</returns>
+        /// 
+
+
+
+
+
         public ActionResult UIPoblacionBeneficiaria(String codigoProyecto)
         {
             List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Poblacion> poblacionPicker = PoblacionBeneficiariaController.getPoblaciones();
+
+            TempData["poblacionPicker"] = poblacionPicker;
+
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIPoblacionBeneficiaria", poblaciones);
@@ -180,8 +254,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             System.Diagnostics.Debug.WriteLine(resultPost);
             List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
-            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            List<Poblacion> poblacionPicker = PoblacionBeneficiariaController.getPoblaciones();
+
+            TempData["poblacionPicker"] = poblacionPicker;
+
             ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIPoblacionBeneficiaria", poblaciones);
         }
 
@@ -190,6 +268,34 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las compras del proyecto</returns>
+        /// 
+
+
+
+        [HttpDelete]
+        public ActionResult UIPoblacionBeneficiaria(String idPoblacion, String codigoProyecto)
+        {
+
+
+            String resultPost = PoblacionBeneficiariaController.EliminarPoblacion(idPoblacion);
+            System.Diagnostics.Debug.WriteLine(resultPost);
+
+
+
+
+            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Poblacion> poblacionPicker = PoblacionBeneficiariaController.getPoblaciones();
+
+            TempData["poblacionPicker"] = poblacionPicker;
+
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIPoblacionBeneficiaria", poblaciones);
+
+        }
+
+
         public ActionResult UICompras(String codigoProyecto) {
             
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);

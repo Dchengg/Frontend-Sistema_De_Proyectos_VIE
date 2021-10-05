@@ -33,7 +33,119 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 return proyectos;
             }
         }
+        public static List<TipoProyecto> getTiposProyecto()
+        {
+            using (var client = new HttpClient())
+            {
 
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/tipodeproyecto");
+
+
+
+                var responseTask = client.GetAsync(builder.Uri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<TipoProyecto> tipo = new List<TipoProyecto>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    tipo = JsonConvert.DeserializeObject<List<TipoProyecto>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return tipo;
+            }
+        }
+
+        public static List<EstadoProyecto> getEstadoProyecto()
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/estadoproyecto");
+
+
+
+                var responseTask = client.GetAsync(builder.Uri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<EstadoProyecto> tipo = new List<EstadoProyecto>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    tipo = JsonConvert.DeserializeObject<List<EstadoProyecto>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return tipo;
+            }
+        }
+        public static List<TipoProceso> getTiposProceso()
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/TipoProceso");
+
+
+
+                var responseTask = client.GetAsync(builder.Uri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<TipoProceso> tipo = new List<TipoProceso>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    tipo = JsonConvert.DeserializeObject<List<TipoProceso>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return tipo;
+            }
+        }
+        public static List<ModalidadProyecto> getModalidad ()
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/modalidad");
+
+
+
+                var responseTask = client.GetAsync(builder.Uri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<ModalidadProyecto> tipo = new List<ModalidadProyecto>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    tipo = JsonConvert.DeserializeObject<List<ModalidadProyecto>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return tipo;
+            }
+        }
         public static Proyecto getProyecto(String codigo)
         {
             using (var client = new HttpClient())
@@ -118,6 +230,38 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 
                 }
                 return proyectos;
+            }
+        }
+        [HttpPost]
+        public static String ModificarProyecto(string codigoProyecto, string nuevoNombre, string nuevoObjetivoGeneral, string nuevaActaVIE, string nuevaActaEscuela, string nuevaDescripcion, string nuevaJustificacion)
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/proyecto/3")
+                {
+
+                    Query = string.Format("codigoProyecto={0}&nuevoNombre={1}&nuevoObjetivoGeneral={2}&nuevaActaVIE={3}&nuevaActaEscuela={4}&nuevaDescripcion={5}&nuevaJustificacion={6}", codigoProyecto, nuevoNombre, nuevoObjetivoGeneral, nuevaActaVIE, nuevaActaEscuela, nuevaDescripcion, nuevaJustificacion)
+                };
+                var values = new Dictionary<string, string>
+                {
+                    {"codigoProyecto", codigoProyecto},
+                    {"nuevoNombre", nuevoNombre},
+                    {"nuevoObjetivoGeneral", nuevoObjetivoGeneral},
+                    {"nuevaActaVIE", nuevaActaVIE},
+                    {"nuevaActaEscuela", nuevaActaEscuela},
+                    {"nuevaDescripcion", nuevaDescripcion},
+                    {"nuevaJustificacion", nuevaJustificacion}
+
+
+                };
+                var content = new FormUrlEncodedContent(values);
+                var responseTask = client.PostAsync(builder.Uri, content);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                var responseResult = "Failed";
+                if (result.IsSuccessStatusCode) responseResult = "Sucess";
+                return responseResult;
             }
         }
     }

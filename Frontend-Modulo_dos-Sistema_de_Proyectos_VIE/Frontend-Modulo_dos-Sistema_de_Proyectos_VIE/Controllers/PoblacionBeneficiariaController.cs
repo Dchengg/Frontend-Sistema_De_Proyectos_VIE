@@ -45,7 +45,32 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 return poblaciones;
             }
         }
+        public static List<Poblacion> getPoblaciones()
+        {
+            using (var client = new HttpClient())
+            {
 
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/poblacion");
+
+                var responseTask = client.GetAsync(builder.Uri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Poblacion> Poblacion = new List<Poblacion>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    Poblacion = JsonConvert.DeserializeObject<List<Poblacion>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return Poblacion;
+            }
+        }
         /// <summary>
         /// Crea una población beneficiaria asociada al proyecto y llama a la API para agregarla a la base de datos
         /// </summary>
@@ -77,5 +102,26 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
         #endregion
+        [HttpDelete]
+        public static String EliminarPoblacion(String idPoblacion)
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Poblacion/1")
+                {
+
+                    Query = string.Format("id={0}", idPoblacion)
+                };
+
+
+                var responseTask = client.DeleteAsync(builder.Uri.AbsoluteUri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                var responseResult = "Failed";
+                if (result.IsSuccessStatusCode) responseResult = "Sucess";
+                return responseResult;
+            }
+        }
     }
 }

@@ -23,17 +23,21 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
         public String ObjetivoGeneral { get; set; }
         [JsonProperty("objetivoEspecifico")]
         public String ObjetivoEspecifico { get; set; }
-        [JsonProperty("estado")]
+        [JsonProperty("EstadoDeProyecto")]
         public String Estado { get; set; }
-        [JsonProperty("tipo")]
-        public String Tipo { get; set; }
-        [JsonProperty("numeroDeActaVIE")]
+        [JsonProperty("TipoProyecto")]
+        public String TipoProyecto { get; set; }
+
+        [JsonProperty("TipoDeProceso")]
+        public String TipoDeProceso { get; set; }
+
+        [JsonProperty("ActaVIE")]
         public String NumeroActaVIE { get; set; }
-        [JsonProperty("numeroDeActaEscuela")]
+        [JsonProperty("ActaEscuela")]
         public String NumeroActaEscuela { get; set; }
         [JsonProperty("NombreOficial")]
         public String NombreOficial { get; set; }
-        [JsonProperty("modalidad")]
+        [JsonProperty("NombreModalidad")]
         public String Modalidad { get; set; }
         [JsonProperty("fechaAprobacion")]
         public DateTime? FechaAprobacion { get; set; }

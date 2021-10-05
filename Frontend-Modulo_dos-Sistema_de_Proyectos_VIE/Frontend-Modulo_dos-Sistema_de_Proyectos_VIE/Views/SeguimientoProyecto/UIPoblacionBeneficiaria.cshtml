@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Población Beneficiaria";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Poblacion> poblacionPicker = TempData["poblacionPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Poblacion>;
+
 }
 
 <div style="width:100%">
@@ -24,11 +26,12 @@
                 <div class="form-inline col-md-8">
                     <label class="col-xs-5">Población beneficiaria</label>
                     <select style="margin-left:5px" class="form-control col-xs-5" name="PoblacionDropdown">
-                        <option>Región Central</option>
-                        <option>Región Chorotega</option>
-                        <option>Región pacífico</option>
-                        <option>Región caribe</option>
-                        <option>Región cabécar</option>
+                        @foreach (var poblacion in poblacionPicker)
+                        {
+                            <option value=@poblacion.Id>@poblacion.NombrePoblacion</option>
+
+
+                        }
                     </select>
                 </div>
 
@@ -51,12 +54,19 @@
                         </tr>
                         @foreach (var poblacion in Model)
                         {
-                            <tr>
-                                <th>@poblacion.CodigoPoblacion</th>
-                                <th>@poblacion.PoblacionBeneficiaria</th>
-                                <th> <div> <input class="botonEliminar" type="button" value="Eliminar"> </div></th>
-                            </tr>
+  
+
+                    <tr>
+                        @using (Html.BeginForm("UIPoblacionBeneficiaria", "SeguimientoProyecto", new { idPoblacion = poblacion.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        {
+                            @Html.HttpMethodOverride(HttpVerbs.Delete)
+                            <th>@poblacion.IdPoblacionBeneficiaria</th>
+                            <th>@poblacion.NombrePoblacion</th>
+                            <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
                         }
+                    </tr>
+                        }
+                       
                     </table>
                 </div>
             </div>
