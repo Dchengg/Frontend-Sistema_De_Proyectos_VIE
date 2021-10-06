@@ -20,8 +20,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de los objetivos del proyecto</returns>
         public ActionResult UIDatosProyecto(String codigoProyecto)
-        {
-
+         {
 
             List<EstadoProyecto>estadoPicker = ProyectoController.getEstadoProyecto();
 
