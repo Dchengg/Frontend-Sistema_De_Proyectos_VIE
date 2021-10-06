@@ -135,18 +135,30 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         [HttpPost]
         public ActionResult UIAreaFrascati(FormCollection formDropdownAreaFrascati, String codigoProyecto)
         {
-            List<Frascati> poblacionPicker = FrascatiController.getFrascatis();
 
-            TempData["poblacionPicker"] = poblacionPicker;
             String area = formDropdownAreaFrascati["areaDropdown"].ToString();
             String subArea = formDropdownAreaFrascati["subAreaDropdown"].ToString();
             String resultPost = FrascatiController.AgregarAreaFrascati(area, subArea, codigoProyecto);
-            System.Diagnostics.Debug.WriteLine(resultPost);
+            System.Diagnostics.Debug.WriteLine(codigoProyecto);
             List<Frascati> Frascatis = FrascatiController.getFrascatis(codigoProyecto);
+
+            List<Frascati> frascatiPicker = FrascatiController.getFrascatis();
+
+            TempData["frascatiPicker"] = frascatiPicker;
+            List<SubFrascati> subfrascatiPicker = FrascatiController.getSubFrascatis();
+
+            TempData["subfrascatiPicker"] = subfrascatiPicker;
+
+
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            ViewData["codigoProyecto"] = codigoProyecto;
             return View("UIAreaFrascati", Frascatis);
+
+
+
+
+
         }
 
 
