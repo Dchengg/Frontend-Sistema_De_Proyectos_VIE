@@ -224,6 +224,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["codigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIAgregarODS", ODSs);
         }
 
         /// <summary>
