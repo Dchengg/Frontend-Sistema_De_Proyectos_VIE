@@ -82,6 +82,11 @@
     border-color: #EF3341;
     background-color: #EF3341;
 }
+
+.regresarBtn:hover {
+    color: #ffffff !important;
+    background-color: #BD242F !important;
+}
     
 .window-content{
     margin-bottom: 5%;
