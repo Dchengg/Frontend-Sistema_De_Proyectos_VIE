@@ -15,12 +15,14 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
         public String Codigoproyecto { get; set; }
         [JsonProperty("codigoDeArea")]
         public String CodigoDeArea { get; set; }
-        [JsonProperty("subArea")]
+        [JsonProperty("SubODS")]
         public String SubArea { get; set; }
         [JsonProperty("ODS")]
         public String Area { get; set; }
         [JsonProperty("Proyecto")]
         public String Proyecto { get; set; }
+        [JsonProperty("ODS1")]
+        public String ODS1 { get; set; }
         #endregion
     }
 }

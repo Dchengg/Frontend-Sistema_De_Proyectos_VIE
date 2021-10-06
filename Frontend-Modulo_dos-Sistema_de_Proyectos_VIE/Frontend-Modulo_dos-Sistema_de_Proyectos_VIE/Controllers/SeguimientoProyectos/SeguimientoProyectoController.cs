@@ -182,6 +182,15 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <returns>Vista de los ODS del proyecto  </returns>
         public ActionResult UIAgregarODS(String codigoProyecto)
         {
+            List<ODS> odsPicker = ODSController.getODS();
+
+            TempData["odsPicker"] = odsPicker;
+
+
+
+            List<SubODS> subodsPicker = ODSController.getsubODS();
+
+            TempData["subodsPicker"] = subodsPicker;
             List<ODS> ODSs = ODSController.getODSs(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["codigoProyecto"] = codigoProyecto;

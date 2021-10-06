@@ -2,6 +2,10 @@
 @{
     ViewBag.Title = "Objetivos de Desarrollo Sostenible";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ODS> odsPicker = TempData["odsPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ODS>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.SubODS> subodsPicker = TempData["subodsPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.SubODS>;
+
 }
 
 <div style="width:100%">
@@ -24,11 +28,12 @@
                 <div class="form-inline col-md-8">
                     <label class="col-xs-5">Áreas de Prioridad</label>
                     <select style="margin-left:5px" class="form-control col-xs-5" name="areaDropdown">
-                        <option>Personas</option>
-                        <option>Prosperidad</option>
-                        <option>Paz</option>
-                        <option>Alianzas</option>
-                        <option>Planeta</option>
+                        @foreach (var ods in odsPicker)
+                        {
+                            <option value=@ods.Id>@ods.ODS1</option>
+
+
+                        }
                     </select>
                 </div>
             </div>
@@ -36,11 +41,12 @@
                 <div class="form-inline col-md-8">
                     <label class="col-xs-5">Sub-áreas</label>
                     <select style="margin-left:5px" class="form-control col-xs-5" name="subAreaDropdown">
-                        <option>Matemáticas</option>
-                        <option>Hambre</option>
-                        <option>Pobreza</option>
-                        <option>Salud</option>
-                        <option>Desigualdad</option>
+                        @foreach (var subods in subodsPicker)
+                        {
+                            <option value=@subods.Id>@subods.area</option>
+
+
+                        }
                     </select>
                 </div>
             </div>
