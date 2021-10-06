@@ -238,11 +238,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/proyecto/3")
-                {
-
-                    Query = string.Format("codigoProyecto={0}&nuevoNombre={1}&nuevoObjetivoGeneral={2}&nuevaActaVIE={3}&nuevaActaEscuela={4}&nuevaDescripcion={5}&nuevaJustificacion={6}", codigoProyecto, nuevoNombre, nuevoObjetivoGeneral, nuevaActaVIE, nuevaActaEscuela, nuevaDescripcion, nuevaJustificacion)
-                };
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/proyecto/ModificarProyecto");
                 var values = new Dictionary<string, string>
                 {
                     {"codigoProyecto", codigoProyecto},
