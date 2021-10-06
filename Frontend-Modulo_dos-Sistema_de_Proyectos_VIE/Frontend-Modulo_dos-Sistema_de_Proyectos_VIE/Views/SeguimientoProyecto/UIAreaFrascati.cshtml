@@ -29,7 +29,7 @@
                 <div class="row formRow">
                     <div class="form-inline col-md-8">
                         <label class="col-xs-5">Área frascati</label>
-                        <select style="margin-left:5px" class="form-control col-xs-5" name="areaDropdown">
+                        <select style="margin-left:5px" class="form-control col-xs-5" name="areaDropdown" id="areaDropdown" onchange="changeSubDown()">
                             @foreach (var frascati in frascatiPicker)
                             {
                                 <option value=@frascati.Id>@frascati.Area</option>
@@ -42,7 +42,7 @@
                 <div class="row formRow">
                     <div class="form-inline col-md-8">
                         <label class="col-xs-5">Sub-áreas</label>
-                        <select style="margin-left:5px" class="form-control col-xs-5" name="subAreaDropdown">
+                        <select style="margin-left:5px" class="form-control col-xs-5" id="subAreaDropdown" name="subAreaDropdown">
                             @foreach (var subfrascati in subfrascatiPicker)
                             {
                                 <option value=@subfrascati.Id>@subfrascati.SubArea</option>
@@ -88,7 +88,17 @@
             </div>
         </div>
         <script type="text/javascript">
+            function changeSubDown() {
+                var x = document.getElementById("areaDropdown");
+                console.log(document.forms[0]);
 
+                var option = document.createElement("option");
+                
+                option.text = y;
+            
+            x.add(option);
+
+        }
 
 
         </script>

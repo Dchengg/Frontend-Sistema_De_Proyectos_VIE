@@ -1,4 +1,5 @@
-﻿
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Presupuesto>
+
 
 @{
     ViewBag.Title = "Presupuesto";
@@ -43,7 +44,7 @@
                 <div class="form-inline col-md-8">
                     <label for="palabraInput">Año:  </label><hr>
                     <input type="number" min="1900" max="2099" step="1" value="2021" /><hr>
-                    <label for="palabraInput">Monto:</label><hr> <label >₡</label>
+                    <label for="palabraInput">Monto:</label><hr> <label>₡</label>
                     <input type="number" class="form-control" step="5" min=0 id="montoInput" name="montoInput"><br>
                 </div>
 
@@ -68,7 +69,22 @@
 
                             <th> </th>
                         </tr>
+                        @foreach (var presupuesto in Model)
+                        {
+                    <tr>
+                        @using (Html.BeginForm("UIPalabrasClave", "SeguimientoProyecto", new { idPalabraClave = presupuesto.id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        {
+                            @Html.HttpMethodOverride(HttpVerbs.Delete)
+                            <th>@presupuesto.id</th>
+                            <th>@presupuesto.Justificacion</th>
+                            <th>@presupuesto.Nombre</th>
+                            <th>@presupuesto.Ano</th>
+                            <th>@presupuesto.Monto</th>
 
+                            <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                        }
+                    </tr>
+                        }
 
                     </table>
                 </div>

@@ -116,10 +116,16 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         }
         public ActionResult UIPresupuesto(String codigoProyecto)
         {
+
+
+
+            List<Presupuesto> Presupuesto = PresupuestoController.getPresupuesto(codigoProyecto);
+
+
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIPresupuesto");
+            return View("UIPresupuesto", Presupuesto);
         }
         /// <summary>
         /// Llama al controlador de áreas frascati y le envia un nuevo área frascati que se debe agregar a la base de datos
