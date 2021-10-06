@@ -211,11 +211,19 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             String subArea = formDropdownODS["subAreaDropdown"].ToString();
             String resultPost = ODSController.AgregarODS(area, subArea, codigoProyecto);
             System.Diagnostics.Debug.WriteLine(resultPost);
+            List<ODS> odsPicker = ODSController.getODS();
+
+            TempData["odsPicker"] = odsPicker;
+
+
+
+            List<SubODS> subodsPicker = ODSController.getsubODS();
+
+            TempData["subodsPicker"] = subodsPicker;
             List<ODS> ODSs = ODSController.getODSs(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["codigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            ViewData["CodigoProyecto"] = codigoProyecto;
-            return View("UIAgregarODS", ODSs);
         }
 
         /// <summary>
