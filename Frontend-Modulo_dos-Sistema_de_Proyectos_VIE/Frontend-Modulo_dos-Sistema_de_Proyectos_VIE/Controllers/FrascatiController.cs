@@ -147,12 +147,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
                     Query = string.Format("id={0}", idAreaFrascati)
                 };
-                var values = new Dictionary<string, string>
-                {
-                    {"id", idAreaFrascati}
-                };
-                var content = new FormUrlEncodedContent(values);
-                var responseTask = client.PostAsync(builder.Uri, content);
+
+
+                var responseTask = client.DeleteAsync(builder.Uri.AbsoluteUri);
                 responseTask.Wait();
                 var result = responseTask.Result;
                 var responseResult = "Failed";

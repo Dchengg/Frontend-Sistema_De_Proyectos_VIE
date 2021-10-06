@@ -69,12 +69,16 @@
                         </tr>
                         @foreach (var ods in Model)
                         {
-                            <tr>
-                                <th>@ods.Id</th>
-                                <th>@ods.SubArea</th>
-                                <th>@ods.Area</th>
-                                <th> <div> <input class="botonEliminar" type="button" value="Eliminar"> </div></th>
-                            </tr>
+                    <tr>
+                        @using (Html.BeginForm("UIAgregarODS", "SeguimientoProyecto", new { idODS = ods.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        {
+                            @Html.HttpMethodOverride(HttpVerbs.Delete)
+                            <th>@ods.Id</th>
+                            <th>@ods.SubArea</th>
+                            <th>@ods.Area</th>
+                            <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                        }
+                    </tr>
                         }
 
                     </table>

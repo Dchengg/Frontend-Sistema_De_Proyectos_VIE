@@ -181,10 +181,20 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             System.Diagnostics.Debug.WriteLine(codigoProyecto);
             String resultPost = FrascatiController.EliminarAreaFrascati(idArea);
             System.Diagnostics.Debug.WriteLine(resultPost);
-
+            List<Frascati> frascatiPicker = FrascatiController.getFrascatis();
             List<Frascati> Frascatis = FrascatiController.getFrascatis(codigoProyecto);
-            ViewData["codigoProyecto"] = codigoProyecto;
+
+            TempData["frascatiPicker"] = frascatiPicker;
+            List<SubFrascati> subfrascatiPicker = FrascatiController.getSubFrascatis();
+
+            TempData["subfrascatiPicker"] = subfrascatiPicker;
+
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIAreaFrascati", Frascatis);
+
         }
 
         /// <summary>
@@ -210,6 +220,32 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View("UIAgregarODS", ODSs);
         }
 
+        /// <summary>
+        /// Llama al controlador de ODS y recoge los ODS del proyecto para enviarlos a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista de los ODS del proyecto  </returns>
+        ///            
+        [HttpDelete]
+        public ActionResult UIAgregarODS(String idODS,String codigoProyecto)
+        {
+            List<ODS> odsPicker = ODSController.getODS();
+
+            TempData["odsPicker"] = odsPicker;
+
+
+
+                String resultPost = ODSController.EliminarODS(idODS);
+                System.Diagnostics.Debug.WriteLine(resultPost);
+                List<SubODS> subodsPicker = ODSController.getsubODS();
+
+            TempData["subodsPicker"] = subodsPicker;
+            List<ODS> ODSs = ODSController.getODSs(codigoProyecto);
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["codigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIAgregarODS", ODSs);
+        }
         /// <summary>
         /// Llama al controlador de ODS y le envia un nuevo ODS que se debe agregar a la base de datos
         /// </summary>

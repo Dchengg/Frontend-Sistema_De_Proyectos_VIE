@@ -106,7 +106,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         /// <param name="codigoProyecto"></param>
         /// <returns>String de respuesta de exito o fracaso de agregar el ODS a la base de datos</returns>
         [HttpPost]
-        public static String AgregarODS(String area, String subArea, String codigoProyecto)
+        public static String AgregarODS(String idODS, String idSubODS, String codigoProyecto)
         {
             using (var client = new HttpClient())
             {
@@ -114,16 +114,37 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/ODS/3")
                 {
 
-                    Query = string.Format("codigoProyecto={0}&area={1}&subArea={2}", codigoProyecto, area, subArea)
+                    Query = string.Format("codigoProyecto={0}&idODS={1}&idSubODS={2}", codigoProyecto, idODS, idSubODS)
                 };
                 var values = new Dictionary<string, string>
                 {
                     {"codigoProyecto", codigoProyecto},
-                    {"area", area},
-                    {"subarea", subArea}
+                    {"idODS", idODS},
+                    {"idSubODS", idSubODS}
                 };
                 var content = new FormUrlEncodedContent(values);
                 var responseTask = client.PostAsync(builder.Uri, content);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                var responseResult = "Failed";
+                if (result.IsSuccessStatusCode) responseResult = "Sucess";
+                return responseResult;
+            }
+        }
+        [HttpDelete]
+        public static String EliminarODS(String idODS)
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/ODS/1")
+                {
+
+                    Query = string.Format("id={0}", idODS)
+                };
+
+
+                var responseTask = client.DeleteAsync(builder.Uri.AbsoluteUri);
                 responseTask.Wait();
                 var result = responseTask.Result;
                 var responseResult = "Failed";

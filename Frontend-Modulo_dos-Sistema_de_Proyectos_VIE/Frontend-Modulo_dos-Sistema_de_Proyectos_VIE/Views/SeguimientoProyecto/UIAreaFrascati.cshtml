@@ -71,16 +71,18 @@
                             </tr>
                             @foreach (var frascati in Model)
                             {
-                                <tr>
-                                    @using (Html.BeginForm("UIEliminarAreasFrascati", "SeguimientoProyecto", new { idArea = frascati.IdArea, codigo = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        <tr>
+                            @using (Html.BeginForm("UIAreasFrascati", "SeguimientoProyecto", new { idArea = frascati.IdArea, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
 
-                                    {
-                                        <th>@frascati.IdArea</th>
-                                        <th>@frascati.SubArea</th>
-                                        <th>@frascati.Area</th>
-                                        <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
-                                    }
-                                </tr>
+                            {
+                                @Html.HttpMethodOverride(HttpVerbs.Delete)
+
+                                <th>@frascati.IdArea</th>
+                                <th>@frascati.SubArea</th>
+                                <th>@frascati.Area</th>
+                                <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                            }
+                        </tr>
                             }
                         </table>
                     </div>
