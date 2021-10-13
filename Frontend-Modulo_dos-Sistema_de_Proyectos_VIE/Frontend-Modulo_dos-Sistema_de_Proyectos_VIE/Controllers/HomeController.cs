@@ -18,10 +18,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             List<Proyecto> proyectos = ProyectoController.getProyectos();
             List<SelectListItem> criteriosBusqueda = new List<SelectListItem>();
             criteriosBusqueda.Add(new SelectListItem { Text = "Todos los proyectos", Value = "" });
-            criteriosBusqueda.Add(new SelectListItem { Text = "Código del proyecto", Value = "Código de proyecto"});
-            criteriosBusqueda.Add(new SelectListItem { Text = "Nombre del proyecto", Value = "Nombre de proyecto"});
-            criteriosBusqueda.Add(new SelectListItem { Text = "Oficial de proyecto", Value = "Oficial de proyecto"});
+            criteriosBusqueda.Add(new SelectListItem { Text = "Código del proyecto", Value = "Código de proyecto" });
+            criteriosBusqueda.Add(new SelectListItem { Text = "Nombre del proyecto", Value = "Nombre de proyecto" });
+            criteriosBusqueda.Add(new SelectListItem { Text = "Oficial de proyecto", Value = "Oficial de proyecto" });
             criteriosBusqueda.Add(new SelectListItem { Text = "Investigador coordinador", Value = "Investigador coordinador" });
+            criteriosBusqueda.Add(new SelectListItem { Text = "Palabra Clave", Value = "Palabra Clave" });
             ViewData["criteriosBusqueda"] = criteriosBusqueda;
             return View("UIBuscadorProyectos", proyectos);
         }

@@ -118,6 +118,25 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIAreaFrascati", Frascatis);
         }
+
+        /// <summary>
+        /// Consigue las sub áreas frascati de una área frascati especifica
+        /// </summary>
+        /// <param name="idAreaFrascati"></param>
+        /// <returns>Todas las subáreas frascati asociadas a un área frascati</returns>
+        public JsonResult GetSubFrascati(string idAreaFrascati)
+        {
+
+            List<SubFrascati> SubFrascatis = FrascatiController.getSubFrascatis(idAreaFrascati);
+            List<string> SubFrascatisStr = new List<string>();
+            foreach(SubFrascati subFra in SubFrascatis)
+            {
+                SubFrascatisStr.Add(subFra.SubArea);
+            }
+            return Json(SubFrascatis, JsonRequestBehavior.AllowGet);
+
+        }
+
         public ActionResult UIPresupuesto(String codigoProyecto)
         {
 

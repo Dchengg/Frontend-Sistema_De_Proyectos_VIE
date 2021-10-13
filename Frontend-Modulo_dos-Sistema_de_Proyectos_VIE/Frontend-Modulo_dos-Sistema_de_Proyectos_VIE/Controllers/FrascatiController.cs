@@ -80,6 +80,41 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             {
 
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/subfrascati");
+              
+
+                var responseTask = client.GetAsync(builder.Uri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<SubFrascati> SubFrascati = new List<SubFrascati>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    SubFrascati = JsonConvert.DeserializeObject<List<SubFrascati>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return SubFrascati;
+            }
+        }
+        /// <summary>
+        /// Recupera las sub áreas frascati de una área frascati en especifico
+        /// </summary>
+        /// <param name="idAreaFrascati"></param>
+        /// <returns>String de respuesta de exito o fracaso de agregar el área frascati a la base de datos</returns>
+        public static List<SubFrascati> getSubFrascatis(string idAreaFrascati)
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/subfrascati")
+                {
+                    Query = string.Format("area={0}", idAreaFrascati)
+                };
 
                 var responseTask = client.GetAsync(builder.Uri);
                 responseTask.Wait();

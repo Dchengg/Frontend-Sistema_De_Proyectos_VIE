@@ -29,7 +29,8 @@
                 <div class="row formRow">
                     <div class="form-inline col-md-8">
                         <label class="col-xs-5">Área frascati</label>
-                        <select style="margin-left:5px" class="form-control col-xs-5" name="areaDropdown" id="areaDropdown" onchange="changeSubDown()">
+                        <select style="margin-left:5px" class="form-control col-xs-5" name="areaDropdown" id="areaDropdown">
+                            <option>Seleccione el área frascati</option>
                             @foreach (var frascati in frascatiPicker)
                             {
                                 <option value=@frascati.Id>@frascati.Area</option>
@@ -43,12 +44,7 @@
                     <div class="form-inline col-md-8">
                         <label class="col-xs-5">Sub-áreas</label>
                         <select style="margin-left:5px" class="form-control col-xs-5" id="subAreaDropdown" name="subAreaDropdown">
-                            @foreach (var subfrascati in subfrascatiPicker)
-                            {
-                                <option value=@subfrascati.Id>@subfrascati.SubArea</option>
-
-
-                            }
+                           <option>Seleccione el sub área frascati</option>
                         </select>
                     </div>
                 </div>
@@ -89,19 +85,18 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
-            function changeSubDown() {
-                var x = document.getElementById("areaDropdown");
-                console.log(document.forms[0]);
-
-                var option = document.createElement("option");
-                
-                option.text = y;
-            
-            x.add(option);
-
-        }
-
-
+        <script>
+            (function ($) {           
+                $("#areaDropdown").on('change', function () {
+                    alert(this.value)
+                    $.get('GetSubFrascati', { idAreaFrascati: this.value }, function (data) {
+                        $("#subAreaDropdown").children().remove()
+                        $.each(data, function (index, value) {
+                            console.log(value)
+                            $('<option>').val(value.Id).text(value.SubArea).appendTo('#subAreaDropdown')
+                        })
+                    })
+                })
+            })(jQuery);     
         </script>
     </div>
