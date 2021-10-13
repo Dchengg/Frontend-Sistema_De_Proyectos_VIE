@@ -18,7 +18,7 @@
                 <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
             </div>
         </div>
-        @using (Html.BeginForm("UIUbicacionGeografica", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        @using (Html.BeginForm("UIAmpliarFechas", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
         {
 
             <div class="row formRow">
@@ -61,6 +61,7 @@
                 </div>
             </div>
         }
+
     </div>
 </div>
 

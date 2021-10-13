@@ -44,6 +44,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View(Proyecto);
         }
 
+        /// <summary>
+        /// Llama al controlador de proyectos para actualizar la información del proyecto
+        /// </summary>
+        /// <param name="formProyecto"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista con la información actualizada del proyecto</returns>
         [HttpPost]
         public ActionResult UIDatosProyecto(FormCollection formProyecto, String codigoProyecto)
         {
@@ -89,7 +95,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
         }
 
-
         /// <summary>
         /// Llama al controlador de áreas frascati y recoge las áreas frascati del proyecto para enviarlas a la vista
         /// </summary>
@@ -116,16 +121,14 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult UIPresupuesto(String codigoProyecto)
         {
 
-
-
             List<Presupuesto> Presupuesto = PresupuestoController.getPresupuesto(codigoProyecto);
-
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIPresupuesto", Presupuesto);
         }
+
         /// <summary>
         /// Llama al controlador de áreas frascati y le envia un nuevo área frascati que se debe agregar a la base de datos
         /// </summary>
@@ -149,18 +152,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             TempData["subfrascatiPicker"] = subfrascatiPicker;
 
-
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIAreaFrascati", Frascatis);
 
-
-
-
-
         }
-
 
         /// <summary>
         /// Llama al controlador de áreas frascati y le envia el ID del área frascati que se debe eliminar de la base de datos
@@ -169,9 +166,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las áreas frascati del proyecto con el área frascati eliminado</returns>
         
-        /*maybe*/
         [HttpDelete]
-        /* incomplete */
         public ActionResult UIAreasFrascati(String idArea, string codigoProyecto)
         {
             List<Frascati> areaPicker = FrascatiController.getFrascatis();
@@ -208,8 +203,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             TempData["odsPicker"] = odsPicker;
 
-
-
             List<SubODS> subodsPicker = ODSController.getsubODS();
 
             TempData["subodsPicker"] = subodsPicker;
@@ -224,16 +217,13 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// Llama al controlador de ODS y recoge los ODS del proyecto para enviarlos a la vista
         /// </summary>
         /// <param name="codigoProyecto"></param>
-        /// <returns>Vista de los ODS del proyecto  </returns>
-        ///            
+        /// <returns>Vista de los ODS del proyecto  </returns>           
         [HttpDelete]
         public ActionResult UIAgregarODS(String idODS,String codigoProyecto)
         {
             List<ODS> odsPicker = ODSController.getODS();
 
             TempData["odsPicker"] = odsPicker;
-
-
 
                 String resultPost = ODSController.EliminarODS(idODS);
                 System.Diagnostics.Debug.WriteLine(resultPost);
@@ -517,7 +507,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// Llama al controlador de programación de informes y recoge los informes tanto entregados como por entregar del proyecto para enviarlos a la vista
         /// </summary>
         /// <param name="codigoProyecto"></param>
-        /// <returns></returns>
+        /// <returns>Vista con todos los informes tanto entregados como programados</returns>
         public ActionResult UIProgramacionInformes(String codigoProyecto){
 
             List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
@@ -531,12 +521,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIProgramacionInformes", informes);
         }
+
         /// <summary>
-        /// Llama al controlador de programación de informes y recoge los informes tanto entregados como por entregar del proyecto para enviarlos a la vista
+        /// Llama al controlador de informes para programar un nuevo informe y agregarlo a la lista de informes por entregar
         /// </summary>
         /// <param name="codigoProyecto"></param>
-        /// <returns></returns>
-        ///         
+        /// <returns>Vista con el nuevo informe programado</returns>
         [HttpPost]
         public ActionResult UIProgramacionInformes(FormCollection formProgramacionInformes, String codigoProyecto)
         {
@@ -567,12 +557,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         }
 
         /// <summary>
-        /// Llama al controlador de departamentos y recoge los departamentos del proyecto para enviarlos a la vista
+        /// Llama al controlador de departamentos para agregar un nuevo departamento al proyecto
         /// </summary>
+        /// <param name="formDepartamentoDropdown"></param>
         /// <param name="codigoProyecto"></param>
-        /// <returns></returns>
+        /// <returns>Vista con el nuevo departamento agregado</returns>
         [HttpPost]
-
         public ActionResult UIDepartamentos(FormCollection formDepartamentoDropdown, String codigoProyecto) {
 
             String departamento = formDepartamentoDropdown["DepartamentoDropdown"].ToString();
@@ -595,17 +585,18 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
         }
 
+        /// <summary>
+        /// Llama al controlador de departamentos para eliminar un departamento seleccionado
+        /// </summary>
+        /// <param name="idDepartamento"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista con actualizada sin el departamento que fue eliminado</returns>
         [HttpDelete]
         public ActionResult UIDepartamentos(String idDepartamento, String codigoProyecto)
         {
 
-
             String resultPost = DepartamentosController.EliminarDepartamento(idDepartamento);
             System.Diagnostics.Debug.WriteLine(resultPost);
-
-
-
-
 
             List<Departamento> departamentos = DepartamentosController.getDepartamento(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
@@ -620,6 +611,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View("UIDepartamentos", departamentos);
 
         }
+        /// <summary>
+        /// Llama al controlador de departamentos y recoge los departamentos del proyecto para enviarlos a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista de los departamentos del proyecto</returns>
         public ActionResult UIDepartamentos( String codigoProyecto)
         {
 
@@ -643,7 +639,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// Llama al controlador de ubicación geográfica y recoge la información del proyecto para enviarla a la vista
         /// </summary>
         /// <param name="codigoProyecto"></param>
-        /// <returns></returns>
+        /// <returns>Vista de la ubicación geográfica del proyecto</returns>
         public ActionResult UIUbicacionGeografica(String codigoProyecto){
             
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
@@ -656,7 +652,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// Llama al controlador de contratos y recoge los contratos del proyecto para enviarlos a la vista
         /// </summary>
         /// <param name="codigoProyecto"></param>
-        /// <returns></returns>
+        /// <returns>Vista de los contratos del proyecto</returns>
         public ActionResult UIContratos(String codigoProyecto){
             
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
@@ -670,7 +666,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// Llama al controlador de informes y recoge los informes del proyecto para enviarlos a la vista
         /// </summary>  
         /// <param name="codigoProyecto"></param>
-        /// <returns></returns>
+        /// <returns>Vista de los informes y para ingresar algun informe</returns>
         public ActionResult UIIngresarInforme(String codigoProyecto) {
             
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
@@ -684,7 +680,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// Llama al controlador de ampliar fechas y levanta el servicio de ampliar fechas
         /// </summary>
         /// <param name="codigoProyecto"></param>
-        /// <returns></returns>
+        /// <returns>Vista para ampliar fechas</returns>
         public ActionResult UIAmpliarFechas(String codigoProyecto) {
             
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
@@ -697,7 +693,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// Llama al controlador de investigadores asociados y recoge los investigadores del proyecto para enviarlos a la vista
         /// </summary>
         /// <param name="codigoProyecto"></param>
-        /// <returns></returns>
+        /// <returns>Vista con los investigadores asociados</returns>
         public ActionResult UIInvestigadoresAsociados(String codigoProyecto)
         {
 
@@ -708,10 +704,36 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         }
 
         /// <summary>
+        /// Redirige a la página para ingresar un investigador asociado
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>La vista de la página para agregar investigadores asociados</returns>
+        public ActionResult UIAgregarInvestigadorAsociado(string codigoProyecto)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIAgregarInvestigadorAsociado");
+        }
+
+        /// <summary>
+        /// Redirige a la vista que se encarga de modificar los datos del investigador selecionado
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista para modificar los datos del investigador seleccionado</returns>
+        public ActionResult UIModificarInvestigadorAsociado(string codigoProyecto) 
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIModificarInvestigadorAsociado");
+        }
+
+        /// <summary>
         /// Llama al controlador de cambiar investigador coordinador y recoge el coordinador y los otros investigadores del proyecto para enviarlos a la vista
         /// </summary>
         /// <param name="codigoProyecto"></param>
-        /// <returns></returns>
+        /// <returns>Vista de los investigadores asociados y el investigador coordinador para poder cambiar al coordinador</returns>
         public ActionResult UICambiarInvestigadorCoordinador(String codigoProyecto)
         {
 
@@ -719,6 +741,48 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UICambiarInvestigadorCoordinador");
+        }
+
+        /// <summary>
+        /// Llama al controlador de cronograma asociados y recoge el cronograma del proyecto para enviarlo a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista con el cronograma del proyecto</returns>
+        public ActionResult UICronograma(String codigoProyecto) 
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UICronograma");
+        }
+
+        /// <summary>
+        /// Redirige a la página para modificar las horas asignadas a un investigador asociado
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista para modificar horas de un investigador</returns>
+        public ActionResult UIModificarHorasInvestigador(String codigoProyecto)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIModificarHorasInvestigador");
+        }
+
+        public ActionResult UIAmpliarObjetivos(String codigoProyecto)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIAmpliarObjetivos");
+        }
+
+        public ActionResult UIObjetivosEspecificos(String codigoProyecto)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIObjetivosEspecificos");
         }
 
         #endregion

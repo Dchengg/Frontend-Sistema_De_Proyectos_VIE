@@ -371,6 +371,12 @@
     <Content Include="Views\SeguimientoProyecto\UIAmpliarFechas.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIInvestigadoresAsociados.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UICambiarInvestigadorCoordinador.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIAgregarInvestigadorAsociado.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UICronograma.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIModificarHorasInvestigador.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIModificarInvestigadorAsociado.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIAmpliarObjetivos.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIObjetivosEspecificos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\BuscadorProyecto\" />

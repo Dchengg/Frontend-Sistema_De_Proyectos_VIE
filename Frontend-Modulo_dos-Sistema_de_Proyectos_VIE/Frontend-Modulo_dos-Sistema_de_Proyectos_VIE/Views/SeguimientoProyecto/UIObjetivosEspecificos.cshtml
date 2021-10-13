@@ -1,0 +1,213 @@
+﻿
+@{
+    ViewBag.Title = "Objetivos Específicos";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+}
+
+<div style="width:100%">
+    <div class="container-fluid">
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto </label>
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
+            </div>
+        </div>
+        @using (Html.BeginForm("UIObjetivosEspecificos", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        {
+
+            <div class="row formRow">
+                <div class="form-group col-md-12">
+                    <label for="objetivoEspecifico">Objetivo Específico: </label>
+                    <textarea class="form-control fullRowInput" id="objetivoEspecifico" rows="3" disabled> </textarea>
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="form-group col-md-12">
+                    <label for="metodologia">Metodología: </label>
+                    <textarea class="form-control fullRowInput" id="metodologia" name="metodologia" rows="3" disabled> </textarea>
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5" for="producto">Producto: </label>
+                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="producto" name="producto" value="xxxx" />
+                </div>
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5" for="encargadosActividad">Encargados de la actividad: </label>
+                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="encargadosActividad" name="encargadosActividad" value="xxxx.com" />
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5" for="actividad">Actividad: </label>
+                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="actividad" name="actividad" value="xxxx" />
+                </div>
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5" for="nivelResposabilidad">Nivel de responsabilidad: </label>
+                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="nivelResposabilidad" name="nivelResposabilidad" value="xxxx xxxx" />
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="form-group col-md-12">
+                    <div class="wrapperBotonAgregar">
+                        <button class="botonAgregar" type="submit">Agregar producto</button>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="ampliarObjetivos"></label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered disenoTabla" style="table-layout: auto;">
+                        <tr id="ROW1">
+                            <th>Productos</th>
+                            <th>Actividades</th>
+                            <th>Encargados de la actividad</th>
+                            <th>Nivel de responsabilidad</th>
+                            <th> </th>
+                        </tr>
+
+                        <tr>
+                            <th> XXXX XXXX XXXX XXXX </th>
+                            <th> XXXX XXXX XXXX XXXX </th>
+                            <th> XXXX XXXX XXXX XXXX </th>
+                            <th> XXXX XXXX XXXX XXXX </th>
+                            <th>
+                                <div> <button class="botonEliminar" type="submit"> Eliminar </button></div>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        @using (Html.BeginForm("UIObjetivosEspecificos", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        {
+
+            <div class="row formRow">
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5" for="nuevaMeta">Nueva meta: </label>
+                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="nuevaMeta" name="nuevaMeta" value="xxxx" />
+                </div>
+
+            </div>
+
+            <div class="row formRow">
+                <div class="form-group col-md-12">
+                    <label for="descripcion">Descripción: </label>
+                    <textarea class="form-control fullRowInput" id="descripcion" name="descripcion" rows="3"> </textarea>
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="form-group col-md-12">
+                    <div class="wrapperBotonAgregar">
+                        <button class="botonAgregar" type="submit">Agregar meta</button>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="ampliarObjetivos"></label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered disenoTabla" style="table-layout: auto;">
+                        <tr id="ROW1">
+                            <th>Meta</th>
+                            <th>Descripción</th>
+                            <th>¿Cumplida?</th>
+
+                            <th> </th>
+                        </tr>
+
+                        <tr>
+                            <th> XXXX XXXX XXXX XXXX </th>
+                            <th> XXXX XXXX XXXX XXXX </th>
+                            <th> <div> <input type="checkbox" /></div> </th>
+
+                            <th>
+                                <div> <button class="botonEliminar" type="submit"> Eliminar </button></div>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        @using (Html.BeginForm("UIObjetivosEspecificos", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        {
+
+            <div class="row formRow">
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5" for="posibleRiesgo">Posible riesgo: </label>
+                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="posibleRiesgo" name="posibleRiesgo" value="xxxx" />
+                </div>
+
+            </div>
+
+            <div class="row formRow">
+                <div class="form-group col-md-12">
+                    <label for="accionesMitigacion">Acciones de mitigación: </label>
+                    <textarea class="form-control fullRowInput" id="accionesMitigacion" name="accionesMitigacion" rows="3"> </textarea>
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="form-group col-md-12">
+                    <div class="wrapperBotonAgregar">
+                        <button class="botonAgregar" type="submit">Agregar riesgo</button>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="ampliarObjetivos"></label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered disenoTabla" style="table-layout: auto;">
+                        <tr id="ROW1">
+                            <th>Posible riesgo</th>
+                            <th>Acciones de mitigación</th>
+                            <th> </th>
+                        </tr>
+
+                        <tr>
+                            <th> XXXX XXXX XXXX XXXX </th>
+                            <th> XXXX XXXX XXXX XXXX </th>
+
+                            <th>
+                                <div> <button class="botonEliminar" type="submit"> Eliminar </button></div>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
+

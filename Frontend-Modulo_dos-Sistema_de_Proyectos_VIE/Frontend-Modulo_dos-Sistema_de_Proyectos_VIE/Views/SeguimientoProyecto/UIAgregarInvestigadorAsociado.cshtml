@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "Agregar Investigador Asociado";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+}
+
+<div style="width:100%">
+    <div class="container-fluid">
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto </label>
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
+            </div>
+        </div>
+        @using (Html.BeginForm("UIAgregarInvestigadoresAsociados", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        {
+            <div class="row formRow">
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5">Lista de investigadores: </label>
+                    <select class="form-control col-xs-5">
+
+                        <option value="Ingeniería en computación">Pedro Soto Ruiz</option>
+                        <option value="Administración de empresas">Marco Antonio Rojas Salazar</option>
+                        <option value="Ingrid Gomez Ramirez"> Ingrid Gomez Ramirez</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="row formRow">
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5" for="cedulaInvestigador">Cédula del investigador:</label>
+                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="cedulaInvestigador" name="cedulaInvestigador" value="xxxx-xxxx" />
+                </div>
+                <div class="form-inline col-md-6">
+                    <label for="escuelaInvestigador" class="col-xs-5">Escuela/Departamento:</label>
+                    <select class="form-control col-xs-5" id="escuelaInvestigador" name="escuelaInvestigador">
+
+                        <option value="Ingeniería en computación">Ingeniería en computación</option>
+                        <option value="Administración de empresas">Administración de empresas</option>
+                        <option value="Ingeniería Forestal">Ingeniería Forestal</option>
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5" for="nombreInvestigador">Nombre del Investigador:</label>
+                    <input type="text" class="form-control col-xs-5" id="nombreInvestigador" name="nombreInvestigador" value="xxxx" />
+                </div>
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5" for="sexoInvestigador">Sexo: </label>
+                    <select style="margin-left:5px" class="form-control col-xs-5" name="sexoInvestigador">
+
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5" for="primerApellido">Primer apellido: </label>
+                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="primerApellido" name="primerApellido" value="xxxx" />
+                </div>
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5" for="correoElectronico">Correo electrónico: </label>
+                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="correoElectronico" name="correoElectronico" value="xxxx.com" />
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5" for="segundoApellido">Segundo apellido: </label>
+                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="segundoApellido" name="segundoApellido" value="xxxx" />
+                </div>
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5" for="telefonoInvestigador">Teléfono: </label>
+                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="telefonoInvestigador" name="telefonoInvestigador" value="xxxx xxxx" />
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5" for="gradoAcademico">Grado académico del investigador:</label>
+                    <select style="margin-left:5px" class="form-control col-xs-5" name="gradoAcademico">
+
+                        <option value="Masculino">Estudiante</option>
+                        <option value="Femenino">Bachiller</option>
+                        <option value="Femenino">Licenciado</option>
+
+
+                    </select>
+                </div>
+                <div class="form-inline col-md-6">
+                    <label class="col-xs-5" for="tipoInvestigador">Tipo de investigador:</label>
+                    <select style="margin-left:5px" class="form-control col-xs-5" name="tipoInvestigador">
+
+                        <option value="Masculino">Investigador</option>
+                        <option value="Femenino">Coordinador</option>
+
+
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="row formRow">
+                <div class="wrapperBotonAgregar">
+                    <button class="botonAgregar" type="submit">Agregar investigador</button>
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+</div>
+

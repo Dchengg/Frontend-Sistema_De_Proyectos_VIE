@@ -23,7 +23,7 @@
             <div class="row formRow">
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Nombre del Producto</label>
-                    <input style="margin-left:5px" type="text" class="form-control" id="nombreDelProducto"  name="nombreDelProducto"/>
+                    <input style="margin-left:5px" type="text" class="form-control" id="nombreDelProducto" name="nombreDelProducto" />
                 </div>
             </div>
             <div class="row formRow">
@@ -35,7 +35,7 @@
             <div class="row formRow">
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Precio total de la compra</label>
-                    <input style="margin-left:5px" type="text" class="form-control" id="precioTotalDeLaCompra" name="precioTotalDeLaCompra"/>
+                    <input style="margin-left:5px" type="text" class="form-control" id="precioTotalDeLaCompra" name="precioTotalDeLaCompra" />
                 </div>
             </div>
 
@@ -64,21 +64,21 @@
                             <th> </th>
                         </tr>
 
-                    @foreach (var compra in Model)
-                    {
-                    <tr>
-                        @using (Html.BeginForm("UICompras", "SeguimientoProyecto", new { idCompra = compra.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        @foreach (var compra in Model)
                         {
-                            @Html.HttpMethodOverride(HttpVerbs.Delete)
-                            <th>@compra.NombreProducto</th>
-                            <th>@compra.Cantidad</th>
-                            <th>@compra.PrecioTotal</th>
-                            <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
-                        }
+                            <tr>
+                                @using (Html.BeginForm("UICompras", "SeguimientoProyecto", new { idCompra = compra.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                                {
+                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                    <th>@compra.NombreProducto</th>
+                                    <th>@compra.Cantidad</th>
+                                    <th>@compra.PrecioTotal</th>
+                                    <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                                }
 
-                    </tr>
-                         
-                    }
+                            </tr>
+
+                        }
 
                     </table>
                 </div>
@@ -86,4 +86,3 @@
         </div>
     </div>
 </div>
-

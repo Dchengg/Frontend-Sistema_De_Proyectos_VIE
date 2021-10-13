@@ -3,7 +3,6 @@
     ViewBag.Title = "Investigadores Asociados";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
 }
-
 <div style="width:100%">
     <div class="container-fluid">
         <div class="row formRow">
@@ -18,11 +17,7 @@
                 <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
             </div>
         </div>
-        @using (Html.BeginForm("UIInvestigadoresAsociados", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
-        {
-
-
-        }
+        
         <div class="row formRow">
             <div class="form-group col-lg-12">
                 <label for="UIDepartamentos"></label>
@@ -50,7 +45,16 @@
                             <th>xxxxx</th>
                             <th>xxxxx</th>
 
-                            <th> <div> <button class="botonEliminar" style="width:100%" type="submit"> ... </button></div></th>
+                            <th>
+                                <div class="btn-group">
+                                    <button type="button" style="width: 100%; display: inline-block; border-color: black;" class="botonEliminar; btn btn-default dropdown-toggle" data-toggle="dropdown"> ...<span class="caret"></span> </button>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="@Url.Action("UIModificarInvestigadorAsociado","SeguimientoProyecto", new { codigoProyecto=ViewData["CodigoProyecto"]})" class="dropdown-item" style="color: #002854">Modificar investigador</a></li>
+                                        <li><a href="@Url.Action("UIModificarHorasInvestigador","SeguimientoProyecto", new { codigoProyecto=ViewData["CodigoProyecto"]})" class="dropdown-item" style="color: #002854">Modificar horas</a></li>
+                                        <li class="dropdown-item" style="color: #002854">Eliminar</li>
+                                    </ul>
+                                </div>
+                            </th>
 
                         </tr>
 
@@ -61,10 +65,18 @@
 
         <div class="row formRow">
             <div class="wrapperBotonAgregar">
-                <button class="botonAgregar" type="submit">Agregar investigador</button>
+                <a class="btn botonAgregar" style="text-align:center" href="@Url.Action("UIAgregarInvestigadorAsociado","SeguimientoProyecto", new { codigoProyecto=ViewData["CodigoProyecto"]})"> Agregar investigador</a>
+                <!--<button onclick="" class="botonAgregar" type="submit" id="butonAgregarInvestigador">Agregar investigador</button>-->
             </div>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    document.getElementById("butonAgregarInvestigador").onclick = function () {
+        location.href = "";
+    };
+</script>
+
 
 

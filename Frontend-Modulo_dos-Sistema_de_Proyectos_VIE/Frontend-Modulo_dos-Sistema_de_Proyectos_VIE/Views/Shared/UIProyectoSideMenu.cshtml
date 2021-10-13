@@ -4,7 +4,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <title>@ViewBag.title</title>
+    <script src="@Url.Content("~/Scripts/umd/popper.min.js")" type="text/javascript"></script>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/BuscadorProyectos.css")
     @Styles.Render("~/Content/SeguimientoProyecto.css")
@@ -48,10 +52,11 @@
                     <li><a href="@Url.Action("UIDepartamentos","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Departamentos</a></li>
                     <li><a href="@Url.Action("UIProgramacionInformes","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Programación de informes</a></li>
                     <li><a href="@Url.Action("UIAmpliarFechas","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Ampliar fechas</a></li>
+                    <li><a href="@Url.Action("UIAmpliarObjetivos","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Ampliar objetivos</a></li>
                     <li><a href="@Url.Action("UIIngresarInforme","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Ingresar informes</a></li>
                     <li><a href="@Url.Action("UICompras","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Compras</a></li>
                     <li><a href="@Url.Action("UIContratos","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Contratos</a></li>
-                    <li><a href="#">Cronograma</a></li>
+                    <li><a href="@Url.Action("UICronograma","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Cronograma</a></li>
                     <li><a href="@Url.Action("UIIncidencias","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Incidencias</a></li>
                     <li><a href="@Url.Action("UIBitacora","SeguimientoProyecto", new { CodigoProyecto=ViewData["CodigoProyecto"]})">Bitácoras</a></li>
                 </ul>
