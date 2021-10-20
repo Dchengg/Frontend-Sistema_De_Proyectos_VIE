@@ -29,19 +29,18 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         [Display(Name = "Fecha de nacimiento")]
         public System.DateTime FechaNacimiento { get; set; }
 
-        public TipoIdentificacionViewModel tipoIdentificacionViewModel { get; set; }
+        public TipoIdentificacionViewModel TipoIdentificacionViewModel { get; set; }
 
-        public PaisViewModel paisViewModel { get; set; }
+        public PaisViewModel PaisViewModel { get; set; }
+        public IEnumerable<SelectListItem> CatalogoPais { get; set; }
 
-        public SexoViewModel sexoViewModel { get; set; }
+        public NacionalidadViewModel NacionalidadViewModel { get; set; }
 
-        //TODO: Poner los teléfonos
+        public SexoViewModel SexoViewModel { get; set; }
 
         [Required]
         [Display(Name = "Apartado postal")]
         public string ApartadoPostal { get; set; }
-
-        //TODO: Poner el correo electrónico
 
         [Required]
         [Display(Name = "Numero de identidad")]
@@ -51,9 +50,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         [Display(Name = "Seudónimo bilbiográfico")]
         public string Seudonimo { get; set; }
 
-        public CategoriaAcademicaViewModel CategoriaAcademicaViewModel { get; set; }
+        public List<CategoriaAcademicaViewModel> CategoriasAcademicas { get; set; }
 
-        public UnidadAcademicaViewModel UnidadAcademicaViewModel { get; set; }
+        public List<UnidadAcademicaViewModel> UnidadesAcademicas{ get; set; }
 
         [Required]
         [Display(Name = "Fecha de ingreso a la institución")]
@@ -61,11 +60,25 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         public SituacionLaboralViewModel SituacionLaboralViewModel { get; set; }
 
+        public List<TelefonoViewModel> Telefonos { get; set; }
+
+        public IEnumerable<SelectListItem> CatalogoTipoTelefono { get; set; }
+
+        public List<CorreoViewModel> Correos { get; set; }
+
         public PorcentajeNombramientoViewModel PorcentajeNombramientoViewModel { get; set; }
+
+        public List<PerfilAcademicoViewModel> PerfilesAcademicos { get; set; }
         
         public List<EstudioRealizadoViewModel> EstudiosRealizados { get; set; }
 
+        public IEnumerable<SelectListItem> CatalogoInstitucion { get; set; }
+
         public List<IdiomaViewModel> Idiomas { get; set; }
+
+        public IEnumerable<SelectListItem> CatalogoIdioma { get; set; }
+
+        public IEnumerable<SelectListItem> CatalogoNivelIdioma { get; set; }
 
         public List<ExperienciaAcademicaViewModel> ExperienciaAcademicas { get; set; }
 
@@ -73,20 +86,19 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         public List<PremioViewModel> Premios { get; set; }
 
+        public IEnumerable<SelectListItem> CatalogoEntidades { get; set; }
+
         public List<ArticuloViewModel> Articulos { get; set; }
 
         public List<PatenteViewModel> Patentes { get; set; }
-        [DataMember]
-        public List<oLibro> Libros { get; set; }
-        [DataMember]
-        public List<oPonencia> Ponencias { get; set; }
-        [DataMember]
-        public List<oSoftware> Software { get; set; }
-        [DataMember]
-        public List<oLicenciamiento> Licenciamientos { get; set; }
-        
-        [DataMember]
-        public List<oSubdisciplina> SubdisciplinasCientificas { get; set; }
+
+        public List<LibroViewModel> Libros { get; set; }
+
+        public List<LicenciamientoViewModel> Licenciamientos { get; set; }
+
+        public List<SoftwareViewModel> Software { get; set; }
+
+        public List<PonenciaViewModel> Ponencias { get; set; }
 
         [Required]
         [Display(Name = "Acepta las condiciones de uso sobre sus datos personales?")]

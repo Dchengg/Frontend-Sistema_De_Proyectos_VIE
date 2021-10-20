@@ -49,6 +49,9 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -122,39 +125,36 @@
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="Models\Convocatoria\oConvocatoria.cs" />
     <Compile Include="Models\FichaInvestigador\ArticuloViewModel.cs" />
+    <Compile Include="Models\FichaInvestigador\CatalogoTelefonoViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\CategoriaAcademicaViewModel.cs" />
+    <Compile Include="Models\FichaInvestigador\CorreoViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\EstudioRealizadoViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\ExperienciaAcademicaViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\FichaInvestigadorViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\IdiomaViewModel.cs" />
+    <Compile Include="Models\FichaInvestigador\LibroViewModel.cs" />
+    <Compile Include="Models\FichaInvestigador\LicenciamientoViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\NacionalidadViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\PaisViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\ParticipacionViewModel.cs" />
+    <Compile Include="Models\FichaInvestigador\PatenteViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\PerfilAcademicoViewModel.cs" />
+    <Compile Include="Models\FichaInvestigador\PonenciaViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\PorcentajeNombramientoViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\PremioViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\SexoViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\SituacionLaboralViewModel.cs" />
+    <Compile Include="Models\FichaInvestigador\SoftwareViewModel.cs" />
+    <Compile Include="Models\FichaInvestigador\TelefonoViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\TipoIdentificacionViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\oArticulo.cs" />
-    <Compile Include="Models\FichaInvestigador\oCategoriaAcademica.cs" />
-    <Compile Include="Models\FichaInvestigador\oEstudioRealizado.cs" />
-    <Compile Include="Models\FichaInvestigador\oExperienciaAcademica.cs" />
-    <Compile Include="Models\FichaInvestigador\oIdioma.cs" />
-    <Compile Include="Models\FichaInvestigador\oLibro.cs" />
-    <Compile Include="Models\FichaInvestigador\oLicenciamiento.cs" />
     <Compile Include="Models\FichaInvestigador\CatalogosViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\oPatente.cs" />
-    <Compile Include="Models\FichaInvestigador\oPonencia.cs" />
-    <Compile Include="Models\FichaInvestigador\oSoftware.cs" />
-    <Compile Include="Models\FichaInvestigador\oSubdisciplina.cs" />
-    <Compile Include="Models\FichaInvestigador\oUnidadAcademica.cs" />
     <Compile Include="Models\FichaInvestigador\UnidadAcademicaViewModel.cs" />
     <Compile Include="Models\SeguimientoProyectos\Proyecto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\TEC-logo-white.png" />
+    <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -170,10 +170,13 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom\fecha.js" />
+    <Content Include="Scripts\custom\perfilesAcademicos.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -198,6 +201,7 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\bootstrap-datepicker.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -363,7 +367,6 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties content_4bootstrap-theme_1css_1map__JsonSchema="" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

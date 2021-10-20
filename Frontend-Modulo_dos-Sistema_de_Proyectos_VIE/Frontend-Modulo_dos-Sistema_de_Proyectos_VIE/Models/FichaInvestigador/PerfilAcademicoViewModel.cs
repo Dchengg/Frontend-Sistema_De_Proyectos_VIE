@@ -10,7 +10,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
     public class PerfilAcademicoViewModel
     {
         [Display(Name = "Nombre del perfil")]
-        public string Nombre { get; set; }
+        public string TipoPerfilSeleccionado { get; set; }
+        public IEnumerable<SelectListItem> CatalogoTiposPerfilAcademico { get; set; }
         [Display(Name = "Dirección del perfil")]
         public string Direccion { get; set; }
     }

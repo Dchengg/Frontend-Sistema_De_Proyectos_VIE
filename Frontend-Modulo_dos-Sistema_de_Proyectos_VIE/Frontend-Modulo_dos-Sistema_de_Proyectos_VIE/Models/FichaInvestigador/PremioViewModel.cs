@@ -17,7 +17,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         [Required]
         [Display(Name = "Año")]
-        public string Ano { get; set; }
+        public int Ano { get; set; }
 
         [Required]
         [Display(Name = "Pais")]

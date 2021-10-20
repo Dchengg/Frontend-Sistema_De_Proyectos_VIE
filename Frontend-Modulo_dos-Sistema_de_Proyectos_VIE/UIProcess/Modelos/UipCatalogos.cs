@@ -42,13 +42,16 @@ namespace UIProcess.Modelos
         public List<UipCatalogoEditorial> CatalogoEditorial { get; set; }
         [DataMember]
         public List<UipCatalogoParticipacionLibro> CatalogoParticipacionLibro { get; set; }
+        public List<UipCatalogoTipoTelefono> CatalogoTipoTelefono { get; set; }
+        public List<UipCatalogoCategoriaAcademica> CatalogoCategoriaAcademica { get; set; }
 
         public  UipCatalogos(List<UipCatalogoTipoIdentificacion> catalogoTipoIdentificacion, List<UipCatalogoPais> catalogoPais, List<UipCatalogoSituacionLaboral> catalogoSituacionLaboral,
                           List<UipCatalogoInstitucion> catalogoInstitucion, List<UipCatalogoTituloAcademico> catalogoTituloAcademico, List<UipCatalogoIdioma> catalogoIdioma,
                           List<UipCatalogoNivelIdioma> catalogoNivelIdioma, List<UipCatalogoUnidadAcademica> catalogoUnidadAcademica, List<UipCatalogoTipoPerfil> catalogoTipoPerfil,
                           List<UipCatalogoDisciplinaCientifica> catalogoDisciplinaCientifica, List<UipCatalogoSubdisciplinaCientifica> catalogoSubdisciplinaCientifica,
                           List<UipCatalogoEntidad> catalogoEntidad, List<UipCatalogoRevista> catalogoRevista, List<UipCatalogoIndiceRevista> catalogoIndiceRevista,
-                          List<UipCatalogoEditorial> catalogoEditorial, List<UipCatalogoParticipacionLibro> catalogoParticipacionLibro)
+                          List<UipCatalogoEditorial> catalogoEditorial, List<UipCatalogoParticipacionLibro> catalogoParticipacionLibro,
+                          List<UipCatalogoTipoTelefono> catalogoTipoTelefono, List<UipCatalogoCategoriaAcademica> catalogoCategoriaAcademica)
         {
             CatalogoTipoIdentificacion = catalogoTipoIdentificacion;
             CatalogoPais = catalogoPais;
@@ -66,6 +69,8 @@ namespace UIProcess.Modelos
             CatalogoIndiceRevista = catalogoIndiceRevista;
             CatalogoEditorial = catalogoEditorial;
             CatalogoParticipacionLibro = catalogoParticipacionLibro;
+            CatalogoTipoTelefono = catalogoTipoTelefono;
+            CatalogoCategoriaAcademica = catalogoCategoriaAcademica;
         }
 
     }

@@ -12,11 +12,13 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         [Required]
         [Display(Name = "Título académico")]
         public string TituloAcademico { get; set; }
+        public int IdTituloAcademico { get; set; }
         public IEnumerable<SelectListItem> TitulosAcademicos { get; set; }
 
         [Required]
         [Display(Name = "Institución")]
         public string Institucion { get; set; }
+        public int IdInstitucion { get; set; }
         public IEnumerable<SelectListItem> Instituciones { get; set; }
 
         [Required]
@@ -25,11 +27,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         [Required]
         [Display(Name = "Área de estudio")]
-        public string AreaEstudio { get; set; }
+        public string AreaDeEstudio { get; set; }
 
         [Required]
         [Display(Name = "Pais")]
-        public int Pais { get; set; }
+        public string Pais { get; set; }
+        public int IdPais { get; set; }
         public IEnumerable<SelectListItem> Paises { get; set; }
     }
 }

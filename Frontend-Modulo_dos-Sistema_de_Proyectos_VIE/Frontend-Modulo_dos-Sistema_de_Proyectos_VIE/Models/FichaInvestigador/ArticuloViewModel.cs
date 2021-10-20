@@ -12,12 +12,15 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         [Required]
         [Display(Name = "Nombre de la revista")]
-        public string NombreRevistaSeleccionada { get; set; }
-        public IEnumerable<SelectListItem> Revistas { get; set; }
+        public string NombreRevista { get; set; }
+        public int IdRevista { get; set; }
+        public IEnumerable<SelectListItem> CatalogoRevistas { get; set; }
 
         [Required]
         [Display(Name = "Nombre del índice")]
-        public string NombreÍndiceSeleccionado { get; set; }
+        public string NombreIndice { get; set; }
+        public int IdIndice { get; set; }
+        public IEnumerable<SelectListItem> CatalogoIndice { get; set; }
 
         [Required]
         [Display(Name = "Volumen")]

@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Web;
 
-namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
+namespace UIProcess.Modelos
 {
     [DataContract]
     [Serializable]
-    public class oEstudioRealizado
+    public class UipEstudioRealizado
     {
         [DataMember]
         public int Id { get; set; }
+
+        [DataMember]
+        public int IdTituloAcademico { get; set; }
 
         [DataMember]
         public string TituloAcademico { get; set; }
@@ -20,12 +20,18 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         public int AnoGraduacion { get; set; }
 
         [DataMember]
+        public int IdPais { get; set; }
+
+        [DataMember]
         public string NombrePais { get; set; }
 
         [DataMember]
-        public string AreaEstudio { get; set; }
+        public string AreaDeEstudio { get; set; }
 
         [DataMember]
-        public string NombreIsntitucion { get; set; }
+        public int IdInstitucion { get; set; }
+
+        [DataMember]
+        public string NombreInstitucion { get; set; }
     }
 }

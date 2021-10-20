@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Web;
 
-namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
+namespace UIProcess.Modelos
 {
     [Serializable]
     [DataContract]
-    public class oPonencia
+    public class UipPonencia
     {
         [DataMember]
         public int Id { get; set; }
@@ -19,6 +16,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         [DataMember]
         public int Ano { get; set; }
         [DataMember]
-        public int NombrePais { get; set; }
+        public int IdPais { get; set; }
+        [DataMember]
+        public string NombrePais { get; set; }
     }
 }

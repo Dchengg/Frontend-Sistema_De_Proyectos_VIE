@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Web;
 
-namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
+namespace UIProcess.Modelos
 {
     [Serializable]
     [DataContract]
-    public class oLicenciamiento
+    public class UipLicenciamiento
     {
         [DataMember]
         public int Id { get; set; }

@@ -1,23 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Web;
 
-namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
+namespace UIProcess.Modelos
 {
     [DataContract]
     [Serializable]
-    public class oUnidadAcademica
+    public class UipUnidadAcademica
     {
         [DataMember]
         public int Id;
         [DataMember]
-        public string NumeroIdentidad;
-        [DataMember]
         public int IdUnidadAcademica { get; set; }
         [DataMember]
-        public string Nombre { get; set; }
+        public string NombreUnidadAcademica { get; set; }
+        [DataMember]
+        public int IdSede { get; set; }
         [DataMember]
         public string NombreSede { get; set; }
     }

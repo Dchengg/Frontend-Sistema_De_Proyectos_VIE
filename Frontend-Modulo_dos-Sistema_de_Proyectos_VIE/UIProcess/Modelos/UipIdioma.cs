@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Web;
 
-namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
+namespace UIProcess.Modelos
 {
     [DataContract]
     [Serializable]
-    public class oIdioma
+    public class UipIdioma
     {
         [DataMember]
         public int Id { get; set; }
+
+        [DataMember]
+        public int IdIdioma { get; set; }
 
         [DataMember]
         public string NombreIdioma { get; set; }
@@ -20,10 +20,19 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         public string NivelEscritura { get; set; }
 
         [DataMember]
+        public int IdNivelEscritura { get; set; }
+
+        [DataMember]
         public string NivelHabla { get; set; }
 
         [DataMember]
+        public int IdNivelHabla { get; set; }
+
+        [DataMember]
         public string NivelLectura { get; set; }
+
+        [DataMember]
+        public int IdNivelLectura { get; set; }
 
         [DataMember]
         public bool EsMaterno { get; set; }

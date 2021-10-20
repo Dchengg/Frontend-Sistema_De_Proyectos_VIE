@@ -11,7 +11,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
     {
         [Required]
         [Display(Name = "Tipo de identificación")]
-        public int TipoIdentificacionSeleccionado { get; set; }
+        public string TipoIdentificacion { get; set; }
+        public int IdTipoIdentificacion { get; set; }
         public IEnumerable<SelectListItem> CatalogoTipoIdentificacion { get; set; }
     }
 }

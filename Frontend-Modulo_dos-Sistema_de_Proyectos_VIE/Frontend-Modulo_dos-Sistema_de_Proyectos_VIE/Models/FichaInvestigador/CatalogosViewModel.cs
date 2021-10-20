@@ -25,6 +25,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         public IEnumerable<SelectListItem> CatalogoIndiceRevista { get; set; }      
         public IEnumerable<SelectListItem> CatalogoEditorial { get; set; }     
         public IEnumerable<SelectListItem> CatalogoParticipacionLibro { get; set; }
+        public IEnumerable<SelectListItem> CatalogoSexo { get; set; }
+        public IEnumerable<SelectListItem> CatalogoTipoTelefono { get; set; }
+        public IEnumerable<SelectListItem> CatalogoPorcentajeNombramiento { get; set; }
 
     }
 }

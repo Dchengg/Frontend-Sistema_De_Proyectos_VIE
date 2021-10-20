@@ -8,7 +8,7 @@ namespace UIProcess.Modelos
 {
     [DataContract]
     [Serializable]
-    public class InvestigadorConsultar
+    public class UipInvestigadorConsultar
     {
         [DataMember]
         public string NumeroIdentidad { get; set; }
@@ -35,6 +35,8 @@ namespace UIProcess.Modelos
         [DataMember]
         public string Nacionalidad { get; set; }
         [DataMember]
+        public string Sexo { get; set; }
+        [DataMember]
         public string ApartadoPostal { get; set; }
         [DataMember]
         public string Seudonimo { get; set; }
@@ -45,45 +47,54 @@ namespace UIProcess.Modelos
         [DataMember]
         public string SituacionLaboral { get; set; }
         [DataMember]
+        public List<UipTelefono> Telefonos { get; set; }
+        [DataMember]
+        public List<UipCorreo> Correos { get; set; }
+        [DataMember]
         public int PorcentajeNombramiento { get; set; }
         [DataMember]
         public bool DatosPersonales { get; set; }
         [DataMember]
-        public List<oEstudioRealizado> EstudiosRealizados { get; set; }
+        public List<UipEstudioRealizado> EstudiosRealizados { get; set; }
         [DataMember]
-        public List<oIdioma> Idiomas { get; set; }
+        public List<UipIdioma> Idiomas { get; set; }
         [DataMember]
-        public List<oExperienciaAcademica> ExperienciaAcademicas { get; set; }
+        public List<UipExperienciaAcademica> ExperienciaAcademicas { get; set; }
         [DataMember]
-        public List<oArticulo> Articulos { get; set; }
+        public List<UipParticipacion> Participaciones { get; set; }
         [DataMember]
-        public List<oPatente> Patentes { get; set; }
+        public List<UipPremio> Premios { get; set; }
         [DataMember]
-        public List<oLibro> Libros { get; set; }
+        public List<UipArticulo> Articulos { get; set; }
         [DataMember]
-        public List<oPonencia> Ponencias { get; set; }
+        public List<UipPatente> Patentes { get; set; }
         [DataMember]
-        public List<oSoftware> Software { get; set; }
+        public List<UipLibro> Libros { get; set; }
         [DataMember]
-        public List<oLicenciamiento> Licenciamientos { get; set; }
+        public List<UipPonencia> Ponencias { get; set; }
         [DataMember]
-        public List<oCategoriaAcademica> CategoriasAcademicas { get; set; }
+        public List<UipSoftware> Software { get; set; }
         [DataMember]
-        public List<oExperienciaAcademica> ExperienciasAcademicas { get; set; }
+        public List<UipLicenciamiento> Licenciamientos { get; set; }
         [DataMember]
-        public List<oUnidadAcademica> UnidadesAcademicas { get; set; }
+        public List<UipCategoriaAcademica> CategoriasAcademicas { get; set; }
         [DataMember]
-        public List<oSubdisciplina> SubdisciplinasCientificas { get; set; }
+        public List<UipUnidadAcademica> UnidadesAcademicas { get; set; }
+        [DataMember]
+        public List<UipSubdisciplina> SubdisciplinasCientificas { get; set; }
+        public List<UipPerfilAcademico> PerfilesAcademicos { get; set; }
 
-        public InvestigadorConsultar(string numeroIdentidad, byte[] fotografia, string nombre, string primerApellido,
+        public UipInvestigadorConsultar(string numeroIdentidad, byte[] fotografia, string nombre, string primerApellido,
                                       string segundoApellido, DateTime fechaNacimiento, int idTipoIdentificacion,
                                       string tipoIdentificacion, int idPaisNacimiento, string paisNacimiento, int idNacionalidad,
                                       string nacionalidad, string apartadoPostal, string seudonimo, DateTime fechaDeIngresoInstitucion,
                                       int idSituacionLaboral, string situacionLaboral, int porcentajeNombramiento, bool datosPersonales,
-                                      List<oEstudioRealizado> estudiosRealizados, List<oIdioma> idiomas, List<oExperienciaAcademica> experienciaAcademicas,
-                                      List<oArticulo> articulos, List<oPatente> patentes, List<oLibro> libros, List<oPonencia> ponencias, List<oSoftware> software,
-                                      List<oLicenciamiento> licenciamientos, List<oCategoriaAcademica> categoriasAcademicas, List<oExperienciaAcademica> experienciasAcademicas,
-                                      List<oUnidadAcademica> unidadesAcademicas, List<oSubdisciplina> subdisciplinasCientificas)
+                                      List<UipEstudioRealizado> estudiosRealizados, List<UipIdioma> idiomas, List<UipExperienciaAcademica> experienciaAcademicas,
+                                      List<UipParticipacion> participaciones, List<UipPremio> premios,
+                                      List<UipArticulo> articulos, List<UipPatente> patentes, List<UipLibro> libros, List<UipPonencia> ponencias, List<UipSoftware> software,
+                                      List<UipLicenciamiento> licenciamientos, List<UipCategoriaAcademica> categoriasAcademicas, List<UipExperienciaAcademica> experienciasAcademicas,
+                                      List<UipUnidadAcademica> unidadesAcademicas, List<UipSubdisciplina> subdisciplinasCientificas,
+                                      List<UipPerfilAcademico> perfilesAcademicos)
         {
             NumeroIdentidad = numeroIdentidad;
             Fotografia = fotografia;
@@ -107,6 +118,8 @@ namespace UIProcess.Modelos
             EstudiosRealizados = estudiosRealizados;
             Idiomas = idiomas;
             ExperienciaAcademicas = experienciaAcademicas;
+            Participaciones = participaciones;
+            Premios = premios;
             Articulos = articulos;
             Patentes = patentes;
             Libros = libros;
@@ -114,9 +127,9 @@ namespace UIProcess.Modelos
             Software = software;
             Licenciamientos = licenciamientos;
             CategoriasAcademicas = categoriasAcademicas;
-            ExperienciasAcademicas = experienciasAcademicas;
             UnidadesAcademicas = unidadesAcademicas;
             SubdisciplinasCientificas = subdisciplinasCientificas;
+            PerfilesAcademicos = perfilesAcademicos;
         }
     }
 }

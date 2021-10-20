@@ -11,6 +11,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
     {
         [Required]
         [Display(Name = "Situación laboral")]
+        public string SituacionLaboral { get; set; }
         public int SituacionLaboralSeleccionada { get; set; }
         public IEnumerable<SelectListItem> CatalogoSituacionLaboral { get; set; }
     }
