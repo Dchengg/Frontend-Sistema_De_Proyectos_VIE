@@ -377,6 +377,7 @@
     <Content Include="Views\SeguimientoProyecto\UIModificarInvestigadorAsociado.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIAmpliarObjetivos.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIObjetivosEspecificos.cshtml" />
+    <Content Include="Views\Home\UIReportes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\BuscadorProyecto\" />
