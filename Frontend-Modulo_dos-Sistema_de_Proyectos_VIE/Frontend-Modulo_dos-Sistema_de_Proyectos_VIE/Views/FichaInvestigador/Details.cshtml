@@ -1,0 +1,1560 @@
+﻿@model Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador.FichaInvestigadorViewModel
+@{
+
+    ViewBag.Title = "Ficha del Investigador";
+    Layout = "~/Views/Shared/MainMenu.cshtml";
+}
+
+@using (Html.BeginForm("Index", "FichaInvestigador", FormMethod.Post, new { id = "formInvestigador" }))
+{
+
+    <div class="container-fluid p-4 rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background-color:white; width:90%">
+        <!-- Datos generales -->
+        <h3 class="blue font-weight-bold m-2">Información Personal</h3>
+        <div class="row">
+            <div class="col-12">
+                <p style="color:red"><b>Recuerde seleccionar cuales campos desea tener privados <span class="fa fa-lock"></span> , de lo contrario serán públicos.</b></p>
+            </div>
+            <!-- Columna izquierda -->
+            <div class="col-md-6 mt-3">
+                <!-- Fecha de ultima modificacion -->
+                <div class="row">
+                    <div class="col-md-5">
+                        <label>
+                            Fecha de última modificación
+                        </label>
+                    </div>
+                    <div class="col-md-5">
+                        <input class="form-control" placeholder="09/10/2021 14:34:12" disabled />
+                    </div>
+                </div>
+
+                <!-- Numero de identidad -->
+                <div class="row mt-3">
+                    <div class="col-md-4 ">
+                        <label>Número de Identidad</label>
+                    </div>
+                    <div class="col-md-4 ">
+                        @Html.TextBoxFor(vista => vista.NumeroIdentidad, new { @class = "form-control " })
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check m-2">
+                            <input class="form-check-input" type="checkbox" value="" id="numeroIdentidadPrivacidad">
+                            <label class="form-check-label" for="numeroIdentidadPrivacidad">
+                                Privado <span class="fa fa-lock" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nombre -->
+                <div class="row mt-3">
+                    <div class="col-md-4 ">
+                        <label>Nombre</label>
+                    </div>
+                    <div class="col-md-4 ">
+                        @Html.TextBoxFor(vista => vista.Nombre, new { @class = "form-control " })
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check m-2">
+                            <input class="form-check-input" type="checkbox" value="" id="nombrePrivacidad">
+                            <label class="form-check-label" for="nombrePrivacidad">
+                                Privado <span class="fa fa-lock" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Primer apellido -->
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <label>Primer apellido</label>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="mb-3">
+                            @Html.TextBoxFor(vista => vista.PrimerApellido, new { @class = "form-control " })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check m-2">
+                            <input class="form-check-input" type="checkbox" value="" id="apellido1IdentidadPrivacidad">
+                            <label class="form-check-label" for="apellido1IdentidadPrivacidad">
+                                Privado <span class="fa fa-lock" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Segundo apellido -->
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <label>Segundo apellido</label>
+                    </div>
+                    <div class="col-md-4">
+                        @{
+                            if (Model.SegundoApellido != null)
+                            {
+                                Html.TextBoxFor(vista => vista.SegundoApellido, new { @class = "form-control " });
+                            }
+                            else
+                            {
+                                <input class="form-control" placeholder="No indica segundo apelldio" />
+                            }
+                        }
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check m-2">
+                            <input class="form-check-input" type="checkbox" value="" id="apellido2Privacidad">
+                            <label class="form-check-label" for="apellido2Privacidad">
+                                Privado <span class="fa fa-lock" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nacionalidad -->
+                <div class="row mt-3">
+                    <div class="col-md-4 ">
+                        <label>Nacionalidad</label>
+                    </div>
+                    <div class="col-md-4 ">
+                        @Html.DropDownListFor(vista => vista.NacionalidadViewModel.NacionalidadSeleccionada, new SelectList(Model.NacionalidadViewModel.CatalogoNacionalidad, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Nacionalidad" })
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check m-2">
+                            <input class="form-check-input" type="checkbox" value="" id="nacionalidadPrivacidad">
+                            <label class="form-check-label" for="nacionalidadPrivacidad">
+                                Privado <span class="fa fa-lock" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!---Pais Nacimiento -->
+                <div class="row mt-3">
+                    <div class="col-md-4 ">
+                        <label>Pais Nacimiento</label>
+                    </div>
+                    <div class="col-md-4 ">
+                        @Html.DropDownListFor(vista => vista.PaisViewModel.PaisNacimientoSeleccionado, new SelectList(Model.PaisViewModel.CatalogoPais, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "PaisNacimiento" })
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check m-2">
+                            <input class="form-check-input" type="checkbox" value="" id="paisNacimientoPrivacidad">
+                            <label class="form-check-label" for="paisNacimientoPrivacidad">
+                                Privado <span class="fa fa-lock" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fecha Nacimiento -->
+                <div class="row mt-3">
+                    <div class="col-md-4">
+                        <label>Fecha Nacimiento</label>
+                    </div>
+                    <div class="col-md-4 ">
+                        <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                            @Html.TextBoxFor(vista => vista.FechaNacimiento, new { @class = "form-control" })
+                            <span class="input-group-addon m-1">
+                                <button type="button" id="btnFechaNacimiento" class="fa fa-calendar-plus-o btn btn-primary"></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check m-2">
+                            <input class="form-check-input" type="checkbox" value="" id="fechaNacimientoPrivacidad">
+                            <label class="form-check-label" for="fechaNacimientoPrivacidad">
+                                Privado <span class="fa fa-lock" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Telefono modal -->
+                <div class="modal fade" id="telefonosModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Teléfonos</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="col-md-12 table-responsive">
+                                    <table id="Telefonos" class="table" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Tipo</th>
+                                                <th>Número de teléfono</th>
+                                                <th>Privado</th>
+                                                <th>Editar</th>
+                                                <th>Eliminar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var telefono in Model.Telefonos)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DropDownList(telefono.TipoTelefono,
+                        new SelectList(telefono.CatalogoTipoTelefono, "Value", "Text"),
+                        htmlAttributes: new { @class = "form-control" })
+                                                    </td>
+                                                    <td>@Html.TextBox("NumeroTelefono", telefono.Telefono, htmlAttributes: new { @class = "form-control" })</td>
+                                                    <td>
+                                                        <div class="form-check m-2">
+                                                            <input class="form-check-input" type="checkbox" value="" id="telefonoPrivacidad">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btnGrande btnAzul">Editar</button>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-danger">Eliminar</button>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-4">
+                                        @Html.DropDownList("Tipos de teléfono", Model.CatalogoTipoTelefono, htmlAttributes: new { @class = "form-control", id = "TipoTelefonoNuevo" })
+                                    </div>
+                                    <div class="col-8">
+                                        <input class="form-control" placeholder="Número" />
+                                    </div>
+                                </div>
+                                <div class="row d-flex flex-row-reverse">
+                                    <button type="button" class="btnAzul m-3 ">Agregar teléfono</button>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Telefonos -->
+                <div class="row mt-3">
+                    <div class="col-md-5">
+                        <label>Teléfonos</label>
+                    </div>
+                    <div class="col-md-5">
+                        <button type="button" id="btnVerTelefonos" class="btnAzul btnGrande" data-toggle="modal" data-target="#telefonosModal">Ver teléfonos</button>
+                    </div>
+                </div>
+
+                <!-- Unidad academica modal -->
+                <div class="modal" id="unidadesAcademicasModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Unidades académicas</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <table id="Unidades" class="table" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Unidad académica</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var unidadAcademica in Model.UnidadesAcademicas)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DropDownList(unidadAcademica.UnidadAcademicaSeleccionada.ToString(),
+                         new SelectList(unidadAcademica.CatalogoUnidadesAcademicas, "Value", "Text"),
+                         htmlAttributes: new { @class = "form-control", id = "UnidadAcademica" })
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unidades academicas -->
+                <div class="row mt-3">
+                    <div class="col-md-5">
+                        <label>Unidades académicas en las que labora </label>
+                    </div>
+                    <div class="col-md-5">
+                        <button type="button" class="btnAzul btnGrande" data-toggle="modal" data-target="#unidadesAcademicasModal">Ver unidades académicas</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Columna derecha -->
+            <div class="col-md-6 mt-3">
+
+                <!-- Foto -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>Foto</label>
+                    </div>
+                    @{
+                        var base64 = Convert.ToBase64String(Model.Fotografia);
+                        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    }
+                    <div class="col-md-4">
+                        <img src="@imgSrc" class="rounded" alt="Imagen del investigador" width="200" height="200">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="wrapperBotonAgregar">
+                            <input class="btnGrande btnAzul" type="button" value="Seleccionar foto">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check m-2">
+                            <input class="form-check-input" type="checkbox" value="" id="fotoPrivacidad">
+                            <label class="form-check-label" for="fotoPrivacidad">
+                                Privado <span class="fa fa-lock" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fecha de ingreso al TEC -->
+                <div class="row mt-3">
+                    <div class="col-md-4 ">
+                        <label>Fecha de Ingreso al TEC</label>
+                    </div>
+                    <div class="col-md-4 ">
+                        <div id="datepicker-group" class="input-group date" data-date-format="dd/mm/yyyy">
+                            @Html.TextBoxFor(vista => vista.FechaDeIngresoInstitucion, new { @class = "form-control" })
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check m-2">
+                            <input class="form-check-input" type="checkbox" value="" id="fechaIngresoPrivacidad">
+                            <label class="form-check-label" for="fechaIngresoPrivacidad">
+                                Privado <span class="fa fa-lock" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seudonimo bibliografico -->
+                <div class="row mt-3">
+                    <div class="col-md-4 ">
+                        <label>Seudónimo Bibliográfico</label>
+                    </div>
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(vista => vista.Seudonimo, new { @class = "form-control " })
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check m-2">
+                            <input class="form-check-input" type="checkbox" value="" id="seudonimoPrivacidad">
+                            <label class="form-check-label" for="seudonimoPrivacidad">
+                                Privado <span class="fa fa-lock" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Correo modal -->
+                <div class="modal fade" id="correosModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Correos</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="col-md-12 table-responsive">
+                                    <table id="Correos" class="table" cellspacing="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Correo</th>
+                                                <th>Privado</th>
+                                                <th>Editar</th>
+                                                <th>Eliminar</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var correo in Model.Correos)
+                                            {
+                                                <tr>
+                                                    <td>@Html.TextBox("Correo", correo.Correo, htmlAttributes: new { @class = "form-control" })</td>
+                                                    <td>
+                                                        <div class="form-check m-2">
+                                                            <input class="form-check-input" type="checkbox" value="" id="correoPrivacidad">
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btnGrande btnAzul">Editar</button>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-danger">Eliminar</button>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <input class="form-control" placeholder="Correo electrónico" />
+                                </div>
+                                <div class="row d-flex flex-row-reverse">
+                                    <button type="button" class="btnAzul m-3 ">Agregar correo</button>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Correos -->
+                <div class="row mt-3">
+                    <div class="col-md-5">
+                        <label>Correos</label>
+                    </div>
+                    <div class="col-md-5">
+                        <button type="button" id="btnVerCorreos" class="btnAzul btnGrande" data-toggle="modal" data-target="#correosModal">Ver correos</button>
+                    </div>
+                </div>
+
+                <!-- Apartado postal-->
+                <div class="row mt-3">
+                    <div class="col-md-4 ">
+                        <label>Apartado Postal</label>
+                    </div>
+                    <div class="col-md-4 ">
+                        @Html.TextBoxFor(vista => vista.ApartadoPostal, new { @class = "form-control " })
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check m-2">
+                            <input class="form-check-input" type="checkbox" value="" id="apartadoPostalPrivacidad">
+                            <label class="form-check-label" for="apartadoPostalPrivacidad">
+                                Privado <span class="fa fa-lock" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sexo -->
+                <div class="row mt-3">
+                    <div class="col-md-4 ">
+                        <label>Sexo</label>
+                    </div>
+                    <div class="col-md-4 ">
+                        @Html.DropDownListFor(vista => vista.SexoViewModel.SexoSeleccionado,
+                               new SelectList(Model.SexoViewModel.CatalogoSexo, "Value", "Text"),
+                               htmlAttributes: new { @class = "form-control", id = "Sexo" })
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check m-2">
+                            <input class="form-check-input" type="checkbox" value="" id="sexoPrivacidad">
+                            <label class="form-check-label" for="sexoPrivacidad">
+                                Privado <span class="fa fa-lock" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Situacion laboral -->
+                <div class="row mt-3">
+                    <div class="col-md-4 ">
+                        <label>Situación Laboral</label>
+                    </div>
+                    <div class="col-md-4 ">
+                        @Html.DropDownListFor(vista => vista.SituacionLaboralViewModel.SituacionLaboralSeleccionada,
+                               new SelectList(Model.SituacionLaboralViewModel.CatalogoSituacionLaboral, "Value", "Text"),
+                               htmlAttributes: new { @class = "form-control", id = "SituacionLaboral" })
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check m-2">
+                            <input class="form-check-input" type="checkbox" value="" id="situacionLaboralPrivacidad">
+                            <label class="form-check-label" for="situacionLaboralPrivacidad">
+                                Privado <span class="fa fa-lock" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Porcentaje Nombramiento -->
+                <div class="row mt-3">
+                    <div class="col-md-4 ">
+                        <label>Porcentaje de Nombramiento Indefinido</label>
+                    </div>
+                    <div class="col-md-4 ">
+                        @Html.DropDownListFor(vista => vista.PorcentajeNombramientoViewModel.PorcentajeNombramientoSeleccionado,
+                               new SelectList(Model.PorcentajeNombramientoViewModel.CatalogoPorcentajeNombramiento, "Value", "Text"),
+                               htmlAttributes: new { @class = "form-control", id = "PorcentajeNombramiento" })
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-check m-2">
+                            <input class="form-check-input" type="checkbox" value="" id="situacionLaboralPrivacidad">
+                            <label class="form-check-label" for="situacionLaboralPrivacidad">
+                                Privado <span class="fa fa-lock" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categoria academica modal -->
+                <div class="modal fade" id="categoriasAcademicasModal" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Categoria Académica</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-sm table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                Categoría Académica
+                                            </th>
+                                            <th>
+                                                Privacidad
+                                            </th>
+                                            <th>
+                                                Editar
+                                            </th>
+                                            <th>
+                                                Eliminar
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var categoria in Model.CategoriasAcademicas)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DropDownList(categoria.CategoriaAcademicaSeleccionada.ToString(),
+                                new SelectList(categoria.CatalogoCategoriasAcademicas, "Value", "Text"),
+                                htmlAttributes: new { @class = "form-control", id = "CategoriaAcademica" })
+                                                </td>
+                                                <td>
+                                                    <div class="form-check m-2">
+                                                        <input class="form-check-input" type="checkbox" value="" id="correoPrivacidad">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btnGrande btnAzul">Editar</button>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-danger">Eliminar</button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <hr />
+                                <div class="row">
+                                    <input class="form-control" placeholder="Debe ser un catálogo" />
+                                </div>
+                                <div class="row d-flex flex-row-reverse">
+                                    <button type="button" class="btnAzul m-3 ">Agregar categoría académica</button>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categorias academicas -->
+                <div class="row mt-3">
+                    <div class="col-md-5 ">
+                        <label>Categoría Académica</label>
+                    </div>
+                    <div class="col-md-5">
+                        <button type="button" id="btnVerCategoriasAcademicas" class="btnAzul btnGrande" data-toggle="modal" data-target="#categoriasAcademicasModal">Ver categorías académicas</button>
+                    </div>
+                </div>
+
+                <!-- Disciplinas cientificas-->
+                <div class="row mt-3">
+                    <div class="col-md-5 ">
+                        <label>Disciplina</label>
+                    </div>
+                    <div class="col-md-5 ">
+                        <div class="wrapperBotonAgregar">
+                            <input class="btnGrande btnAzul" type="button" value="Agregar Disciplina">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- OTRAS SECCIONES -->
+
+    <!-- Perfiles académicos -->
+    <div class="container-fluid mt-5 p-4 rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background-color:white">
+        <h3 class="blue font-weight-bold">Perfiles Académicos</h3>
+
+        <!-- Tabla de perfiles académicos -->
+        <div class="row align-items-center justify-items-center mt-5">
+            <table class="table table-striped ">
+                <thead class="table-heading">
+                    <tr id="ROW1">
+                        <th>Tipo de perfil</th>
+                        <th>Dirección</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        int contador = 0;
+                        foreach (var perfil in Model.PerfilesAcademicos)
+                        {
+                            <tr>
+                                <td>
+                                    @perfil.TipoPerfilSeleccionado.ToString()
+                                </td>
+                                <td>
+                                    @perfil.Direccion
+                                </td>
+                                <td>
+                                    <button class="btnAzul" id="btnEditarPerfilAcademico" data-toggle="modal" data-target="#perfilAcademicoModal-@contador">Editar</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" id="btnEliminarPerfilAcademico">Eliminar</button>
+                                </td>
+                            </tr>
+
+                            <!-- Modal de perfiles académicos -->
+                            <div class="modal fade" id="perfilAcademicoModal-@contador" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Editar perfil académico</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mx-2 my-2">
+                                                <label>Tipo de perfil</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("campoTextoTipoPerfil", perfil.TipoPerfilSeleccionado, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Dirección URL del perfil</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("campoTextoDireccion", perfil.Direccion, htmlAttributes: new { @class = "form-control " })
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btnGrande btnAzul">Guardar perfil</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            contador++;
+                        }
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Modal para agregar perfiles académicos -->
+        <div class="modal fade" id="perfilAcademicoModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Agregar perfil académico</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mx-2 my-2">
+                            <label>Tipo de perfil</label>
+                        </div>
+                        <div class="mx-2 my-2">
+                            <input class="form-control" />
+                        </div>
+
+                        <div class="mx-2 my-2">
+                            <label>Dirección URL del perfil</label>
+                        </div>
+                        <div class="mx-2 my-2">
+                            <input class="form-control" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btnGrande btnAzul">Guardar perfil</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botón para agregar un perfil académico -->
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-12 form-inline align-items-center">
+                <div class="wrapperBotonAgregar">
+                    <button type="button" id="btnAgregarPerfilAcademico" class="btnGrande btnAzul" data-toggle="modal" data-target="#perfilAcademicoModal">Agregar perfil</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Estudios realizados -->
+    <div class="container-fluid mt-5 p-4 rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background-color:white">
+
+        <h3 class="blue font-weight-bold">Estudios Realizados</h3>{
+            <div class="row align-items-center justify-items-center mt-3">
+                <div class="col-md-4 form-inline">
+                    <label class="col-md-6" for="gradoAcadInput">Grado Académico</label>
+                    <input type="text" class="col-md-6 form-control" id="gradoAcadInput" />
+                </div>
+                <div class="col-md-4 form-inline">
+                    <label class="col-md-6">Institución</label>
+                    @Html.DropDownList("catalogoInstitucion_EstudioRealizado", new SelectList(Model.CatalogoInstitucion, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
+                </div>
+                <div class="col-md-4 form-inline">
+                    <label class="col-md-6">País</label>
+                    @Html.DropDownList("catalogoPaises_EstudioRealizado", new SelectList(Model.CatalogoPais, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
+                </div>
+            </div>
+            <div class="row align-items-center justify-items-center mt-3">
+                <div class="col-md-4 form-inline">
+                    <label class="col-md-6" for="anioGradInput">Año de Graduación</label>
+                    <input type="text" class="col-md-6 form-control" id="anioGradInput" />
+                </div>
+                <div class="col-md-4 form-inline">
+                    <label class="col-md-6" for="areaEstInput">Área de Estudio</label>
+                    <input type="text" class="col-md-6 form-control" id="areaEstInput" />
+                </div>
+            </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-12 form-inline">
+                <div class="wrapperBotonAgregar">
+                    <input class="btnGrande btnAzul" type="button" value="Agregar Estudio">
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-5">
+            <table class="table table-striped ">
+                <thead class="table-heading">
+                    <tr id="ROW1">
+                        <th>Grado Académico</th>
+                        <th>Institución</th>
+                        <th>País</th>
+                        <th>Año de Graduación</th>
+                        <th>Área de Estudio</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @{
+                        int contadorEstudio = 0;
+                        foreach (var estudioRealizado in Model.EstudiosRealizados)
+                        {
+                            <tr>
+                                <td>
+                                    @estudioRealizado.TituloAcademico
+                                </td>
+                                <td>
+                                    @estudioRealizado.Institucion
+                                </td>
+                                <td>
+                                    @estudioRealizado.Pais
+                                </td>
+                                <td>
+                                    @estudioRealizado.AnoGraduacion
+                                </td>
+                                <td>
+                                    @estudioRealizado.AreaDeEstudio
+                                </td>
+                                <td>
+                                    <button class="btnAzul" id="btnEditarEstudioRealizado" data-toggle="modal" data-target="#estudioRealizadoModal-@contadorEstudio">Editar</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" id="btnEliminarEstudioRealizado">Eliminar</button>
+                                </td>
+                            </tr>
+
+                            <!-- Modal de estudios realizados -->
+                            <div class="modal fade" id="estudioRealizadoModal-@contadorEstudio" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Editar estudio realizado</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mx-2 my-2">
+                                                <label>Título académico</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.DropDownList(estudioRealizado.TituloAcademico + contadorEstudio, new SelectList(estudioRealizado.TitulosAcademicos, "Value", "Text", estudioRealizado.IdTituloAcademico.ToString()), htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Institución</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.DropDownList(estudioRealizado.Institucion + contadorEstudio, new SelectList(estudioRealizado.Instituciones, "Value", "Text", estudioRealizado.IdInstitucion.ToString()), htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>País</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.DropDownList(estudioRealizado.Pais + contadorEstudio, new SelectList(estudioRealizado.Paises, "Value", "Text", estudioRealizado.IdPais.ToString()), htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Año de graduación</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("anoGraduacion" + contadorEstudio, estudioRealizado.AnoGraduacion, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Área de estudio</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("areaEstudio" + contadorEstudio, estudioRealizado.AreaDeEstudio, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btnGrande btnAzul">Guardar estudio realizado</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            contadorEstudio++;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Idiomas -->
+    <div class="container-fluid mt-5 p-4 rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background-color:white">
+        <h3 class="blue font-weight-bold">Idiomas</h3>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-4 form-inline">
+                <label class="col-md-6">Idioma</label>
+                @Html.DropDownList("catalogoIdiomas_Idiomas", new SelectList(Model.CatalogoIdioma, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6" })
+            </div>
+            <div class="col-md-4 form-inline">
+                <label class="col-md-6">Nivel de habla</label>
+                @Html.DropDownList("catalogoNivelHabla_Idiomas", new SelectList(Model.CatalogoNivelIdioma, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6" })
+            </div>
+            <div class="col-md-4 form-inline">
+                <label class="col-md-6">Nivel de lectura</label>
+                @Html.DropDownList("catalogoNivelLectura_Idiomas", new SelectList(Model.CatalogoNivelIdioma, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6" })
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-4 form-inline">
+                <label class="col-md-6">Nivel de escritura</label>
+                @Html.DropDownList("catalogoNivelEscritura_Idiomas", new SelectList(Model.CatalogoNivelIdioma, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6" })
+            </div>
+            <div class="col-md-4 form-inline">
+                <label class="col-md-6">Idioma natal</label>
+                <select class="col-md-6 form-control">
+                    <option>Si</option>
+                    <option>No</option>
+                </select>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-12 form-inline align-items-center">
+                <div class="wrapperBotonAgregar">
+                    <input class="btnGrande btnAzul" type="button" value="Agregar Idioma">
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-5">
+            <table class="table table-striped ">
+                <thead class="table-heading">
+                    <tr id="ROW1">
+                        <th>Idioma</th>
+                        <th>Nivel de habla</th>
+                        <th>Nivel de lectura</th>
+                        <th>Nivel de escritura</th>
+                        <th>Idioma natal</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int contadorIdioma = 0;
+
+                        foreach (var idioma in Model.Idiomas)
+                        {
+                            <tr>
+                                <td>
+                                    @idioma.NombreIdioma
+                                </td>
+                                <td>
+                                    @idioma.NivelHabla
+                                </td>
+                                <td>
+                                    @idioma.NivelLectura
+                                </td>
+                                <td>
+                                    @idioma.NivelEscritura
+                                </td>
+                                <td>
+                                    @idioma.IdiomaMaterno
+                                <td>
+                                    <button class="btnAzul" id="btnEditarIdioma" data-toggle="modal" data-target="#idiomaModal-@contadorIdioma">Editar</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" id="btnEliminarIdioma">Eliminar</button>
+                                </td>
+                            </tr>
+
+                            <!-- Modal de idiomas -->
+                            <div class="modal fade" id="idiomaModal-@contadorIdioma" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Editar idioma</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mx-2 my-2">
+                                                <label>Idioma</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.DropDownList("catalogoIdioma" + contadorIdioma, new SelectList(idioma.CatalogoIdiomas, "Value", "Text", idioma.IdIdioma.ToString()), htmlAttributes: new { @class = "form-control col form-inline" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Nivel de habla</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.DropDownList("catalogoNivelHabla" + contadorIdioma, new SelectList(idioma.CatalogoNivelHabla, "Value", "Text", idioma.IdNivelHabla.ToString()), htmlAttributes: new { @class = "form-control col form-inline" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Nivel de lectura</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.DropDownList("catalogoNivelLectura" + contadorIdioma, new SelectList(idioma.CatalogoNivelLectura, "Value", "Text", idioma.IdNivelLectura.ToString()), htmlAttributes: new { @class = "form-control col form-inline" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Nivel de escritura</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.DropDownList("catalogoNivelEscritura" + contadorIdioma, new SelectList(idioma.CatalogoNivelEscritura, "Value", "Text", idioma.IdNivelEscritura.ToString()), htmlAttributes: new { @class = "form-control col form-inline" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Idioma materno</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.RadioButton("radiButtonIdiomaMaterno", idioma.IdiomaMaterno, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btnGrande btnAzul">Guardar idioma</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            contadorIdioma++;
+                        }
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+    <!-- Experiencias -->
+    <div class="container-fluid mt-5 p-4 rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background-color:white">
+        <h3 class="blue font-weight-bold">Experiencia en Investigación</h3>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="nombrePuestoInput">Nombre del Puesto</label>
+                <input type="text" class="col-md-6 form-control" id="nombrePuestoInput" />
+            </div>
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6">Unidad Departamental</label>
+                <select class="col-md-6 form-control">
+                    <option>Unidad departamental</option>
+                </select>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="anioInicioInput">Año de Inicio</label>
+                <input type="text" class="col-md-6 form-control" id="anioGradInput" />
+            </div>
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="anioTerminoInput">Año de Término</label>
+                <input type="text" class="col-md-6 form-control" id="anioTerminoInput" />
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-3 form-inline">
+                <div class="wrapperBotonAgregar">
+                    <input class="btnGrande btnAzul" type="button" value="Agregar Experiencia">
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-5">
+            <table class="table table-striped ">
+                <thead class="table-heading">
+                    <tr id="ROW1">
+                        <th>Nombre del Puesto</th>
+                        <th>Unidad Departamental</th>
+                        <th>Año de Inicio</th>
+                        <th>Año de Graduación</th>
+                        <th>Año de Término</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Participaciones -->
+    <div class="container-fluid mt-5 p-4 rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background-color:white">
+        <h3 class="blue font-weight-bold">Participación en Proyectos, Redes, Grupos de Trabajo, Asociaciones, Comités Editoriales, Otros.</h3>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="nombrePuestoInput">Nombre del Puesto</label>
+                <input type="text" class="col-md-6 form-control" id="nombrePuestoInput" />
+            </div>
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6">Entidad</label>
+                <select class="col-md-6 form-control">
+                    <option>Entidad</option>
+                </select>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="anioInicioInput">Año de Inicio</label>
+                <input type="text" class="col-md-6 form-control" id="anioGradInput" />
+            </div>
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="anioTerminoInput">Año de Término</label>
+                <input type="text" class="col-md-6 form-control" id="anioTerminoInput" />
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-3 form-inline">
+                <div class="wrapperBotonAgregar">
+                    <input class="btnGrande btnAzul" type="button" value="Agregar Participación">
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-5">
+            <table class="table table-striped ">
+                <thead class="table-heading">
+                    <tr id="ROW1">
+                        <th>Nombre del Puesto</th>
+                        <th>Entidad</th>
+                        <th>Año de Inicio</th>
+                        <th>Año de Graduación</th>
+                        <th>Año de Término</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Premios obtenidos -->
+    <div class="container-fluid mt-5 p-4 rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background-color:white">
+        <h3 class="blue font-weight-bold">Premios Obtenidos</h3>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="nombrePremioInput">Nombre del premio</label>
+                <input type="text" class="col-md-6 form-control" id="nombrePremioInput" />
+            </div>
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6">Año</label>
+                <select class="col-md-6 form-control">
+                    <option>Año</option>
+                </select>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="institucionInput">Institución</label>
+                <input type="text" class="col-md-6 form-control" id="institucionInput" />
+            </div>
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="paisInput">País</label>
+                <input type="text" class="col-md-6 form-control" id="paisInput" />
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-3 form-inline">
+                <div class="wrapperBotonAgregar">
+                    <input class="btnGrande btnAzul" type="button" value="Agregar Premio">
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-5">
+            <table class="table table-striped ">
+                <thead class="table-heading">
+                    <tr id="ROW1">
+                        <th>Nombre del premio</th>
+                        <th>Año</th>
+                        <th>Institución</th>
+                        <th>País</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Areas Frascati -->
+    <div class="container-fluid mt-5 p-4 rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background-color:white">
+        <h3 class="blue font-weight-bold">Áreas Frascati</h3>
+    </div>
+
+    <!-- Articulos -->
+    <div class="container-fluid mt-5 p-4 rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background-color:white">
+        <h3 class="blue font-weight-bold">Artículos de revista</h3>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="nombrePatenteInput">Título del artículo</label>
+                <input type="text" class="col-md-6 form-control" id="tituloArticuloInput" />
+            </div>
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="numPatenteInput">Nombre de la revista</label>
+                <select class="col-md-6 form-control">
+                    <option>Science</option>
+                </select>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="inscritoEnInput">Nombre del índice</label>
+                <select class="col-md-6 form-control">
+                    <option>Índice 1</option>
+                </select>
+            </div>
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6">Volumen</label>
+                <input type="text" class="col-md-6 form-control" id="volumenArticulo" />
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="inscritoEnInput">Número</label>
+                <input type="text" class="col-md-6 form-control" id="numeroArticulo" />
+            </div>
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6">Año</label>
+                <select class="col-md-6 form-control">
+                    <option>2021</option>
+                </select>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-3 form-inline">
+                <div class="wrapperBotonAgregar">
+                    <input class="btnGrande btnAzul" type="button" value="Agregar artículo">
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-5">
+            <table class="table table-striped ">
+                <thead class="table-heading">
+                    <tr id="ROW1">
+                        <th>Título del artículo</th>
+                        <th>Número de la revista</th>
+                        <th>Nombre del índice</th>
+                        <th>Volumen</th>
+                        <th>Número</th>
+                        <th>Año</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Patentes -->
+    <div class="container-fluid mt-5 p-4 rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background-color:white">
+        <h3 class="blue font-weight-bold">Patentes de Innovación</h3>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="nombrePatenteInput">Nombre de la patente</label>
+                <input type="text" class="col-md-6 form-control" id="nombrePatenteInput" />
+            </div>
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="numPatenteInput">Número de la patente</label>
+                <input type="text" class="col-md-6 form-control" id="numPatenteInput" />
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="inscritoEnInput">Inscrito en</label>
+                <input type="text" class="col-md-6 form-control" id="inscritoEnInput" />
+            </div>
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6">Año</label>
+                <select class="col-md-6 form-control">
+                    <option>Año</option>
+                </select>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-3 form-inline">
+                <div class="wrapperBotonAgregar">
+                    <input class="btnGrande btnAzul" type="button" value="Agregar Patente">
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-5">
+            <table class="table table-striped ">
+                <thead class="table-heading">
+                    <tr id="ROW1">
+                        <th>Nombre de la patente</th>
+                        <th>Número de patente</th>
+                        <th>Inscrito en</th>
+                        <th>Año</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Licenciamientos -->
+    <div class="container-fluid mt-5 p-4 rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background-color:white">
+        <h3 class="blue font-weight-bold">Licenciamientos</h3>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="productoLicenciadoInput">Producto licenciado</label>
+                <input type="text" class="col-md-6 form-control" id="productoLicenciadoInput" />
+            </div>
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="licenciadaAInput">Licenciada a</label>
+                <input type="text" class="col-md-6 form-control" id="licenciadaAInput" />
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6">Año</label>
+                <select class="col-md-6 form-control">
+                    <option>Año</option>
+                </select>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-3 form-inline">
+                <div class="wrapperBotonAgregar">
+                    <input class="btnGrande btnAzul" type="button" value="Agregar Licenciamiento">
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-5">
+            <table class="table table-striped ">
+                <thead class="table-heading">
+                    <tr id="ROW1">
+                        <th>Producto licenciado</th>
+                        <th>Licenciada a</th>
+                        <th>Año</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Software -->
+    <div class="container-fluid mt-5 mb-5 p-4 rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background-color:white">
+        <h3 class="blue font-weight-bold">Software</h3>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="tituloInput">Título</label>
+                <input type="text" class="col-md-6 form-control" id="tituloInput" />
+            </div>
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="plataformaInput">Plataforma</label>
+                <input type="text" class="col-md-6 form-control" id="licenciadaAInput" />
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6">Año</label>
+                <select class="col-md-6 form-control">
+                    <option>Año</option>
+                </select>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-3 form-inline">
+                <div class="wrapperBotonAgregar">
+                    <input class="btnGrande btnAzul" type="button" value="Agregar Software">
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-5">
+            <table class="table table-striped ">
+                <thead class="table-heading">
+                    <tr id="ROW1">
+                        <th>Título</th>
+                        <th>Plataforma</th>
+                        <th>Año</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Ponencias -->
+    <div class="container-fluid p-4 rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background-color:white">
+        <h3 class="blue font-weight-bold">Ponencias</h3>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="nombrePatenteInput">Título</label>
+                <input type="text" class="col-md-6 form-control" id="tituloArticuloInput" />
+            </div>
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="numPatenteInput">Seminario o conferencia</label>
+                <select class="col-md-6 form-control">
+                    <option>Science</option>
+                </select>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6" for="inscritoEnInput">Año</label>
+                <select class="col-md-6 form-control">
+                    <option>2021</option>
+                </select>
+            </div>
+            <div class="col-md-6 form-inline">
+                <label class="col-md-6">País</label>
+                <select class="col-md-6 form-control">
+                    <option>Costa Rica</option>
+                </select>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-3">
+            <div class="col-md-3 form-inline">
+                <div class="wrapperBotonAgregar">
+                    <input class="btnGrande btnAzul" type="button" value="Agregar artículo">
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center justify-items-center mt-5">
+            <table class="table table-striped ">
+                <thead class="table-heading">
+                    <tr id="ROW1">
+                        <th>Título</th>
+                        <th>Seminario o conferencia</th>
+                        <th>Año</th>
+                        <th>País</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+                <tr>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                    <th>x</th>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <button type="submit" name="guardarFicha">Guardar datos de la ficha</button>
+}

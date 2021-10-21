@@ -12,6 +12,8 @@
     @Styles.Render("~/Content/SeguimientoProyecto.css")
     @Styles.Render("~/Content/FichaInvestigador.css")
     @Scripts.Render("~/bundles/modernizr")
+
+    @{var id = "123456789"; }
 </head>
 
 <body>
@@ -22,8 +24,8 @@
                 <img src="~/Assets/TEC-logo-white.png" alt="TEC-logo-white" />
                 <ul class="nav nav-sidebar d-flex flex-column">
                     <li class="d-flex flex-row">
-                        <a href="/FichaInvestigador">
-                            <span class="fa fa-address-book"></span>
+                       <a href="/FichaInvestigador/Details/@id">
+                           <span class="fa fa-address-book" aria-hidden="true"></span>
                             Ficha del investigador
                         </a>
                     </li>

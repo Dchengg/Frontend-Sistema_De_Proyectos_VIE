@@ -59,7 +59,7 @@ namespace UIProcess.Modelos
         [DataMember]
         public List<UipIdioma> Idiomas { get; set; }
         [DataMember]
-        public List<UipExperienciaAcademica> ExperienciaAcademicas { get; set; }
+        public List<UipExperienciaAcademica> ExperienciasAcademicas { get; set; }
         [DataMember]
         public List<UipParticipacion> Participaciones { get; set; }
         [DataMember]
@@ -82,6 +82,7 @@ namespace UIProcess.Modelos
         public List<UipUnidadAcademica> UnidadesAcademicas { get; set; }
         [DataMember]
         public List<UipSubdisciplina> SubdisciplinasCientificas { get; set; }
+        [DataMember]
         public List<UipPerfilAcademico> PerfilesAcademicos { get; set; }
 
         public UipInvestigadorConsultar(string numeroIdentidad, byte[] fotografia, string nombre, string primerApellido,
@@ -89,10 +90,10 @@ namespace UIProcess.Modelos
                                       string tipoIdentificacion, int idPaisNacimiento, string paisNacimiento, int idNacionalidad,
                                       string nacionalidad, string apartadoPostal, string seudonimo, DateTime fechaDeIngresoInstitucion,
                                       int idSituacionLaboral, string situacionLaboral, int porcentajeNombramiento, bool datosPersonales,
-                                      List<UipEstudioRealizado> estudiosRealizados, List<UipIdioma> idiomas, List<UipExperienciaAcademica> experienciaAcademicas,
+                                      List<UipEstudioRealizado> estudiosRealizados, List<UipIdioma> idiomas, List<UipExperienciaAcademica> experienciasAcademicas,
                                       List<UipParticipacion> participaciones, List<UipPremio> premios,
                                       List<UipArticulo> articulos, List<UipPatente> patentes, List<UipLibro> libros, List<UipPonencia> ponencias, List<UipSoftware> software,
-                                      List<UipLicenciamiento> licenciamientos, List<UipCategoriaAcademica> categoriasAcademicas, List<UipExperienciaAcademica> experienciasAcademicas,
+                                      List<UipLicenciamiento> licenciamientos, List<UipCategoriaAcademica> categoriasAcademicas,
                                       List<UipUnidadAcademica> unidadesAcademicas, List<UipSubdisciplina> subdisciplinasCientificas,
                                       List<UipPerfilAcademico> perfilesAcademicos)
         {
@@ -117,7 +118,7 @@ namespace UIProcess.Modelos
             DatosPersonales = datosPersonales;
             EstudiosRealizados = estudiosRealizados;
             Idiomas = idiomas;
-            ExperienciaAcademicas = experienciaAcademicas;
+            ExperienciasAcademicas = experienciasAcademicas;
             Participaciones = participaciones;
             Premios = premios;
             Articulos = articulos;

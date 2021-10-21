@@ -315,7 +315,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\FichaInvestigador\Index.cshtml" />
+    <Content Include="Views\FichaInvestigador\Details.cshtml" />
     <Content Include="Views\Convocatoria\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -15,9 +15,15 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
         // GET: FichaInvestigador
         public ActionResult Index()
         {
-            HttpResponseMessage respuestaHtml = GlobalVariables.WebApiClient.GetAsync("Investigador/123456789").Result;
+            return View();
+        }
+
+        // GET: FichaInvestigador/Details/5
+        public ActionResult Details(string id)
+        {
+            HttpResponseMessage respuestaHtml = GlobalVariables.WebApiClient.GetAsync("Investigador/"+id.ToString()).Result;
             var respuesta = respuestaHtml.Content.ReadAsAsync<UipRespuesta<UipInvestigadorConsultar>>().Result;
-            
+
             FichaInvestigadorViewModel objetoVista = new FichaInvestigadorViewModel();
 
             var investigador = respuesta.ObjetoRespuesta;
@@ -127,7 +133,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
                 SituacionLaboralSeleccionada = investigador.IdSituacionLaboral,
                 CatalogoSituacionLaboral = catSituacionLaboral
             };
-            
+
             // Telefonos
             objetoVista.Telefonos = new List<TelefonoViewModel>();
             foreach (var telefono in investigador.Telefonos)
@@ -250,7 +256,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
 
             // Catalogo experiencias academicas
             objetoVista.ExperienciaAcademicas = new List<ExperienciaAcademicaViewModel>();
-            foreach (var experienciaAcademica in investigador.ExperienciaAcademicas)
+            foreach (var experienciaAcademica in investigador.ExperienciasAcademicas)
             {
                 objetoVista.ExperienciaAcademicas.Add(new ExperienciaAcademicaViewModel()
                 {
@@ -405,14 +411,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
             #endregion
 
             return View(objetoVista);
-        }
-
-        // GET: FichaInvestigador/Details/5
-        public ActionResult Details(string id)
-        {
-            
-
-            return View();
         }
 
         // GET: FichaInvestigador/Create
