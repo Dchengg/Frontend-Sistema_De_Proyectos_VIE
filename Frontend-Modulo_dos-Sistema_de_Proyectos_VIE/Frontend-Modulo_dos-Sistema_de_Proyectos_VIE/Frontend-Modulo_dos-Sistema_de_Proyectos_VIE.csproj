@@ -141,6 +141,7 @@
     <Compile Include="Controllers\ProyectoController.cs" />
     <Compile Include="Controllers\FrascatiController.cs" />
     <Compile Include="Controllers\SeguimientoProyectos\SeguimientoProyectoController.cs" />
+    <Compile Include="Controllers\UbicacionGeograficaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -163,6 +164,7 @@
     <Compile Include="Models\Poblacion.cs" />
     <Compile Include="Models\Proyecto.cs" />
     <Compile Include="Models\TipoDepartamento.cs" />
+    <Compile Include="Models\UbicacionGeografica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

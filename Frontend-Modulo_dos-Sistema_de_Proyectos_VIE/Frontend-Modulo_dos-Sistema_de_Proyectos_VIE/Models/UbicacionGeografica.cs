@@ -11,10 +11,10 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
         #region Variables y Constantes
         [JsonProperty("Id")]
         public String Id { get; set; }
-        [JsonProperty("IdPais")]
-        public String IdPais { get; set; }
-        [JsonProperty("IdRegion")]
-        public String IdRegion { get; set; }
+        [JsonProperty("NombrePais")]
+        public String NombrePais { get; set; }
+        [JsonProperty("NombreRegion")]
+        public String NombreRegion { get; set; }
         [JsonProperty("IdProvincia")]
         public String IdProvincia { get; set; }
         [JsonProperty("CodigoProyecto")]
