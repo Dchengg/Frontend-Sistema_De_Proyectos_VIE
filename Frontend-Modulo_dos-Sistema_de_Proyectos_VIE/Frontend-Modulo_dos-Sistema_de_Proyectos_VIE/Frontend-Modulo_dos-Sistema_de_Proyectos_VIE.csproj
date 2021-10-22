@@ -141,10 +141,12 @@
     <Compile Include="Controllers\ProyectoController.cs" />
     <Compile Include="Controllers\FrascatiController.cs" />
     <Compile Include="Controllers\SeguimientoProyectos\SeguimientoProyectoController.cs" />
+    <Compile Include="Controllers\UbicacionGeograficaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bitacora.cs" />
+    <Compile Include="Models\UbicacionGeografica.cs" />
     <Compile Include="Models\SubODS.cs" />
     <Compile Include="Models\Presupuesto.cs" />
     <Compile Include="Models\SubFrascati.cs" />
@@ -379,6 +381,7 @@
     <Content Include="Views\SeguimientoProyecto\UIModificarInvestigadorAsociado.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIAmpliarObjetivos.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIObjetivosEspecificos.cshtml" />
+    <Content Include="Views\Home\UIReportes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Bitacora\" />
@@ -389,6 +392,7 @@
     <Folder Include="Views\Proyecto\" />
     <Folder Include="Views\SeguimientoProyectos\" />
     <Folder Include="Views\TipoDepartamento\" />
+    <Folder Include="Views\UbicacionGeografica\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

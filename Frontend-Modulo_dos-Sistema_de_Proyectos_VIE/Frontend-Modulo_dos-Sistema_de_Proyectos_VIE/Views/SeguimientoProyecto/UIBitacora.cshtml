@@ -24,14 +24,14 @@
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Entrada</label>
                     <div>
-                        <textarea clas cols="100" rows="2" id="Entrada" name="Entrada"></textarea>
+                        <textarea clas cols="100" rows="2" id="Entrada"></textarea>
                     </div>
                 </div>
             </div>
             <div class="row formRow">
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Fecha</label>
-                    <input type="date" class="form-control" id="Fecha" name="Fecha" />
+                    <input type="date" class="form-control" id="Fecha" />
                 </div>
             </div>
             <div class="row formRow">
@@ -51,23 +51,16 @@
                             <th>Fecha</th>
                         </tr>
 
-
                         @foreach (var bitacora in Model)
                         {
-                            <tr>
-                                @using (Html.BeginForm("UIBitacora", "SeguimientoProyecto", new { idBitacora = bitacora.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
-                                {
-                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
-                                    <th>@bitacora.Responsable</th>
-                                    <th>@bitacora.Descripcion</th>
-                                    <th>@bitacora.FechaYHora</th>
-                                    <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
-                                }
+                        <tr>
 
-                            </tr>
+                            <th>@bitacora.Responsable</th>
+                            <th>@bitacora.Descripcion</th>
+                            <th>@bitacora.FechaYHora</th>
 
+                        </tr>
                         }
-
                     </table>
                 </div>
             </div>
