@@ -88,7 +88,6 @@
         <script>
             (function ($) {           
                 $("#areaDropdown").on('change', function () {
-                    alert(this.value)
                     $.get('GetSubFrascati', { idAreaFrascati: this.value }, function (data) {
                         $("#subAreaDropdown").children().remove()
                         $.each(data, function (index, value) {
