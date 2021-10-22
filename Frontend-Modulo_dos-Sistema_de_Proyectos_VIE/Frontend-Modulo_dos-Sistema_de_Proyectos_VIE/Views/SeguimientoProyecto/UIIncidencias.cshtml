@@ -1,4 +1,4 @@
-﻿
+﻿﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Incidencia>
 @{
     ViewBag.Title = "Incidencias";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
@@ -24,14 +24,14 @@
             <div class="row formRow">
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Titulo de la incidencia</label>
-                    <input style="margin-left:5px" type="text" class="form-control" id="títuloIncidencia" />
+                    <input style="margin-left:5px" type="text" class="form-control" id="tituloIncidencia" name="tituloIncidencia"/>
                 </div>
             </div>
             <div class="row formRow">
                 <div class="form-inline col-md-12">
                     <label for="codigoProyectoInput">Descripción</label>
                     <div>
-                        <textarea style="margin-left:5px" clas cols="200" rows="4" id="descripcionIncidencia"></textarea>
+                        <textarea style="margin-left:5px" clas cols="200" rows="4" id="descripcionIncidencia" name="descripcionIncidencia"></textarea>
                     </div>
                 </div>
             </div>
@@ -53,15 +53,19 @@
                             <th> </th>
                         </tr>
 
-
-                        <tr>
-
-                            <th>xxxxx</th>
-                            <th>xxxxx</th>
+                        @foreach (var incidencia in Model)
+                        {
+                    <tr>
+                        @using (Html.BeginForm("UIIncidencias", "SeguimientoProyecto", new { idIncidencia = incidencia.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        {
+                            @Html.HttpMethodOverride(HttpVerbs.Delete)
+                            <th>@incidencia.TituloIncidencia</th>
+                            <th>@incidencia.Descripcion</th>
 
                             <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
-
-                        </tr>
+                        }
+                    </tr>
+                        }
 
                     </table>
                 </div>

@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
-using System.Web.Mvc;
-using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
 using Newtonsoft.Json;
+using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
+using System.Web.Mvc;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
-    public class ComprasController
+    public class IncidenciaController : Controller
     {
         /// <summary>
-        /// Llama a la api para obtener todas las compras de un proyecto
+        /// Llama al API para obtener la lista de incidencias del proyecto
         /// </summary>
         /// <param name="codigoProyecto"></param>
-        /// <returns>lista de las compras del proyecto</returns>
-        public static List<Compras> getCompras(String codigoProyecto)
+        /// <returns>lista de incidencias del proyecto</returns>
+        public static List<Incidencia> getIncidencias(String codigoProyecto)
         {
             using (var client = new HttpClient())
             {
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Compra")
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Incidencias")
                 {
                     Query = string.Format("id={0}", codigoProyecto)
                 };
@@ -28,12 +28,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 var responseTask = client.GetAsync(builder.Uri);
                 responseTask.Wait();
                 var result = responseTask.Result;
-                List<Compras> compras = new List<Compras>();
+                List<Incidencia> incidencias = new List<Incidencia>();
                 if (result.IsSuccessStatusCode)
                 {
                     var response = result.Content.ReadAsStringAsync();
                     response.Wait();
-                    compras = JsonConvert.DeserializeObject<List<Compras>>(response.Result);
+                    incidencias = JsonConvert.DeserializeObject<List<Incidencia>>(response.Result);
                     System.Diagnostics.Debug.WriteLine("Success");
 
                 }
@@ -41,34 +41,32 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 {
                     System.Diagnostics.Debug.WriteLine("Error");
                 }
-                return compras;
+                return incidencias;
             }
         }
 
         /// <summary>
-        /// Llama a la API para insertar una nueva compra a la base de datos
+        /// Llama al API para agregar una nueva incidencia al proyecto
         /// </summary>
-        /// <param name="nombreProducto"></param>
-        /// <param name="cantidad"></param>
-        /// <param name="precioTotal"></param>
+        /// <param name="tituloIncidencia"></param>
+        /// <param name="descripcion"></param>
         /// <param name="codigoProyecto"></param>
-        /// <returns>Exito o fracaso de la inserción a la base de datos</returns>
+        /// <returns>Resultado de inserción, exito o fracaso</returns>
         [HttpPost]
-        public static String AgregarCompra(string nombreProducto, string cantidad, string precioTotal, string codigoProyecto)
+        public static String agregarIncidencia(string tituloIncidencia, string descripcion, string codigoProyecto)
         {
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Compra/1")
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Incidencias/1")
                 {
 
-                    Query = string.Format("nombreProducto={0}&cantidad={1}&precioTotal={2}&codigoProyecto={3}", nombreProducto, cantidad, precioTotal, codigoProyecto)
+                    Query = string.Format("tituloIncidencia={0}&descripcion={1}&codigoProyecto={2}", tituloIncidencia, descripcion, codigoProyecto)
                 };
                 var values = new Dictionary<string, string>
                 {
-                    {"nombreProducto", nombreProducto},
-                    {"cantidad", cantidad },
-                    {"precioTotal", precioTotal },
+                    {"tituloIncidencia", tituloIncidencia},
+                    {"descripcion", descripcion },
                     {"codigoProyecto", codigoProyecto}
 
 
@@ -84,21 +82,20 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         }
 
         /// <summary>
-        /// Elimina la compra selecionada en la interfaz del proyecto y llama a la API para eliminarla de la base de datos
+        /// Llama al API para eliminar una incidencia del proyecto
         /// </summary>
-        /// <param name="idCompra"></param>
-        /// <returns>String de respuesta de exito o fracaso de eliminar la compra de la base de datos</returns>
-        /// 
+        /// <param name="id"></param>
+        /// <returns>Resultado de eliminar, exito o fracaso</returns>
         [HttpDelete]
-        public static String EliminarCompra(String idCompra)
+        public static String eliminarIncidencia(string id)
         {
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Compra/1")
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Incidencias/1")
                 {
 
-                    Query = string.Format("id={0}", idCompra)
+                    Query = string.Format("id={0}", id)
                 };
 
 

@@ -32,25 +32,22 @@
                             <th>Cédula</th>
                             <th>Nombre</th>
                             <th>Apellido 1</th>
-                            <th>Apellido 2</th>
-                            <th>Puesto</th>
-                            <th>Teléfono</th>
-                            <th>Email</th>
+                            <th>Apellido 2</th>                          
                             <th> </th>
                         </tr>
 
-                            @foreach (var colaborador in Model)
+                        @foreach (var colaborador in Model)
                             {<tr>
-    @using (Html.BeginForm("UICambiarInvestigadorCoordinador", "SeguimientoProyecto", new { id = colaborador.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
-    {
-        <th>@colaborador.Id</th>
-        <th>@colaborador.Nombre</th>
-        <th>@colaborador.PrimerApellido</th>
-        <th>@colaborador.SegundoApellido</th>
-        <th> <div> <button class="botonEliminar" type="submit"> ✓ </button></div></th>
-    }
-</tr>
-                            }
+                        @using (Html.BeginForm("UICambiarInvestigadorCoordinador", "SeguimientoProyecto", new { id = colaborador.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        {
+                                <th>@colaborador.Id</th>
+                                <th>@colaborador.Nombre</th>
+                                <th>@colaborador.PrimerApellido</th>
+                                <th>@colaborador.SegundoApellido</th>
+                                <th> <div> <button class="botonEliminar" type="submit"> ✓ </button></div></th>
+                        }
+                            </tr>
+                          }
 
 
                     </table>

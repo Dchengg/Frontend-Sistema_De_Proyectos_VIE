@@ -88,7 +88,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             List<ModalidadProyecto> modalidadPicker = ProyectoController.getModalidad();
             Proyecto = ProyectoController.getProyecto(codigoProyecto);
-
             TempData["modalidadPicker"] = modalidadPicker;
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["objetivosEspecificos"] = ProyectoController.getObjetivosProyecto(codigoProyecto);
@@ -137,7 +136,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return Json(SubFrascatis, JsonRequestBehavior.AllowGet);
 
         }
-
+        /// <summary>
+        /// Llama al contolador de presupuesto para obtener todos los presupuestos del proyecto 
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista con los presupuestos del proyecto</returns>
         public ActionResult UIPresupuesto(String codigoProyecto)
         {
 
@@ -192,7 +195,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult UIAreasFrascati(String idArea, string codigoProyecto)
         {
             List<Frascati> areaPicker = FrascatiController.getFrascatis();
-
+            BitacoraController.AgregarBitacora("Se agrego elimino el área fracati: " + idArea, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
             TempData["areaPicker"] = areaPicker;
             System.Diagnostics.Debug.WriteLine(idArea);
             System.Diagnostics.Debug.WriteLine(codigoProyecto);
@@ -205,8 +208,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             List<SubFrascati> subfrascatiPicker = FrascatiController.getSubFrascatis();
 
             TempData["subfrascatiPicker"] = subfrascatiPicker;
-
-            String Result = BitacoraController.AgregarBitacora("Se elimino el area frascatti: " + idArea, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
@@ -336,7 +337,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             String Result = PalabrasClaveController.AgregarPalabraClave(palabraClave, codigoProyecto);
             System.Diagnostics.Debug.WriteLine(Result);
-             BitacoraController.AgregarBitacora("Se agrego la Palabra Clave: "+ palabraClave, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+            BitacoraController.AgregarBitacora("Se agrego la Palabra Clave: "+ palabraClave, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
@@ -525,7 +526,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View("UIBitacora", bitacora);
         }
 
-
+        /// <summary>
+        /// Llama al controlador de bitacoras y elimina una nueva bitacora
+        /// </summary>
+        /// <param name="idBitacora"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista de las bitacoras sin la que recien se elimina</returns>
         [HttpDelete]
         public ActionResult UIBitacora(int idBitacora, String codigoProyecto)
         {
@@ -542,7 +548,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
         }
 
-
+        /// <summary>
+        /// Llama al controlador de bitacoras para agregar una nueva bitácora
+        /// </summary>
+        /// <param name="formInputBitacora"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista con la nueva bitacora agregada</returns>
         [HttpPost]
         public ActionResult UIBitacora(FormCollection formInputBitacora, String codigoProyecto)
         {
@@ -570,11 +581,58 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las incidencias del proyecto</returns>
         public ActionResult UIIncidencias(String codigoProyecto){
+            List<Incidencia> incidencias = IncidenciaController.getIncidencias(codigoProyecto);
            
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIIncidencias");
+            return View("UIIncidencias", incidencias);
+        }
+
+        /// <summary>
+        /// Llama al controlador de incidencias para agregar una nueva incidencia
+        /// </summary>
+        /// <param name="formInputIncidencia"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>vista con la nueva incidencia que se agrego</returns>
+        [HttpPost]
+        public ActionResult UIIncidencias(FormCollection formInputIncidencia, String codigoProyecto)
+        {
+            String tituloIncidencia = formInputIncidencia["tituloIncidencia"];
+            String descripcion = formInputIncidencia["descripcionIncidencia"];
+
+            String Resultado = IncidenciaController.agregarIncidencia(tituloIncidencia, descripcion, codigoProyecto);
+            System.Diagnostics.Debug.WriteLine(Resultado);
+
+            BitacoraController.AgregarBitacora("Se agregó la incidencia: " + tituloIncidencia, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Incidencia> incidencias = IncidenciaController.getIncidencias(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIIncidencias", incidencias);
+        }
+
+        /// <summary>
+        /// Llama al controlador de incidencias para eliminar una incidencia seleccionada
+        /// </summary>
+        /// <param name="idIncidencia"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista de incidencias sin la que se eliminó</returns>
+        [HttpDelete]
+        public ActionResult UIIncidencias(String idIncidencia, String codigoProyecto)
+        {
+            String Result = IncidenciaController.eliminarIncidencia(idIncidencia);
+            System.Diagnostics.Debug.WriteLine(Result);
+
+            BitacoraController.AgregarBitacora("Se eliminó la incidencia: " +  idIncidencia, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Incidencia> incidencias = IncidenciaController.getIncidencias(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIIncidencias", incidencias);
+
         }
 
         /// <summary>
