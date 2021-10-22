@@ -9,18 +9,18 @@ using Newtonsoft.Json;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
-    public class ComprasController
+    public class BitacoraController : Controller
     {
         /// <summary>
-        /// Llama a la api para obtener todas las compras de un proyecto
+        /// Llama a la api para obtener todas las Bitacoras de un proyecto
         /// </summary>
         /// <param name="codigoProyecto"></param>
-        /// <returns>lista de las compras del proyecto</returns>
-        public static List<Compras> getCompras(String codigoProyecto)
+        /// <returns>lista de las Bitacora del proyecto</returns>
+        public static List<Bitacora> getBitacora(String codigoProyecto)
         {
             using (var client = new HttpClient())
             {
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Compra")
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/bitacora")
                 {
                     Query = string.Format("id={0}", codigoProyecto)
                 };
@@ -28,12 +28,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 var responseTask = client.GetAsync(builder.Uri);
                 responseTask.Wait();
                 var result = responseTask.Result;
-                List<Compras> compras = new List<Compras>();
+                List<Bitacora> Bitacora = new List<Bitacora>();
                 if (result.IsSuccessStatusCode)
                 {
                     var response = result.Content.ReadAsStringAsync();
                     response.Wait();
-                    compras = JsonConvert.DeserializeObject<List<Compras>>(response.Result);
+                    Bitacora = JsonConvert.DeserializeObject<List<Bitacora>>(response.Result);
                     System.Diagnostics.Debug.WriteLine("Success");
 
                 }
@@ -41,7 +41,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 {
                     System.Diagnostics.Debug.WriteLine("Error");
                 }
-                return compras;
+                return Bitacora;
             }
         }
 
@@ -52,21 +52,18 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         /// <param name="codigoProyecto"></param>
         /// <returns>String de respuesta de exito o fracaso de agregar la palabra clave de la base de datos</returns>
         [HttpPost]
-        public static String AgregarCompra(string nombreProducto, string cantidad, string precioTotal, string codigoProyecto)
+        public static String AgregarBitacora(string descripcion, string responsable, string cedulaResponsable, string fechaYHora, string codigoProyecto)
         {
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Compra/1")
-                {
-
-                    Query = string.Format("nombreProducto={0}&cantidad={1}&precioTotal={2}&codigoProyecto={3}", nombreProducto, cantidad, precioTotal, codigoProyecto)
-                };
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/bitacora/AgregarBitacora");
                 var values = new Dictionary<string, string>
                 {
-                    {"nombreProducto", nombreProducto},
-                    {"cantidad", cantidad },
-                    {"precioTotal", precioTotal },
+                    {"descripcion", descripcion},
+                    {"responsable", responsable},
+                    {"cedulaResponsable", cedulaResponsable},
+                    {"fechaYHora", fechaYHora},
                     {"codigoProyecto", codigoProyecto}
 
 
@@ -75,28 +72,28 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 var responseTask = client.PostAsync(builder.Uri, content);
                 responseTask.Wait();
                 var result = responseTask.Result;
-                var responseResult = "Failed";
+                var responseResult = "Failed";  
                 if (result.IsSuccessStatusCode) responseResult = "Sucess";
                 return responseResult;
             }
         }
 
         /// <summary>
-        /// Elimina la compra selecionada en la interfaz del proyecto y llama a la API para eliminarla de la base de datos
+        /// Elimina la Bitacora selecionada en la interfaz del proyecto y llama a la API para eliminarla de la base de datos
         /// </summary>
-        /// <param name="idCompra"></param>
-        /// <returns>String de respuesta de exito o fracaso de eliminar la compra de la base de datos</returns>
+        /// <param name="idBitacora"></param>
+        /// <returns>String de respuesta de exito o fracaso de eliminar la Bitacora de la base de datos</returns>
         /// 
         [HttpDelete]
-        public static String EliminarCompra(String idCompra)
+        public static String EliminarBitacora(int idBitacora)
         {
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Compra/1")
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Bitacora/1")
                 {
 
-                    Query = string.Format("id={0}", idCompra)
+                    Query = string.Format("id={0}", idBitacora)
                 };
 
 

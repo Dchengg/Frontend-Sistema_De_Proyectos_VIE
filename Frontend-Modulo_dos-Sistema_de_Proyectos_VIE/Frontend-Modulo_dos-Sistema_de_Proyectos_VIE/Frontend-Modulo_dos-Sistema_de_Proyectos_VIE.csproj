@@ -129,6 +129,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BitacoraController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Bitacora.cs" />
     <Compile Include="Models\SubODS.cs" />
     <Compile Include="Models\Presupuesto.cs" />
     <Compile Include="Models\SubFrascati.cs" />
@@ -379,6 +381,7 @@
     <Content Include="Views\SeguimientoProyecto\UIObjetivosEspecificos.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Bitacora\" />
     <Folder Include="Views\BuscadorProyecto\" />
     <Folder Include="Views\Informe\" />
     <Folder Include="Views\ODS\" />

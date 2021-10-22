@@ -55,6 +55,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         {
             Proyecto = ProyectoController.getProyecto(codigoProyecto);
 
+            String Result = BitacoraController.AgregarBitacora("Se modificaron los datos del proyecto", "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             String nombreProyectoInput = formProyecto["nombreProyectoInput"].ToString();
 
@@ -160,6 +161,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             String area = formDropdownAreaFrascati["areaDropdown"].ToString();
             String subArea = formDropdownAreaFrascati["subAreaDropdown"].ToString();
+            String Result = BitacoraController.AgregarBitacora("Se agrego el subarea frascati:" + subArea, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+
             String resultPost = FrascatiController.AgregarAreaFrascati(area, subArea, codigoProyecto);
             System.Diagnostics.Debug.WriteLine(codigoProyecto);
             List<Frascati> Frascatis = FrascatiController.getFrascatis(codigoProyecto);
@@ -203,6 +206,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             TempData["subfrascatiPicker"] = subfrascatiPicker;
 
+            String Result = BitacoraController.AgregarBitacora("Se elimino el area frascatti: " + idArea, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
@@ -251,6 +255,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             TempData["subodsPicker"] = subodsPicker;
             List<ODS> ODSs = ODSController.getODSs(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            String Result = BitacoraController.AgregarBitacora("Se elimino  el ODS: " + idODS, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+
             ViewData["codigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIAgregarODS", ODSs);
@@ -269,6 +275,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             String resultPost = ODSController.AgregarODS(area, subArea, codigoProyecto);
             System.Diagnostics.Debug.WriteLine(resultPost);
             List<ODS> odsPicker = ODSController.getODS();
+            String Result = BitacoraController.AgregarBitacora("Se agrego  el  ODS: " + subArea, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             TempData["odsPicker"] = odsPicker;
 
@@ -329,6 +336,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             String Result = PalabrasClaveController.AgregarPalabraClave(palabraClave, codigoProyecto);
             System.Diagnostics.Debug.WriteLine(Result);
+             BitacoraController.AgregarBitacora("Se agrego la Palabra Clave: "+ palabraClave, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
@@ -349,6 +357,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             String resultPost = PalabrasClaveController.EliminarPalabraClave(idPalabraClave);
             System.Diagnostics.Debug.WriteLine(resultPost);
+            BitacoraController.AgregarBitacora("Se elimino  una Palabra Clave: "+ idPalabraClave, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<PalabrasClave> palabrasClave = PalabrasClaveController.getPalabrasClave(codigoProyecto);
@@ -374,6 +383,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Poblacion> poblacionPicker = PoblacionBeneficiariaController.getPoblaciones();
+            BitacoraController.AgregarBitacora("Se agrego  una Poblacion Beneficiaria "+ poblacion, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             TempData["poblacionPicker"] = poblacionPicker;
 
@@ -396,6 +406,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             System.Diagnostics.Debug.WriteLine(resultPost);
 
 
+            BitacoraController.AgregarBitacora("Se elimino  una Poblacion Beneficiaria: "+ idPoblacion, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
 
             List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
@@ -448,6 +459,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
 
             ViewData["CodigoProyecto"] = codigoProyecto;
+            BitacoraController.AgregarBitacora("Se agrego  una compra de: "+ nombreDelProducto, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             String Result = ComprasController.AgregarCompra(nombreDelProducto, cantidadDelProducto, precioTotalDeLaCompra, codigoProyecto);
             System.Diagnostics.Debug.WriteLine(Result);
@@ -480,6 +492,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             String resultPost = ComprasController.EliminarCompra(idCompra);
             System.Diagnostics.Debug.WriteLine(resultPost);
+            BitacoraController.AgregarBitacora("Se elimino  la compra: "+ idCompra, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Compras> compras = ComprasController.getCompras(codigoProyecto);
@@ -503,10 +516,52 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las bitácoras del proyecto</returns>
         public ActionResult UIBitacora(String codigoProyecto) {
+
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Bitacora> bitacora = BitacoraController.getBitacora(codigoProyecto);
+
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIBitacora");
+            return View("UIBitacora", bitacora);
+        }
+
+
+        [HttpDelete]
+        public ActionResult UIBitacora(int idBitacora, String codigoProyecto)
+        {
+
+            String resultPost = BitacoraController.EliminarBitacora(idBitacora);
+            System.Diagnostics.Debug.WriteLine(resultPost);
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Bitacora> bitacora = BitacoraController.getBitacora(codigoProyecto);
+ 
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIBitacora", bitacora);
+
+        }
+
+
+        [HttpPost]
+        public ActionResult UIBitacora(FormCollection formInputBitacora, String codigoProyecto)
+        {
+            String entrada = formInputBitacora["Entrada"].ToString();
+            String fecha = formInputBitacora["Fecha"].ToString();
+
+
+
+            String Result = BitacoraController.AgregarBitacora(entrada, "Sample", "11111", fecha, codigoProyecto);
+            System.Diagnostics.Debug.WriteLine(Result);
+
+
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Bitacora> bitacora = BitacoraController.getBitacora(codigoProyecto);
+
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIBitacora", bitacora);
         }
 
         /// <summary>
