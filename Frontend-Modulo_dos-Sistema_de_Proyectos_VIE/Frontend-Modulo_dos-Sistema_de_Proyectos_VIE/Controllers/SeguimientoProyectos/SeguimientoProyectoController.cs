@@ -503,10 +503,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las bitácoras del proyecto</returns>
         public ActionResult UIBitacora(String codigoProyecto) {
+
+            List<Bitacora> bitacoras = BitacoraController.getBitacoras(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIBitacora");
+            return View("UIBitacora", bitacoras);
         }
 
         /// <summary>
@@ -660,11 +662,13 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de la ubicación geográfica del proyecto</returns>
         public ActionResult UIUbicacionGeografica(String codigoProyecto){
+
+            List<UbicacionGeografica> ubicacionGeograficas = UbicacionGeograficaController.GetUbicacionesGeograficas(codigoProyecto);
             
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIUbicacionGeografica");
+            return View("UIUbicacionGeografica", ubicacionGeograficas);
         }
 
         /// <summary>

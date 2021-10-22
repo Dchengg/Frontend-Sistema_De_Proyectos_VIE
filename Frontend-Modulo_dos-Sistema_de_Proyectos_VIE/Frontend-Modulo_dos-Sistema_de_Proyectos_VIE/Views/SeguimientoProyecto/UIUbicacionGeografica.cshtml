@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.UbicacionGeografica>
 @{
     ViewBag.Title = "Ubicación Geográfica";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
@@ -64,6 +64,9 @@
                 </div>
             </div>
         }
+
+
+
         <div class="row formRow">
             <div class="form-group col-md-12">
                 <label for="UIDepartamentos"></label>
@@ -77,18 +80,19 @@
                             <th> </th>
                         </tr>
 
+                        @foreach (var ubicacion in Model)
+                        {
+                            <tr>
 
-                        <tr>
-
-                            <th>xxxxx</th>
-                            <th>xxxxx</th>
-                            <th>xxxxx</th>
-                            <th>xxxxx</th>
-                            <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
-
-                        </tr>
-
-                    </table>
+                                <th>@ubicacion.Id</th>
+                                <th>@ubicacion.IdPais</th>
+                                <th>@ubicacion.IdRegion</th>
+                                <th>@ubicacion.IdProvincia</th>
+                                <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                                
+                            </tr>
+                        }
+                        </table>
                 </div>
             </div>
         </div>
