@@ -51,11 +51,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             return View("UIBuscadorProyectos", proyectos);
         }
 
-        public ActionResult Reportes()
-        {
-            return View("UIReportes");
-        }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

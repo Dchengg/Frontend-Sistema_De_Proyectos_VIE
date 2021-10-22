@@ -10,15 +10,17 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
     {
         #region Variables y Constantes
         [JsonProperty("Id")]
-        public String Id { get; set; }
-        [JsonProperty("Responsable")]
-        public String Responsable { get; set; }
+        public int Id { get; set; }
         [JsonProperty("Descripcion")]
         public String Descripcion { get; set; }
+        [JsonProperty("Responsable")]
+        public String Responsable { get; set; }
+
+        [JsonProperty("CedulaResponsable")]
+        public String CedulaResponsable { get; set; }
+
         [JsonProperty("FechaYHora")]
         public String FechaYHora { get; set; }
-
-
         #endregion
     }
 }
