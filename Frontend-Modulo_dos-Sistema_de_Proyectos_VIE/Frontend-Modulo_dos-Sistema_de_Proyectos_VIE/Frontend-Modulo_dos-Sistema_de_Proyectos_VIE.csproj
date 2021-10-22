@@ -129,7 +129,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AmpliarFechasController.cs" />
     <Compile Include="Controllers\BitacoraController.cs" />
+    <Compile Include="Controllers\ColaboradoresController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -146,6 +148,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bitacora.cs" />
+    <Compile Include="Models\Colaboradores.cs" />
     <Compile Include="Models\SubODS.cs" />
     <Compile Include="Models\Presupuesto.cs" />
     <Compile Include="Models\SubFrascati.cs" />
@@ -383,8 +386,10 @@
     <Content Include="Views\SeguimientoProyecto\UIObjetivosEspecificos.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\AmpliarFechas\" />
     <Folder Include="Views\Bitacora\" />
     <Folder Include="Views\BuscadorProyecto\" />
+    <Folder Include="Views\Colaboradores\" />
     <Folder Include="Views\Informe\" />
     <Folder Include="Views\ODS\" />
     <Folder Include="Views\PoblacionBeneficiaria\" />

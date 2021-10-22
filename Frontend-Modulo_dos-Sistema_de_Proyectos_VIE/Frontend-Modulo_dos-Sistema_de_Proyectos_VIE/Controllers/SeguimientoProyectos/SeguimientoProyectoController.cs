@@ -738,7 +738,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
         }
 
-        /// <summary>
+        /// <summary>   
         /// Llama al controlador de informes y recoge los informes del proyecto para enviarlos a la vista
         /// </summary>  
         /// <param name="codigoProyecto"></param>
@@ -766,17 +766,51 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         }
 
         /// <summary>
+        /// Llama al controlador de ampliar fechas y levanta el servicio de ampliar fechas
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista para ampliar fechas</returns>
+        [HttpPost]
+        public ActionResult UIAmpliarFechas(FormCollection formAmpliarFechas, String codigoProyecto)
+        {
+
+
+            String fechaFinalizacion = formAmpliarFechas["fechaFinalizacion"].ToString();
+            System.Diagnostics.Debug.WriteLine(fechaFinalizacion);
+
+            String fechaActualFinalizacion = formAmpliarFechas["fechaActualFinalizacion"].ToString();
+            System.Diagnostics.Debug.WriteLine(fechaActualFinalizacion);
+
+            String fechaAprovacion = formAmpliarFechas["fechaAprovacion"].ToString();
+            System.Diagnostics.Debug.WriteLine(fechaAprovacion);
+
+            String observacionesAmpliarFechas = formAmpliarFechas["observacionesAmpliarFechas"].ToString();
+            System.Diagnostics.Debug.WriteLine(observacionesAmpliarFechas);
+
+            
+            String resultPost = AmpliarFechasController.AmpliarFechas(fechaAprovacion, fechaFinalizacion, fechaActualFinalizacion, observacionesAmpliarFechas, codigoProyecto);
+            System.Diagnostics.Debug.WriteLine(resultPost);
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIAmpliarFechas");
+        }
+
+
+        /// <summary>
         /// Llama al controlador de investigadores asociados y recoge los investigadores del proyecto para enviarlos a la vista
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista con los investigadores asociados</returns>
         public ActionResult UIInvestigadoresAsociados(String codigoProyecto)
         {
-
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Colaboradores> colaboradores = ColaboradoresController.GetColaboradores(codigoProyecto);
+
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIInvestigadoresAsociados");
+            return View("UIInvestigadoresAsociados", colaboradores);
         }
 
         /// <summary>
@@ -812,13 +846,30 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <returns>Vista de los investigadores asociados y el investigador coordinador para poder cambiar al coordinador</returns>
         public ActionResult UICambiarInvestigadorCoordinador(String codigoProyecto)
         {
+            List<Colaboradores> colaboradores = ColaboradoresController.GetColaboradores(codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UICambiarInvestigadorCoordinador");
+            return View("UICambiarInvestigadorCoordinador",colaboradores);
         }
+        /// <summary>
+        /// Llama al controlador de cambiar investigador coordinador y recoge el coordinador y los otros investigadores del proyecto para enviarlos a la vista
+        /// </summary>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista de los investigadores asociados y el investigador coordinador para poder cambiar al coordinador</returns>
+       [HttpPost]
 
+        public ActionResult UICambiarInvestigadorCoordinador(String idInvestigador, String codigoProyecto)
+        {
+             ColaboradoresController.CambiarCoordinador(idInvestigador,codigoProyecto);
+            List<Colaboradores> colaboradores = ColaboradoresController.GetColaboradores(codigoProyecto);
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UICambiarInvestigadorCoordinador", colaboradores);
+        }
         /// <summary>
         /// Llama al controlador de cronograma asociados y recoge el cronograma del proyecto para enviarlo a la vista
         /// </summary>
