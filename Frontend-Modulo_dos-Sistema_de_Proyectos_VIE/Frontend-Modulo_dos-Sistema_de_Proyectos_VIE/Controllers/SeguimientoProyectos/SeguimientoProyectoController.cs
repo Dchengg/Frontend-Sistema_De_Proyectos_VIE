@@ -66,8 +66,17 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             String objetivoGeneralInput = formProyecto["objetivoGeneralInput"].ToString();
 
+            
+                        String fechaIngresoInput = formProyecto["fechaIngresoInput"].ToString();
+            String estadoInput = formProyecto["estadoInput"].ToString();
+            String tipoProcesoInput = formProyecto["tipoProcesoInput"].ToString();
+            String tipoProyectoInput = formProyecto["tipoProyectoInput"].ToString();
+                            String fechaAprovacionInput = formProyecto["fechaAprovacionInput"].ToString();
+            String fechaEjecucionInput = formProyecto["fechaEjecucionInput"].ToString();
 
-            String resultPost =  ProyectoController.ModificarProyecto(codigoProyecto, nombreProyectoInput, objetivoGeneralInput, Proyecto.NumeroActaVIE, Proyecto.NumeroActaEscuela, descripcionInput, justificacionInput);
+            String modalidadInput = formProyecto["modalidadInput"].ToString();
+
+        String resultPost =  ProyectoController.ModificarProyecto(codigoProyecto, fechaIngresoInput, nombreProyectoInput, objetivoGeneralInput, estadoInput, tipoProyectoInput, tipoProcesoInput, modalidadInput, Proyecto.NumeroActaVIE, Proyecto.NumeroActaEscuela, fechaAprovacionInput, fechaEjecucionInput, descripcionInput, justificacionInput);
 
 
             System.Diagnostics.Debug.WriteLine(resultPost);
@@ -962,6 +971,27 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             List<ObjetivoEspecifico> especificos = ProyectoController.getObjetivosProyecto(codigoProyecto);
 
+            ViewData["ObjetivoGeneral"] = Proyecto.ObjetivoGeneral;
+
+            return View("UIAmpliarObjetivos", especificos);
+        }
+
+        [HttpPost]
+        public ActionResult UIAmpliarObjetivos(FormCollection formObjetivo, String codigoProyecto)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+
+
+            String nuevoObjetivoGeneral = formObjetivo["nuevoObjetivoGeneral"].ToString();
+
+
+            ProyectoController.ModificarProyecto(codigoProyecto, Proyecto.FechaIngreso.ToString(), Proyecto.Nombre, nuevoObjetivoGeneral, Proyecto.Estado, Proyecto.TipoProyecto, Proyecto.TipoDeProceso, Proyecto.Modalidad, Proyecto.NumeroActaVIE, Proyecto.NumeroActaEscuela, Proyecto.FechaAprobacion.ToString(), Proyecto.FechaInicioEjecucion.ToString(), Proyecto.Descripcion, Proyecto.Justificacion);
+
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            List<ObjetivoEspecifico> especificos = ProyectoController.getObjetivosProyecto(codigoProyecto);
+
+            ViewData["ObjetivoGeneral"] = Proyecto.ObjetivoGeneral;
 
             return View("UIAmpliarObjetivos", especificos);
         }
@@ -985,6 +1015,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["CodigoObjetivo"] = objetivoEspecificoID;
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
+            ViewData["ObjetivoGeneral"] = Proyecto.ObjetivoGeneral;
+
             return View("UIObjetivosEspecificos");
         }
         [HttpPost]
@@ -1013,6 +1045,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             TempData["productos"] = productos;
 
 
+            ViewData["ObjetivoGeneral"] = Proyecto.ObjetivoGeneral;
 
             List<ObjetivoEspecifico> obj = ObjetivosEspecificosController.getGetObjetivoByCodigo(objetivoEspecificoID);
             ViewData["metodologiaText"] = obj[0].Metodologia;
@@ -1047,8 +1080,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             TempData["productos"] = productos;
 
 
-            
 
+
+            ViewData["ObjetivoGeneral"] = Proyecto.ObjetivoGeneral;
 
             ViewData["CodigoObjetivo"] = objetivoEspecificoID;
             ViewData["CodigoProyecto"] = codigoProyecto;
@@ -1080,6 +1114,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             TempData["productos"] = productos;
 
 
+            ViewData["ObjetivoGeneral"] = Proyecto.ObjetivoGeneral;
 
             List<ObjetivoEspecifico> obj = ObjetivosEspecificosController.getGetObjetivoByCodigo(objetivoEspecificoID);
             ViewData["metodologiaText"] = obj[0].Metodologia;
@@ -1114,6 +1149,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             List<ObjetivoEspecifico> obj = ObjetivosEspecificosController.getGetObjetivoByCodigo(objetivoEspecificoID);
             ViewData["metodologiaText"] = obj[0].Metodologia;
             ViewData["objetivoText"] = obj[0].Objetivo;
+            ViewData["ObjetivoGeneral"] = Proyecto.ObjetivoGeneral;
 
             ViewData["CodigoObjetivo"] = objetivoEspecificoID;
         ViewData["CodigoProyecto"] = codigoProyecto;

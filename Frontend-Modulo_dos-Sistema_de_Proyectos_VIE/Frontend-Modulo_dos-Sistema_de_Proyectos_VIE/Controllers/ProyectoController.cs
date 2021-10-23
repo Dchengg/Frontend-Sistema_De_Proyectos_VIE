@@ -233,8 +233,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
         [HttpPost]
-        public static String ModificarProyecto(string codigoProyecto, string nuevoNombre, string nuevoObjetivoGeneral, string nuevaActaVIE, string nuevaActaEscuela, string nuevaDescripcion, string nuevaJustificacion)
+        public static String ModificarProyecto(string codigoProyecto,string  nuevaFechaIngreso, string nuevoNombre, string nuevoObjetivoGeneral, string nuevoIdEstado, string nuevoIdTipoProyecto, string nuevoIdTipoProceso, string nuevoIdModalidad, string nuevaActaVIE, string nuevaActaEscuela, string nuevaFechaAprobacion, string nuevaFechaInicio, string nuevaDescripcion, string nuevaJustificacion)
         {
+
             using (var client = new HttpClient())
             {
 
@@ -242,10 +243,23 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 var values = new Dictionary<string, string>
                 {
                     {"codigoProyecto", codigoProyecto},
+                    {"nuevaFechaIngreso", nuevaFechaIngreso},
                     {"nuevoNombre", nuevoNombre},
                     {"nuevoObjetivoGeneral", nuevoObjetivoGeneral},
+                    {"nuevoIdEstado", nuevoIdEstado},
+                    {"nuevoIdTipoProyecto", nuevoIdTipoProyecto},
+                    {"nuevoIdTipoProceso", nuevoIdTipoProceso},
+                    {"nuevoIdModalidad", nuevoIdModalidad},
+
+
+
                     {"nuevaActaVIE", nuevaActaVIE},
                     {"nuevaActaEscuela", nuevaActaEscuela},
+                    {"nuevaFechaAprobacion", nuevaFechaAprobacion},
+                    {"nuevaFechaInicio", nuevaFechaInicio},
+
+
+                    
                     {"nuevaDescripcion", nuevaDescripcion},
                     {"nuevaJustificacion", nuevaJustificacion}
 

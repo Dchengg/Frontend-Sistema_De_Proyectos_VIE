@@ -25,7 +25,7 @@
             <div class="row formRow">
                 <div class="form-group col-md-12">
                     <label for="objetivoGeneral">Objetivo general del proyecto: </label>
-                    <textarea class="form-control fullRowInput" id="objetivoGeneral" rows="3" disabled> </textarea>
+                    @Html.TextAreaFor(Proyecto => ViewData["ObjetivoGeneral"], new { @readonly = true, @Name = "objetivoGeneralInput", @class = "form-control fullRowInput", @rows = "5" })
                 </div>
             </div>
 

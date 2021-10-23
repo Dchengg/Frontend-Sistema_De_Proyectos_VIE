@@ -21,7 +21,7 @@
             </div>
             <div class="form-inline col-md-4">
                 <label for="fechaIngresoInput">Fecha de ingreso</label>
-                @Html.TextBoxFor(Proyecto => Proyecto.FechaIngreso, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                @Html.TextBoxFor(Proyecto => Proyecto.FechaIngreso, "{0:yyyy-MM-dd}", new { @Name = "fechaIngresoInput", @class = "form-control", @type = "date" })
             </div>
         </div>
         <div class="row formRow">
@@ -69,14 +69,13 @@
         <div class="row formRow">
             <div class="form-inline col-md-6">
                 <label class="col-xs-5">Estado del proyecto</label>
-                <select class="form-control col-xs-5">
+                <select class="form-control col-xs-5"  name="estadoInput">
 
                     @foreach (var estado in estadoPicker)
                     {
-                        <option value=@estado.Id   @( @estado.EstadoDeProyecto == Model.Estado ? "selected" : "") >@estado.EstadoDeProyecto</option>
+                        <option  value=@estado.Id @( @estado.EstadoDeProyecto == Model.Estado ? "selected" : "")>@estado.EstadoDeProyecto</option>
 
-
-                    }
+              }
 
 
 
@@ -90,7 +89,7 @@
         <div class="row formRow">
             <div class="form-inline col-md-6">
                 <label class="col-xs-5">Tipos de proyecto</label>
-                <select class="form-control col-xs-5">
+                <select class="form-control col-xs-5" name="tipoProyectoInput">
                     @foreach (var estado in tipoproyectoPicker)
                     {
                         <option value=@estado.Id @( @estado.TipoProyecto1 == Model.TipoProyecto ? "selected" : "")>@estado.TipoProyecto1</option>
@@ -107,7 +106,7 @@
         <div class="row formRow">
             <div class="form-inline col-md-6">
                 <label class="col-xs-5">Tipos de proceso</label>
-                <select class="form-control col-xs-5">
+                <select class="form-control col-xs-5"  name="tipoProcesoInput">
                     @foreach (var estado in procesoPicker)
                     {
                         <option value=@estado.Id @( @estado.TipoDeProceso == Model.TipoDeProceso ? "selected" : "")>@estado.TipoDeProceso</option>
@@ -118,17 +117,17 @@
             </div>
             <div class="form-inline col-md-6">
                 <label class="col-xs-5" for="fechaAprobaciónInput">Fecha de aprobación</label>
-                @Html.TextBoxFor(Proyecto => Proyecto.FechaAprobacion, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                @Html.TextBoxFor(Proyecto => Proyecto.FechaAprobacion, "{0:yyyy-MM-dd}", new { @Name = "fechaAprovacionInput", @class = "form-control", @type = "date" })
             </div>
         </div>
         <div class="row formRow">
             <div class="form-inline col-md-6">
                 <label class="col-xs-5" for="fechaSuspensionInput">Fecha de suspensión</label>
-                @Html.TextBoxFor(Proyecto => Proyecto.FechaSuspension, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                @Html.TextBoxFor(Proyecto => Proyecto.FechaSuspension, "{0:yyyy-MM-dd}", new { @Name = "fechaSuspencionInput", @class = "form-control", @type = "date" })
             </div>
             <div class="form-inline col-md-6">
                 <label class="col-xs-5" for="fechaInicioInput">Fecha de inicio</label>
-                @Html.TextBoxFor(Proyecto => Proyecto.FechaInicioEjecucion, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                @Html.TextBoxFor(Proyecto => Proyecto.FechaInicioEjecucion, "{0:yyyy-MM-dd}", new { @Name = "fechaEjecucionInput", @class = "form-control", @type = "date" })
             </div>
         </div>
         <div class="row formRow">
@@ -138,13 +137,13 @@
             </div>
             <div class="form-inline col-md-6">
                 <label class="col-xs-5" for="fechaFinalInput">Fecha de finalización</label>
-                @Html.TextBoxFor(Proyecto => Proyecto.FechaFinEjecucion, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                @Html.TextBoxFor(Proyecto => Proyecto.FechaFinEjecucion, "{0:yyyy-MM-dd}", new { @Name = "fechaFinalizacionInput", @class = "form-control", @type = "date" })
             </div>
         </div>
         <div class="row formRow">
             <div class="form-inline col-md-6">
                 <label class="col-xs-5">Modalidad del proyecto</label>
-                <select class="form-control col-xs-5">
+                <select class="form-control col-xs-5"  name="modalidadInput">
                     @foreach (var estado in modalidadPicker)
                     {
                         <option value=@estado.Id @( @estado.NombreModalidad == Model.Modalidad ? "selected" : "")>@estado.NombreModalidad</option>
