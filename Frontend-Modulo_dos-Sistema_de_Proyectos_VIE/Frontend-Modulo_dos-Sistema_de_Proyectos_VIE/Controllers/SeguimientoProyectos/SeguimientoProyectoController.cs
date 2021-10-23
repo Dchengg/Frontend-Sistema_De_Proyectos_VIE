@@ -683,19 +683,37 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             System.Diagnostics.Debug.WriteLine(fechaProgramada);
            
 
-
             List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
 
             TempData["informePicker"] = informePicker;
 
-            // String resultPost = InformeController.AgregarInforme(títuloDelInforme, idTipoInforme, , codigoProyecto);
-            // System.Diagnostics.Debug.WriteLine(resultPost);
+            String resultPost = InformeController.AgregarInforme(títuloDelInforme,idTipoInforme,fechaProgramada, "pendiente", "pendiente", "pendiente", codigoProyecto);
+            System.Diagnostics.Debug.WriteLine(resultPost);
 
             List<Informe> informes = InformeController.getInformes(codigoProyecto);
 
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIProgramacionInformes", informes);
+        }
+
+        [HttpDelete]
+        public ActionResult UIProgramacionInformes(String idInforme, String codigoProyecto)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            String result = InformeController.EliminarInforme(idInforme);
+            System.Diagnostics.Debug.WriteLine(result);
+
+            List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
+
+            TempData["informePicker"] = informePicker;
+            
+            List<Informe> informes = InformeController.getInformes(codigoProyecto);
+
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIProgramacionInformes", informes);
+
         }
 
         /// <summary>
@@ -792,6 +810,31 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View("UIUbicacionGeografica", ubicacionGeograficas);
         }
 
+        [HttpPost]
+        public ActionResult UIUbicacionGeografica(FormCollection formUbicacionGeografica, String codigoProyecto)
+        {
+            String pais = formUbicacionGeografica["paisDropdown"];
+            String provincia;
+            String region;
+            if (pais.Equals("Costa Rica")){
+                provincia = formUbicacionGeografica["provinciaDropdown"];
+                region = formUbicacionGeografica["regionDropdown"];
+            }
+            else
+            {
+                provincia = "N/a";
+                region = "N/a";
+            }
+
+            //String result = UbicacionGeograficaController.agregarUbicacion();
+            List<UbicacionGeografica> ubicacionGeograficas = UbicacionGeograficaController.GetUbicacionesGeograficas(codigoProyecto);
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIUbicacionGeografica", ubicacionGeograficas);
+        }
+
         /// <summary>
         /// Llama al controlador de contratos y recoge los contratos del proyecto para enviarlos a la vista
         /// </summary>
@@ -812,7 +855,27 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de los informes y para ingresar algun informe</returns>
         public ActionResult UIIngresarInforme(String codigoProyecto) {
-            
+
+            List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
+
+            TempData["informePicker"] = informePicker;
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Informe> informes = InformeController.getInformes(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIIngresarInforme", informes);
+        }
+
+        [HttpPost]
+        public ActionResult UIIngresarInforme(FormCollection informeDatos, String codigoProyecto)
+        {
+                      
+
+            List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
+
+            TempData["informePicker"] = informePicker;
+
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Informe> informes = InformeController.getInformes(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;

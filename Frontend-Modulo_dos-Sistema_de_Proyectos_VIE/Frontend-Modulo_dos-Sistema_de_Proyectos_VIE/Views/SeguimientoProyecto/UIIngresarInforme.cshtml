@@ -2,6 +2,7 @@
 @{
     ViewBag.Title = "Ingresar Informes";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoInforme> informePicker = TempData["informePicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoInforme>;
 }
 
 <div style="width:100%">
@@ -24,26 +25,30 @@
                 <div class="form-inline col-md-6">
                     <label for="fechaProgramada">Fecha prevista </label>
                     <div>
-                        <input style="margin-left:5px" type="date" class="form-control" id="fechaPrevista" />
+                        <input style="margin-left:5px" type="date" class="form-control" id="fechaPrevista" name="fechaPrevista" />
                     </div>
                 </div>
                 <div class="form-inline col-md-6">
                     <label class="col-xs-5" for="numActaEscuelaInput">Memorando DIP:</label>
-                    <input style="margin-left:5px" type="text" class="form-control" id="memorandoDIP" />
+                    <input style="margin-left:5px" type="text" class="form-control" id="memorandoDIP" name="memorandoDIP"/>
                 </div>
             </div>
 
             <div class="row formRow">
                 <div class="form-inline col-md-6">
                     <label for="codigoProyectoInput">Tipo de informe </label>
-                    <select style="margin-left:5px" class="form-control col-xs-5" name="tipoInformeDropdown">
-                        <option>Avance</option>
-                        <option>Final</option>
+                    <select style="margin-left:5px" class="form-control col-xs-5" name="tipoInformeDropdown" >
+                        @foreach (var tipo in informePicker)
+                        {
+                            <option value=@tipo.Id>@tipo.TipoInforme1</option>
+
+
+                        }
                     </select>
                 </div>
                 <div class="form-inline col-md-6">
                     <label for="codigoProyectoInput">Acta de escuela</label>
-                    <input style="margin-left:5px" type="text" class="form-control" id="actaDeEscuela" />
+                    <input style="margin-left:5px" type="text" class="form-control" id="actaDeEscuela" name="actaDeEscuela"/>
                 </div>
 
             </div>
@@ -51,14 +56,14 @@
             <div class="row formRow">
                 <label for="fechaProgramada">Fecha de entrega </label>
                 <div>
-                    <input style="margin-left:5px" type="date" class="form-control" id="fechaDeEntrega" />
+                    <input style="margin-left:5px" type="date" class="form-control" id="fechaDeEntrega" name="fechaDeEntrega"/>
                 </div>
             </div>
 
             <div class="row formRow">
                 <div class="form-group col-md-12">
                     <label for="nombreProyectoInput">Observaciones: </label>
-                    <textarea class="form-control fullRowInput" id="observacionesIngresarInforme" rows="3"> </textarea>
+                    <textarea class="form-control fullRowInput" id="observacionesIngresarInforme" rows="3" name="observacionesIngresarInforme"> </textarea>
                 </div>
             </div>
 

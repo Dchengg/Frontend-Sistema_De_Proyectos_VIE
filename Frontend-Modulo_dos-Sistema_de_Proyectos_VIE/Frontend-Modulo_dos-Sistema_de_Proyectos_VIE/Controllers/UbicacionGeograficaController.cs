@@ -47,6 +47,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
+        public static String agregarUbicacionGeografica()
+        {
+            return "in progress";
+        }
+
         #endregion
 
     }

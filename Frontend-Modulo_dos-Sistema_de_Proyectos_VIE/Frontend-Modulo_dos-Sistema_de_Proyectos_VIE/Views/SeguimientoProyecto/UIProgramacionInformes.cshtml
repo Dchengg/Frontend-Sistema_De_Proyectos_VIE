@@ -61,6 +61,7 @@
                 </div>
             </div>
         }
+
         <div class="row formRow">
             <div class="form-group col-md-12">
                 <label for="areasFrascati"></label>
@@ -77,18 +78,23 @@
 
                         @foreach (var Informe in Model)
                         {
+                            
                             <tr>
+                            @using (Html.BeginForm("UIProgramacionInformes", "SeguimientoProyecto", new { idInforme = Informe.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                            {
+                                @Html.HttpMethodOverride(HttpVerbs.Delete)
                                 <th>@Informe.TituloInforme</th>
                                 <th>@Informe.FechaProgramada</th>
                                 <th>@Informe.FechaEntrega</th>
                                 <th>@Informe.Estado</th>
                                 <th>@Informe.TipoInforme</th>
                                 <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
-
+                            }
                             </tr>
+
                         }
 
-                    </table>
+                        </table>
                 </div>
             </div>
     </div>

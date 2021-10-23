@@ -81,7 +81,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/informe/AgregarInforme");
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Informe/AgregarInforme");
                 
                 var values = new Dictionary<string, string>
                 {
@@ -95,6 +95,28 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 };
                 var content = new FormUrlEncodedContent(values);
                 var responseTask = client.PostAsync(builder.Uri, content);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                var responseResult = "Failed";
+                if (result.IsSuccessStatusCode) responseResult = "Sucess";
+                return responseResult;
+            }
+        }
+
+        [HttpDelete]
+        public static String EliminarInforme(String idInforme)
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Informe/1")
+                {
+
+                    Query = string.Format("id={0}", idInforme)
+                };
+
+
+                var responseTask = client.DeleteAsync(builder.Uri.AbsoluteUri);
                 responseTask.Wait();
                 var result = responseTask.Result;
                 var responseResult = "Failed";
