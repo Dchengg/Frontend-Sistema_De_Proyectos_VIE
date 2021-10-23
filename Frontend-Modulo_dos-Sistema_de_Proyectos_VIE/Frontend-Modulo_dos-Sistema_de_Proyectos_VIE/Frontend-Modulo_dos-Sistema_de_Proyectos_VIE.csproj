@@ -137,6 +137,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IncidenciaController.cs" />
     <Compile Include="Controllers\InformeController.cs" />
+    <Compile Include="Controllers\InvestigadorController.cs" />
     <Compile Include="Controllers\ODSController.cs" />
     <Compile Include="Controllers\PalabrasClaveController.cs" />
     <Compile Include="Controllers\PoblacionBeneficiariaController.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Models\Bitacora.cs" />
     <Compile Include="Models\Colaboradores.cs" />
     <Compile Include="Models\Incidencia.cs" />
+    <Compile Include="Models\Investigador.cs" />
     <Compile Include="Models\SubODS.cs" />
     <Compile Include="Models\Presupuesto.cs" />
     <Compile Include="Models\SubFrascati.cs" />
@@ -394,6 +396,7 @@
     <Folder Include="Views\Colaboradores\" />
     <Folder Include="Views\Incidencia\" />
     <Folder Include="Views\Informe\" />
+    <Folder Include="Views\Investigador\" />
     <Folder Include="Views\ODS\" />
     <Folder Include="Views\PoblacionBeneficiaria\" />
     <Folder Include="Views\Proyecto\" />

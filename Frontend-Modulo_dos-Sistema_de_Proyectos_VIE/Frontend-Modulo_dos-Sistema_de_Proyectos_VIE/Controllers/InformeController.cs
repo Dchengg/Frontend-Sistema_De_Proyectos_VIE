@@ -81,11 +81,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/informe/3")
-                {
-
-                    Query = string.Format("tituloInforme={0}&idTipoInforme={1}&fechaProgramada={2},&estado={3},&memorandoDIP={4},&observaciones={5},&codigoProyecto={6}", tituloInforme, idTipoInforme, fechaProgramada, estado, memorandoDIP, observaciones, codigoProyecto)
-                };
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/informe/AgregarInforme");
+                
                 var values = new Dictionary<string, string>
                 {
                     {"tituloInforme", tituloInforme},
