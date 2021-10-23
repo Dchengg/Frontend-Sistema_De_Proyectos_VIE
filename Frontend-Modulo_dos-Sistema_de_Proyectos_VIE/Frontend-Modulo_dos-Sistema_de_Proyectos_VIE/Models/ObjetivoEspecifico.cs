@@ -11,8 +11,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
         #region Variables y Constantes
         [JsonProperty("Id")]
         public String Id { get; set; }
-        [JsonProperty("ObjetivoEspecifico")]
+        [JsonProperty("ObjetivoEspecifico1")]
         public String Objetivo { get; set; }
+
+        [JsonProperty("Metodologia")]
+        public String Metodologia { get; set; }
         #endregion
     }
 }

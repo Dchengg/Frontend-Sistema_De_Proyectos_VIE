@@ -959,17 +959,166 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIAmpliarObjetivos");
+            List<ObjetivoEspecifico> especificos = ProyectoController.getObjetivosProyecto(codigoProyecto);
+
+
+            return View("UIAmpliarObjetivos", especificos);
         }
 
-        public ActionResult UIObjetivosEspecificos(String codigoProyecto)
+        public ActionResult UIObjetivosEspecificos(String codigoProyecto, String objetivoEspecificoID)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Meta> metas = ObjetivosEspecificosController.getMetas(objetivoEspecificoID);
+            TempData["metas"] = metas;
+
+            List<Riesgo> riesgo = ObjetivosEspecificosController.getRiesgo(objetivoEspecificoID);
+            TempData["riesgo"] = riesgo;
+
+            List<Producto> productos = ObjetivosEspecificosController.getProductos(objetivoEspecificoID);
+            TempData["productos"] = productos;
+
+
+            List<ObjetivoEspecifico> obj = ObjetivosEspecificosController.getGetObjetivoByCodigo(objetivoEspecificoID);
+            ViewData["metodologiaText"] = obj[0].Metodologia;
+            ViewData["objetivoText"] = obj[0].Objetivo;
+            ViewData["CodigoObjetivo"] = objetivoEspecificoID;
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIObjetivosEspecificos");
+        }
+        [HttpPost]
+        public ActionResult UIObjetivosEspecificosMeta(FormCollection formAgregarMeta,String codigoProyecto, String objetivoEspecificoID)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+
+
+            String nombreInput = formAgregarMeta["nombreInput"].ToString();
+
+            String descripcionInput = formAgregarMeta["descripcionInput"].ToString();
+
+            String cumplidaInput = "False";
+
+
+
+            ObjetivosEspecificosController.AgregarMeta(nombreInput, cumplidaInput, objetivoEspecificoID, descripcionInput);
+
+            List<Meta> metas = ObjetivosEspecificosController.getMetas(objetivoEspecificoID);
+            TempData["metas"] = metas;
+
+            List<Riesgo> riesgo = ObjetivosEspecificosController.getRiesgo(objetivoEspecificoID);
+            TempData["riesgo"] = riesgo;
+
+            List<Producto> productos = ObjetivosEspecificosController.getProductos(objetivoEspecificoID);
+            TempData["productos"] = productos;
+
+
+
+            List<ObjetivoEspecifico> obj = ObjetivosEspecificosController.getGetObjetivoByCodigo(objetivoEspecificoID);
+            ViewData["metodologiaText"] = obj[0].Metodologia;
+            ViewData["objetivoText"] = obj[0].Objetivo;
+            ViewData["CodigoObjetivo"] = objetivoEspecificoID;
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIObjetivosEspecificos");
         }
 
-        #endregion
+        [HttpPost]
+        public ActionResult UIObjetivosEspecificosRiesgo(FormCollection formAgregarRiesgo, String codigoProyecto, String objetivoEspecificoID)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+
+
+            String posibleRiesgoInput = formAgregarRiesgo["posibleRiesgoInput"].ToString();
+
+            String accionesMitigacionInput = formAgregarRiesgo["accionesMitigacionInput"].ToString();
+
+
+
+            ObjetivosEspecificosController.AgregarRiesgo(posibleRiesgoInput, accionesMitigacionInput, objetivoEspecificoID);
+
+            List<Meta> metas = ObjetivosEspecificosController.getMetas(objetivoEspecificoID);
+            TempData["metas"] = metas;
+
+            List<Riesgo> riesgo = ObjetivosEspecificosController.getRiesgo(objetivoEspecificoID);
+            TempData["riesgo"] = riesgo;
+
+            List<Producto> productos = ObjetivosEspecificosController.getProductos(objetivoEspecificoID);
+            TempData["productos"] = productos;
+
+
+            
+
+
+            ViewData["CodigoObjetivo"] = objetivoEspecificoID;
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            List<ObjetivoEspecifico> obj = ObjetivosEspecificosController.getGetObjetivoByCodigo(objetivoEspecificoID);
+            ViewData["metodologiaText"] = obj[0].Metodologia;
+            ViewData["objetivoText"] = obj[0].Objetivo;
+            return View("UIObjetivosEspecificos");
+        }
+
+        [HttpDelete]
+        public ActionResult UIObjetivosEspecificosRiesgo(String codigoProyecto, String objetivoEspecificoID,  String riesgoId)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+
+
+
+
+
+            ObjetivosEspecificosController.EliminarRiesgo(riesgoId);
+
+            List<Meta> metas = ObjetivosEspecificosController.getMetas(objetivoEspecificoID);
+            TempData["metas"] = metas;
+
+            List<Riesgo> riesgo = ObjetivosEspecificosController.getRiesgo(objetivoEspecificoID);
+            TempData["riesgo"] = riesgo;
+
+            List<Producto> productos = ObjetivosEspecificosController.getProductos(objetivoEspecificoID);
+            TempData["productos"] = productos;
+
+
+
+            List<ObjetivoEspecifico> obj = ObjetivosEspecificosController.getGetObjetivoByCodigo(objetivoEspecificoID);
+            ViewData["metodologiaText"] = obj[0].Metodologia;
+            ViewData["objetivoText"] = obj[0].Objetivo;
+            ViewData["CodigoObjetivo"] = objetivoEspecificoID;
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIObjetivosEspecificos");
+        }
+     
+    [HttpDelete]
+    public ActionResult UIObjetivosEspecificosMeta(String codigoProyecto, String objetivoEspecificoID, String metaId)
+    {
+        Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+
+
+
+
+
+        ObjetivosEspecificosController.EliminarMeta(metaId);
+
+        List<Meta> metas = ObjetivosEspecificosController.getMetas(objetivoEspecificoID);
+        TempData["metas"] = metas;
+
+        List<Riesgo> riesgo = ObjetivosEspecificosController.getRiesgo(objetivoEspecificoID);
+        TempData["riesgo"] = riesgo;
+
+        List<Producto> productos = ObjetivosEspecificosController.getProductos(objetivoEspecificoID);
+        TempData["productos"] = productos;
+
+
+            List<ObjetivoEspecifico> obj = ObjetivosEspecificosController.getGetObjetivoByCodigo(objetivoEspecificoID);
+            ViewData["metodologiaText"] = obj[0].Metodologia;
+            ViewData["objetivoText"] = obj[0].Objetivo;
+
+            ViewData["CodigoObjetivo"] = objetivoEspecificoID;
+        ViewData["CodigoProyecto"] = codigoProyecto;
+        ViewData["NombreProyecto"] = Proyecto.Nombre;
+        return View("UIObjetivosEspecificos");
     }
+#endregion
+}
 }
