@@ -138,6 +138,7 @@
     <Compile Include="Controllers\IncidenciaController.cs" />
     <Compile Include="Controllers\InformeController.cs" />
     <Compile Include="Controllers\InvestigadorController.cs" />
+    <Compile Include="Controllers\ObjetivosEspecificosController.cs" />
     <Compile Include="Controllers\ODSController.cs" />
     <Compile Include="Controllers\PalabrasClaveController.cs" />
     <Compile Include="Controllers\PoblacionBeneficiariaController.cs" />
@@ -153,6 +154,9 @@
     <Compile Include="Models\Colaboradores.cs" />
     <Compile Include="Models\Incidencia.cs" />
     <Compile Include="Models\Investigador.cs" />
+    <Compile Include="Models\Meta.cs" />
+    <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\Riesgo.cs" />
     <Compile Include="Models\SubODS.cs" />
     <Compile Include="Models\Presupuesto.cs" />
     <Compile Include="Models\SubFrascati.cs" />
