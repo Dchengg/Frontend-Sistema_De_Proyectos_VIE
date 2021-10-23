@@ -517,7 +517,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las bitácoras del proyecto</returns>
         public ActionResult UIBitacora(String codigoProyecto) {
-
+            
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Bitacora> bitacora = BitacoraController.getBitacora(codigoProyecto);
 
@@ -664,22 +664,23 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
 
-            String idTipoInforme = formProgramacionInformes["formProgramacionInformes"].ToString();
+            String idTipoInforme = formProgramacionInformes["tipoInformeDropdown"].ToString();
             System.Diagnostics.Debug.WriteLine(idTipoInforme);
             
             String títuloDelInforme = formProgramacionInformes["títuloDelInforme"].ToString();
             System.Diagnostics.Debug.WriteLine(títuloDelInforme);
 
-
             String fechaProgramada = formProgramacionInformes["fechaProgramada"].ToString();
             System.Diagnostics.Debug.WriteLine(fechaProgramada);
-           // String resultPost = InformeController.AgregarInforme(títuloDelInforme, idTipoInforme, , codigoProyecto);
-           // System.Diagnostics.Debug.WriteLine(resultPost);
+           
 
 
             List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
 
             TempData["informePicker"] = informePicker;
+
+            // String resultPost = InformeController.AgregarInforme(títuloDelInforme, idTipoInforme, , codigoProyecto);
+            // System.Diagnostics.Debug.WriteLine(resultPost);
 
             List<Informe> informes = InformeController.getInformes(codigoProyecto);
 
