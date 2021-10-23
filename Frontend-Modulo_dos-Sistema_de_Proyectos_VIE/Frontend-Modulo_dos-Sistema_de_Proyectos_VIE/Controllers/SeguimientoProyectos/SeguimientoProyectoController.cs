@@ -874,11 +874,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult UIInvestigadoresAsociados(String codigoProyecto)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
-            List<Colaboradores> colaboradores = ColaboradoresController.GetColaboradores(codigoProyecto);
+            List<Investigador> Investigador = InvestigadorController.getInvestigadores(codigoProyecto);
 
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIInvestigadoresAsociados", colaboradores);
+            return View("UIInvestigadoresAsociados", Investigador);
         }
 
         /// <summary>
@@ -914,12 +914,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <returns>Vista de los investigadores asociados y el investigador coordinador para poder cambiar al coordinador</returns>
         public ActionResult UICambiarInvestigadorCoordinador(String codigoProyecto)
         {
-            List<Colaboradores> colaboradores = ColaboradoresController.GetColaboradores(codigoProyecto);
+            List<Investigador> investigador = InvestigadorController.getInvestigadores(codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UICambiarInvestigadorCoordinador",colaboradores);
+            return View("UICambiarInvestigadorCoordinador", investigador);
         }
         /// <summary>
         /// Llama al controlador de cambiar investigador coordinador y recoge el coordinador y los otros investigadores del proyecto para enviarlos a la vista
@@ -930,13 +930,15 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
         public ActionResult UICambiarInvestigadorCoordinador(String idInvestigador, String codigoProyecto)
         {
-             ColaboradoresController.CambiarCoordinador(idInvestigador,codigoProyecto);
-            List<Colaboradores> colaboradores = ColaboradoresController.GetColaboradores(codigoProyecto);
+            InvestigadorController.CambiarCoordinador(idInvestigador, codigoProyecto);
+
+            List<Investigador> investigador = InvestigadorController.getInvestigadores(codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UICambiarInvestigadorCoordinador", colaboradores);
+
+            return View("UICambiarInvestigadorCoordinador", investigador);
         }
         /// <summary>
         /// Llama al controlador de cronograma asociados y recoge el cronograma del proyecto para enviarlo a la vista
@@ -956,12 +958,13 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista para modificar horas de un investigador</returns>
-        public ActionResult UIModificarHorasInvestigador(String codigoProyecto)
+        public ActionResult UIModificarHorasInvestigador(String codigoProyecto,String numIdentidad)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Horas> horas = HorasController.getHoras(codigoProyecto, numIdentidad);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIModificarHorasInvestigador");
+            return View("UIModificarHorasInvestigador", horas);
         }
 
         public ActionResult UIAmpliarObjetivos(String codigoProyecto)
@@ -985,7 +988,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             String nuevoObjetivoGeneral = formObjetivo["nuevoObjetivoGeneral"].ToString();
 
 
-            ProyectoController.ModificarProyecto(codigoProyecto, Proyecto.FechaIngreso.ToString(), Proyecto.Nombre, nuevoObjetivoGeneral, Proyecto.Estado, Proyecto.TipoProyecto, Proyecto.TipoDeProceso, Proyecto.Modalidad, Proyecto.NumeroActaVIE, Proyecto.NumeroActaEscuela, Proyecto.FechaAprobacion.ToString(), Proyecto.FechaInicioEjecucion.ToString(), Proyecto.Descripcion, Proyecto.Justificacion);
+            //  ProyectoController.ModificarProyecto(codigoProyecto, Proyecto.FechaIngreso.ToString(), Proyecto.Nombre, nuevoObjetivoGeneral, Proyecto.Estado, Proyecto.TipoProyecto, Proyecto.TipoDeProceso, Proyecto.Modalidad, Proyecto.NumeroActaVIE, Proyecto.NumeroActaEscuela, Proyecto.FechaAprobacion.ToString(), Proyecto.FechaInicioEjecucion.ToString(), Proyecto.Descripcion, Proyecto.Justificacion);
 
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;

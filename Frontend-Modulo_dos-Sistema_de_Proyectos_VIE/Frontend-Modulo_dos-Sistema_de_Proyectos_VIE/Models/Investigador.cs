@@ -34,7 +34,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
 
         [JsonProperty("PaisNacimiento")]
         public String PaisNacimiento { get; set; }
-
+        [JsonProperty("TipoParticipacion")]
+        public String TipoParticipacion { get; set; }
         #endregion
     }
 }

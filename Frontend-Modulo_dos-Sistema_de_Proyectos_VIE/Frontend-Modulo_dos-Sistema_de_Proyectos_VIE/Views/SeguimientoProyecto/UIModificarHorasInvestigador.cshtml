@@ -1,4 +1,5 @@
-﻿
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Horas>
+
 @{
     ViewBag.Title = "Modificar Horas";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
@@ -54,16 +55,23 @@
                             <th> </th>
                         </tr>
 
+                        @foreach (var horas in Model)
+                        {
+                    <tr>
+                        @using (Html.BeginForm("UICompras", "SeguimientoProyecto", new { idHoras = horas.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        {
+                            @Html.HttpMethodOverride(HttpVerbs.Delete)
+                            <th>@horas.Id</th>
+                            <th>@horas.FechaInicio</th>
+                            <th>@horas.FechaFinalizacion</th>
+                            <th>@horas.CantidadHoras</th>
 
-                        <tr>
-
-                            <th>xxxxx</th>
-                            <th>xxxxx</th>
-                            <th>xxxxx</th>
-                            <th>xxxxx</th>
                             <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                        }
 
-                        </tr>
+                    </tr>
+
+                        }
 
                     </table>
                 </div>

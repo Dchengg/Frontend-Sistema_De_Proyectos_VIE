@@ -1,4 +1,5 @@
-﻿
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Investigador>
+
 @{
     ViewBag.Title = "Cambiar Investigador Coordinador";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
@@ -32,22 +33,25 @@
                             <th>Cédula</th>
                             <th>Nombre</th>
                             <th>Apellido 1</th>
-                            <th>Apellido 2</th>                          
-                            <th> </th>
+                            <th>Apellido 2</th>
+                            <th>Tipo de Participacion </th>
                         </tr>
 
-                        @foreach (var colaborador in Model)
-                            {<tr>
-                        @using (Html.BeginForm("UICambiarInvestigadorCoordinador", "SeguimientoProyecto", new { id = colaborador.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        @foreach (var investigador in Model)
                         {
-                                <th>@colaborador.Id</th>
-                                <th>@colaborador.Nombre</th>
-                                <th>@colaborador.PrimerApellido</th>
-                                <th>@colaborador.SegundoApellido</th>
-                                <th> <div> <button class="botonEliminar" type="submit"> ✓ </button></div></th>
+                    <tr>
+                        @using (Html.BeginForm("UICambiarInvestigadorCoordinador", "SeguimientoProyecto", new { idInvestigador = investigador.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        {
+                            <th>@investigador.NumIdentidad</th>
+                            <th>@investigador.Nombre</th>
+                            <th>@investigador.PrimerApellido</th>
+                            <th>@investigador.SegundoApellido</th>
+                            <th>@investigador.TipoParticipacion</th>
+
+                            <th> <div> <button class="botonAgregar" type="submit"> ✓ </button></div></th>
                         }
-                            </tr>
-                          }
+                    </tr>
+                        }
 
 
                     </table>

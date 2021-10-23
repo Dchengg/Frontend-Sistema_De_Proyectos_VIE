@@ -46,30 +46,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 return Colaboradores;
             }
         }
-        [HttpPost]
-        public static String CambiarCoordinador(string numIdentidad, string codigo)
-        {
-            using (var client = new HttpClient())
-            {
-
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/coordinador/");
-                var values = new Dictionary<string, string>
-                {
-                    {"numIdentidad", numIdentidad},
-                    {"codigo", codigo}
-
-
-                };
-                var content = new FormUrlEncodedContent(values);
-                var responseTask = client.PostAsync(builder.Uri, content);
-                responseTask.Wait();
-                var result = responseTask.Result;
-                var responseResult = "Failed";
-                if (result.IsSuccessStatusCode) responseResult = "Sucess";
-                return responseResult;
-            }
-        }
         #endregion
-
     }
 }
