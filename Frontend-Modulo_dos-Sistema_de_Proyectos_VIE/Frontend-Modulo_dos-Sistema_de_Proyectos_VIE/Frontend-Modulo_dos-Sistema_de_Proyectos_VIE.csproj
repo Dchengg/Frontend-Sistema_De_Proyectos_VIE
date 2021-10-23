@@ -129,12 +129,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AmpliarFechasController.cs" />
     <Compile Include="Controllers\BitacoraController.cs" />
-    <Compile Include="Controllers\ReportesController.cs" />
+    <Compile Include="Controllers\ColaboradoresController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HorasController.cs" />
+    <Compile Include="Controllers\IncidenciaController.cs" />
     <Compile Include="Controllers\InformeController.cs" />
+    <Compile Include="Controllers\InvestigadorController.cs" />
+    <Compile Include="Controllers\ObjetivosEspecificosController.cs" />
     <Compile Include="Controllers\ODSController.cs" />
     <Compile Include="Controllers\PalabrasClaveController.cs" />
     <Compile Include="Controllers\PoblacionBeneficiariaController.cs" />
@@ -147,7 +152,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Bitacora.cs" />
-    <Compile Include="Models\UbicacionGeografica.cs" />
+    <Compile Include="Models\Colaboradores.cs" />
+    <Compile Include="Models\Horas.cs" />
+    <Compile Include="Models\Incidencia.cs" />
+    <Compile Include="Models\Investigador.cs" />
+    <Compile Include="Models\Meta.cs" />
+    <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\Riesgo.cs" />
     <Compile Include="Models\SubODS.cs" />
     <Compile Include="Models\Presupuesto.cs" />
     <Compile Include="Models\SubFrascati.cs" />
@@ -166,6 +177,7 @@
     <Compile Include="Models\Poblacion.cs" />
     <Compile Include="Models\Proyecto.cs" />
     <Compile Include="Models\TipoDepartamento.cs" />
+    <Compile Include="Models\UbicacionGeografica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -382,18 +394,21 @@
     <Content Include="Views\SeguimientoProyecto\UIModificarInvestigadorAsociado.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIAmpliarObjetivos.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIObjetivosEspecificos.cshtml" />
-    <Content Include="Views\Home\UIReportes.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\AmpliarFechas\" />
     <Folder Include="Views\Bitacora\" />
     <Folder Include="Views\BuscadorProyecto\" />
+    <Folder Include="Views\Colaboradores\" />
+    <Folder Include="Views\Horas\" />
+    <Folder Include="Views\Incidencia\" />
     <Folder Include="Views\Informe\" />
+    <Folder Include="Views\Investigador\" />
     <Folder Include="Views\ODS\" />
     <Folder Include="Views\PoblacionBeneficiaria\" />
     <Folder Include="Views\Proyecto\" />
     <Folder Include="Views\SeguimientoProyectos\" />
     <Folder Include="Views\TipoDepartamento\" />
-    <Folder Include="Views\UbicacionGeografica\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

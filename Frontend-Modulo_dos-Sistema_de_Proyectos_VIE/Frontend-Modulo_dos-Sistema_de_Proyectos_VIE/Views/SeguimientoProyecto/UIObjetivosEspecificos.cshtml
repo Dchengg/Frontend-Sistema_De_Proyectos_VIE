@@ -1,7 +1,12 @@
-﻿
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ObjetivoEspecifico>
+
 @{
     ViewBag.Title = "Objetivos Específicos";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Meta> metas = TempData["metas"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Meta>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Riesgo> riesgos = TempData["riesgo"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Riesgo>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Producto> productos = TempData["productos"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Producto>;
+
 }
 
 <div style="width:100%">
@@ -18,20 +23,21 @@
                 <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
             </div>
         </div>
-        @using (Html.BeginForm("UIObjetivosEspecificos", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        @using (Html.BeginForm("UIObjetivosEspecificos", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"], objetivoEspecificoID = @ViewData["CodigoObjetivo"] }, FormMethod.Post))
         {
 
             <div class="row formRow">
                 <div class="form-group col-md-12">
                     <label for="objetivoEspecifico">Objetivo Específico: </label>
-                    <textarea class="form-control fullRowInput" id="objetivoEspecifico" rows="3" disabled> </textarea>
+                    @Html.TextAreaFor(Proyecto => @ViewData["objetivoText"], new { @readonly = true,  @Name = "objetivoEspecifico", @class = "form-control fullRowInput", @rows = "3"  })
+
                 </div>
             </div>
 
             <div class="row formRow">
                 <div class="form-group col-md-12">
                     <label for="metodologia">Metodología: </label>
-                    <textarea class="form-control fullRowInput" id="metodologia" name="metodologia" rows="3" disabled> </textarea>
+                    @Html.TextAreaFor(Proyecto => @ViewData["metodologiaText"], new { @readonly = true, @Name = "metodologia", @class = "form-control fullRowInput", @rows = "3" })
                 </div>
             </div>
 
@@ -79,29 +85,38 @@
                             <th>Nivel de responsabilidad</th>
                             <th> </th>
                         </tr>
+                        @foreach (var producto in productos)
+                        {
 
-                        <tr>
-                            <th> XXXX XXXX XXXX XXXX </th>
-                            <th> XXXX XXXX XXXX XXXX </th>
-                            <th> XXXX XXXX XXXX XXXX </th>
-                            <th> XXXX XXXX XXXX XXXX </th>
-                            <th>
-                                <div> <button class="botonEliminar" type="submit"> Eliminar </button></div>
-                            </th>
-                        </tr>
+
+
+                            <tr>
+                                @using (Html.BeginForm("UIObjetivosEspecificos", "SeguimientoProyecto", new { idProducto = producto.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                                {
+                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                    <th>@producto.Nombre</th>
+                                    <th>@producto.Actividad</th>
+                                    <th>@producto.EncargadoNombre</th>
+                                    <th>@producto.NivelDeResponsabilidad</th>
+
+                                    <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                                }
+                            </tr>
+
+                        }
                     </table>
                 </div>
             </div>
         </div>
 
 
-        @using (Html.BeginForm("UIObjetivosEspecificos", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        @using (Html.BeginForm("UIObjetivosEspecificosMeta", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"], objetivoEspecificoID = @ViewData["CodigoObjetivo"] }, FormMethod.Post))
         {
 
             <div class="row formRow">
                 <div class="form-inline col-md-6">
                     <label class="col-xs-5" for="nuevaMeta">Nueva meta: </label>
-                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="nuevaMeta" name="nuevaMeta" value="xxxx" />
+                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="nombreInput" name="nombreInput" value="xxxx" />
                 </div>
 
             </div>
@@ -109,7 +124,7 @@
             <div class="row formRow">
                 <div class="form-group col-md-12">
                     <label for="descripcion">Descripción: </label>
-                    <textarea class="form-control fullRowInput" id="descripcion" name="descripcion" rows="3"> </textarea>
+                    <textarea class="form-control fullRowInput" id="descripcionInput" name="descripcionInput" rows="3"> </textarea>
                 </div>
             </div>
 
@@ -129,33 +144,42 @@
                     <table class="table table-striped table-bordered disenoTabla" style="table-layout: auto;">
                         <tr id="ROW1">
                             <th>Meta</th>
-                            <th>Descripción</th>
                             <th>¿Cumplida?</th>
+                            <th>Descripción</th>
 
                             <th> </th>
                         </tr>
 
-                        <tr>
-                            <th> XXXX XXXX XXXX XXXX </th>
-                            <th> XXXX XXXX XXXX XXXX </th>
-                            <th> <div> <input type="checkbox" /></div> </th>
+                        @foreach (var meta in metas)
+                        {
 
-                            <th>
-                                <div> <button class="botonEliminar" type="submit"> Eliminar </button></div>
-                            </th>
-                        </tr>
+
+
+                    <tr>
+                        @using (Html.BeginForm("UIObjetivosEspecificosMeta", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"], objetivoEspecificoID = @ViewData["CodigoObjetivo"], metaId = meta.Id }, FormMethod.Post))
+                        {
+                            @Html.HttpMethodOverride(HttpVerbs.Delete)
+                            <th>@meta.Nombre</th>
+                            <th>@meta.EstaCumplida</th>
+                            <th>@meta.descripcion</th>
+
+                            <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                        }
+                    </tr>
+
+                        }
                     </table>
                 </div>
             </div>
         </div>
 
-        @using (Html.BeginForm("UIObjetivosEspecificos", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        @using (Html.BeginForm("UIObjetivosEspecificosRiesgo", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"], objetivoEspecificoID = @ViewData["CodigoObjetivo"] }, FormMethod.Post))
         {
 
             <div class="row formRow">
                 <div class="form-inline col-md-6">
                     <label class="col-xs-5" for="posibleRiesgo">Posible riesgo: </label>
-                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="posibleRiesgo" name="posibleRiesgo" value="xxxx" />
+                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="posibleRiesgo" name="posibleRiesgoInput" value="xxxx" />
                 </div>
 
             </div>
@@ -163,7 +187,7 @@
             <div class="row formRow">
                 <div class="form-group col-md-12">
                     <label for="accionesMitigacion">Acciones de mitigación: </label>
-                    <textarea class="form-control fullRowInput" id="accionesMitigacion" name="accionesMitigacion" rows="3"> </textarea>
+                    <textarea class="form-control fullRowInput" id="accionesMitigacion" name="accionesMitigacionInput" rows="3"> </textarea>
                 </div>
             </div>
 
@@ -187,14 +211,22 @@
                             <th> </th>
                         </tr>
 
-                        <tr>
-                            <th> XXXX XXXX XXXX XXXX </th>
-                            <th> XXXX XXXX XXXX XXXX </th>
+                        @foreach (var riesgo in riesgos)
+                        {
 
-                            <th>
-                                <div> <button class="botonEliminar" type="submit"> Eliminar </button></div>
-                            </th>
-                        </tr>
+
+
+                            <tr>
+                            @using(Html.BeginForm("UIObjetivosEspecificosRiesgo", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"], objetivoEspecificoID = @ViewData["CodigoObjetivo"], riesgoId = riesgo.Id }, FormMethod.Post))
+                            {
+                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                    <th>@riesgo.Nombre</th>
+                                    <th>@riesgo.AccionesMitagacion</th>
+                                    <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                                }
+                            </tr>
+
+                        }
                     </table>
                 </div>
             </div>

@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
-using System.Web.Mvc;
-using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
 using Newtonsoft.Json;
+using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
+using System.Web.Mvc;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
-    public class BitacoraController : Controller
+    public class IncidenciaController : Controller
     {
         /// <summary>
-        /// Llama a la api para obtener todas las Bitacoras de un proyecto
+        /// Llama al API para obtener la lista de incidencias del proyecto
         /// </summary>
         /// <param name="codigoProyecto"></param>
-        /// <returns>lista de las Bitacora del proyecto</returns>
-        public static List<Bitacora> getBitacora(String codigoProyecto)
+        /// <returns>lista de incidencias del proyecto</returns>
+        public static List<Incidencia> getIncidencias(String codigoProyecto)
         {
             using (var client = new HttpClient())
             {
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/bitacora")
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Incidencias")
                 {
                     Query = string.Format("id={0}", codigoProyecto)
                 };
@@ -28,12 +28,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 var responseTask = client.GetAsync(builder.Uri);
                 responseTask.Wait();
                 var result = responseTask.Result;
-                List<Bitacora> Bitacora = new List<Bitacora>();
+                List<Incidencia> incidencias = new List<Incidencia>();
                 if (result.IsSuccessStatusCode)
                 {
                     var response = result.Content.ReadAsStringAsync();
                     response.Wait();
-                    Bitacora = JsonConvert.DeserializeObject<List<Bitacora>>(response.Result);
+                    incidencias = JsonConvert.DeserializeObject<List<Incidencia>>(response.Result);
                     System.Diagnostics.Debug.WriteLine("Success");
 
                 }
@@ -41,29 +41,32 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 {
                     System.Diagnostics.Debug.WriteLine("Error");
                 }
-                return Bitacora;
+                return incidencias;
             }
         }
 
         /// <summary>
-        /// Llama a la api para insertar una nueva palabra clave a la base de datos
+        /// Llama al API para agregar una nueva incidencia al proyecto
         /// </summary>
-        /// <param name="PalabraClave"></param>
+        /// <param name="tituloIncidencia"></param>
+        /// <param name="descripcion"></param>
         /// <param name="codigoProyecto"></param>
-        /// <returns>String de respuesta de exito o fracaso de agregar la palabra clave de la base de datos</returns>
+        /// <returns>Resultado de inserción, exito o fracaso</returns>
         [HttpPost]
-        public static String AgregarBitacora(string descripcion, string responsable, string cedulaResponsable, string fechaYHora, string codigoProyecto)
+        public static String agregarIncidencia(string tituloIncidencia, string descripcion, string codigoProyecto)
         {
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/bitacora/AgregarBitacora");
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Incidencias/1")
+                {
+
+                    Query = string.Format("tituloIncidencia={0}&descripcion={1}&codigoProyecto={2}", tituloIncidencia, descripcion, codigoProyecto)
+                };
                 var values = new Dictionary<string, string>
                 {
-                    {"descripcion", descripcion},
-                    {"responsable", responsable},
-                    {"cedulaResponsable", cedulaResponsable},
-                    {"fechaYHora", fechaYHora},
+                    {"tituloIncidencia", tituloIncidencia},
+                    {"descripcion", descripcion },
                     {"codigoProyecto", codigoProyecto}
 
 
@@ -72,28 +75,27 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 var responseTask = client.PostAsync(builder.Uri, content);
                 responseTask.Wait();
                 var result = responseTask.Result;
-                var responseResult = "Failed";  
+                var responseResult = "Failed";
                 if (result.IsSuccessStatusCode) responseResult = "Sucess";
                 return responseResult;
             }
         }
 
         /// <summary>
-        /// Elimina la Bitacora selecionada en la interfaz del proyecto y llama a la API para eliminarla de la base de datos
+        /// Llama al API para eliminar una incidencia del proyecto
         /// </summary>
-        /// <param name="idBitacora"></param>
-        /// <returns>String de respuesta de exito o fracaso de eliminar la Bitacora de la base de datos</returns>
-        /// 
+        /// <param name="id"></param>
+        /// <returns>Resultado de eliminar, exito o fracaso</returns>
         [HttpDelete]
-        public static String EliminarBitacora(int idBitacora)
+        public static String eliminarIncidencia(string id)
         {
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Bitacora/1")
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Incidencias/1")
                 {
 
-                    Query = string.Format("id={0}", idBitacora)
+                    Query = string.Format("id={0}", id)
                 };
 
 

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
-using Newtonsoft.Json;
-using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
 using System.Web.Mvc;
+using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
+using Newtonsoft.Json;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
@@ -46,11 +46,13 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         }
 
         /// <summary>
-        /// Llama a la api para insertar una nueva palabra clave a la base de datos
+        /// Llama a la API para insertar una nueva compra a la base de datos
         /// </summary>
-        /// <param name="PalabraClave"></param>
+        /// <param name="nombreProducto"></param>
+        /// <param name="cantidad"></param>
+        /// <param name="precioTotal"></param>
         /// <param name="codigoProyecto"></param>
-        /// <returns>String de respuesta de exito o fracaso de agregar la palabra clave de la base de datos</returns>
+        /// <returns>Exito o fracaso de la inserción a la base de datos</returns>
         [HttpPost]
         public static String AgregarCompra(string nombreProducto, string cantidad, string precioTotal, string codigoProyecto)
         {

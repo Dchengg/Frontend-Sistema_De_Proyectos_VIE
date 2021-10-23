@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
-    public class UbicacionGeograficaController : Controller
+    public class ColaboradoresController : Controller
     {
         #region
         /// <summary>
@@ -18,11 +18,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>lista de ubicaciones geográficas</returns>
-        public static List<UbicacionGeografica>  GetUbicacionesGeograficas(String codigoProyecto)
+        public static List<Colaboradores> GetColaboradores(String codigoProyecto)
         {
             using (var client = new HttpClient())
             {
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/UbicacionGeografica")
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/colaboradores")
                 {
                     Query = string.Format("id={0}", codigoProyecto)
                 };
@@ -30,12 +30,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 var responseTask = client.GetAsync(builder.Uri);
                 responseTask.Wait();
                 var result = responseTask.Result;
-                List<UbicacionGeografica> ubicacionesGeograficas = new List<UbicacionGeografica>();
+                List<Colaboradores> Colaboradores = new List<Colaboradores>();
                 if (result.IsSuccessStatusCode)
                 {
                     var response = result.Content.ReadAsStringAsync();
                     response.Wait();
-                    ubicacionesGeograficas = JsonConvert.DeserializeObject<List<UbicacionGeografica>>(response.Result);
+                    Colaboradores = JsonConvert.DeserializeObject<List<Colaboradores>>(response.Result);
                     System.Diagnostics.Debug.WriteLine("Success");
 
                 }
@@ -43,11 +43,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 {
                     System.Diagnostics.Debug.WriteLine("Error");
                 }
-                return ubicacionesGeograficas;
+                return Colaboradores;
             }
         }
-
         #endregion
-
     }
 }
