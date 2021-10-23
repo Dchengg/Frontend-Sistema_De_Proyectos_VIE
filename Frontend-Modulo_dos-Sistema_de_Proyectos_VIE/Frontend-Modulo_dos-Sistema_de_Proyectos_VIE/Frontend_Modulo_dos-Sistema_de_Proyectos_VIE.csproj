@@ -114,7 +114,10 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\MappingConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Configuracion\PerfilCatalogos.cs" />
+    <Compile Include="Configuracion\PerfilInvestigador.cs" />
     <Compile Include="Controllers\Convocatoria\ConvocatoriaController.cs" />
     <Compile Include="Controllers\FichaInvestigador\FichaInvestigadorController.cs" />
     <Compile Include="Controllers\InicioController\InicioController.cs" />
@@ -315,8 +318,10 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\FichaInvestigador\Details.cshtml" />
+    <Content Include="Views\FichaInvestigador\Edit.cshtml" />
     <Content Include="Views\Convocatoria\Index.cshtml" />
+    <Content Include="Views\FichaInvestigador\Index.cshtml" />
+    <Content Include="Views\FichaInvestigador\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Inicio\" />

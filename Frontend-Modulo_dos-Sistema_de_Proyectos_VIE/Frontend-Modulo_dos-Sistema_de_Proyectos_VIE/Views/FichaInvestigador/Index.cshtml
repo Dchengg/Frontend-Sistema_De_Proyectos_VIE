@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador.FichaInvestigadorViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/MainMenu.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrimerApellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SegundoApellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApartadoPostal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroIdentidad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Seudonimo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaDeIngresoInstitucion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DatosPersonales)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrimerApellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SegundoApellido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaNacimiento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApartadoPostal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroIdentidad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Seudonimo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaDeIngresoInstitucion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DatosPersonales)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

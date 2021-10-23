@@ -20,5 +20,10 @@ namespace UIProcess.Modelos
 
         [DataMember]
         public bool Estado { get; set; }
+
+        public bool estaSinErrores()
+        {
+            return Estado;
+        }
     }
 }

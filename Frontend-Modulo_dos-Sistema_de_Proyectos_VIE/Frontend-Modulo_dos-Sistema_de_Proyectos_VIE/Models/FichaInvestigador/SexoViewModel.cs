@@ -11,7 +11,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
     {
         [Required]
         [Display(Name = "Sexo")]
-        public string SexoSeleccionado { get; set; }
+        public string Sexo { get; set; }
         public IEnumerable<SelectListItem> CatalogoSexo { get; set; }
     }
 }

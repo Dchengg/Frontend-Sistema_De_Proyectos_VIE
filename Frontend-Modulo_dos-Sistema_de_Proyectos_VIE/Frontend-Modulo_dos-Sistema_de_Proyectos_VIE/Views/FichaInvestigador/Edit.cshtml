@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/MainMenu.cshtml";
 }
 
-@using (Html.BeginForm("Index", "FichaInvestigador", FormMethod.Post, new { id = "formInvestigador" }))
+@using (Html.BeginForm())
 {
 
     <div class="container-fluid p-4 rounded" style="box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); background-color:white; width:90%">
@@ -32,10 +32,11 @@
                 <!-- Numero de identidad -->
                 <div class="row mt-3">
                     <div class="col-md-4 ">
-                        <label>Número de Identidad</label>
+                        @Html.DisplayNameFor(model => model.NumeroIdentidad)
+                        @Html.LabelFor(model => model.NumeroIdentidad, new { @class = "control-label " })
                     </div>
                     <div class="col-md-4 ">
-                        @Html.TextBoxFor(vista => vista.NumeroIdentidad, new { @class = "form-control " })
+                        @Html.EditorFor(model => model.NumeroIdentidad, new { htmlAttributes = new { @class = "form-control " }})
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
@@ -118,7 +119,7 @@
                         <label>Nacionalidad</label>
                     </div>
                     <div class="col-md-4 ">
-                        @Html.DropDownListFor(vista => vista.NacionalidadViewModel.NacionalidadSeleccionada, new SelectList(Model.NacionalidadViewModel.CatalogoNacionalidad, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "Nacionalidad" })
+                        @Html.DropDownListFor(model => model.NacionalidadViewModel.IdNacionalidad, new SelectList(Model.NacionalidadViewModel.CatalogoNacionalidad, "Value", "Text", Model.NacionalidadViewModel.IdNacionalidad), htmlAttributes: new { @class = "form-control", id = "Nacionalidad" })
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
@@ -136,7 +137,7 @@
                         <label>Pais Nacimiento</label>
                     </div>
                     <div class="col-md-4 ">
-                        @Html.DropDownListFor(vista => vista.PaisViewModel.PaisNacimientoSeleccionado, new SelectList(Model.PaisViewModel.CatalogoPais, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "PaisNacimiento" })
+                        @Html.DropDownListFor(vista => vista.PaisViewModel.IdPaisNacimiento, new SelectList(Model.PaisViewModel.CatalogoPais, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "PaisNacimiento" })
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
@@ -466,7 +467,7 @@
                         <label>Sexo</label>
                     </div>
                     <div class="col-md-4 ">
-                        @Html.DropDownListFor(vista => vista.SexoViewModel.SexoSeleccionado,
+                        @Html.DropDownListFor(vista => vista.SexoViewModel.Sexo,
                                new SelectList(Model.SexoViewModel.CatalogoSexo, "Value", "Text"),
                                htmlAttributes: new { @class = "form-control", id = "Sexo" })
                     </div>
@@ -754,7 +755,7 @@
                 </div>
                 <div class="col-md-4 form-inline">
                     <label class="col-md-6">País</label>
-                    @Html.DropDownList("catalogoPaises_EstudioRealizado", new SelectList(Model.CatalogoPais, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
+                    @Html.DropDownList("catalogoPaises_EstudioRealizado", new SelectList(null, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
                 </div>
             </div>
             <div class="row align-items-center justify-items-center mt-3">
@@ -1556,5 +1557,4 @@
         </div>
     </div>
 
-    <button type="submit" name="guardarFicha">Guardar datos de la ficha</button>
 }

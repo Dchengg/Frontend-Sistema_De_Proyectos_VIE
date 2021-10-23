@@ -12,31 +12,30 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         [Required]
         [Display(Name = "Fotografía")]
-        public byte[] Fotografia { get; set; }
+        public byte[] Fotografia { get; set; }  // Ok
 
         [Required]
         [Display(Name = "Nombre")]
-        public string Nombre { get; set; }
+        public string Nombre { get; set; } // Ok
 
         [Required]
         [Display(Name = "Primer apellido")]
-        public string PrimerApellido { get; set; }
+        public string PrimerApellido { get; set; } // Ok
 
         [Display(Name = "Segundo apellido")]
-        public string SegundoApellido { get; set; }
+        public string SegundoApellido { get; set; } // Ok
 
         [Required]
         [Display(Name = "Fecha de nacimiento")]
-        public System.DateTime FechaNacimiento { get; set; }
+        public System.DateTime FechaNacimiento { get; set; } // Ok
 
-        public TipoIdentificacionViewModel TipoIdentificacionViewModel { get; set; }
+        public TipoIdentificacionViewModel TipoIdentificacionViewModel { get; set; } // Ok?
 
-        public PaisViewModel PaisViewModel { get; set; }
-        public IEnumerable<SelectListItem> CatalogoPais { get; set; }
+        public PaisViewModel PaisViewModel { get; set; } // Ok?
 
-        public NacionalidadViewModel NacionalidadViewModel { get; set; }
+        public NacionalidadViewModel NacionalidadViewModel { get; set; } // Ok?
 
-        public SexoViewModel SexoViewModel { get; set; }
+        public SexoViewModel SexoViewModel { get; set; } // 
 
         [Required]
         [Display(Name = "Apartado postal")]
@@ -44,7 +43,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         [Required]
         [Display(Name = "Numero de identidad")]
-        public string NumeroIdentidad { get; set; }
+        public string NumeroIdentidad { get; set; } // Ok
 
         [Required]
         [Display(Name = "Seudónimo bilbiográfico")]

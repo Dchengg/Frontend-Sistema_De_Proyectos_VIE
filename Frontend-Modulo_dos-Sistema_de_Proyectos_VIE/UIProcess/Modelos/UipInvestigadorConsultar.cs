@@ -11,29 +11,23 @@ namespace UIProcess.Modelos
     public class UipInvestigadorConsultar
     {
         [DataMember]
-        public string NumeroIdentidad { get; set; }
+        public string NumeroIdentidad { get; set; } // Ok
         [DataMember]
-        public byte[] Fotografia { get; set; }
+        public byte[] Fotografia { get; set; } // Ok
         [DataMember]
-        public string Nombre { get; set; }
+        public string Nombre { get; set; } // Ok
         [DataMember]
-        public string PrimerApellido { get; set; }
+        public string PrimerApellido { get; set; } // Ok
         [DataMember]
-        public string SegundoApellido { get; set; }
+        public string SegundoApellido { get; set; } // Ok
         [DataMember]
-        public System.DateTime FechaNacimiento { get; set; }
+        public System.DateTime FechaNacimiento { get; set; } // Ok
         [DataMember]
-        public int IdTipoIdentificacion { get; set; }
+        public UipTipoIdentificacion TipoIdentificacion { get; set; }
         [DataMember]
-        public string TipoIdentificacion { get; set; }
+        public UipPaisNacimiento PaisNacimiento { get; set; }
         [DataMember]
-        public int IdPaisNacimiento { get; set; }
-        [DataMember]
-        public string PaisNacimiento { get; set; }
-        [DataMember]
-        public int IdNacionalidad { get; set; }
-        [DataMember]
-        public string Nacionalidad { get; set; }
+        public UipNacionalidad Nacionalidad {get; set;}
         [DataMember]
         public string Sexo { get; set; }
         [DataMember]
@@ -43,9 +37,7 @@ namespace UIProcess.Modelos
         [DataMember]
         public DateTime FechaDeIngresoInstitucion { get; set; }
         [DataMember]
-        public int IdSituacionLaboral { get; set; }
-        [DataMember]
-        public string SituacionLaboral { get; set; }
+        public UipSituacionLaboral SituacionLaboral { get; set; }
         [DataMember]
         public List<UipTelefono> Telefonos { get; set; }
         [DataMember]

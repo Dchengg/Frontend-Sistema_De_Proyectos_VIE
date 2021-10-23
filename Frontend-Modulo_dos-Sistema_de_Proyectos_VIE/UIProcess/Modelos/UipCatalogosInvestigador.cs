@@ -8,7 +8,7 @@ namespace UIProcess.Modelos
 {
     [Serializable]
     [DataContract]
-    public class UipCatalogos
+    public class UipCatalogosInvestigador
     {
         [DataMember]
         public List<UipCatalogoTipoIdentificacion> CatalogoTipoIdentificacion { get; set; }
@@ -42,10 +42,12 @@ namespace UIProcess.Modelos
         public List<UipCatalogoEditorial> CatalogoEditorial { get; set; }
         [DataMember]
         public List<UipCatalogoParticipacionLibro> CatalogoParticipacionLibro { get; set; }
+        [DataMember]
         public List<UipCatalogoTipoTelefono> CatalogoTipoTelefono { get; set; }
+        [DataMember]
         public List<UipCatalogoCategoriaAcademica> CatalogoCategoriaAcademica { get; set; }
 
-        public  UipCatalogos(List<UipCatalogoTipoIdentificacion> catalogoTipoIdentificacion, List<UipCatalogoPais> catalogoPais, List<UipCatalogoSituacionLaboral> catalogoSituacionLaboral,
+        public  UipCatalogosInvestigador(List<UipCatalogoTipoIdentificacion> catalogoTipoIdentificacion, List<UipCatalogoPais> catalogoPais, List<UipCatalogoSituacionLaboral> catalogoSituacionLaboral,
                           List<UipCatalogoInstitucion> catalogoInstitucion, List<UipCatalogoTituloAcademico> catalogoTituloAcademico, List<UipCatalogoIdioma> catalogoIdioma,
                           List<UipCatalogoNivelIdioma> catalogoNivelIdioma, List<UipCatalogoUnidadAcademica> catalogoUnidadAcademica, List<UipCatalogoTipoPerfil> catalogoTipoPerfil,
                           List<UipCatalogoDisciplinaCientifica> catalogoDisciplinaCientifica, List<UipCatalogoSubdisciplinaCientifica> catalogoSubdisciplinaCientifica,
