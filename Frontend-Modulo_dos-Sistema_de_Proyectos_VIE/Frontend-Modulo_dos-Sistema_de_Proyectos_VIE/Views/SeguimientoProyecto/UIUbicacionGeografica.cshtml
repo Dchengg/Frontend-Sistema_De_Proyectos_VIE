@@ -23,18 +23,18 @@
             <div class="row formRow">
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">País </label>
-                    <select style="margin-left:5px" class="form-control col-xs-5" name="paisDropdown">
-                        <option>Costa Rica</option>
+                    <select style="margin-left:5px" class="form-control col-xs-5" id="paisDropdown" name="paisDropdown">
+                        <option value="Costa Rica">Costa Rica</option>
                         <option>Perú</option>
                         <option>Colombia</option>
                     </select>
                 </div>
             </div>
 
-            <div class="row formRow">
+            <div class="row formRow" id="regionRow">
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Región </label>
-                    <select style="margin-left:5px" class="form-control col-xs-5" name="regionDropdown">
+                    <select style="margin-left:5px" class="form-control col-xs-5" id="regionDropdown" name="regionDropdown">
                         <option>Región Central</option>
                         <option>Región Caribe</option>
                         <option>Región Pacifico</option>
@@ -42,10 +42,10 @@
                 </div>
             </div>
 
-            <div class="row formRow">
+            <div class="row formRow" id="provinciaRow">
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Provincia </label>
-                    <select style="margin-left:5px" class="form-control col-xs-5" name="provinciaDropdown">
+                    <select style="margin-left:5px" class="form-control col-xs-5" id="provinciaDropdown" name="provinciaDropdown">
                         <option>San José</option>
                         <option>Cartago</option>
                         <option>Heredia</option>
@@ -93,5 +93,18 @@
             </div>
         </div>
     </div>
+    <script>
+        (function ($) {
+            $("#paisDropdown").on('change', function () {
+                if (this.value == "Costa Rica") {
+                    $("#regionRow").css("display", "flex")
+                    $("#provinciaRow").css("display", "flex")
+                } else {
+                    $("#regionRow").css("display", "none")
+                    $("#provinciaRow").css("display", "none")
+                }
+            })
+        })(jQuery);
+    </script>
 </div>
 

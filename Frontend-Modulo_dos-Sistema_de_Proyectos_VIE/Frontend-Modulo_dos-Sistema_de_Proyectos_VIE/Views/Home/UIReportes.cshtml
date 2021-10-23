@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Reportes";
+    Layout = "~/Views/Shared/MainMenu.cshtml";
+}
+
+<div class="container-fluid">
+    <h2>Reportes</h2>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <div class="row formRow">
+            <label class="col-md-4">Reporte que desea realizar</label>
+            <select class="col-md-6" id="reporteDropdown" name="reporteDropdown">
+                <option>Seleccione el reporte que desea realizar</option>
+                <optgroup label="Investigadores">
+                    <option value="FichaInvestigador" data-estado="No">Ficha de un investigador en específico</option>
+                    <option value="ListadoInvestigadores"  data-estado="No">Listado de investigadores con la ficha de investigador activa</option>
+                    <option>Investigadores por escuela</option>
+                    <option>Investigadores por disciplina científica</option>
+                    <option>Investigadores con informes pendientes</option>
+                </optgroup>
+                <optgroup label="Proyectos">
+                    <option>Datos de un proyecto en específico</option>
+                    <option>Proyectos según su estado</option>
+                    <option>Proyectos según su disciplina científica</option>
+                    <option>Proyectos según su ubicación geográfica</option>
+                    <option>Proyectos según su poblaciópn beneficiaria</option>
+                    <option>Proyectos según tipo de proyecto</option>
+                    <option>Proyectos según modalidad de proyecto</option>
+                    <option>Búsqueda de proyectos por palabras claves</option>
+                    <option>Proyectos con informes pendientes</option>
+                    <option>Proyectos en lo que participa un investigador en específico según su estado</option>
+                </optgroup>
+                <optgroup label="Otros">
+                    <option>Cantidad de proyectos por escuela en un rango de fechas</option>
+                    <option>Cantidad de dinero asignado en presupuesto a los proyectos por escuela en un rango de fechas</option>
+                    <option>Cantidad de horas asignadas en proyectos a una escuela en un rango de fechas</option>
+                </optgroup>
+            </select>
+            <button type="submit">
+                Seleccionar
+            </button>
+        </div>
+        <div class="row formRow" id="criterioRow" name="criterioRow" style="display:none">
+            <label class="col-md-4" for="criterioInput">Criterio de búsqueda</label>
+            <input type="text" class="col-md-7" form-control" id="criterioInput" name="criterioInput" />
+        </div>
+        <div class="row formRow" id="estadoRow" style="display:none">
+            <label class="col-md-4">Estado</label>
+            <select id="estadoDropdown" name="estadoDropdown">
+                <option>Seleccione el estado que desea</option>
+                <option>Todos</option>
+                <option>Activo</option>
+                <option>Inactivo</option>
+            </select>
+        </div>
+    }
+    <table class="table table-striped table-bordered disenoTabla formRow">
+        <tr id="ROW1">
+            <th>Código</th>
+            <th>Nombre del proyecto</th>
+            <th>Investigador coordinador</th>
+            <th>Fecha de inicio</th>
+            <th>Fecha de finalización</th>
+            <th>Oficial del proyecto</th>
+            <th>Acciones</th>
+        </tr>
+       
+            <tr>
+                <th>xxxx</th>
+                <th>xxxx</th>
+                <th>xxxx</th>
+                <th>xxxx</th>
+                <th>xxxx</th>
+                <th>xxxx</th>
+                <th>
+                    <button class="botonAzul" onclick="">
+                        Ver/Modificar datos del proyecto
+                    </button>
+                </th>
+            </tr>
+    </table>
+    <script>
+        (function ($) {
+            $("#reporteDropdown").on('change', function () {
+                $("estadoDropdown").val("")
+                if ($(this).find(':selected').data('estado') == "No") {
+                    $("#estadoRow").css("display", "none")
+                } else {
+                    $("#estadoRow").css("display", "flex")
+                }
+                $("#criterioRow").css("display", "flex")
+            })
+        })(jQuery);
+    </script>
+</div>
+

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -49,6 +49,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             criteriosBusqueda.Add(new SelectListItem { Text = "Investigador coordinador", Value = "Investigador coordinador" });
             ViewData["criteriosBusqueda"] = criteriosBusqueda;
             return View("UIBuscadorProyectos", proyectos);
+        }
+
+        public ActionResult Reportes()
+        {
+            return View("UIReportes");
         }
 
         public ActionResult About()
