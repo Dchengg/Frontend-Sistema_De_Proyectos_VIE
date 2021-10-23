@@ -26,22 +26,30 @@
         @using (Html.BeginForm("UIPresupuesto", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
         {
             <div class="row formRow">
-                <div class="form-inline col-md-8">
-                    <label class="col-xs-5">Fuentes de Financiamiento:  </label><hr>
-                    <select class="form-control col-xs-5" name="fuentesDropdown">
-                        <option>VIE</option>
-                    </select>
-                    <hr>
+                <div class="form-inline col-md">
+                    <div class="form-inline">
+                        <label class="col-xs-5">Fuentes de Financiamiento:  </label><hr>
+                        <select class="form-control col-xs-5" name="fuentesDropdown" id="fuentesDropdown">
+                            <option value="VIE">VIE</option>
+                            <option value="Organizacion">Organización</option>
+                        </select>
+                    </div>
+                    <hr />
+                    <div class="form-inline" id="partidaRow">
+                        <label class="col-xs-5">Partida:  </label><hr>
+                        <select class="form-control col-xs-5" name="partidaDropdown" id="partidaDropdown">
+                            <option>Operacion   </option>
 
-                    <label class="col-xs-5">Partida:  </label><hr>
-                    <select class="form-control col-xs-5" name="partidaDropdown">
-                        <option>Operacion   </option>
-
-                    </select>
+                        </select>
+                    </div>
+                    <div class="form-inline" style="display:none" id="organizacionRow">
+                        <label class="col-xs-5">Organización:  </label><hr>
+                        <input type="text" class="form-control" id="organizacionField"/>
+                    </div>
                 </div>
             </div>
             <div class="row formRow">
-                <div class="form-inline col-md-8">
+                <div class="form-inline col-md">
                     <label for="palabraInput">Año:  </label><hr>
                     <input type="number" min="1900" max="2099" step="1" value="2021" /><hr>
                     <label for="palabraInput">Monto:</label><hr> <label>₡</label>
@@ -91,4 +99,17 @@
             </div>
         </div>
     </div>
+    <script>
+        (function ($) {
+            $("#fuentesDropdown").on('change', function () {
+                if (this.value == "VIE") {
+                    $("#partidaRow").css('display', 'flex')
+                    $("#organizacionRow").css('display', 'none')
+                } else {
+                    $("#partidaRow").css('display', 'none')
+                    $("#organizacionRow").css('display', 'flex')
+                }
+            })
+        })(jQuery);
+    </script>
 </div>
