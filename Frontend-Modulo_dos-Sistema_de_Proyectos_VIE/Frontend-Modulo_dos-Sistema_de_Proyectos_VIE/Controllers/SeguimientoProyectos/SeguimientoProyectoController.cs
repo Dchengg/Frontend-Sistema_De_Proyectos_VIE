@@ -153,14 +153,57 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult UIPresupuesto(String codigoProyecto)
         {
 
+            List<Fuente> fuentePicker = PresupuestoController.getFuente();
+
+            TempData["fuentePicker"] = fuentePicker;
+
+
+            List<Partida> partidaPicker = PresupuestoController.getPartidas();
+
+            TempData["partidaPicker"] = partidaPicker;
+
             List<Presupuesto> Presupuesto = PresupuestoController.getPresupuesto(codigoProyecto);
 
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIPresupuesto", Presupuesto);
+        }
+        [HttpPost]
+        public ActionResult UIPresupuesto(FormCollection formPresupuesto, String codigoProyecto)
+        {
+            String fuentes = formPresupuesto["fuentesDropdown"].ToString();
+            String partida = formPresupuesto["partidaDropdown"].ToString();
+            String montoInput = formPresupuesto["montoInput"].ToString();
+            String organizacionField = formPresupuesto["organizacionField"].ToString();
+            String anoInput = formPresupuesto["anoInput"].ToString();
+            PresupuestoController.AgregarPresupuesto(fuentes, organizacionField, partida, anoInput, montoInput, codigoProyecto);
+            List<Fuente> fuentePicker = PresupuestoController.getFuente();
+            TempData["fuentePicker"] = fuentePicker;
+            List<Partida> partidaPicker = PresupuestoController.getPartidas();
+            TempData["partidaPicker"] = partidaPicker;
+            List<Presupuesto> Presupuesto = PresupuestoController.getPresupuesto(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIPresupuesto", Presupuesto);
         }
+        [HttpDelete]
+        public ActionResult UIPresupuesto(String idPresupuesto,String codigoProyecto)
+        {
 
+            PresupuestoController.EliminarPresupuesto(idPresupuesto);
+            List<Fuente> fuentePicker = PresupuestoController.getFuente();
+            TempData["fuentePicker"] = fuentePicker;
+            List<Partida> partidaPicker = PresupuestoController.getPartidas();
+            TempData["partidaPicker"] = partidaPicker;
+            List<Presupuesto> Presupuesto = PresupuestoController.getPresupuesto(codigoProyecto);
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIPresupuesto", Presupuesto);
+        }
         /// <summary>
         /// Llama al controlador de áreas frascati y le envia un nuevo área frascati que se debe agregar a la base de datos
         /// </summary>
@@ -192,6 +235,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View("UIAreaFrascati", Frascatis);
 
         }
+
+
 
         /// <summary>
         /// Llama al controlador de áreas frascati y le envia el ID del área frascati que se debe eliminar de la base de datos

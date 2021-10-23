@@ -47,27 +47,90 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             }
         }
 
-        /// <summary>
-        /// Llama a la api para insertar una nueva palabra clave a la base de datos
-        /// </summary>
-        /// <param name="PalabraClave"></param>
-        /// <param name="codigoProyecto"></param>
-        /// <returns>String de respuesta de exito o fracaso de agregar la palabra clave de la base de datos</returns>
-        [HttpPost]
-        public static String AgregarPalabraClave(String PalabraClave, String codigoProyecto)
+
+        public static List<Partida> getPartidas()
         {
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/PalabrasClave/1")
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Partida");
+
+
+
+                var responseTask = client.GetAsync(builder.Uri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Partida> tipo = new List<Partida>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    tipo = JsonConvert.DeserializeObject<List<Partida>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return tipo;
+            }
+        }
+
+            
+        public static List<Fuente> getFuente()
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Fuente");
+
+
+
+                var responseTask = client.GetAsync(builder.Uri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Fuente> tipo = new List<Fuente>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    tipo = JsonConvert.DeserializeObject<List<Fuente>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return tipo;
+            }
+        }
+        /// <summary>
+        /// Llama a la api para insertar una nueva palabra clave a la base de datos
+        /// </summary>
+        /// <param name="Presupuesto"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>String de respuesta de exito o fracaso de agregar la palabra clave de la base de datos</returns>
+        [HttpPost]
+        public static String AgregarPresupuesto(string idFuenteFinanciamiento, string organizacion, string idPartida, string ano, string monto, string codigoProyecto)
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/presupuesto/1")
                 {
 
-                    Query = string.Format("codigoProyecto={0}&palabraClave={1}", codigoProyecto, PalabraClave)
+                    Query = string.Format("idFuenteFinanciamiento={0}&organizacion={1}&idPartida={2}&ano={3}&monto={4}&codigoProyecto={5}", idFuenteFinanciamiento, organizacion, idPartida, ano, monto, codigoProyecto)
                 };
                 var values = new Dictionary<string, string>
                 {
-                    {"codigoProyecto", codigoProyecto},
-                    {"palabraClave", PalabraClave}
+                    {"idFuenteFinanciamiento", idFuenteFinanciamiento},
+                    {"organizacion", organizacion},
+                    {"idPartida", idPartida},
+                    {"ano", ano},
+                    {"monto", monto},
+                    {"codigoProyecto", codigoProyecto}
 
                 };
                 var content = new FormUrlEncodedContent(values);
@@ -87,12 +150,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <returns>String de respuesta de exito o fracaso de eliminar la palabra clave de la base de datos</returns>
         ///     
         [HttpDelete]
-        public static String EliminarPalabraClave(String idPalabraClave)
+        public static String EliminarPresupuesto(String idPalabraClave)
         {
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/PalabrasClave/1")
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/presupuesto/1")
                 {
 
                     Query = string.Format("id={0}", idPalabraClave)
