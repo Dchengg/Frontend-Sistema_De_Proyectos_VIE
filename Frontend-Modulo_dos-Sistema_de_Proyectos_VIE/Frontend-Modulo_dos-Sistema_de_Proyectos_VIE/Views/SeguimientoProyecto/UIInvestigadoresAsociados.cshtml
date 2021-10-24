@@ -51,7 +51,7 @@
                                 <button type="button" style="width: 100%; display: inline-block; border-color: black;" class="botonEliminar; btn btn-default dropdown-toggle" data-toggle="dropdown"> ...<span class="caret"></span> </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="@Url.Action("UIModificarInvestigadorAsociado","SeguimientoProyecto", new { codigoProyecto=ViewData["CodigoProyecto"]})" class="dropdown-item" style="color: #002854">Modificar investigador</a></li>
-                                    <li><a href="@Url.Action("UIModificarHorasInvestigador","SeguimientoProyecto", new { codigoProyecto=ViewData["CodigoProyecto"], numIdentidad =investigador.NumIdentidad })" class="dropdown-item" style="color: #002854">Modificar horas</a></li>
+                                    <li><a href="@Url.Action("UIModificarHorasInvestigador","SeguimientoProyecto", new { codigoProyecto=ViewData["CodigoProyecto"], numIdentidad =investigador.NumIdentidad, nombreInves= investigador.Nombre + " " +investigador.PrimerApellido+ " "+ investigador.SegundoApellido })" class="dropdown-item" style="color: #002854">Modificar horas</a></li>
                                     <li><button class="botonEliminar" type="submit"> Eliminar </button></li>
                                 </ul>
                             </div>

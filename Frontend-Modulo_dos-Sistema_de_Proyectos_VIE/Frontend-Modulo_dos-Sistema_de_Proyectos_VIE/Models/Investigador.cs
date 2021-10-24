@@ -9,7 +9,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
     public class Investigador
     {
         #region Variables y Constantes
-        [JsonProperty("$id")]
+        [JsonProperty("Id")]
         public int Id { get; set; }
         [JsonProperty("NumIdentidad")]
         public String NumIdentidad { get; set; }
