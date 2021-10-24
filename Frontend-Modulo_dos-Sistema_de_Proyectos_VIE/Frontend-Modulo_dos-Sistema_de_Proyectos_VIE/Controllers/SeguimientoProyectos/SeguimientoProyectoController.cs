@@ -847,6 +847,16 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <returns>Vista de la ubicación geográfica del proyecto</returns>
         public ActionResult UIUbicacionGeografica(String codigoProyecto){
 
+            List<Pais> paises = UbicacionGeograficaController.getPaises();
+            List<Region> regiones = UbicacionGeograficaController.getRegiones();
+            List<Provincia> provincias = UbicacionGeograficaController.getProvincias();
+
+            System.Diagnostics.Debug.WriteLine(paises);
+
+            TempData["Paises"] = paises;
+            TempData["Provincia"] = provincias;
+            TempData["Regiones"] = regiones;
+
             List<UbicacionGeografica> ubicacionGeograficas = UbicacionGeograficaController.GetUbicacionesGeograficas(codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);

@@ -19,6 +19,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
         public String IdProvincia { get; set; }
         [JsonProperty("CodigoProyecto")]
         public String CodigoProyecto { get; set; }
+        [JsonProperty("Nombre")]
+        public String Nombre { get; set; }
+
 
 
         #endregion

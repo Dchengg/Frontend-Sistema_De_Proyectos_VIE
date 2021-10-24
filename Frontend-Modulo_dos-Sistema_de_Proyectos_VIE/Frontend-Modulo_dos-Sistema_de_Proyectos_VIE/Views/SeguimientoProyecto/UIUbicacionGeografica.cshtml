@@ -2,6 +2,10 @@
 @{
     ViewBag.Title = "Ubicación Geográfica";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Pais> paisPicker = TempData["Paises"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Pais>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Provincia> provinciaPicker = TempData["Provincia"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Provincia>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Region> regionPicker = TempData["Regiones"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Region>;
 }
 
 <div style="width:100%">
@@ -24,9 +28,12 @@
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">País </label>
                     <select style="margin-left:5px" class="form-control col-xs-5" id="paisDropdown" name="paisDropdown">
-                        <option value="Costa Rica">Costa Rica</option>
-                        <option>Perú</option>
-                        <option>Colombia</option>
+                        @foreach (var pais in paisPicker)
+                        {
+                            <option value=@pais.Id>@pais.NombrePais</option>
+
+
+                        }
                     </select>
                 </div>
             </div>
@@ -35,9 +42,9 @@
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Región </label>
                     <select style="margin-left:5px" class="form-control col-xs-5" id="regionDropdown" name="regionDropdown">
-                        <option>Región Central</option>
-                        <option>Región Caribe</option>
-                        <option>Región Pacifico</option>
+                        @foreach (var region in regionPicker)
+                        {
+                    <option value=@region.Id>@region.NombreRegion</option>}
                     </select>
                 </div>
             </div>
@@ -46,13 +53,10 @@
                 <div class="form-inline col-md-8">
                     <label for="codigoProyectoInput">Provincia </label>
                     <select style="margin-left:5px" class="form-control col-xs-5" id="provinciaDropdown" name="provinciaDropdown">
-                        <option>San José</option>
-                        <option>Cartago</option>
-                        <option>Heredia</option>
-                        <option>Alajuela</option>
-                        <option>Limón</option>
-                        <option>Puntarenas</option>
-                        <option>Guanacaste</option>
+                        @foreach (var provincia in provinciaPicker)
+                        {
+                            <option value=@provincia.Id>@provincia.Nombre</option>
+                        }
                     </select>
                 </div>
             </div>
@@ -83,7 +87,7 @@
                                 <th>@ubicacion.Id</th>
                                 <th>@ubicacion.NombrePais</th>
                                 <th>@ubicacion.NombreRegion</th>
-                                <th>@ubicacion.IdProvincia</th>
+                                <th>@ubicacion.Nombre</th>
                                 <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th> 
                             </tr>
                         }
