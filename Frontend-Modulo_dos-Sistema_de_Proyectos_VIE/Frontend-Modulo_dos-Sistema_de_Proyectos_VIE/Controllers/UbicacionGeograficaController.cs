@@ -125,9 +125,55 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
-        public static String agregarUbicacionGeografica()
+        [HttpPost]
+        public static String agregarUbicacionGeografica(string idPais, string idRegion, string idProvincia, string codigoProyecto)
         {
-            return "in progress";
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/UbicacionGeografica/1")
+                {
+
+                    Query = string.Format("idPais={0}&idRegion={1}&idProvincia={2}&codigoProyecto={3}", idPais, idRegion, idProvincia, codigoProyecto)
+                };
+                var values = new Dictionary<string, string>
+                {
+                    
+                    {"idPais", idPais},
+                    {"idRegion", idRegion},
+                    {"idProvincia", idProvincia },
+                    {"codigoProyecto", codigoProyecto}
+                };
+                var content = new FormUrlEncodedContent(values);
+                var responseTask = client.PostAsync(builder.Uri, content);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                var responseResult = "Failed";
+                if (result.IsSuccessStatusCode) responseResult = "Sucess";
+                return responseResult;
+            }
+        }
+
+        [HttpDelete]
+        public static String EliminarUbicacionGeografica(String idUbicacion)
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/UbicacionGeografica/1")
+                {
+
+                    Query = string.Format("id={0}", idUbicacion)
+                };
+
+
+                var responseTask = client.DeleteAsync(builder.Uri.AbsoluteUri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                var responseResult = "Failed";
+                if (result.IsSuccessStatusCode) responseResult = "Sucess";
+                return responseResult;
+            }
         }
 
         #endregion
