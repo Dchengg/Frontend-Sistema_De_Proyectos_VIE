@@ -57,6 +57,68 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Configuracion
         }
     }
 
+    public class CategoriaAcademicaResolver : IValueResolver<UipCatalogosInvestigador,
+                                                     CategoriaAcademicaViewModel,
+                                                     IEnumerable<SelectListItem>>
+    {
+        public IEnumerable<SelectListItem> Resolve(UipCatalogosInvestigador source,
+                                                   CategoriaAcademicaViewModel destination,
+                                                   IEnumerable<SelectListItem> member,
+                                                   ResolutionContext context)
+        {
+            var nuevaLista = new List<SelectListItem>();
+            source.CatalogoCategoriaAcademica.ForEach(ti => nuevaLista.Add(ti.ToSelectListItem()));
+            return nuevaLista;
+        }
+    }
+
+    public class UnidadAcademicaResolver : IValueResolver<UipCatalogosInvestigador,
+                                                     UnidadAcademicaViewModel,
+                                                     IEnumerable<SelectListItem>>
+    {
+        public IEnumerable<SelectListItem> Resolve(UipCatalogosInvestigador source,
+                                                   UnidadAcademicaViewModel destination,
+                                                   IEnumerable<SelectListItem> member,
+                                                   ResolutionContext context)
+        {
+            var nuevaLista = new List<SelectListItem>();
+            source.CatalogoUnidadAcademica.ForEach(ti => nuevaLista.Add(ti.ToSelectListItem()));
+            return nuevaLista;
+        }
+    }
+
+    public class SituacionLaboralResolver : IValueResolver<UipCatalogosInvestigador,
+                                                     SituacionLaboralViewModel,
+                                                     IEnumerable<SelectListItem>>
+    {
+        public IEnumerable<SelectListItem> Resolve(UipCatalogosInvestigador source,
+                                                   SituacionLaboralViewModel destination,
+                                                   IEnumerable<SelectListItem> member,
+                                                   ResolutionContext context)
+        {
+            var nuevaLista = new List<SelectListItem>();
+            source.CatalogoSituacionLaboral.ForEach(ti => nuevaLista.Add(ti.ToSelectListItem()));
+            return nuevaLista;
+        }
+    }
+
+    public class TelefonoResolver : IValueResolver<UipCatalogosInvestigador,
+                                                     TelefonoViewModel,
+                                                     IEnumerable<SelectListItem>>
+    {
+        public IEnumerable<SelectListItem> Resolve(UipCatalogosInvestigador source,
+                                                   TelefonoViewModel destination,
+                                                   IEnumerable<SelectListItem> member,
+                                                   ResolutionContext context)
+        {
+            var nuevaLista = new List<SelectListItem>();
+            source.CatalogoTipoTelefono.ForEach(ti => nuevaLista.Add(ti.ToSelectListItem()));
+            return nuevaLista;
+        }
+    }
+
+    
+
     public class PerfilInvestigador : Profile
     {
 
@@ -79,7 +141,34 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Configuracion
 
             // Sexo
             CreateMap<UipInvestigadorConsultar, SexoViewModel>();
+            CreateMap<UipCatalogoSexo, SexoViewModel>();
 
+            // Categorias académicas
+            CreateMap<UipCategoriaAcademica, CategoriaAcademicaViewModel>();
+            CreateMap<UipCatalogosInvestigador, CategoriaAcademicaViewModel>()
+                .ForMember(dest => dest.CatalogoCategoriasAcademicas, act => act.MapFrom<CategoriaAcademicaResolver>());
+
+            // Unidades académicas
+            CreateMap<UipUnidadAcademica, UnidadAcademicaViewModel>();
+            CreateMap<UipCatalogosInvestigador, UnidadAcademicaViewModel>()
+                .ForMember(dest => dest.CatalogoUnidadesAcademicas, act => act.MapFrom<UnidadAcademicaResolver>());
+
+            // Situación laboral
+            CreateMap<UipSituacionLaboral, SituacionLaboralViewModel>();
+            CreateMap<UipCatalogosInvestigador, SituacionLaboralViewModel>()
+                .ForMember(dest => dest.CatalogoSituacionLaboral, act => act.MapFrom<SituacionLaboralResolver>());
+
+            // Telefono
+            CreateMap<UipTelefono, TelefonoViewModel>();
+            CreateMap<UipCatalogosInvestigador, TelefonoViewModel>()
+                .ForMember(dest => dest.CatalogoTipoTelefono, act => act.MapFrom<TelefonoResolver>());
+
+            // Correos
+            CreateMap<UipCorreo, CorreoViewModel>();
+
+            // Porcentaje Nombramiento
+            CreateMap<UipInvestigadorConsultar, PorcentajeNombramientoViewModel>();
+            // General
             CreateMap<UipInvestigadorConsultar, FichaInvestigadorViewModel>();
         }
 

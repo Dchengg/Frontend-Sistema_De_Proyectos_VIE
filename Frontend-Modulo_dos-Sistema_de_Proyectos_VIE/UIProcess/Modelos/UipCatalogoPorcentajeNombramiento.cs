@@ -4,15 +4,16 @@ using UIProcess.Interfaces;
 
 namespace UIProcess.Modelos
 {
-    public class UipCatalogoSexo : ISelectListItem
+    public class UipCatalogoPorcentajeNombramiento : ISelectListItem
     {
-        public string Sexo { get; set; }
+        public int PorcentajeNombramiento { get; set; }
+
         public SelectListItem ToSelectListItem()
         {
             return new SelectListItem()
             {
-                Value = Sexo,
-                Text = Sexo
+                Value = PorcentajeNombramiento.ToString(),
+                Text = PorcentajeNombramiento.ToString()
             };
         }
     }

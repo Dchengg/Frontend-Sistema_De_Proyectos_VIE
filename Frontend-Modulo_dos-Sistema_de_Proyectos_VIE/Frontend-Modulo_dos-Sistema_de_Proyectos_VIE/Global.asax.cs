@@ -22,15 +22,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            var respuesta = Consultor.ConsultarCatalogos();
-            if (respuesta.estaSinErrores())
-            {
-               MappingConfig.MapearCatalogos(respuesta.ObjetoRespuesta);
-            }
-            else
-            {
-                // TODO: Mostrar ventana de error
-            }
+            var cat = CatalogosSingleton.Instancia;
         }
     }
 }

@@ -15,39 +15,42 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE
         public static void MapearCatalogos(UipCatalogosInvestigador catalogos)
         {
             var config = new MapperConfiguration(cfg => cfg.AddProfile<PerfilCatalogos>());
-
-            UipCatalogosGlobal.CatalogoTipoIdentificacion = catalogos.CatalogoTipoIdentificacion.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoPais = catalogos.CatalogoPais.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoSexo = new List<SelectListItem>()
-            {
-                new SelectListItem() {Value = "1", Text = "Masculino"},
-                new SelectListItem() {Value = "2", Text = "Femenino"},
-                new SelectListItem() {Value = "3", Text = "Prefiero no especificar"}
-            };
-            UipCatalogosGlobal.CatalogoCategoriaAcademica = catalogos.CatalogoCategoriaAcademica.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoSituacionLaboral = catalogos.CatalogoSituacionLaboral.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoPorentajeNombramiento = new List<SelectListItem>();
-            for (int i = 1; i <= 100; i++)
-            {
-                UipCatalogosGlobal.CatalogoPorentajeNombramiento.Add(new SelectListItem() { Value = i.ToString(), Text = i.ToString() });
-            }
-            UipCatalogosGlobal.CatalogoInstitucion = catalogos.CatalogoInstitucion.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoTituloAcademico = catalogos.CatalogoTituloAcademico.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoIdioma = catalogos.CatalogoIdioma.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoNivelIdioma = catalogos.CatalogoNivelIdioma.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoUnidadAcademica = catalogos.CatalogoUnidadAcademica.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoTipoPerfil = catalogos.CatalogoTipoPerfil.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoDisciplinaCientifica = catalogos.CatalogoDisciplinaCientifica.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoEntidad = catalogos.CatalogoEntidad.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoRevista = catalogos.CatalogoRevista.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoIndiceRevista = catalogos.CatalogoIndiceRevista.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoEditorial = catalogos.CatalogoEditorial.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoParticipacionLibro = catalogos.CatalogoParticipacionLibro.Select(i => i.ToSelectListItem()).ToList();
-            UipCatalogosGlobal.CatalogoTipoTelefono = catalogos.CatalogoTipoTelefono.Select(i => i.ToSelectListItem()).ToList();
+            config.AssertConfigurationIsValid();
+            var mapper = config.CreateMapper();
+            
+            //UipCatalogosGlobal.CatalogoTipoIdentificacion = catalogos.CatalogoTipoIdentificacion.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoPais = catalogos.CatalogoPais.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoSexo = new List<SelectListItem>()
+            //{
+            //    new SelectListItem() {Value = "1", Text = "Masculino"},
+            //    new SelectListItem() {Value = "2", Text = "Femenino"},
+            //    new SelectListItem() {Value = "3", Text = "Prefiero no especificar"}
+            //};
+            //UipCatalogosGlobal.CatalogoCategoriaAcademica = catalogos.CatalogoCategoriaAcademica.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoSituacionLaboral = catalogos.CatalogoSituacionLaboral.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoPorentajeNombramiento = new List<SelectListItem>();
+            //for (int i = 1; i <= 100; i++)
+            //{
+            //    UipCatalogosGlobal.CatalogoPorentajeNombramiento.Add(new SelectListItem() { Value = i.ToString(), Text = i.ToString() });
+            //}
+            //UipCatalogosGlobal.CatalogoInstitucion = catalogos.CatalogoInstitucion.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoTituloAcademico = catalogos.CatalogoTituloAcademico.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoIdioma = catalogos.CatalogoIdioma.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoNivelIdioma = catalogos.CatalogoNivelIdioma.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoUnidadAcademica = catalogos.CatalogoUnidadAcademica.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoTipoPerfil = catalogos.CatalogoTipoPerfil.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoDisciplinaCientifica = catalogos.CatalogoDisciplinaCientifica.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoEntidad = catalogos.CatalogoEntidad.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoRevista = catalogos.CatalogoRevista.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoIndiceRevista = catalogos.CatalogoIndiceRevista.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoEditorial = catalogos.CatalogoEditorial.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoParticipacionLibro = catalogos.CatalogoParticipacionLibro.Select(i => i.ToSelectListItem()).ToList();
+            //UipCatalogosGlobal.CatalogoTipoTelefono = catalogos.CatalogoTipoTelefono.Select(i => i.ToSelectListItem()).ToList();
         }
 
         public static FichaInvestigadorViewModel MapearFichaInvestigador(UipInvestigadorConsultar investigador)
         {
+            var a = CatalogosSingleton.Instancia.CatalogoUnidadAcademica;
             // Configuracion de Automapper
             var config = new MapperConfiguration(
                              cfg =>
