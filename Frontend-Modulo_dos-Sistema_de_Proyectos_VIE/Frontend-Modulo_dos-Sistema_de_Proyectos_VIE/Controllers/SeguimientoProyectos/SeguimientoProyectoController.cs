@@ -1085,8 +1085,10 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Horas> horas = HorasController.getHoras(codigoProyecto, numIdentidad);
+            List<TipoHora> TipoHoras = HorasController.getTipoHoras();
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
+            TempData["TipoHoraPicker"] = TipoHoras;
             return View("UIModificarHorasInvestigador", horas);
         }
 

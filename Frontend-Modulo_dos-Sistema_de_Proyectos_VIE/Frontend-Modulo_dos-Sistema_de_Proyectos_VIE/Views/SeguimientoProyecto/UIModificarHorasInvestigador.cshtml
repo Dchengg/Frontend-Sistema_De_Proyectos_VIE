@@ -3,6 +3,8 @@
 @{
     ViewBag.Title = "Modificar Horas";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoHora> tipoHoraPicker = TempData["TipoHoraPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoHora>;
 }
 
 
@@ -34,6 +36,36 @@
                     <input style="margin-left:5px" type="text" class="form-control" id="investigador" name="investigador" />
                 </div>
             </div>
+
+            <div>
+                <div class="row formRow">
+                    <div class="form-inline col">
+                        <label for="fechaInicioInput">Fecha de inicio</label>
+                        <input type="date" id="fechaInicioInput" />
+                    </div>
+                    <div class="form-inline col">
+                        <label for="fechaFinalizacionInput">Fecha de finalización</label>
+                        <input type="date" id="fechaFinalizacionInput" />
+                    </div>
+                </div>
+                <div class="row formRow">
+                    <div class="form-inline col">
+                        <label for="tipoHoraDropdown">Tipo de hora</label>
+                        <select class="form-control col-xs-5" name="fuentesDropdown" id="fuentesDropdown">
+                            @foreach (var tipoHora in tipoHoraPicker)
+                            {
+                                <option value=@tipoHora.Id>@tipoHora.TipoHora1</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-inline col">
+                        <label for="horaInput">Cantidad de horas</label>
+                        <input style="margin-left:5px" type="number" class="form-control" id="horaInput" name="horaInput" />
+                    </div>
+                </div>
+                
+            </div>
+           
 
             <div class="row formRow">
                 <div class="wrapperBotonAgregar">
