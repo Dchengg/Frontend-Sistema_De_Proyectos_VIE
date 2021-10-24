@@ -1135,7 +1135,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista para modificar horas de un investigador</returns>
-        public ActionResult UIModificarHorasInvestigador(String codigoProyecto,String numIdentidad, String nombreInves)
+        public ActionResult UIModificarHorasInvestigador(String codigoProyecto, String numEquipo, String numIdentidad, String nombreInves)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Horas> horas = HorasController.getHoras(codigoProyecto, numIdentidad);
@@ -1145,8 +1145,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             ViewData["CodigoProyecto"] = codigoProyecto;
 
+            ViewData["numEquipo"] = numEquipo;
 
-            
+
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             TempData["TipoHoraPicker"] = TipoHoras;
             return View("UIModificarHorasInvestigador", horas);
@@ -1154,7 +1155,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
 
         [HttpPost]
-        public ActionResult UIModificarHorasInvestigador(FormCollection formHoras, String codigoProyecto, String numIdentidad, String nombreInves)
+        public ActionResult UIModificarHorasInvestigador(FormCollection formHoras, String codigoProyecto, String numEquipo, String numIdentidad, String nombreInves)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<TipoHora> TipoHoras = HorasController.getTipoHoras();
@@ -1167,9 +1168,10 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             String horaInput = formHoras["horaInput"].ToString();
 
-            HorasController.AgregarHoras(numIdentidad, tipoHoraInput, fechaInicioInput, fechaFinalizacionInput, horaInput);
+            HorasController.AgregarHoras(numEquipo, tipoHoraInput, fechaInicioInput, fechaFinalizacionInput, horaInput);
 
             List<Horas> horas = HorasController.getHoras(codigoProyecto, numIdentidad);
+            ViewData["numEquipo"] = numEquipo;
 
             ViewData["numIdentidad"] = numIdentidad;
             ViewData["nombreInves"] = nombreInves;
