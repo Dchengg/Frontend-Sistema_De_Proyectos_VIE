@@ -1037,8 +1037,10 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
 
             List<Investigador> investigadores = InvestigadorController.getInvestigadores();
+            List<Departamento> departamentos = DepartamentosController.getDepartamentos();
 
             TempData["investigadorPicker"] = investigadores;
+            TempData["departamentoPicker"] = departamentos;
 
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
