@@ -158,8 +158,11 @@
     <Compile Include="Models\Incidencia.cs" />
     <Compile Include="Models\Investigador.cs" />
     <Compile Include="Models\Meta.cs" />
+    <Compile Include="Models\Pais.cs" />
     <Compile Include="Models\Partida.cs" />
     <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\Provincia.cs" />
+    <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Riesgo.cs" />
     <Compile Include="Models\SubODS.cs" />
     <Compile Include="Models\Presupuesto.cs" />
