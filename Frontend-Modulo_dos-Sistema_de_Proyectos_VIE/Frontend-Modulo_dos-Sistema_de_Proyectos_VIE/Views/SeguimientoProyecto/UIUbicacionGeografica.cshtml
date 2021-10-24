@@ -84,11 +84,15 @@
                         @foreach (var ubicacion in Model)
                         {
                             <tr>
+                                @using (Html.BeginForm("UIUbicacionGeografica", "SeguimientoProyecto", new { idUbicacion = ubicacion.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                                {
+                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
                                 <th>@ubicacion.Id</th>
                                 <th>@ubicacion.NombrePais</th>
                                 <th>@ubicacion.NombreRegion</th>
                                 <th>@ubicacion.Nombre</th>
                                 <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th> 
+                                }
                             </tr>
                         }
 

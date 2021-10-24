@@ -918,6 +918,30 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View("UIUbicacionGeografica", ubicacionGeograficas);
         }
 
+        [HttpDelete]
+        public ActionResult UIUbicacionGeografica(String idUbicacion, String codigoProyecto)
+        {
+            List<Pais> paises = UbicacionGeograficaController.getPaises();
+            List<Region> regiones = UbicacionGeograficaController.getRegiones();
+            List<Provincia> provincias = UbicacionGeograficaController.getProvincias();
+
+
+            TempData["Paises"] = paises;
+            TempData["Provincia"] = provincias;
+            TempData["Regiones"] = regiones;
+
+
+            System.Diagnostics.Debug.WriteLine(idUbicacion);
+
+            String result = UbicacionGeograficaController.EliminarUbicacionGeografica(idUbicacion);
+            List<UbicacionGeografica> ubicacionGeograficas = UbicacionGeograficaController.GetUbicacionesGeograficas(codigoProyecto);
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIUbicacionGeografica", ubicacionGeograficas);
+        }
+
         /// <summary>
         /// Llama al controlador de contratos y recoge los contratos del proyecto para enviarlos a la vista
         /// </summary>
