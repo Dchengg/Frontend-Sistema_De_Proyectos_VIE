@@ -851,7 +851,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             List<Region> regiones = UbicacionGeograficaController.getRegiones();
             List<Provincia> provincias = UbicacionGeograficaController.getProvincias();
 
-            System.Diagnostics.Debug.WriteLine(paises);
 
             TempData["Paises"] = paises;
             TempData["Provincia"] = provincias;
@@ -865,23 +864,52 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View("UIUbicacionGeografica", ubicacionGeograficas);
         }
 
+        /// <summary>
+        /// Llama al controlador de ubicaciones para insertar una nueva ubicación geográfica
+        /// </summary>
+        /// <param name="formUbicacionGeografica"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista con la nueva ubicación geográfica</returns>
         [HttpPost]
         public ActionResult UIUbicacionGeografica(FormCollection formUbicacionGeografica, String codigoProyecto)
         {
-            String pais = formUbicacionGeografica["paisDropdown"];
+            List<Pais> paises = UbicacionGeograficaController.getPaises();
+            List<Region> regiones = UbicacionGeograficaController.getRegiones();
+            List<Provincia> provincias = UbicacionGeograficaController.getProvincias();
+
+
+            TempData["Paises"] = paises;
+            TempData["Provincia"] = provincias;
+            TempData["Regiones"] = regiones;
+
+
+            String pais = formUbicacionGeografica["paisDropdown"].ToString();
             String provincia;
             String region;
-            if (pais.Equals("Costa Rica")){
-                provincia = formUbicacionGeografica["provinciaDropdown"];
-                region = formUbicacionGeografica["regionDropdown"];
+            String nombrePais =" ";
+
+            foreach(var elem in paises)
+            {
+                if(elem.Id == pais)
+                {
+                    nombrePais = elem.NombrePais;
+                    break;
+                }
+            }
+
+            System.Diagnostics.Debug.WriteLine(pais);
+
+            if (nombrePais.Equals("Costa Rica")){
+                provincia = formUbicacionGeografica["provinciaDropdown"].ToString();
+                region = formUbicacionGeografica["regionDropdown"].ToString();
             }
             else
             {
-                provincia = "N/a";
-                region = "N/a";
+                provincia = "-1";
+                region = "-1";
             }
 
-            //String result = UbicacionGeograficaController.agregarUbicacion();
+            String result = UbicacionGeograficaController.agregarUbicacionGeografica(pais, region, provincia, codigoProyecto);
             List<UbicacionGeografica> ubicacionGeograficas = UbicacionGeograficaController.GetUbicacionesGeograficas(codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
