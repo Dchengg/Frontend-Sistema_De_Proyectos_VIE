@@ -997,9 +997,14 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult UIAgregarInvestigadorAsociado(string codigoProyecto)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+
+            List<Investigador> investigadores = InvestigadorController.getInvestigadores();
+
+            TempData["investigadorPicker"] = investigadores;
+
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIAgregarInvestigadorAsociado");
+            return View("UIAgregarInvestigadorAsociado", investigadores);
         }
 
         /// <summary>

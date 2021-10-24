@@ -1,7 +1,10 @@
-﻿
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Investigador>
+
 @{
     ViewBag.Title = "Agregar Investigador Asociado";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Investigador> investigadorPicker = TempData["investigadorPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Investigador>;
+
 }
 
 <div style="width:100%">
@@ -23,12 +26,14 @@
             <div class="row formRow">
                 <div class="form-inline col-md-6">
                     <label class="col-xs-5">Lista de investigadores: </label>
-                    <select class="form-control col-xs-5">
+                    <select class="form-control col-xs-5" id="pickerInvestigador" name="pickerInvestigador" >
 
-                        <option value="Ingeniería en computación">Pedro Soto Ruiz</option>
-                        <option value="Administración de empresas">Marco Antonio Rojas Salazar</option>
-                        <option value="Ingrid Gomez Ramirez"> Ingrid Gomez Ramirez</option>
+                        @foreach (var investigador in investigadorPicker)
+                        {
+                            <option value=@investigador.Id>@investigador.Nombre</option>
 
+
+                        }
                     </select>
                 </div>
             </div>
@@ -52,7 +57,7 @@
             <div class="row formRow">
                 <div class="form-inline col-md-6">
                     <label class="col-xs-5" for="nombreInvestigador">Nombre del Investigador:</label>
-                    <input type="text" class="form-control col-xs-5" id="nombreInvestigador" name="nombreInvestigador" value="xxxx" />
+                    <input type="text" class="form-control col-xs-5" id="nombreInvestigador" name="nombreInvestigador" value=@investigadorPicker.FirstOrDefault(inves => inves.Id == 0); />
                 </div>
                 <div class="form-inline col-md-6">
                     <label class="col-xs-5" for="sexoInvestigador">Sexo: </label>
@@ -69,7 +74,7 @@
             <div class="row formRow">
                 <div class="form-inline col-md-6">
                     <label class="col-xs-5" for="primerApellido">Primer apellido: </label>
-                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="primerApellido" name="primerApellido" value="xxxx" />
+                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="primerApellido" name="primerApellido" value="" />
                 </div>
                 <div class="form-inline col-md-6">
                     <label class="col-xs-5" for="correoElectronico">Correo electrónico: </label>
