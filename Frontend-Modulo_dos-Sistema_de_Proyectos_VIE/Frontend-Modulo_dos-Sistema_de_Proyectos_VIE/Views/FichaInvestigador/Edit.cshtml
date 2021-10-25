@@ -119,7 +119,7 @@
                         <label>Nacionalidad</label>
                     </div>
                     <div class="col-md-4 ">
-                        @Html.DropDownListFor(model => model.NacionalidadViewModel.IdNacionalidad, new SelectList(Model.NacionalidadViewModel.CatalogoNacionalidad, "Value", "Text", Model.NacionalidadViewModel.IdNacionalidad), htmlAttributes: new { @class = "form-control", id = "Nacionalidad" })
+                        @Html.DropDownListFor(model => model.Nacionalidad.IdNacionalidad, new SelectList(Model.Nacionalidad.CatalogoPais, "Value", "Text", Model.Nacionalidad.IdNacionalidad), htmlAttributes: new { @class = "form-control", id = "Nacionalidad" })
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
@@ -137,7 +137,7 @@
                         <label>Pais Nacimiento</label>
                     </div>
                     <div class="col-md-4 ">
-                        @Html.DropDownListFor(vista => vista.PaisViewModel.IdPaisNacimiento, new SelectList(Model.PaisViewModel.CatalogoPais, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "PaisNacimiento" })
+                        @Html.DropDownListFor(vista => vista.PaisNacimiento.IdPaisNacimiento, new SelectList(Model.PaisNacimiento.CatalogoPais, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "PaisNacimiento" })
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
@@ -200,11 +200,11 @@
                                             {
                                                 <tr>
                                                     <td>
-                                                        @Html.DropDownList(telefono.TipoTelefono,
+                                                        @Html.DropDownList(telefono.Tipo,
                         new SelectList(telefono.CatalogoTipoTelefono, "Value", "Text"),
                         htmlAttributes: new { @class = "form-control" })
                                                     </td>
-                                                    <td>@Html.TextBox("NumeroTelefono", telefono.Telefono, htmlAttributes: new { @class = "form-control" })</td>
+                                                    <td>@Html.TextBox("NumeroTelefono", telefono.Numero, htmlAttributes: new { @class = "form-control" })</td>
                                                     <td>
                                                         <div class="form-check m-2">
                                                             <input class="form-check-input" type="checkbox" value="" id="telefonoPrivacidad">
@@ -275,8 +275,8 @@
                                         {
                                             <tr>
                                                 <td>
-                                                    @Html.DropDownList(unidadAcademica.UnidadAcademicaSeleccionada.ToString(),
-                         new SelectList(unidadAcademica.CatalogoUnidadesAcademicas, "Value", "Text"),
+                                                    @Html.DropDownList(unidadAcademica.IdUnidadAcademica.ToString(),
+                         new SelectList(unidadAcademica.CatalogoUnidadAcademica, "Value", "Text"),
                          htmlAttributes: new { @class = "form-control", id = "UnidadAcademica" })
                                                 </td>
                                             </tr>
@@ -467,8 +467,8 @@
                         <label>Sexo</label>
                     </div>
                     <div class="col-md-4 ">
-                        @Html.DropDownListFor(vista => vista.SexoViewModel.Sexo,
-                               new SelectList(Model.SexoViewModel.CatalogoSexo, "Value", "Text"),
+                        @Html.DropDownListFor(vista => vista.Sexo.Sexo,
+                               new SelectList(Model.Sexo.CatalogoSexo, "Value", "Text"),
                                htmlAttributes: new { @class = "form-control", id = "Sexo" })
                     </div>
                     <div class="col-md-4">
@@ -487,8 +487,8 @@
                         <label>Situación Laboral</label>
                     </div>
                     <div class="col-md-4 ">
-                        @Html.DropDownListFor(vista => vista.SituacionLaboralViewModel.SituacionLaboralSeleccionada,
-                               new SelectList(Model.SituacionLaboralViewModel.CatalogoSituacionLaboral, "Value", "Text"),
+                        @Html.DropDownListFor(vista => vista.SituacionLaboral.IdSituacionLaboral,
+                               new SelectList(Model.SituacionLaboral.CatalogoSituacionLaboral, "Value", "Text"),
                                htmlAttributes: new { @class = "form-control", id = "SituacionLaboral" })
                     </div>
                     <div class="col-md-4">
@@ -507,9 +507,9 @@
                         <label>Porcentaje de Nombramiento Indefinido</label>
                     </div>
                     <div class="col-md-4 ">
-                        @Html.DropDownListFor(vista => vista.PorcentajeNombramientoViewModel.PorcentajeNombramientoSeleccionado,
-                               new SelectList(Model.PorcentajeNombramientoViewModel.CatalogoPorcentajeNombramiento, "Value", "Text"),
-                               htmlAttributes: new { @class = "form-control", id = "PorcentajeNombramiento" })
+                        @*Html.DropDownListFor(vista => vista.PorcentajeNombramiento.PorcentajeNombramiento,
+                               new SelectList(Model.PorcentajeNombramiento.CatalogoPorcentajeNombramiento, "Value", "Text"),
+                               htmlAttributes: new { @class = "form-control", id = "PorcentajeNombramiento" })*@
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
@@ -554,8 +554,8 @@
                                         {
                                             <tr>
                                                 <td>
-                                                    @Html.DropDownList(categoria.CategoriaAcademicaSeleccionada.ToString(),
-                                new SelectList(categoria.CatalogoCategoriasAcademicas, "Value", "Text"),
+                                                    @Html.DropDownList(categoria.NombreCategoria.ToString(),
+                                new SelectList(categoria.CatalogoCategoriaAcademica, "Value", "Text"),
                                 htmlAttributes: new { @class = "form-control", id = "CategoriaAcademica" })
                                                 </td>
                                                 <td>
@@ -641,7 +641,7 @@
                         {
                             <tr>
                                 <td>
-                                    @perfil.TipoPerfilSeleccionado.ToString()
+                                    @perfil.TipoPerfil.ToString()
                                 </td>
                                 <td>
                                     @perfil.Direccion
@@ -669,7 +669,7 @@
                                                 <label>Tipo de perfil</label>
                                             </div>
                                             <div class="mx-2 my-2">
-                                                @Html.TextBox("campoTextoTipoPerfil", perfil.TipoPerfilSeleccionado, htmlAttributes: new { @class = "form-control col" })
+                                                @Html.TextBox("campoTextoTipoPerfil", perfil.TipoPerfil, htmlAttributes: new { @class = "form-control col" })
                                             </div>
 
                                             <div class="mx-2 my-2">
@@ -755,7 +755,7 @@
                 </div>
                 <div class="col-md-4 form-inline">
                     <label class="col-md-6">País</label>
-                    @Html.DropDownList("catalogoPaises_EstudioRealizado", new SelectList(null, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
+                    @Html.DropDownList("catalogoPaises_EstudioRealizado", new SelectList(Model.CatalogoPais, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
                 </div>
             </div>
             <div class="row align-items-center justify-items-center mt-3">
@@ -799,10 +799,10 @@
                                     @estudioRealizado.TituloAcademico
                                 </td>
                                 <td>
-                                    @estudioRealizado.Institucion
+                                    @estudioRealizado.NombreInstitucion
                                 </td>
                                 <td>
-                                    @estudioRealizado.Pais
+                                    @estudioRealizado.NombrePais
                                 </td>
                                 <td>
                                     @estudioRealizado.AnoGraduacion
@@ -833,21 +833,21 @@
                                                 <label>Título académico</label>
                                             </div>
                                             <div class="mx-2 my-2">
-                                                @Html.DropDownList(estudioRealizado.TituloAcademico + contadorEstudio, new SelectList(estudioRealizado.TitulosAcademicos, "Value", "Text", estudioRealizado.IdTituloAcademico.ToString()), htmlAttributes: new { @class = "form-control col" })
+                                                @*Html.DropDownList(estudioRealizado.TituloAcademico + contadorEstudio, new SelectList(estudioRealizado.TitulosAcademicos, "Value", "Text", estudioRealizado.IdTituloAcademico.ToString()), htmlAttributes: new { @class = "form-control col" })*@
                                             </div>
 
                                             <div class="mx-2 my-2">
                                                 <label>Institución</label>
                                             </div>
                                             <div class="mx-2 my-2">
-                                                @Html.DropDownList(estudioRealizado.Institucion + contadorEstudio, new SelectList(estudioRealizado.Instituciones, "Value", "Text", estudioRealizado.IdInstitucion.ToString()), htmlAttributes: new { @class = "form-control col" })
+                                                @Html.DropDownList(estudioRealizado.NombreInstitucion + contadorEstudio, new SelectList(estudioRealizado.CatalogoInstitucion, "Value", "Text", estudioRealizado.IdInstitucion.ToString()), htmlAttributes: new { @class = "form-control col" })
                                             </div>
 
                                             <div class="mx-2 my-2">
                                                 <label>País</label>
                                             </div>
                                             <div class="mx-2 my-2">
-                                                @Html.DropDownList(estudioRealizado.Pais + contadorEstudio, new SelectList(estudioRealizado.Paises, "Value", "Text", estudioRealizado.IdPais.ToString()), htmlAttributes: new { @class = "form-control col" })
+                                                @Html.DropDownList(estudioRealizado.NombrePais + contadorEstudio, new SelectList(estudioRealizado.CatalogoPais, "Value", "Text", estudioRealizado.IdPais.ToString()), htmlAttributes: new { @class = "form-control col" })
                                             </div>
 
                                             <div class="mx-2 my-2">
@@ -1034,7 +1034,7 @@
             </div>
             <div class="col-md-6 form-inline">
                 <label class="col-md-6">Unidad Departamental</label>
-                @Html.DropDownList("catalogoUnidadesAcademicas_EstudioRealizado", new SelectList(Model.UnidadesAcademicas, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
+                @*Html.DropDownList("catalogoUnidadesAcademicas_EstudioRealizado", new SelectList(Model.UnidadesAcademicas, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })*@
             </div>
         </div>
         <div class="row align-items-center justify-items-center mt-3">
@@ -1070,7 +1070,7 @@
                     @{
                         int contadorExperiencia = 0;
 
-                        foreach (var experiencia in Model.ExperienciaAcademicas)
+                        foreach (var experiencia in Model.ExperienciasAcademicas)
                         {
                             <tr>
                                 <td>
@@ -1115,7 +1115,7 @@
                                                 <label>Unidad Departametal</label>
                                             </div>
                                             <div class="mx-2 my-2">
-                                                @Html.DropDownList("unidadDepartametal" + contadorExperiencia, new SelectList(experiencia.UnidadDepartametal, "Value", "Text", experiencia.UnidadDepartametal.ToString()), htmlAttributes: new { @class = "form-control col form-inline" })
+                                                @*Html.DropDownList("unidadDepartametal" + contadorExperiencia, new SelectList(experiencia.UnidadDepartametal, "Value", "Text", experiencia.UnidadDepartametal.ToString()), htmlAttributes: new { @class = "form-control col form-inline" })*@
                                             </div>
 
                                             <div class="mx-2 my-2">
@@ -1159,7 +1159,7 @@
             </div>
             <div class="col-md-6 form-inline">
                 <label class="col-md-6">Entidad</label>
-                @Html.DropDownList("catalogoEntidades_EstudioRealizado", new SelectList(Model.CatalogoEntidades, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
+                @Html.DropDownList("catalogoEntidades_EstudioRealizado", new SelectList(Model.CatalogoEntidad, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
             </div>
         </div>
         <div class="row align-items-center justify-items-center mt-3">
@@ -1208,7 +1208,7 @@
                                     @participaciones.AnoInicio
                                 </td>
                                 <td>
-                                    @participaciones.AnoTermino 
+                                    @participaciones.AnoFinalizacion 
                                 </td> 
                                 <td>
                                     <button class="btnAzul" id="btnEditarParticipaciones" data-toggle="modal" data-target="#participacionesModal-@contadorParticipaciones">Editar</button>
@@ -1240,7 +1240,7 @@
                                                 <label>Entidad</label>
                                             </div>
                                             <div class="mx-2 my-2">
-                                                @Html.DropDownList("catalogoEntidades_EstudioRealizado", new SelectList(Model.CatalogoEntidades, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
+                                                @Html.DropDownList("catalogoEntidades_EstudioRealizado", new SelectList(Model.CatalogoEntidad, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
                                             </div>
 
                                             <div class="mx-2 my-2">
@@ -1254,7 +1254,7 @@
                                                 <label>Año de Tèrmino</label>
                                             </div>
                                             <div class="mx-2 my-2">
-                                                @Html.TextBox("anoTermino" + contadorParticipaciones, participaciones.AnoTermino, htmlAttributes: new { @class = "form-control col" })
+                                                @Html.TextBox("anoTermino" + contadorParticipaciones, participaciones.AnoFinalizacion, htmlAttributes: new { @class = "form-control col" })
                                             </div>
                                              
 
