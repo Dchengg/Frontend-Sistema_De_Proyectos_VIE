@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Modificar Horas";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoHora> tipoHoraPicker = TempData["TipoHoraPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoHora>;
+
 }
 
 
@@ -20,20 +23,50 @@
                 <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled />
             </div>
         </div>
-        @using (Html.BeginForm("UICompras", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        @using (Html.BeginForm("UIModificarHorasInvestigador", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"], numEquipo = ViewData["numEquipo"], numIdentidad = ViewData["numIdentidad"] , nombreInves=  @ViewData["nombreInves"] }, FormMethod.Post))
         {
             <div class="row formRow">
                 <div class="form-inline col-md-8">
                     <label for="cedulaInvestigador">Cédula del investigador:</label>
-                    <input style="margin-left:5px" type="text" class="form-control" id="cedulaInvestigador" name="cedulaInvestigador" />
+                    <input style="margin-left:5px" type="text" class="form-control" id="cedulaInvestigador" name="cedulaInvestigador" value=@ViewData["numIdentidad"] />
                 </div>
             </div>
             <div class="row formRow">
                 <div class="form-inline col-md-8">
                     <label for="investigador">Investigador</label>
-                    <input style="margin-left:5px" type="text" class="form-control" id="investigador" name="investigador" />
+                    <input style="margin-left:5px" type="text" class="form-control" id="investigador" name="investigador"value=@ViewData["nombreInves"] />
                 </div>
             </div>
+
+            <div>
+                <div class="row formRow">
+                    <div class="form-inline col">
+                        <label for="fechaInicioInput">Fecha de inicio</label>
+                        <input type="date" id="fechaInicioInput" name="fechaInicioInput" />
+                    </div>
+                    <div class="form-inline col">
+                        <label for="fechaFinalizacionInput">Fecha de finalización</label>
+                        <input type="date" id="fechaFinalizacionInput" name="fechaFinalizacionInput" />
+                    </div>
+                </div>
+                <div class="row formRow">
+                    <div class="form-inline col">
+                        <label for="tipoHoraDropdown">Tipo de hora</label>
+                        <select class="form-control col-xs-5" name="tipoHoraInput" id="tipoHoraInput">
+                            @foreach (var tipoHora in tipoHoraPicker)
+                            {
+                                <option value=@tipoHora.Id>@tipoHora.TipoHora1</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-inline col">
+                        <label for="horaInput">Cantidad de horas</label>
+                        <input style="margin-left:5px" type="number" class="form-control" id="horaInput" name="horaInput" />
+                    </div>
+                </div>
+                
+            </div>
+           
 
             <div class="row formRow">
                 <div class="wrapperBotonAgregar">
@@ -58,10 +91,10 @@
                         @foreach (var horas in Model)
                         {
                     <tr>
-                        @using (Html.BeginForm("UICompras", "SeguimientoProyecto", new { idHoras = horas.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        @using (Html.BeginForm("UIModificarHorasInvestigador", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"], numEquipo = ViewData["numEquipo"], numIdentidad = ViewData["numIdentidad"], nombreInves = @ViewData["nombreInves"], idHoras = horas.Id }, FormMethod.Post))
                         {
                             @Html.HttpMethodOverride(HttpVerbs.Delete)
-                            <th>@horas.Id</th>
+                            <th>@horas.TipoHora</th>
                             <th>@horas.FechaInicio</th>
                             <th>@horas.FechaFinalizacion</th>
                             <th>@horas.CantidadHoras</th>

@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
@@ -53,6 +54,36 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 
         public ActionResult Reportes()
         {
+            List<Investigador> investigadores = new List<Investigador>();
+            List<Proyecto> proyectos = new List<Proyecto>();
+            TempData["investigadores"] = investigadores;
+            TempData["proyectos"] = proyectos;
+            TempData["tipoReporte"] = "Pendiente";
+            List<string> titulos = new List<string>(new string[] { "Número identidad", "Nombre Completo", "Correo Electronico" });
+            TempData["titulos"] = titulos;
+            return View("UIReportes");
+        }
+
+        [HttpPost]
+        public ActionResult Reportes(FormCollection ReporteForm)
+        {
+            String tipoDeReportes = ReporteForm["reporteDropdown"].ToString();
+            List<Investigador> investigadores = new List<Investigador>();
+            List<Proyecto> proyectos = new List<Proyecto>();
+            switch(tipoDeReportes){
+                case "FichaInvestigador":
+                    break;
+                case "ListadoInvestigadores":
+                    investigadores = ReporteController.InvestigadoresXEstado("Activos");
+                    break;
+                default:
+                    break;
+            }
+            TempData["investigadores"] = investigadores;
+            TempData["proyectos"] = proyectos;
+            TempData["tipoReporte"] = "Investigadores";
+            List<string> titulos = new List<string>(new string[] { "Número de identidad", "Nombre Completo", "Correo Electronico" });
+            TempData["titulos"] = titulos;
             return View("UIReportes");
         }
 

@@ -5,6 +5,8 @@
     ViewBag.Title = "Presupuesto";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
 
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Fuente> fuentePicker = TempData["fuentePicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Fuente>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Partida> partidaPicker = TempData["partidaPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Partida>;
 
 }
 
@@ -30,28 +32,38 @@
                     <div class="form-inline">
                         <label class="col-xs-5">Fuentes de Financiamiento:  </label><hr>
                         <select class="form-control col-xs-5" name="fuentesDropdown" id="fuentesDropdown">
-                            <option value="VIE">VIE</option>
-                            <option value="Organizacion">Organización</option>
+
+                            @foreach (var fuente in fuentePicker)
+                            {
+                                <option value=@fuente.Id>@fuente.FuenteFinanciamiento</option>
+
+                            }
                         </select>
                     </div>
+
                     <hr />
                     <div class="form-inline" id="partidaRow">
                         <label class="col-xs-5">Partida:  </label><hr>
                         <select class="form-control col-xs-5" name="partidaDropdown" id="partidaDropdown">
-                            <option>Operacion   </option>
+                            @foreach (var partida in partidaPicker)
+                            {
+                                <option value=@partida.Id>@partida.Partida1</option>
 
+                            }
                         </select>
                     </div>
+                    <hr />
+
                     <div class="form-inline" style="display:none" id="organizacionRow">
                         <label class="col-xs-5">Organización:  </label><hr>
-                        <input type="text" class="form-control" id="organizacionField"/>
+                        <input type="text" class="form-control" id="organizacionField" name="organizacionField" />
                     </div>
                 </div>
             </div>
             <div class="row formRow">
                 <div class="form-inline col-md">
                     <label for="palabraInput">Año:  </label><hr>
-                    <input type="number" min="1900" max="2099" step="1" value="2021" /><hr>
+                    <input type="number" name="anoInput" min="1900" max="2099" step="1" value="2021" /><hr>
                     <label for="palabraInput">Monto:</label><hr> <label>₡</label>
                     <input type="number" class="form-control" step="5" min=0 id="montoInput" name="montoInput"><br>
                 </div>
@@ -72,6 +84,8 @@
                             <th>Código de Presupuesto</th>
                             <th>Fuentes de Financiamiento</th>
                             <th>Partida</th>
+                            <th>Organizacion</th>
+
                             <th>Año</th>
                             <th>Monto</th>
 
@@ -80,12 +94,14 @@
                         @foreach (var presupuesto in Model)
                         {
                     <tr>
-                        @using (Html.BeginForm("UIPalabrasClave", "SeguimientoProyecto", new { idPalabraClave = presupuesto.id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        @using (Html.BeginForm("UIPresupuesto", "SeguimientoProyecto", new { idPresupuesto = presupuesto.id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
                         {
                             @Html.HttpMethodOverride(HttpVerbs.Delete)
                             <th>@presupuesto.id</th>
-                            <th>@presupuesto.Justificacion</th>
-                            <th>@presupuesto.Nombre</th>
+                            <th>@presupuesto.FuenteFinanciamiento</th>
+                            <th>@presupuesto.Partida</th>
+                            <th>@presupuesto.Organizacion</th>
+
                             <th>@presupuesto.Ano</th>
                             <th>@presupuesto.Monto</th>
 
@@ -102,7 +118,7 @@
     <script>
         (function ($) {
             $("#fuentesDropdown").on('change', function () {
-                if (this.value == "VIE") {
+                if (this.value == 1) {
                     $("#partidaRow").css('display', 'flex')
                     $("#organizacionRow").css('display', 'none')
                 } else {

@@ -11,6 +11,31 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
     public class HorasController : Controller
     {
 
+        public static List<TipoHora> getTipoHoras()
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/TipoHora");
+
+                var responseTask = client.GetAsync(builder.Uri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<TipoHora> TipoHoras = new List<TipoHora>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    TipoHoras = JsonConvert.DeserializeObject<List<TipoHora>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return TipoHoras;
+            }
+        }
 
         public static List<Horas> getHoras(String codigoProyecto, String numIdentidad)
         {
@@ -38,6 +63,28 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                     System.Diagnostics.Debug.WriteLine("Error");
                 }
                 return Horas;
+            }
+        }
+
+        [HttpDelete]
+        public static String EliminarHoras(String idHoras)
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/horas/1")
+                {
+
+                    Query = string.Format("idHoras={0}", idHoras)
+                };
+
+
+                var responseTask = client.DeleteAsync(builder.Uri.AbsoluteUri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                var responseResult = "Failed";
+                if (result.IsSuccessStatusCode) responseResult = "Sucess";
+                return responseResult;
             }
         }
 

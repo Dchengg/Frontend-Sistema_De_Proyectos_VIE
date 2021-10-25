@@ -153,14 +153,62 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult UIPresupuesto(String codigoProyecto)
         {
 
+            List<Fuente> fuentePicker = PresupuestoController.getFuente();
+
+            TempData["fuentePicker"] = fuentePicker;
+
+
+            List<Partida> partidaPicker = PresupuestoController.getPartidas();
+
+            TempData["partidaPicker"] = partidaPicker;
+
             List<Presupuesto> Presupuesto = PresupuestoController.getPresupuesto(codigoProyecto);
 
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIPresupuesto", Presupuesto);
+        }
+        [HttpPost]
+        public ActionResult UIPresupuesto(FormCollection formPresupuesto, String codigoProyecto)
+        {
+
+
+            String fuentes = formPresupuesto["fuentesDropdown"].ToString();
+            String partida = formPresupuesto["partidaDropdown"].ToString();
+            String montoInput = formPresupuesto["montoInput"].ToString();
+            String organizacionField = formPresupuesto["organizacionField"].ToString();
+            String anoInput = formPresupuesto["anoInput"].ToString();
+            PresupuestoController.AgregarPresupuesto(fuentes, organizacionField, partida, anoInput, montoInput, codigoProyecto);
+            String Result = BitacoraController.AgregarBitacora("Agrego un presupuesto: "+ fuentes, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+
+            List<Fuente> fuentePicker = PresupuestoController.getFuente();
+            TempData["fuentePicker"] = fuentePicker;
+            List<Partida> partidaPicker = PresupuestoController.getPartidas();
+            TempData["partidaPicker"] = partidaPicker;
+            List<Presupuesto> Presupuesto = PresupuestoController.getPresupuesto(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIPresupuesto", Presupuesto);
         }
+        [HttpDelete]
+        public ActionResult UIPresupuesto(String idPresupuesto,String codigoProyecto)
+        {
 
+            PresupuestoController.EliminarPresupuesto(idPresupuesto);
+
+            List<Fuente> fuentePicker = PresupuestoController.getFuente();
+            TempData["fuentePicker"] = fuentePicker;
+            List<Partida> partidaPicker = PresupuestoController.getPartidas();
+            TempData["partidaPicker"] = partidaPicker;
+            List<Presupuesto> Presupuesto = PresupuestoController.getPresupuesto(codigoProyecto);
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIPresupuesto", Presupuesto);
+        }
         /// <summary>
         /// Llama al controlador de áreas frascati y le envia un nuevo área frascati que se debe agregar a la base de datos
         /// </summary>
@@ -192,6 +240,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View("UIAreaFrascati", Frascatis);
 
         }
+
+
 
         /// <summary>
         /// Llama al controlador de áreas frascati y le envia el ID del área frascati que se debe eliminar de la base de datos
@@ -683,19 +733,39 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             System.Diagnostics.Debug.WriteLine(fechaProgramada);
            
 
-
             List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
 
             TempData["informePicker"] = informePicker;
+            String Result = BitacoraController.AgregarBitacora("Se agrego un Informe: " + títuloDelInforme, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
-            // String resultPost = InformeController.AgregarInforme(títuloDelInforme, idTipoInforme, , codigoProyecto);
-            // System.Diagnostics.Debug.WriteLine(resultPost);
+            String resultPost = InformeController.AgregarInforme(títuloDelInforme,idTipoInforme,fechaProgramada, "pendiente", "pendiente", "pendiente", codigoProyecto);
+            System.Diagnostics.Debug.WriteLine(resultPost);
 
             List<Informe> informes = InformeController.getInformes(codigoProyecto);
 
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIProgramacionInformes", informes);
+        }
+
+        [HttpDelete]
+        public ActionResult UIProgramacionInformes(String idInforme, String codigoProyecto)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            String result = InformeController.EliminarInforme(idInforme);
+            System.Diagnostics.Debug.WriteLine(result);
+
+            List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
+
+            TempData["informePicker"] = informePicker;
+            String Result = BitacoraController.AgregarBitacora("Se elimino un Informe: " + idInforme, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+
+            List<Informe> informes = InformeController.getInformes(codigoProyecto);
+
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIProgramacionInformes", informes);
+
         }
 
         /// <summary>
@@ -717,6 +787,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Departamento> departamentosPicker = DepartamentosController.getDepartamentos();
             List<TipoDepartamento> tipoDepartamentosPicker = DepartamentosController.getTiposDepartamento();
+            String Result = BitacoraController.AgregarBitacora("Se agrego un departamento: " + departamento, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             TempData["tipoDepartamentosPicker"] = tipoDepartamentosPicker;
 
@@ -739,6 +810,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             String resultPost = DepartamentosController.EliminarDepartamento(idDepartamento);
             System.Diagnostics.Debug.WriteLine(resultPost);
+            String Result = BitacoraController.AgregarBitacora("Se elimino un departamento: " + idDepartamento, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             List<Departamento> departamentos = DepartamentosController.getDepartamento(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
@@ -784,7 +856,96 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <returns>Vista de la ubicación geográfica del proyecto</returns>
         public ActionResult UIUbicacionGeografica(String codigoProyecto){
 
+            List<Pais> paises = UbicacionGeograficaController.getPaises();
+            List<Region> regiones = UbicacionGeograficaController.getRegiones();
+            List<Provincia> provincias = UbicacionGeograficaController.getProvincias();
+
+
+            TempData["Paises"] = paises;
+            TempData["Provincia"] = provincias;
+            TempData["Regiones"] = regiones;
+
             List<UbicacionGeografica> ubicacionGeograficas = UbicacionGeograficaController.GetUbicacionesGeograficas(codigoProyecto);
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIUbicacionGeografica", ubicacionGeograficas);
+        }
+
+        /// <summary>
+        /// Llama al controlador de ubicaciones para insertar una nueva ubicación geográfica
+        /// </summary>
+        /// <param name="formUbicacionGeografica"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista con la nueva ubicación geográfica</returns>
+        [HttpPost]
+        public ActionResult UIUbicacionGeografica(FormCollection formUbicacionGeografica, String codigoProyecto)
+        {
+            List<Pais> paises = UbicacionGeograficaController.getPaises();
+            List<Region> regiones = UbicacionGeograficaController.getRegiones();
+            List<Provincia> provincias = UbicacionGeograficaController.getProvincias();
+
+
+            TempData["Paises"] = paises;
+            TempData["Provincia"] = provincias;
+            TempData["Regiones"] = regiones;
+
+
+            String pais = formUbicacionGeografica["paisDropdown"].ToString();
+            String provincia;
+            String region;
+            String nombrePais =" ";
+
+            foreach(var elem in paises)
+            {
+                if(elem.Id == pais)
+                {
+                    nombrePais = elem.NombrePais;
+                    break;
+                }
+            }
+
+            System.Diagnostics.Debug.WriteLine(pais);
+
+            if (nombrePais.Equals("Costa Rica")){
+                provincia = formUbicacionGeografica["provinciaDropdown"].ToString();
+                region = formUbicacionGeografica["regionDropdown"].ToString();
+            }
+            else
+            {
+                provincia = "-1";
+                region = "-1";
+            }
+            String Result = BitacoraController.AgregarBitacora("Se agrego una ubicacion geografica: " + nombrePais, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+
+            String result = UbicacionGeograficaController.agregarUbicacionGeografica(pais, region, provincia, codigoProyecto);
+            List<UbicacionGeografica> ubicacionGeograficas = UbicacionGeograficaController.GetUbicacionesGeograficas(codigoProyecto);
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIUbicacionGeografica", ubicacionGeograficas);
+        }
+
+        [HttpDelete]
+        public ActionResult UIUbicacionGeografica(String idUbicacion, String codigoProyecto)
+        {
+            List<Pais> paises = UbicacionGeograficaController.getPaises();
+            List<Region> regiones = UbicacionGeograficaController.getRegiones();
+            List<Provincia> provincias = UbicacionGeograficaController.getProvincias();
+
+
+            TempData["Paises"] = paises;
+            TempData["Provincia"] = provincias;
+            TempData["Regiones"] = regiones;
+
+
+            System.Diagnostics.Debug.WriteLine(idUbicacion);
+
+            String result = UbicacionGeograficaController.EliminarUbicacionGeografica(idUbicacion);
+            List<UbicacionGeografica> ubicacionGeograficas = UbicacionGeograficaController.GetUbicacionesGeograficas(codigoProyecto);
+            String Result = BitacoraController.AgregarBitacora("Se elimino una ubicacion geografica: " + idUbicacion, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
@@ -812,7 +973,27 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de los informes y para ingresar algun informe</returns>
         public ActionResult UIIngresarInforme(String codigoProyecto) {
-            
+
+            List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
+
+            TempData["informePicker"] = informePicker;
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Informe> informes = InformeController.getInformes(codigoProyecto);
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIIngresarInforme", informes);
+        }
+
+        [HttpPost]
+        public ActionResult UIIngresarInforme(FormCollection informeDatos, String codigoProyecto)
+        {
+                      
+
+            List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
+
+            TempData["informePicker"] = informePicker;
+
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Informe> informes = InformeController.getInformes(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
@@ -858,6 +1039,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             
             String resultPost = AmpliarFechasController.AmpliarFechas(fechaAprovacion, fechaFinalizacion, fechaActualFinalizacion, observacionesAmpliarFechas, codigoProyecto);
             System.Diagnostics.Debug.WriteLine(resultPost);
+            String Result = BitacoraController.AgregarBitacora("Se ampliaron fechas de "+ fechaAprovacion + " a " + " " + fechaFinalizacion, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
@@ -889,9 +1071,16 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult UIAgregarInvestigadorAsociado(string codigoProyecto)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+
+            List<Investigador> investigadores = InvestigadorController.getInvestigadores();
+            List<Departamento> departamentos = DepartamentosController.getDepartamentos();
+
+            TempData["investigadorPicker"] = investigadores;
+            TempData["departamentoPicker"] = departamentos;
+
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIAgregarInvestigadorAsociado");
+            return View("UIAgregarInvestigadorAsociado", investigadores);
         }
 
         /// <summary>
@@ -933,6 +1122,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             InvestigadorController.CambiarCoordinador(idInvestigador, codigoProyecto);
 
             List<Investigador> investigador = InvestigadorController.getInvestigadores(codigoProyecto);
+            String Result = BitacoraController.AgregarBitacora("Se cambio el investigador coordinador: " + idInvestigador, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
@@ -948,6 +1138,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult UICronograma(String codigoProyecto) 
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Actividad> Actividades = ObjetivosEspecificosController.getActividades(codigoProyecto);
+            TempData["Actividades"] = Actividades;
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UICronograma");
@@ -958,15 +1150,73 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista para modificar horas de un investigador</returns>
-        public ActionResult UIModificarHorasInvestigador(String codigoProyecto,String numIdentidad)
+        public ActionResult UIModificarHorasInvestigador(String codigoProyecto, String numEquipo, String numIdentidad, String nombreInves)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Horas> horas = HorasController.getHoras(codigoProyecto, numIdentidad);
+            List<TipoHora> TipoHoras = HorasController.getTipoHoras();
+            ViewData["numIdentidad"] = numIdentidad;
+            ViewData["nombreInves"] = nombreInves;
+
             ViewData["CodigoProyecto"] = codigoProyecto;
+
+            ViewData["numEquipo"] = numEquipo;
+
+
             ViewData["NombreProyecto"] = Proyecto.Nombre;
+            TempData["TipoHoraPicker"] = TipoHoras;
+            return View("UIModificarHorasInvestigador", horas);
+        }
+        [HttpDelete]
+        public ActionResult UIModificarHorasInvestigador(String codigoProyecto, String numEquipo, String numIdentidad, String nombreInves, String idHoras)
+        {
+            HorasController.EliminarHoras(idHoras);
+
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Horas> horas = HorasController.getHoras(codigoProyecto, numIdentidad);
+            List<TipoHora> TipoHoras = HorasController.getTipoHoras();
+
+            ViewData["numIdentidad"] = numIdentidad;
+            ViewData["nombreInves"] = nombreInves;
+
+            ViewData["CodigoProyecto"] = codigoProyecto;
+
+            ViewData["numEquipo"] = numEquipo;
+            String Result = BitacoraController.AgregarBitacora("Se eliminaron las horas de investigador: "+ nombreInves  + " " + idHoras, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+
+
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            TempData["TipoHoraPicker"] = TipoHoras;
             return View("UIModificarHorasInvestigador", horas);
         }
 
+        [HttpPost]
+        public ActionResult UIModificarHorasInvestigador(FormCollection formHoras, String codigoProyecto, String numEquipo, String numIdentidad, String nombreInves)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<TipoHora> TipoHoras = HorasController.getTipoHoras();
+
+            String fechaInicioInput = formHoras["fechaInicioInput"].ToString();
+
+            String fechaFinalizacionInput = formHoras["fechaFinalizacionInput"].ToString();
+            String tipoHoraInput = formHoras["tipoHoraInput"].ToString();
+
+
+            String horaInput = formHoras["horaInput"].ToString();
+
+            HorasController.AgregarHoras(numEquipo, tipoHoraInput, fechaInicioInput, fechaFinalizacionInput, horaInput);
+            BitacoraController.AgregarBitacora("Se agregaron " +horaInput+" horas de investigador a " + nombreInves, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+
+            List<Horas> horas = HorasController.getHoras(codigoProyecto, numIdentidad);
+            ViewData["numEquipo"] = numEquipo;
+
+            ViewData["numIdentidad"] = numIdentidad;
+            ViewData["nombreInves"] = nombreInves;
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            TempData["TipoHoraPicker"] = TipoHoras;
+            return View("UIModificarHorasInvestigador", horas);
+        }
         public ActionResult UIAmpliarObjetivos(String codigoProyecto)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
@@ -1037,6 +1287,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
 
             ObjetivosEspecificosController.AgregarMeta(nombreInput, cumplidaInput, objetivoEspecificoID, descripcionInput);
+            BitacoraController.AgregarBitacora("Se agrego la meta " + nombreInput , "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             List<Meta> metas = ObjetivosEspecificosController.getMetas(objetivoEspecificoID);
             TempData["metas"] = metas;
@@ -1072,6 +1323,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
 
             ObjetivosEspecificosController.AgregarRiesgo(posibleRiesgoInput, accionesMitigacionInput, objetivoEspecificoID);
+            BitacoraController.AgregarBitacora("Se agrego el resigo " + posibleRiesgoInput, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             List<Meta> metas = ObjetivosEspecificosController.getMetas(objetivoEspecificoID);
             TempData["metas"] = metas;
@@ -1118,6 +1370,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
 
             ViewData["ObjetivoGeneral"] = Proyecto.ObjetivoGeneral;
+            BitacoraController.AgregarBitacora("Se elimino el resigo " + riesgoId, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             List<ObjetivoEspecifico> obj = ObjetivosEspecificosController.getGetObjetivoByCodigo(objetivoEspecificoID);
             ViewData["metodologiaText"] = obj[0].Metodologia;
@@ -1148,8 +1401,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         List<Producto> productos = ObjetivosEspecificosController.getProductos(objetivoEspecificoID);
         TempData["productos"] = productos;
 
+        BitacoraController.AgregarBitacora("Se elimino el resigo " + metaId, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
-            List<ObjetivoEspecifico> obj = ObjetivosEspecificosController.getGetObjetivoByCodigo(objetivoEspecificoID);
+        List<ObjetivoEspecifico> obj = ObjetivosEspecificosController.getGetObjetivoByCodigo(objetivoEspecificoID);
             ViewData["metodologiaText"] = obj[0].Metodologia;
             ViewData["objetivoText"] = obj[0].Objetivo;
             ViewData["ObjetivoGeneral"] = Proyecto.ObjetivoGeneral;

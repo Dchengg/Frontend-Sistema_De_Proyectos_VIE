@@ -146,18 +146,26 @@
     <Compile Include="Controllers\PresupuestoController.cs" />
     <Compile Include="Controllers\ProyectoController.cs" />
     <Compile Include="Controllers\FrascatiController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\SeguimientoProyectos\SeguimientoProyectoController.cs" />
     <Compile Include="Controllers\UbicacionGeograficaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Actividad.cs" />
     <Compile Include="Models\Bitacora.cs" />
+    <Compile Include="Models\TipoHora.cs" />
     <Compile Include="Models\Colaboradores.cs" />
+    <Compile Include="Models\Fuente.cs" />
     <Compile Include="Models\Horas.cs" />
     <Compile Include="Models\Incidencia.cs" />
     <Compile Include="Models\Investigador.cs" />
     <Compile Include="Models\Meta.cs" />
+    <Compile Include="Models\Pais.cs" />
+    <Compile Include="Models\Partida.cs" />
     <Compile Include="Models\Producto.cs" />
+    <Compile Include="Models\Provincia.cs" />
+    <Compile Include="Models\Region.cs" />
     <Compile Include="Models\Riesgo.cs" />
     <Compile Include="Models\SubODS.cs" />
     <Compile Include="Models\Presupuesto.cs" />
@@ -394,17 +402,20 @@
     <Content Include="Views\SeguimientoProyecto\UIModificarInvestigadorAsociado.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIAmpliarObjetivos.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIObjetivosEspecificos.cshtml" />
+    <Content Include="Views\Home\UIReportes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\AmpliarFechas\" />
     <Folder Include="Views\Bitacora\" />
     <Folder Include="Views\BuscadorProyecto\" />
     <Folder Include="Views\Colaboradores\" />
+    <Folder Include="Views\Fuente\" />
     <Folder Include="Views\Horas\" />
     <Folder Include="Views\Incidencia\" />
     <Folder Include="Views\Informe\" />
     <Folder Include="Views\Investigador\" />
     <Folder Include="Views\ODS\" />
+    <Folder Include="Views\Partida\" />
     <Folder Include="Views\PoblacionBeneficiaria\" />
     <Folder Include="Views\Proyecto\" />
     <Folder Include="Views\SeguimientoProyectos\" />

@@ -20,7 +20,18 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
         [JsonProperty("Justificacion")]
 
         public String Justificacion { get; set; }
+        [JsonProperty("FuenteFinanciamiento")]
 
+        public String FuenteFinanciamiento { get; set; }
+        [JsonProperty("Partida")]
+
+        public String Partida { get; set; }
+
+        [JsonProperty("Organizacion")]
+
+        public String Organizacion { get; set; }
+
+        
         #endregion
 
     }
