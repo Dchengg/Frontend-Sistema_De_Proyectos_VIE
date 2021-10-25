@@ -91,7 +91,7 @@
                         @foreach (var horas in Model)
                         {
                     <tr>
-                        @using (Html.BeginForm("UIModificarHorasInvestigador", "SeguimientoProyecto", new { idHoras = horas.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        @using (Html.BeginForm("UIModificarHorasInvestigador", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"], numEquipo = ViewData["numEquipo"], numIdentidad = ViewData["numIdentidad"], nombreInves = @ViewData["nombreInves"], idHoras = horas.Id }, FormMethod.Post))
                         {
                             @Html.HttpMethodOverride(HttpVerbs.Delete)
                             <th>@horas.TipoHora</th>

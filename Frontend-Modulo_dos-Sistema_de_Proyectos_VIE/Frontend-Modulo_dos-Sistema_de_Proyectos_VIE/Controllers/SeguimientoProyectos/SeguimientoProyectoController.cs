@@ -1152,7 +1152,27 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             TempData["TipoHoraPicker"] = TipoHoras;
             return View("UIModificarHorasInvestigador", horas);
         }
+        [HttpDelete]
+        public ActionResult UIModificarHorasInvestigador(String codigoProyecto, String numEquipo, String numIdentidad, String nombreInves, String idHoras)
+        {
+            HorasController.EliminarHoras(idHoras);
 
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Horas> horas = HorasController.getHoras(codigoProyecto, numIdentidad);
+            List<TipoHora> TipoHoras = HorasController.getTipoHoras();
+
+            ViewData["numIdentidad"] = numIdentidad;
+            ViewData["nombreInves"] = nombreInves;
+
+            ViewData["CodigoProyecto"] = codigoProyecto;
+
+            ViewData["numEquipo"] = numEquipo;
+
+
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            TempData["TipoHoraPicker"] = TipoHoras;
+            return View("UIModificarHorasInvestigador", horas);
+        }
 
         [HttpPost]
         public ActionResult UIModificarHorasInvestigador(FormCollection formHoras, String codigoProyecto, String numEquipo, String numIdentidad, String nombreInves)

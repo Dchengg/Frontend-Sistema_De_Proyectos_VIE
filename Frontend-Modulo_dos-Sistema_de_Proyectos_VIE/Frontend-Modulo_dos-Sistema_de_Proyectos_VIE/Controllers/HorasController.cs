@@ -66,6 +66,28 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
+        [HttpDelete]
+        public static String EliminarHoras(String idHoras)
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/horas/1")
+                {
+
+                    Query = string.Format("idHoras={0}", idHoras)
+                };
+
+
+                var responseTask = client.DeleteAsync(builder.Uri.AbsoluteUri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                var responseResult = "Failed";
+                if (result.IsSuccessStatusCode) responseResult = "Sucess";
+                return responseResult;
+            }
+        }
+
         [HttpPost]
         public static String AgregarHoras(string idEquipoDeTrabajo, string idTipoHora, string fechaInicio, string fechaFinalizacion, string cantidadHoras)
         {
