@@ -124,89 +124,103 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Configuracion
 
         public PerfilInvestigador()
         {
-
-            // General
-            
-            CreateMap<FichaInvestigadorDTO, FichaInvestigadorViewModel>();
-            CreateMap<UipInvestigadorConsultar, FichaInvestigadorViewModel>();
-            CreateMap<CatalogosSingleton, FichaInvestigadorViewModel>();
-
             // Tipo identificacion
-            CreateMap<UipTipoIdentificacion, TipoIdentificacionViewModel>();
-            CreateMap<CatalogosSingleton, TipoIdentificacionViewModel>()
-                .ForMember(dest => dest.CatalogoTipoIdentificacion, act => act.MapFrom(src => src.CatalogoTipoIdentificacion));
+            CreateMap<UipTipoIdentificacion, TipoIdentificacionViewModel>()
+                .ForMember(dest => dest.CatalogoTipoIdentificacion, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoTipoIdentificacion));
+            //CreateMap<CatalogosSingleton, TipoIdentificacionViewModel>();
+
 
             // Pais Nacimiento
-            CreateMap<UipPaisNacimiento, PaisViewModel>();
-            CreateMap<CatalogosSingleton, PaisViewModel>()
-                .ForMember(dest => dest.CatalogoPais, act => act.MapFrom(src => src.CatalogoPais));
+            CreateMap<UipPaisNacimiento, PaisViewModel>()
+                .ForMember(dest => dest.CatalogoPais, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoPais));
+            //CreateMap<CatalogosSingleton, PaisViewModel>();
 
 
             // Nacionalidad
-            CreateMap<UipNacionalidad, NacionalidadViewModel>();
-            CreateMap<CatalogosSingleton, NacionalidadViewModel>();
+            CreateMap<UipNacionalidad, NacionalidadViewModel>()
+                .ForMember(dest => dest.CatalogoPais, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoPais));
+            //CreateMap<CatalogosSingleton, NacionalidadViewModel>();
 
             // Sexo
-            CreateMap<UipInvestigadorConsultar, SexoViewModel>();
-            CreateMap<CatalogosSingleton, SexoViewModel>();
+            CreateMap<UipInvestigadorConsultar, SexoViewModel>()
+                .ForMember(dest => dest.Sexo, act => act.MapFrom(src => src.Sexo))
+                .ForMember(dest => dest.CatalogoSexo, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoSexo));
+           // CreateMap<CatalogosSingleton, SexoViewModel>();
 
             // Categorias académicas
-            CreateMap<UipCategoriaAcademica, CategoriaAcademicaViewModel>();
-            CreateMap<CatalogosSingleton, CategoriaAcademicaViewModel>();
+            CreateMap<UipCategoriaAcademica, CategoriaAcademicaViewModel>()
+                .ForMember(dest => dest.CatalogoCategoriaAcademica, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoCategoriaAcademica));
+            //CreateMap<CatalogosSingleton, CategoriaAcademicaViewModel>();
 
             // Unidades académicas
-            CreateMap<UipUnidadAcademica, UnidadAcademicaViewModel>();
-            CreateMap<CatalogosSingleton, UnidadAcademicaViewModel>();
+            CreateMap<UipUnidadAcademica, UnidadAcademicaViewModel>()
+                .ForMember(dest => dest.CatalogoUnidadAcademica, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoUnidadAcademica));
+            //CreateMap<CatalogosSingleton, UnidadAcademicaViewModel>();
 
             // Situación laboral
-            CreateMap<UipSituacionLaboral, SituacionLaboralViewModel>();
-            CreateMap<CatalogosSingleton, SituacionLaboralViewModel>();
+            CreateMap<UipSituacionLaboral, SituacionLaboralViewModel>()
+                .ForMember(dest => dest.CatalogoSituacionLaboral, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoSituacionLaboral));
+            //CreateMap<CatalogosSingleton, SituacionLaboralViewModel>();
 
             // Telefono
-            CreateMap<UipTelefono, TelefonoViewModel>();
-            CreateMap<CatalogosSingleton, TelefonoViewModel>();
+            CreateMap<UipTelefono, TelefonoViewModel>()
+                .ForMember(dest => dest.CatalogoTipoTelefono, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoTipoTelefono));
+            //CreateMap<CatalogosSingleton, TelefonoViewModel>();
 
             // Correos
             CreateMap<UipCorreo, CorreoViewModel>();
 
             // Porcentaje Nombramiento
-            CreateMap<UipInvestigadorConsultar, PorcentajeNombramientoViewModel>();
-            CreateMap<CatalogosSingleton, PorcentajeNombramientoViewModel>();
+            CreateMap<UipInvestigadorConsultar, PorcentajeNombramientoViewModel>()
+                .ForMember(dest => dest.PorcentajeNombramiento, act => act.MapFrom(src => src.PorcentajeNombramiento))
+                .ForMember(dest => dest.CatalogoPorcentajeNombramiento, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoPorcentajeNombramiento));
+            //CreateMap<CatalogosSingleton, PorcentajeNombramientoViewModel>();
 
             // Perfiles academicos
-            CreateMap<UipPerfilAcademico, PerfilAcademicoViewModel>();
-            CreateMap<CatalogosSingleton, PerfilAcademicoViewModel>();
+            CreateMap<UipPerfilAcademico, PerfilAcademicoViewModel>()
+                .ForMember(dest => dest.CatalogoTipoPerfil, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoTipoPerfil));
+            //CreateMap<CatalogosSingleton, PerfilAcademicoViewModel>();
 
             // Estudios realizados
-            CreateMap<UipEstudioRealizado, EstudioRealizadoViewModel>();
-            CreateMap<CatalogosSingleton, EstudioRealizadoViewModel>();
+            CreateMap<UipEstudioRealizado, EstudioRealizadoViewModel>()
+                .ForMember(dest => dest.CatalogoInstitucion, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoInstitucion))
+                .ForMember(dest => dest.CatalogoPais, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoPais));
+            //CreateMap<CatalogosSingleton, EstudioRealizadoViewModel>();
 
             // Idiomas
-            CreateMap<UipIdioma, IdiomaViewModel>();
-            CreateMap<CatalogosSingleton, IdiomaViewModel>();
+            CreateMap<UipIdioma, IdiomaViewModel>()
+                .ForMember(dest => dest.CatalogoIdiomas, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoIdioma))
+                .ForMember(dest => dest.CatalogoNivelEscritura, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoNivelIdioma))
+                .ForMember(dest => dest.CatalogoNivelHabla, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoNivelIdioma))
+                .ForMember(dest => dest.CatalogoNivelLectura, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoNivelIdioma));
+            //CreateMap<CatalogosSingleton, IdiomaViewModel>();
 
             // Experiencias academicas
             CreateMap<UipExperienciaAcademica, ExperienciaAcademicaViewModel>();
-            CreateMap<CatalogosSingleton, ExperienciaAcademicaViewModel>();
 
             // Participaciones
             CreateMap<UipParticipacion, ParticipacionViewModel>();
-            CreateMap<CatalogosSingleton, ParticipacionViewModel>();
 
             // Premios
-            CreateMap<UipPremio, PremioViewModel>();
-            CreateMap<CatalogosSingleton, PremioViewModel>();
+            CreateMap<UipPremio, PremioViewModel>()
+                .ForMember(dest => dest.CatalogoEntidad, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoEntidad))
+                .ForMember(dest => dest.CatalogoPais, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoPais));
+            //CreateMap<CatalogosSingleton, PremioViewModel>();
 
             // Articulos
-            CreateMap<UipArticulo, ArticuloViewModel>();
-            CreateMap<CatalogosSingleton, ArticuloViewModel>();
+            CreateMap<UipArticulo, ArticuloViewModel>()
+                .ForMember(dest => dest.CatalogoRevista, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoRevista))
+                .ForMember(dest => dest.CatalogoIndiceRevista, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoIndiceRevista));
+            //CreateMap<CatalogosSingleton, ArticuloViewModel>();
 
             // Patentes
             CreateMap<UipPatente, PatenteViewModel>();
 
             // Lbros
-            CreateMap<UipLibro, LibroViewModel>();
-            CreateMap<CatalogosSingleton, LibroViewModel>();
+            CreateMap<UipLibro, LibroViewModel>()
+                .ForMember(dest => dest.CatalogoEditorial, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoEditorial))
+                .ForMember(dest => dest.CatalogoParticipacionLibro, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoParticipacionLibro));
+            //CreateMap<CatalogosSingleton, LibroViewModel>();
 
             // Licenciamientos
             CreateMap<UipLicenciamiento, LicenciamientoViewModel>();
@@ -215,8 +229,24 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Configuracion
             CreateMap<UipSoftware, SoftwareViewModel>();
 
             // Ponencias
-            CreateMap<UipPonencia, PonenciaViewModel>();
-            CreateMap<CatalogosSingleton, PonenciaViewModel>();
-        }    
+            CreateMap<UipPonencia, PonenciaViewModel>()
+                .ForMember(dest => dest.CatalogoPais, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoPais));
+            //CreateMap<CatalogosSingleton, PonenciaViewModel>();
+
+            // General
+            CreateMap<UipInvestigadorConsultar, FichaInvestigadorViewModel>()
+                .ForMember(dest => dest.Sexo, act => act.MapFrom(src => new SexoViewModel() 
+                { 
+                    Sexo = src.Sexo, 
+                    CatalogoSexo = CatalogosSingleton.Instancia.CatalogoSexo 
+                }))
+                .ForMember(dest => dest.PorcentajeNombramiento, act => act.MapFrom(src => new PorcentajeNombramientoViewModel() 
+                { 
+                    PorcentajeNombramiento = src.PorcentajeNombramiento, 
+                    CatalogoPorcentajeNombramiento = CatalogosSingleton.Instancia.CatalogoPorcentajeNombramiento 
+                }));
+            CreateMap<CatalogosSingleton, FichaInvestigadorViewModel>();
+
+        }
     }
 }

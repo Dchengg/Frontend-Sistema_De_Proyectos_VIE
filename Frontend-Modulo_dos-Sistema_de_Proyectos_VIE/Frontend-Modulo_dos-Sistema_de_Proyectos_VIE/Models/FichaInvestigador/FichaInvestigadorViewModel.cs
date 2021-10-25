@@ -29,15 +29,15 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         [Display(Name = "Fecha de nacimiento")]
         public System.DateTime FechaNacimiento { get; set; } // Ok
 
-        public TipoIdentificacionViewModel TipoIdentificacionViewModel { get; set; } // Ok?
+        public TipoIdentificacionViewModel TipoIdentificacion { get; set; } // Ok?
 
-        public PaisViewModel PaisViewModel { get; set; } // Ok?
+        public PaisViewModel PaisNacimiento { get; set; } // Ok?
 
         public IEnumerable<SelectListItem> CatalogoPais { get; set; }
 
-        public NacionalidadViewModel NacionalidadViewModel { get; set; } // Ok?
+        public NacionalidadViewModel Nacionalidad { get; set; } // Ok?
 
-        public SexoViewModel SexoViewModel { get; set; } // 
+        public SexoViewModel Sexo { get; set; } // 
 
         [Required]
         [Display(Name = "Apartado postal")]
@@ -59,7 +59,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         [Display(Name = "Fecha de ingreso a la institución")]
         public DateTime FechaDeIngresoInstitucion { get; set; }
 
-        public SituacionLaboralViewModel SituacionLaboralViewModel { get; set; }
+        public SituacionLaboralViewModel SituacionLaboral { get; set; }
 
         public List<TelefonoViewModel> Telefonos { get; set; }
 
@@ -67,7 +67,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         public List<CorreoViewModel> Correos { get; set; }
 
-        public PorcentajeNombramientoViewModel PorcentajeNombramientoViewModel { get; set; }
+        public PorcentajeNombramientoViewModel PorcentajeNombramiento { get; set; }
 
         public List<PerfilAcademicoViewModel> PerfilesAcademicos { get; set; }
         

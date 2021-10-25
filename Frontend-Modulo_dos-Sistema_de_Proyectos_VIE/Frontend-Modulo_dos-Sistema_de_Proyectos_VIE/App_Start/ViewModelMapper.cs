@@ -25,6 +25,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE
             var config = new MapperConfiguration(cfg => cfg.AddProfile<PerfilInvestigador>());
             //config.AssertConfigurationIsValid();
             var mapper = config.CreateMapper();
+            //return mapper.Map<FichaInvestigadorViewModel>(investigador);
             return mapper.MergeInto<FichaInvestigadorViewModel>(investigador, CatalogosSingleton.Instancia);
             //var resultado = mapper.Map<UipInvestigadorConsultar,FichaInvestigadorViewModel>(investigador);
             //return mapper.Map<CatalogosSingleton, FichaInvestigadorViewModel>(CatalogosSingleton.Instancia, resultado);
