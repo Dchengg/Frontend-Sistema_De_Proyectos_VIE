@@ -21,8 +21,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            var cat = CatalogosSingleton.Instancia;
         }
     }
 }

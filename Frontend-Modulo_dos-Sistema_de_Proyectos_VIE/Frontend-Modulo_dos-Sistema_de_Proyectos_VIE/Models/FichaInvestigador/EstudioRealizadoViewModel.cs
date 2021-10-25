@@ -17,9 +17,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         [Required]
         [Display(Name = "Institución")]
-        public string Institucion { get; set; }
+        public string NombreInstitucion { get; set; }
         public int IdInstitucion { get; set; }
-        public IEnumerable<SelectListItem> Instituciones { get; set; }
+        public IEnumerable<SelectListItem> CatalogoInstitucion { get; set; }
 
         [Required]
         [Display(Name = "Año de graduación")]
@@ -31,8 +31,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         [Required]
         [Display(Name = "Pais")]
-        public string Pais { get; set; }
+        public string NombrePais { get; set; }
         public int IdPais { get; set; }
-        public IEnumerable<SelectListItem> Paises { get; set; }
+        public IEnumerable<SelectListItem> CatalogoPais { get; set; }
     }
 }

@@ -12,8 +12,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
     {
         [Required]
         [Display(Name = "Categoría académica")]
-        public string CategoriaAcademica { get; set; }
-        public int CategoriaAcademicaSeleccionada { get; set; }
-        public IEnumerable<SelectListItem> CatalogoCategoriasAcademicas { get; set; }
+        public string NombreCategoria { get; set; }
+        public int Id { get; set; }
+        public IEnumerable<SelectListItem> CatalogoCategoriaAcademica { get; set; }
     }
 }

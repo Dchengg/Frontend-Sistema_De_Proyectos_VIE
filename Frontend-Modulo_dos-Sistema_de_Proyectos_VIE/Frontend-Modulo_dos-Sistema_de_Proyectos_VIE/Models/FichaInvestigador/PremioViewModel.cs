@@ -12,8 +12,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         [Required]
         [Display(Name = "Entidad")]
-        public string EntidadSeleccionada { get; set; }
-        public IEnumerable<SelectListItem> Entidades { get; set; }
+        public string Entidad { get; set; }
+        public IEnumerable<SelectListItem> CatalogoEntidad { get; set; }
 
         [Required]
         [Display(Name = "Año")]
@@ -21,8 +21,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         [Required]
         [Display(Name = "Pais")]
-        public string PaisSeleccionado { get; set; }
-        public IEnumerable<SelectListItem> Paises { get; set; }
+        public string Pais { get; set; }
+        public IEnumerable<SelectListItem> CatalogoPais { get; set; }
 
     }
 }

@@ -33,6 +33,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         public PaisViewModel PaisViewModel { get; set; } // Ok?
 
+        public IEnumerable<SelectListItem> CatalogoPais { get; set; }
+
         public NacionalidadViewModel NacionalidadViewModel { get; set; } // Ok?
 
         public SexoViewModel SexoViewModel { get; set; } // 
@@ -79,13 +81,13 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         public IEnumerable<SelectListItem> CatalogoNivelIdioma { get; set; }
 
-        public List<ExperienciaAcademicaViewModel> ExperienciaAcademicas { get; set; }
+        public List<ExperienciaAcademicaViewModel> ExperienciasAcademicas { get; set; }
 
         public List<ParticipacionViewModel> Participaciones { get; set; }
 
         public List<PremioViewModel> Premios { get; set; }
 
-        public IEnumerable<SelectListItem> CatalogoEntidades { get; set; }
+        public IEnumerable<SelectListItem> CatalogoEntidad { get; set; }
 
         public List<ArticuloViewModel> Articulos { get; set; }
 

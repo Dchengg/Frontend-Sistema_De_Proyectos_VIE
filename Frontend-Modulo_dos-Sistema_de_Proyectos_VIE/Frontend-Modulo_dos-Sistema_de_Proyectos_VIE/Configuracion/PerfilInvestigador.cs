@@ -124,54 +124,99 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Configuracion
 
         public PerfilInvestigador()
         {
+
+            // General
+            
+            CreateMap<FichaInvestigadorDTO, FichaInvestigadorViewModel>();
+            CreateMap<UipInvestigadorConsultar, FichaInvestigadorViewModel>();
+            CreateMap<CatalogosSingleton, FichaInvestigadorViewModel>();
+
             // Tipo identificacion
             CreateMap<UipTipoIdentificacion, TipoIdentificacionViewModel>();
-            CreateMap<UipCatalogosInvestigador, TipoIdentificacionViewModel>()
-               .ForMember(dest => dest.CatalogoTipoIdentificacion, act => act.MapFrom<TipoIdentificacionResolver>());
+            CreateMap<CatalogosSingleton, TipoIdentificacionViewModel>()
+                .ForMember(dest => dest.CatalogoTipoIdentificacion, act => act.MapFrom(src => src.CatalogoTipoIdentificacion));
 
             // Pais Nacimiento
             CreateMap<UipPaisNacimiento, PaisViewModel>();
-            CreateMap<UipCatalogosInvestigador, PaisViewModel>()
-                .ForMember(dest => dest.CatalogoPais, act => act.MapFrom<PaisNacimientoResolver>());
+            CreateMap<CatalogosSingleton, PaisViewModel>()
+                .ForMember(dest => dest.CatalogoPais, act => act.MapFrom(src => src.CatalogoPais));
+
 
             // Nacionalidad
             CreateMap<UipNacionalidad, NacionalidadViewModel>();
-            CreateMap<UipCatalogosInvestigador, NacionalidadViewModel>()
-                .ForMember(dest => dest.CatalogoNacionalidad, act => act.MapFrom<NacionalidadResolver>());
+            CreateMap<CatalogosSingleton, NacionalidadViewModel>();
 
             // Sexo
             CreateMap<UipInvestigadorConsultar, SexoViewModel>();
-            CreateMap<UipCatalogoSexo, SexoViewModel>();
+            CreateMap<CatalogosSingleton, SexoViewModel>();
 
             // Categorias académicas
             CreateMap<UipCategoriaAcademica, CategoriaAcademicaViewModel>();
-            CreateMap<UipCatalogosInvestigador, CategoriaAcademicaViewModel>()
-                .ForMember(dest => dest.CatalogoCategoriasAcademicas, act => act.MapFrom<CategoriaAcademicaResolver>());
+            CreateMap<CatalogosSingleton, CategoriaAcademicaViewModel>();
 
             // Unidades académicas
             CreateMap<UipUnidadAcademica, UnidadAcademicaViewModel>();
-            CreateMap<UipCatalogosInvestigador, UnidadAcademicaViewModel>()
-                .ForMember(dest => dest.CatalogoUnidadesAcademicas, act => act.MapFrom<UnidadAcademicaResolver>());
+            CreateMap<CatalogosSingleton, UnidadAcademicaViewModel>();
 
             // Situación laboral
             CreateMap<UipSituacionLaboral, SituacionLaboralViewModel>();
-            CreateMap<UipCatalogosInvestigador, SituacionLaboralViewModel>()
-                .ForMember(dest => dest.CatalogoSituacionLaboral, act => act.MapFrom<SituacionLaboralResolver>());
+            CreateMap<CatalogosSingleton, SituacionLaboralViewModel>();
 
             // Telefono
             CreateMap<UipTelefono, TelefonoViewModel>();
-            CreateMap<UipCatalogosInvestigador, TelefonoViewModel>()
-                .ForMember(dest => dest.CatalogoTipoTelefono, act => act.MapFrom<TelefonoResolver>());
+            CreateMap<CatalogosSingleton, TelefonoViewModel>();
 
             // Correos
             CreateMap<UipCorreo, CorreoViewModel>();
 
             // Porcentaje Nombramiento
             CreateMap<UipInvestigadorConsultar, PorcentajeNombramientoViewModel>();
-            // General
-            CreateMap<UipInvestigadorConsultar, FichaInvestigadorViewModel>();
-        }
+            CreateMap<CatalogosSingleton, PorcentajeNombramientoViewModel>();
 
-        
+            // Perfiles academicos
+            CreateMap<UipPerfilAcademico, PerfilAcademicoViewModel>();
+            CreateMap<CatalogosSingleton, PerfilAcademicoViewModel>();
+
+            // Estudios realizados
+            CreateMap<UipEstudioRealizado, EstudioRealizadoViewModel>();
+            CreateMap<CatalogosSingleton, EstudioRealizadoViewModel>();
+
+            // Idiomas
+            CreateMap<UipIdioma, IdiomaViewModel>();
+            CreateMap<CatalogosSingleton, IdiomaViewModel>();
+
+            // Experiencias academicas
+            CreateMap<UipExperienciaAcademica, ExperienciaAcademicaViewModel>();
+            CreateMap<CatalogosSingleton, ExperienciaAcademicaViewModel>();
+
+            // Participaciones
+            CreateMap<UipParticipacion, ParticipacionViewModel>();
+            CreateMap<CatalogosSingleton, ParticipacionViewModel>();
+
+            // Premios
+            CreateMap<UipPremio, PremioViewModel>();
+            CreateMap<CatalogosSingleton, PremioViewModel>();
+
+            // Articulos
+            CreateMap<UipArticulo, ArticuloViewModel>();
+            CreateMap<CatalogosSingleton, ArticuloViewModel>();
+
+            // Patentes
+            CreateMap<UipPatente, PatenteViewModel>();
+
+            // Lbros
+            CreateMap<UipLibro, LibroViewModel>();
+            CreateMap<CatalogosSingleton, LibroViewModel>();
+
+            // Licenciamientos
+            CreateMap<UipLicenciamiento, LicenciamientoViewModel>();
+
+            // Software
+            CreateMap<UipSoftware, SoftwareViewModel>();
+
+            // Ponencias
+            CreateMap<UipPonencia, PonenciaViewModel>();
+            CreateMap<CatalogosSingleton, PonenciaViewModel>();
+        }    
     }
 }

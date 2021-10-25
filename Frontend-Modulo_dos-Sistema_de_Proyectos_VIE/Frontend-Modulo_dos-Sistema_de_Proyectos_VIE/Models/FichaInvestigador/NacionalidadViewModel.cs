@@ -13,6 +13,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         [Required]
         [Display(Name = "Nacionalidad")]
         public string Nacionalidad { get; set; }
-        public IEnumerable<SelectListItem> CatalogoNacionalidad { get; set; }
+        public IEnumerable<SelectListItem> CatalogoPais { get; set; }
     }
 }

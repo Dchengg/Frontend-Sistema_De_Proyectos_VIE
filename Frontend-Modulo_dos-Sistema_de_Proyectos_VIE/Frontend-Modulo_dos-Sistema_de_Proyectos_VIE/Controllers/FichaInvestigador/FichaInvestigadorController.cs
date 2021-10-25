@@ -55,7 +55,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
             UipRespuesta<UipInvestigadorConsultar> respuesta = Consultor.ConsultarInvestigador(id);
             if (respuesta.estaSinErrores())
             {
-                FichaInvestigadorViewModel modeloFichaInvestigador = MappingConfig.MapearFichaInvestigador(respuesta.ObjetoRespuesta);
+                FichaInvestigadorViewModel modeloFichaInvestigador = ViewModelMapper.MapearFichaInvestigador(respuesta.ObjetoRespuesta);
                 return View(modeloFichaInvestigador);
             }
             else

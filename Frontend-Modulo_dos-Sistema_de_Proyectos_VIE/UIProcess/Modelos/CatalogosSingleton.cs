@@ -14,45 +14,45 @@ namespace UIProcess.Modelos
     public class CatalogosSingleton
     {
         // Atributos
-        public List<SelectListItem> CatalogoTipoIdentificacion { get; set; }
+        public IEnumerable<SelectListItem> CatalogoTipoIdentificacion { get; set; }
 
-        public List<SelectListItem> CatalogoPais { get; set; }
+        public IEnumerable<SelectListItem> CatalogoPais { get; set; }
 
-        public List<SelectListItem> CatalogoSexo { get; set; }
+        public IEnumerable<SelectListItem> CatalogoSexo { get; set; }
 
-        public List<SelectListItem> CatalogoSituacionLaboral { get; set; }
+        public IEnumerable<SelectListItem> CatalogoSituacionLaboral { get; set; }
 
-        public List<SelectListItem> CatalogoInstitucion { get; set; }
+        public IEnumerable<SelectListItem> CatalogoInstitucion { get; set; }
 
-        public List<SelectListItem> CatalogoTituloAcademico { get; set; }
+        public IEnumerable<SelectListItem> CatalogoTituloAcademico { get; set; }
 
-        public List<SelectListItem> CatalogoIdioma { get; set; }
+        public IEnumerable<SelectListItem> CatalogoIdioma { get; set; }
 
-        public List<SelectListItem> CatalogoNivelIdioma { get; set; }
+        public IEnumerable<SelectListItem> CatalogoNivelIdioma { get; set; }
 
-        public List<SelectListItem> CatalogoUnidadAcademica { get; set; }
+        public IEnumerable<SelectListItem> CatalogoUnidadAcademica { get; set; }
 
-        public List<SelectListItem> CatalogoTipoPerfil { get; set; }
+        public IEnumerable<SelectListItem> CatalogoTipoPerfil { get; set; }
 
-        public List<SelectListItem> CatalogoDisciplinaCientifica { get; set; }
+        public IEnumerable<SelectListItem> CatalogoDisciplinaCientifica { get; set; }
 
-        public List<SelectListItem> CatalogoSubdisciplinaCientifica { get; set; }
+        public IEnumerable<SelectListItem> CatalogoSubdisciplinaCientifica { get; set; }
 
-        public List<SelectListItem> CatalogoEntidad { get; set; }
+        public IEnumerable<SelectListItem> CatalogoEntidad { get; set; }
 
-        public List<SelectListItem> CatalogoRevista { get; set; }
+        public IEnumerable<SelectListItem> CatalogoRevista { get; set; }
 
-        public List<SelectListItem> CatalogoIndiceRevista { get; set; }
+        public IEnumerable<SelectListItem> CatalogoIndiceRevista { get; set; }
 
-        public List<SelectListItem> CatalogoEditorial { get; set; }
+        public IEnumerable<SelectListItem> CatalogoEditorial { get; set; }
 
-        public List<SelectListItem> CatalogoParticipacionLibro { get; set; }
+        public IEnumerable<SelectListItem> CatalogoParticipacionLibro { get; set; }
 
-        public List<SelectListItem> CatalogoCategoriaAcademica { get; set; }
+        public IEnumerable<SelectListItem> CatalogoCategoriaAcademica { get; set; }
 
-        public List<SelectListItem> CatalogoPorentajeNombramiento { get; set; }
+        public IEnumerable<SelectListItem> CatalogoPorcentajeNombramiento { get; set; }
 
-        public List<SelectListItem> CatalogoTipoTelefono { get; set; }
+        public IEnumerable<SelectListItem> CatalogoTipoTelefono { get; set; }
 
         // Variable estática para la instancia, se necesita utilizar una función lambda ya que el constructor es privado
         private static readonly Lazy<CatalogosSingleton> instance = new Lazy<CatalogosSingleton>(() =>
@@ -61,7 +61,7 @@ namespace UIProcess.Modelos
             if (respuesta.estaSinErrores())
             {
                 var config = new MapperConfiguration(cfg => cfg.AddProfile<PerfilCatalogos>());
-                config.AssertConfigurationIsValid();
+                //.config.AssertConfigurationIsValid();
                 var mapper = config.CreateMapper();
                 return mapper.Map<CatalogosSingleton>(respuesta.ObjetoRespuesta);
             }

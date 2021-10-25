@@ -10,137 +10,108 @@ using UIProcess.Modelos;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE
 {
-    public class MappingConfig
+
+    public static class ViewModelMapper
     {
-        public static void MapearCatalogos(UipCatalogosInvestigador catalogos)
+        public static TResult MergeInto<TResult>(this IMapper mapper, object item1, object item2)
         {
-            var config = new MapperConfiguration(cfg => cfg.AddProfile<PerfilCatalogos>());
-            config.AssertConfigurationIsValid();
-            var mapper = config.CreateMapper();
-            
-            //UipCatalogosGlobal.CatalogoTipoIdentificacion = catalogos.CatalogoTipoIdentificacion.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoPais = catalogos.CatalogoPais.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoSexo = new List<SelectListItem>()
-            //{
-            //    new SelectListItem() {Value = "1", Text = "Masculino"},
-            //    new SelectListItem() {Value = "2", Text = "Femenino"},
-            //    new SelectListItem() {Value = "3", Text = "Prefiero no especificar"}
-            //};
-            //UipCatalogosGlobal.CatalogoCategoriaAcademica = catalogos.CatalogoCategoriaAcademica.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoSituacionLaboral = catalogos.CatalogoSituacionLaboral.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoPorentajeNombramiento = new List<SelectListItem>();
-            //for (int i = 1; i <= 100; i++)
-            //{
-            //    UipCatalogosGlobal.CatalogoPorentajeNombramiento.Add(new SelectListItem() { Value = i.ToString(), Text = i.ToString() });
-            //}
-            //UipCatalogosGlobal.CatalogoInstitucion = catalogos.CatalogoInstitucion.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoTituloAcademico = catalogos.CatalogoTituloAcademico.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoIdioma = catalogos.CatalogoIdioma.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoNivelIdioma = catalogos.CatalogoNivelIdioma.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoUnidadAcademica = catalogos.CatalogoUnidadAcademica.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoTipoPerfil = catalogos.CatalogoTipoPerfil.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoDisciplinaCientifica = catalogos.CatalogoDisciplinaCientifica.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoEntidad = catalogos.CatalogoEntidad.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoRevista = catalogos.CatalogoRevista.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoIndiceRevista = catalogos.CatalogoIndiceRevista.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoEditorial = catalogos.CatalogoEditorial.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoParticipacionLibro = catalogos.CatalogoParticipacionLibro.Select(i => i.ToSelectListItem()).ToList();
-            //UipCatalogosGlobal.CatalogoTipoTelefono = catalogos.CatalogoTipoTelefono.Select(i => i.ToSelectListItem()).ToList();
+            return mapper.Map(item2, mapper.Map<TResult>(item1));
         }
 
         public static FichaInvestigadorViewModel MapearFichaInvestigador(UipInvestigadorConsultar investigador)
         {
-            var a = CatalogosSingleton.Instancia.CatalogoUnidadAcademica;
+
             // Configuracion de Automapper
-            var config = new MapperConfiguration(
-                             cfg =>
-                             { 
-                                 // Tipo identificacion
-                                 cfg.CreateMap<UipTipoIdentificacion, TipoIdentificacionViewModel>();
-                                 //cfg.CreateMap<UipCatalogosInvestigador, TipoIdentificacionViewModel>()
-                                 //   .ForMember(dest => dest.CatalogoTipoIdentificacion, opt => opt.MapFrom<TipoIdentificacionResolver>());
+            var config = new MapperConfiguration(cfg => cfg.AddProfile<PerfilInvestigador>());
+            //config.AssertConfigurationIsValid();
+            var mapper = config.CreateMapper();
+            return mapper.MergeInto<FichaInvestigadorViewModel>(investigador, CatalogosSingleton.Instancia);
+            //var resultado = mapper.Map<UipInvestigadorConsultar,FichaInvestigadorViewModel>(investigador);
+            //return mapper.Map<CatalogosSingleton, FichaInvestigadorViewModel>(CatalogosSingleton.Instancia, resultado);
+            //c.AssertConfigurationIsValid();
+            //// Tipo identificacion
+            //cfg.CreateMap<UipTipoIdentificacion, TipoIdentificacionViewModel>();
+            //cfg.CreateMap<UipCatalogosInvestigador, TipoIdentificacionViewModel>()
+            //   .ForMember(dest => dest.CatalogoTipoIdentificacion, opt => opt.MapFrom<TipoIdentificacionResolver>());
 
-                                 //// Pais Nacimiento
-                                 //cfg.CreateMap<UipPaisNacimiento, PaisViewModel>();
-                                 //cfg.CreateMap<UipCatalogosInvestigador, PaisViewModel>()
-                                 //   .ForMember(dest => dest.CatalogoPais, opt => opt.MapFrom<PaisResolver>());
-                                 //cfg.CreateMap<UipInvestigadorConsultar, FichaInvestigadorViewModel>()
-                                 //   .IncludeMembers(source => source.TipoIdentificacion,
-                                 //                   source => source.PaisNacimiento);
-                                 //cfg.CreateMap<UipCatalogosInvestigador, FichaInvestigadorViewModel>();
+            //// Pais Nacimiento
+            //cfg.CreateMap<UipPaisNacimiento, PaisViewModel>();
+            //cfg.CreateMap<UipCatalogosInvestigador, PaisViewModel>()
+            //   .ForMember(dest => dest.CatalogoPais, opt => opt.MapFrom<PaisResolver>());
+            //cfg.CreateMap<UipInvestigadorConsultar, FichaInvestigadorViewModel>()
+            //   .IncludeMembers(source => source.TipoIdentificacion,
+            //                   source => source.PaisNacimiento);
+            //cfg.CreateMap<UipCatalogosInvestigador, FichaInvestigadorViewModel>();
 
-                                 //// Pais
-                                 //cfg.CreateMap<UipInvestigadorConsultar, PaisViewModel>()
-                                 //.ForMember(d => d.PaisNacimientoSeleccionado, action => action.MapFrom(s => s.IdPaisNacimiento))
-                                 //.ForMember(d => d.PaisNacimiento, action => action.MapFrom(s => s.PaisNacimiento));
-                                 //cfg.CreateMap<CatalogosViewModel, PaisViewModel>();
+            //// Pais
+            //cfg.CreateMap<UipInvestigadorConsultar, PaisViewModel>()
+            //.ForMember(d => d.PaisNacimientoSeleccionado, action => action.MapFrom(s => s.IdPaisNacimiento))
+            //.ForMember(d => d.PaisNacimiento, action => action.MapFrom(s => s.PaisNacimiento));
+            //cfg.CreateMap<CatalogosViewModel, PaisViewModel>();
 
-                                 //// Nacionalidad
-                                 //cfg.CreateMap<UipInvestigadorConsultar, NacionalidadViewModel>()
-                                 //.ForMember(d => d.NacionalidadSeleccionada, action => action.MapFrom(s => s.IdNacionalidad))
-                                 //.ForMember(d => d.Nacionalidad, action => action.MapFrom(s => s.Nacionalidad));
-                                 //cfg.CreateMap<CatalogosViewModel, NacionalidadViewModel>()
-                                 //.ForMember(d => d.CatalogoNacionalidad, action => action.MapFrom(s => s.CatalogoPais));
+            //// Nacionalidad
+            //cfg.CreateMap<UipInvestigadorConsultar, NacionalidadViewModel>()
+            //.ForMember(d => d.NacionalidadSeleccionada, action => action.MapFrom(s => s.IdNacionalidad))
+            //.ForMember(d => d.Nacionalidad, action => action.MapFrom(s => s.Nacionalidad));
+            //cfg.CreateMap<CatalogosViewModel, NacionalidadViewModel>()
+            //.ForMember(d => d.CatalogoNacionalidad, action => action.MapFrom(s => s.CatalogoPais));
 
-                                 //// Sexo
-                                 //cfg.CreateMap<UipInvestigadorConsultar, SexoViewModel>()
-                                 //.ForMember(d => d.SexoSeleccionado, action => action.MapFrom(s => s.Sexo));
-                                 //cfg.CreateMap<CatalogosViewModel, SexoViewModel>();
+            //// Sexo
+            //cfg.CreateMap<UipInvestigadorConsultar, SexoViewModel>()
+            //.ForMember(d => d.SexoSeleccionado, action => action.MapFrom(s => s.Sexo));
+            //cfg.CreateMap<CatalogosViewModel, SexoViewModel>();
 
-                                 //// Categoria academica
-                                 //cfg.CreateMap<UipCategoriaAcademica, CategoriaAcademicaViewModel>()
-                                 //.ForMember(d => d.CategoriaAcademicaSeleccionada, action => action.MapFrom(s => s.Id))
-                                 //.ForMember(d => d.CategoriaAcademica, action => action.MapFrom(s => s.NombreCategoria));
-                                 //cfg.CreateMap<CatalogosViewModel, CategoriaAcademicaViewModel>();
+            //// Categoria academica
+            //cfg.CreateMap<UipCategoriaAcademica, CategoriaAcademicaViewModel>()
+            //.ForMember(d => d.CategoriaAcademicaSeleccionada, action => action.MapFrom(s => s.Id))
+            //.ForMember(d => d.CategoriaAcademica, action => action.MapFrom(s => s.NombreCategoria));
+            //cfg.CreateMap<CatalogosViewModel, CategoriaAcademicaViewModel>();
 
-                                 //// Unidad academica
-                                 //cfg.CreateMap<UipUnidadAcademica, UnidadAcademicaViewModel>()
-                                 //.ForMember(d => d.UnidadAcademicaSeleccionada, action => action.MapFrom(s => s.IdUnidadAcademica))
-                                 //.ForMember(d => d.UnidadAcademica, action => action.MapFrom(s => s.NombreUnidadAcademica))
-                                 //.ForMember(d => d.Sede, action => action.MapFrom(s => s.NombreSede));
-                                 //cfg.CreateMap<CatalogosViewModel, UnidadAcademicaViewModel>()
-                                 //.ForMember(d => d.CatalogoUnidadesAcademicas, action => action.MapFrom(s => s.CatalogoUnidadAcademica));
+            //// Unidad academica
+            //cfg.CreateMap<UipUnidadAcademica, UnidadAcademicaViewModel>()
+            //.ForMember(d => d.UnidadAcademicaSeleccionada, action => action.MapFrom(s => s.IdUnidadAcademica))
+            //.ForMember(d => d.UnidadAcademica, action => action.MapFrom(s => s.NombreUnidadAcademica))
+            //.ForMember(d => d.Sede, action => action.MapFrom(s => s.NombreSede));
+            //cfg.CreateMap<CatalogosViewModel, UnidadAcademicaViewModel>()
+            //.ForMember(d => d.CatalogoUnidadesAcademicas, action => action.MapFrom(s => s.CatalogoUnidadAcademica));
 
-                                 //// Situacion laboral
-                                 //cfg.CreateMap<UipInvestigadorConsultar, SituacionLaboralViewModel>()
-                                 //.ForMember(d => d.SituacionLaboralSeleccionada, action => action.MapFrom(s => s.IdSituacionLaboral))
-                                 //.ForMember(d => d.SituacionLaboral, action => action.MapFrom(s => s.SituacionLaboral));
-                                 //cfg.CreateMap<CatalogosViewModel, SituacionLaboralViewModel>();
+            //// Situacion laboral
+            //cfg.CreateMap<UipInvestigadorConsultar, SituacionLaboralViewModel>()
+            //.ForMember(d => d.SituacionLaboralSeleccionada, action => action.MapFrom(s => s.IdSituacionLaboral))
+            //.ForMember(d => d.SituacionLaboral, action => action.MapFrom(s => s.SituacionLaboral));
+            //cfg.CreateMap<CatalogosViewModel, SituacionLaboralViewModel>();
 
-                                 //// Telefono
-                                 //cfg.CreateMap<UipTelefono, TelefonoViewModel>()
-                                 //.ForMember(d => d.TipoTelefonoSeleccionado, action => action.MapFrom(s => s.IdTipoTelefono))
-                                 //.ForMember(d => d.TipoTelefono, action => action.MapFrom(s => s.Tipo))
-                                 //.ForMember(d => d.Telefono, action => action.MapFrom(s => s.Numero));
-                                 //cfg.CreateMap<CatalogosViewModel, TelefonoViewModel>();
+            //// Telefono
+            //cfg.CreateMap<UipTelefono, TelefonoViewModel>()
+            //.ForMember(d => d.TipoTelefonoSeleccionado, action => action.MapFrom(s => s.IdTipoTelefono))
+            //.ForMember(d => d.TipoTelefono, action => action.MapFrom(s => s.Tipo))
+            //.ForMember(d => d.Telefono, action => action.MapFrom(s => s.Numero));
+            //cfg.CreateMap<CatalogosViewModel, TelefonoViewModel>();
 
-                                 //// Correo
-                                 //cfg.CreateMap<UipCorreo, CorreoViewModel>();
+            //// Correo
+            //cfg.CreateMap<UipCorreo, CorreoViewModel>();
 
-                                 //// Porcentaje de nombramiento
-                                 //cfg.CreateMap<UipInvestigadorConsultar, PorcentajeNombramientoViewModel>()
-                                 //.ForMember(d => d.PorcentajeNombramientoSeleccionado, action => action.MapFrom(s => s.PorcentajeNombramiento));
-                                 //cfg.CreateMap<CatalogosViewModel, PorcentajeNombramientoViewModel>();
+            //// Porcentaje de nombramiento
+            //cfg.CreateMap<UipInvestigadorConsultar, PorcentajeNombramientoViewModel>()
+            //.ForMember(d => d.PorcentajeNombramientoSeleccionado, action => action.MapFrom(s => s.PorcentajeNombramiento));
+            //cfg.CreateMap<CatalogosViewModel, PorcentajeNombramientoViewModel>();
 
-                                 //// Perfil academico
-                                 //cfg.CreateMap<UipPerfilAcademico, PerfilAcademicoViewModel>()
-                                 //.ForMember(d => d.TipoPerfilSeleccionado, action => action.MapFrom(s => s.TipoPerfil))
-                                 //.ForMember(d => d.Direccion, action => action.MapFrom(s => s.Direccion));
-                                 //cfg.CreateMap<CatalogosViewModel, PerfilAcademicoViewModel>()
-                                 //.ForMember(d => d.CatalogoTiposPerfilAcademico, action => action.MapFrom(s => s.CatalogoTipoPerfil));
+            //// Perfil academico
+            //cfg.CreateMap<UipPerfilAcademico, PerfilAcademicoViewModel>()
+            //.ForMember(d => d.TipoPerfilSeleccionado, action => action.MapFrom(s => s.TipoPerfil))
+            //.ForMember(d => d.Direccion, action => action.MapFrom(s => s.Direccion));
+            //cfg.CreateMap<CatalogosViewModel, PerfilAcademicoViewModel>()
+            //.ForMember(d => d.CatalogoTiposPerfilAcademico, action => action.MapFrom(s => s.CatalogoTipoPerfil));
 
-                                 //// Estudio realizado
-                                 //cfg.CreateMap<UipEstudioRealizado, EstudioRealizadoViewModel>()
-                                 //.ForMember(d => d.TituloAcademico, action => action.MapFrom(s => s.TituloAcademico))
-                                 //.ForMember(d => d.Pais, action => action.MapFrom(s => s.NombrePais))
-                                 //.ForMember(d => d.Institucion, action => action.MapFrom(s => s.NombreInstitucion))
-                                 //.ForMember(d => d.AreaDeEstudio, action => action.MapFrom(s => s.AreaDeEstudio))
-                                 //.ForMember(d => d.AnoGraduacion, action => action.MapFrom(s => s.AnoGraduacion));
-                                 //cfg.CreateMap<UipCatalogoPais, EstudioRealizadoViewModel>();
+            //// Estudio realizado
+            //cfg.CreateMap<UipEstudioRealizado, EstudioRealizadoViewModel>()
+            //.ForMember(d => d.TituloAcademico, action => action.MapFrom(s => s.TituloAcademico))
+            //.ForMember(d => d.Pais, action => action.MapFrom(s => s.NombrePais))
+            //.ForMember(d => d.Institucion, action => action.MapFrom(s => s.NombreInstitucion))
+            //.ForMember(d => d.AreaDeEstudio, action => action.MapFrom(s => s.AreaDeEstudio))
+            //.ForMember(d => d.AnoGraduacion, action => action.MapFrom(s => s.AnoGraduacion));
+            //cfg.CreateMap<UipCatalogoPais, EstudioRealizadoViewModel>();
 
-                             }
-            );
-            return null;
         }
         
             //#region Mapeo manual del objeto de consulta al objeto de la vista

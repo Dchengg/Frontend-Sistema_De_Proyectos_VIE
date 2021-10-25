@@ -12,10 +12,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
     {
         [Required]
         [Display(Name = "Unidad académica")]
-        public string UnidadAcademica { get; set; }
-        public string Sede { get; set; }
-        public int UnidadAcademicaSeleccionada { get; set; }
-        public IEnumerable<SelectListItem> CatalogoUnidadesAcademicas { get; set; }
+        public string NombreUnidadAcademica { get; set; }
+        public int IdSede { get; set; }
+        public string NombreSede { get; set; }
+        public int IdUnidadAcademica { get; set; }
+        public IEnumerable<SelectListItem> CatalogoUnidadAcademica { get; set; }
         
     }
 }

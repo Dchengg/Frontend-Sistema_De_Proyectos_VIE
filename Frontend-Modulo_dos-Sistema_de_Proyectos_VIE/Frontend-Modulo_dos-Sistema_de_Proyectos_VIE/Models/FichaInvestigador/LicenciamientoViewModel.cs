@@ -4,13 +4,14 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 {
     public class LicenciamientoViewModel
     {
+        public int Id { get; set; }
         [Required]
         [Display(Name = "Producto licenciado")]
-        public string ProductoLicenciado { get; set; }
+        public string Producto { get; set; }
 
         [Required]
         [Display(Name = "Licenciado(a)")]
-        public string PersonaConLicenciamiento { get; set; }
+        public string LicenciadoA { get; set; }
 
         [Required]
         [Display(Name = "Año")]
