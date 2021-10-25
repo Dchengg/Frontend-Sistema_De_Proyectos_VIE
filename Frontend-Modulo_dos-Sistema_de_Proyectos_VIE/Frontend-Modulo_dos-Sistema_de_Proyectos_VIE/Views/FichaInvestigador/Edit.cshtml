@@ -1034,9 +1034,7 @@
             </div>
             <div class="col-md-6 form-inline">
                 <label class="col-md-6">Unidad Departamental</label>
-                <select class="col-md-6 form-control">
-                    <option>Unidad departamental</option>
-                </select>
+                @Html.DropDownList("catalogoUnidadesAcademicas_EstudioRealizado", new SelectList(Model.UnidadesAcademicas, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
             </div>
         </div>
         <div class="row align-items-center justify-items-center mt-3">
@@ -1062,31 +1060,91 @@
                     <tr id="ROW1">
                         <th>Nombre del Puesto</th>
                         <th>Unidad Departamental</th>
-                        <th>Año de Inicio</th>
-                        <th>Año de Graduación</th>
+                        <th>Año de Inicio</th> 
                         <th>Año de Término</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                 </thead>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
+                <tbody>
+                    @{
+                        int contadorExperiencia = 0;
+
+                        foreach (var experiencia in Model.ExperienciaAcademicas)
+                        {
+                            <tr>
+                                <td>
+                                    @experiencia.Puesto
+                                </td>
+                                <td>
+                                    @experiencia.UnidadDepartametal
+                                </td>
+                                <td>
+                                    @experiencia.AnoInicio
+                                </td>
+                                <td>
+                                    @experiencia.AnoTermino
+                                </td> 
+                                <td>
+                                    <button class="btnAzul" id="btnEditarExperiencia" data-toggle="modal" data-target="#experienciaModal-@contadorExperiencia">Editar</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" id="btnEliminarExperiencia">Eliminar</button>
+                                </td>
+                            </tr>
+
+                            <!-- Modal de experiencia -->
+                            <div class="modal fade" id="experienciaModal-@contadorExperiencia" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Editar experiencia</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mx-2 my-2">
+                                                <label>Puesto</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("puesto" + contadorExperiencia, experiencia.Puesto, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Unidad Departametal</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.DropDownList("unidadDepartametal" + contadorExperiencia, new SelectList(experiencia.UnidadDepartametal, "Value", "Text", experiencia.UnidadDepartametal.ToString()), htmlAttributes: new { @class = "form-control col form-inline" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Año Inicio</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("anoInicio" + contadorExperiencia, experiencia.AnoInicio, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Año de Término</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("anoTermino" + contadorExperiencia, experiencia.AnoTermino, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+                                             
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btnGrande btnAzul">Guardar Experiencia</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            contadorExperiencia++;
+                        }
+                    }
+                </tbody>
             </table>
         </div>
     </div>
@@ -1101,9 +1159,7 @@
             </div>
             <div class="col-md-6 form-inline">
                 <label class="col-md-6">Entidad</label>
-                <select class="col-md-6 form-control">
-                    <option>Entidad</option>
-                </select>
+                @Html.DropDownList("catalogoEntidades_EstudioRealizado", new SelectList(Model.CatalogoEntidades, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
             </div>
         </div>
         <div class="row align-items-center justify-items-center mt-3">
@@ -1129,31 +1185,92 @@
                     <tr id="ROW1">
                         <th>Nombre del Puesto</th>
                         <th>Entidad</th>
-                        <th>Año de Inicio</th>
-                        <th>Año de Graduación</th>
+                        <th>Año de Inicio</th> 
                         <th>Año de Término</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                 </thead>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
+                <tbody>
+                    @{
+                        int contadorParticipaciones = 0;
+
+                        foreach (var participaciones in Model.Participaciones)
+                        {
+                            <tr>
+                                <td>
+                                    @participaciones.Puesto
+                                </td>
+                                <td>
+                                    @participaciones.Entidad
+                                </td>
+                                <td>
+                                    @participaciones.AnoInicio
+                                </td>
+                                <td>
+                                    @participaciones.AnoTermino 
+                                </td> 
+                                <td>
+                                    <button class="btnAzul" id="btnEditarParticipaciones" data-toggle="modal" data-target="#participacionesModal-@contadorParticipaciones">Editar</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" id="btnEliminarIdioma">Eliminar</button>
+                                </td>
+                            </tr>
+
+                            <!-- Modal de idiomas -->
+                            <div class="modal fade" id="participacionesModal-@contadorParticipaciones" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Editar participacion</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mx-2 my-2">
+                                                <label>Puesto</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("puesto" + contadorParticipaciones, participaciones.Puesto, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Entidad</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.DropDownList("catalogoEntidades_EstudioRealizado", new SelectList(Model.CatalogoEntidades, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Año de Inicio</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("anoInicio" + contadorParticipaciones, participaciones.AnoInicio, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Año de Tèrmino</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("anoTermino" + contadorParticipaciones, participaciones.AnoTermino, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+                                             
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btnGrande btnAzul">Guardar participaciòn</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            contadorParticipaciones++;
+                        }
+                    }
+                </tbody>
             </table>
         </div>
     </div>
