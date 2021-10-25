@@ -177,7 +177,7 @@
                     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Teléfonos</h5>
+                                <h5 class="modal-title">Telefonos</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -201,8 +201,8 @@
                                                 <tr>
                                                     <td>
                                                         @Html.DropDownList(telefono.Tipo,
-                        new SelectList(telefono.CatalogoTipoTelefono, "Value", "Text"),
-                        htmlAttributes: new { @class = "form-control" })
+                                                            new SelectList(telefono.CatalogoTipoTelefono, "Value", "Text"),
+                                                            htmlAttributes: new { @class = "form-control" })
                                                     </td>
                                                     <td>@Html.TextBox("NumeroTelefono", telefono.Numero, htmlAttributes: new { @class = "form-control" })</td>
                                                     <td>
@@ -211,10 +211,10 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <button class="btnGrande btnAzul">Editar</button>
+                                                        <button type="button" class="btnGrande btnAzul">Editar</button>
                                                     </td>
                                                     <td>
-                                                        <button class="btn btn-danger">Eliminar</button>
+                                                        <button type="button" class="btn btn-danger">Eliminar</button>
                                                     </td>
                                                 </tr>
                                             }
@@ -407,10 +407,10 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <button class="btnGrande btnAzul">Editar</button>
+                                                        <button type="button" class="btnGrande btnAzul">Editar</button>
                                                     </td>
                                                     <td>
-                                                        <button class="btn btn-danger">Eliminar</button>
+                                                        <button type="button" btn btn-danger">Eliminar</button>
                                                     </td>
                                                 </tr>
                                             }
@@ -564,10 +564,10 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    <button class="btnGrande btnAzul">Editar</button>
+                                                    <button type="button" class="btnGrande btnAzul">Editar</button>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-danger">Eliminar</button>
+                                                    <button  type="button" class="btn btn-danger">Eliminar</button>
                                                 </td>
                                             </tr>
                                         }
@@ -647,10 +647,10 @@
                                     @perfil.Direccion
                                 </td>
                                 <td>
-                                    <button class="btnAzul" id="btnEditarPerfilAcademico" data-toggle="modal" data-target="#perfilAcademicoModal-@contador">Editar</button>
+                                    <button type="button" class="btnAzul" id="btnEditarPerfilAcademico" data-toggle="modal" data-target="#perfilAcademicoModal-@contador">Editar</button>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger" id="btnEliminarPerfilAcademico">Eliminar</button>
+                                    <button type="button" class="btn btn-danger" id="btnEliminarPerfilAcademico">Eliminar</button>
                                 </td>
                             </tr>
 
@@ -811,10 +811,10 @@
                                     @estudioRealizado.AreaDeEstudio
                                 </td>
                                 <td>
-                                    <button class="btnAzul" id="btnEditarEstudioRealizado" data-toggle="modal" data-target="#estudioRealizadoModal-@contadorEstudio">Editar</button>
+                                    <button type="button" class="btnAzul" id="btnEditarEstudioRealizado" data-toggle="modal" data-target="#estudioRealizadoModal-@contadorEstudio">Editar</button>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger" id="btnEliminarEstudioRealizado">Eliminar</button>
+                                    <button type="button" class="btn btn-danger" id="btnEliminarEstudioRealizado">Eliminar</button>
                                 </td>
                             </tr>
 
@@ -952,10 +952,10 @@
                                 <td>
                                     @idioma.IdiomaMaterno
                                 <td>
-                                    <button class="btnAzul" id="btnEditarIdioma" data-toggle="modal" data-target="#idiomaModal-@contadorIdioma">Editar</button>
+                                    <button type="button" class="btnAzul" id="btnEditarIdioma" data-toggle="modal" data-target="#idiomaModal-@contadorIdioma">Editar</button>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger" id="btnEliminarIdioma">Eliminar</button>
+                                    <button type="button" class="btn btn-danger" id="btnEliminarIdioma">Eliminar</button>
                                 </td>
                             </tr>
 
@@ -1086,10 +1086,10 @@
                                     @experiencia.AnoTermino
                                 </td> 
                                 <td>
-                                    <button class="btnAzul" id="btnEditarExperiencia" data-toggle="modal" data-target="#experienciaModal-@contadorExperiencia">Editar</button>
+                                    <button type="button" class="btnAzul" id="btnEditarExperiencia" data-toggle="modal" data-target="#experienciaModal-@contadorExperiencia">Editar</button>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger" id="btnEliminarExperiencia">Eliminar</button>
+                                    <button type="button" class="btn btn-danger" id="btnEliminarExperiencia">Eliminar</button>
                                 </td>
                             </tr>
 
@@ -1211,10 +1211,10 @@
                                     @participaciones.AnoFinalizacion 
                                 </td> 
                                 <td>
-                                    <button class="btnAzul" id="btnEditarParticipaciones" data-toggle="modal" data-target="#participacionesModal-@contadorParticipaciones">Editar</button>
+                                    <button type="button" class="btnAzul" id="btnEditarParticipaciones" data-toggle="modal" data-target="#participacionesModal-@contadorParticipaciones">Editar</button>
                                 </td>
                                 <td>
-                                    <button class="btn btn-danger" id="btnEliminarIdioma">Eliminar</button>
+                                    <button type="button" class="btn btn-danger" id="btnEliminarIdioma">Eliminar</button>
                                 </td>
                             </tr>
 
