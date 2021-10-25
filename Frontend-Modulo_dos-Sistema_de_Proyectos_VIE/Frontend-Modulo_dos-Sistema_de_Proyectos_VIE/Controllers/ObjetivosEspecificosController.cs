@@ -102,6 +102,36 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 return obj;
             }
         }
+
+        public static List<Actividad> getActividades(String codigoProyecto)
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Actividades")
+                {
+                    Query = string.Format("CodigoProyecto={0}", codigoProyecto)
+                };
+
+                var responseTask = client.GetAsync(builder.Uri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Actividad> Actividades = new List<Actividad>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    Actividades = JsonConvert.DeserializeObject<List<Actividad>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return Actividades;
+            }
+        }
+
         public static List<Meta> getMetas(String idObjetivo)
         {
             using (var client = new HttpClient())

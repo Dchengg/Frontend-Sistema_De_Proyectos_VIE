@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Cronograma";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Actividad> actividades = TempData["Actividades"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Actividad>;
 }
 
 <div style="width:100%">
@@ -27,22 +29,18 @@
                         <tr id="ROW1">
                             <th>Nombre de la actividad</th>
                             <th>Fecha</th>
-                            <th>Semestre</th>
+                            <th>Trimestre</th>
                             <th>Descripción</th>
                             
                         </tr>
-
-
-                        <tr>
-
-                            <th>xxxxx</th>
-                            <th>xxxxx</th>
-                            <th>xxxxx</th>
-                            <th>xxxxx</th>
-
-
-                        </tr>
-
+                        @foreach(var actividad in actividades){
+                            <tr>
+                                <th>@actividad.Nombre</th>
+                                <th>@actividad.Fecha</th>
+                                <th>@actividad.Trimestre</th>
+                                <th>@actividad.Descripcion</th>
+                            </tr>
+                         }
                     </table>
                 </div>
             </div>

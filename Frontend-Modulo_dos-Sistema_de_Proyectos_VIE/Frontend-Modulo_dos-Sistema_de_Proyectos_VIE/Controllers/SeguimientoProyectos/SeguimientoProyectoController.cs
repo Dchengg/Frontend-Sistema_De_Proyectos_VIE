@@ -1125,6 +1125,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         public ActionResult UICronograma(String codigoProyecto) 
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            List<Actividad> Actividades = ObjetivosEspecificosController.getActividades(codigoProyecto);
+            TempData["Actividades"] = Actividades;
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UICronograma");
