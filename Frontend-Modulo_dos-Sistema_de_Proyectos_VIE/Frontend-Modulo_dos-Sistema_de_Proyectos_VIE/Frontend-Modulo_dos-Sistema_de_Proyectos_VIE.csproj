@@ -146,6 +146,7 @@
     <Compile Include="Controllers\PresupuestoController.cs" />
     <Compile Include="Controllers\ProyectoController.cs" />
     <Compile Include="Controllers\FrascatiController.cs" />
+    <Compile Include="Controllers\ReporteController.cs" />
     <Compile Include="Controllers\SeguimientoProyectos\SeguimientoProyectoController.cs" />
     <Compile Include="Controllers\UbicacionGeograficaController.cs" />
     <Compile Include="Global.asax.cs">
@@ -401,6 +402,7 @@
     <Content Include="Views\SeguimientoProyecto\UIModificarInvestigadorAsociado.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIAmpliarObjetivos.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIObjetivosEspecificos.cshtml" />
+    <Content Include="Views\Home\UIReportes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\AmpliarFechas\" />

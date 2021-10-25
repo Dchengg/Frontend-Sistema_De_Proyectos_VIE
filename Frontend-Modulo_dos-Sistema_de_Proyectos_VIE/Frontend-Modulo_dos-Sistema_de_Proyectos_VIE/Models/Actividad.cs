@@ -8,6 +8,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
 {
     public class Actividad
     {
+        #region Variables y Constantes
         [JsonProperty("id")]
         public String Id { get; set; }
 
@@ -22,5 +23,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
 
         [JsonProperty("DescripcionActividad")]
         public String Descripcion { get; set; }
+        #endregion
     }
 }
