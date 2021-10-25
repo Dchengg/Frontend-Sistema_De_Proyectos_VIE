@@ -69,7 +69,10 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             using (var client = new HttpClient())
             {
 
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Investigador/");
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Investigador/")
+                {
+                    Query = string.Format("numIdentidad={0}&codigo={1}", numIdentidad, codigo)
+                };
                 var values = new Dictionary<string, string>
                 {
                     {"numIdentidad", numIdentidad},
