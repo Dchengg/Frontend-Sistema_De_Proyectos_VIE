@@ -130,12 +130,11 @@
     <Compile Include="Modelos\UipTipoIdentificacion.cs" />
     <Compile Include="Modelos\UipUnidadAcademica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilitarios\GeneradorCatalogos.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utilitarios\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,7 +7,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         public int Id { get; set; }
         [Required]
         [Display(Name = "Nombre de la patente")]
-        public string NombrePatente { get; set; }
+        public string Nombre { get; set; }
 
         [Required]
         [Display(Name = "Número de patente")]

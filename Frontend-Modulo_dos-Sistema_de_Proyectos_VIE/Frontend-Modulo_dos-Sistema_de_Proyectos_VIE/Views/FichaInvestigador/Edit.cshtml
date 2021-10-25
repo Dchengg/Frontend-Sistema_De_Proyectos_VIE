@@ -507,9 +507,9 @@
                         <label>Porcentaje de Nombramiento Indefinido</label>
                     </div>
                     <div class="col-md-4 ">
-                        @*Html.DropDownListFor(vista => vista.PorcentajeNombramiento.PorcentajeNombramiento,
+                        @Html.DropDownListFor(vista => vista.PorcentajeNombramiento.PorcentajeNombramiento,
                                new SelectList(Model.PorcentajeNombramiento.CatalogoPorcentajeNombramiento, "Value", "Text"),
-                               htmlAttributes: new { @class = "form-control", id = "PorcentajeNombramiento" })*@
+                               htmlAttributes: new { @class = "form-control", id = "PorcentajeNombramiento" })
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
@@ -833,7 +833,7 @@
                                                 <label>Título académico</label>
                                             </div>
                                             <div class="mx-2 my-2">
-                                                @*Html.DropDownList(estudioRealizado.TituloAcademico + contadorEstudio, new SelectList(estudioRealizado.TitulosAcademicos, "Value", "Text", estudioRealizado.IdTituloAcademico.ToString()), htmlAttributes: new { @class = "form-control col" })*@
+                                                @Html.DropDownList(estudioRealizado.TituloAcademico + contadorEstudio, new SelectList(estudioRealizado.CatalogoTituloAcademico, "Value", "Text", estudioRealizado.IdTituloAcademico.ToString()), htmlAttributes: new { @class = "form-control col" })
                                             </div>
 
                                             <div class="mx-2 my-2">
@@ -1034,7 +1034,7 @@
             </div>
             <div class="col-md-6 form-inline">
                 <label class="col-md-6">Unidad Departamental</label>
-                @*Html.DropDownList("catalogoUnidadesAcademicas_EstudioRealizado", new SelectList(Model.UnidadesAcademicas, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })*@
+                <input type="text" class="col-md-6 form-control" id="unidadDepartamentalInput" />
             </div>
         </div>
         <div class="row align-items-center justify-items-center mt-3">
@@ -1077,7 +1077,7 @@
                                     @experiencia.Puesto
                                 </td>
                                 <td>
-                                    @experiencia.UnidadDepartametal
+                                    @experiencia.UnidadDepartamental
                                 </td>
                                 <td>
                                     @experiencia.AnoInicio
@@ -1115,7 +1115,7 @@
                                                 <label>Unidad Departametal</label>
                                             </div>
                                             <div class="mx-2 my-2">
-                                                @*Html.DropDownList("unidadDepartametal" + contadorExperiencia, new SelectList(experiencia.UnidadDepartametal, "Value", "Text", experiencia.UnidadDepartametal.ToString()), htmlAttributes: new { @class = "form-control col form-inline" })*@
+                                                @Html.TextBox("unidadDepartamental"+contadorExperiencia, experiencia.UnidadDepartamental, htmlAttributes: new { @class = "form-control col" })
                                             </div>
 
                                             <div class="mx-2 my-2">

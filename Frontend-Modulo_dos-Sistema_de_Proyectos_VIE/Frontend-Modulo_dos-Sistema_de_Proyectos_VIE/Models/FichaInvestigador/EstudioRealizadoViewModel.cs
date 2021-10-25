@@ -13,7 +13,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         [Display(Name = "Título académico")]
         public string TituloAcademico { get; set; }
         public int IdTituloAcademico { get; set; }
-        public IEnumerable<SelectListItem> TitulosAcademicos { get; set; }
+        public IEnumerable<SelectListItem> CatalogoTituloAcademico { get; set; }
 
         [Required]
         [Display(Name = "Institución")]

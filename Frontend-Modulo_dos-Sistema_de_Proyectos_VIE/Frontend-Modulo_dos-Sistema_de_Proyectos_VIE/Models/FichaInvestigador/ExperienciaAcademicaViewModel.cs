@@ -10,7 +10,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         [Required]
         [Display(Name = "Unidad departamental")]
-        public string UnidadDepartametal { get; set; }
+        public string UnidadDepartamental { get; set; }
 
         [Required]
         [Display(Name = "Año de inicio")]

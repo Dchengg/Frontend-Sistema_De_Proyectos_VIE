@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using UIProcess.Configuracion;
 using UIProcess.Consultas;
+using UIProcess.Utilitarios;
 
 namespace UIProcess.Modelos
 {
@@ -61,9 +62,11 @@ namespace UIProcess.Modelos
             if (respuesta.estaSinErrores())
             {
                 var config = new MapperConfiguration(cfg => cfg.AddProfile<PerfilCatalogos>());
-                //.config.AssertConfigurationIsValid();
                 var mapper = config.CreateMapper();
-                return mapper.Map<CatalogosSingleton>(respuesta.ObjetoRespuesta);
+                var catalogos = mapper.Map<CatalogosSingleton>(respuesta.ObjetoRespuesta);
+                catalogos.CatalogoSexo = GeneradorCatalogos.generarCatalogoSexo();
+                catalogos.CatalogoPorcentajeNombramiento = GeneradorCatalogos.generarCatalogoPorcentajeNombramiento();
+                return catalogos;
             }
             else
             {

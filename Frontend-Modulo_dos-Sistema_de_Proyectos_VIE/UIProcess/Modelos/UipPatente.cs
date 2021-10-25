@@ -10,7 +10,7 @@ namespace UIProcess.Modelos
         [DataMember]
         public int Id { get; set; }
         [DataMember]
-        public string NombrePatente { get; set; }
+        public string Nombre { get; set; }
         [DataMember]
         public string NumPatente { get; set; }
         [DataMember]

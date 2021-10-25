@@ -183,6 +183,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Configuracion
 
             // Estudios realizados
             CreateMap<UipEstudioRealizado, EstudioRealizadoViewModel>()
+                .ForMember(dest => dest.CatalogoTituloAcademico, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoTituloAcademico))
                 .ForMember(dest => dest.CatalogoInstitucion, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoInstitucion))
                 .ForMember(dest => dest.CatalogoPais, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoPais));
             //CreateMap<CatalogosSingleton, EstudioRealizadoViewModel>();
