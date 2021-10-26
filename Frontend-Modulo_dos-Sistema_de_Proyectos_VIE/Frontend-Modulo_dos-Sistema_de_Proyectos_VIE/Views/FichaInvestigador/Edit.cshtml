@@ -1285,19 +1285,17 @@
             </div>
             <div class="col-md-6 form-inline">
                 <label class="col-md-6">Año</label>
-                <select class="col-md-6 form-control">
-                    <option>Año</option>
-                </select>
+                <input type="text" class="col-md-6 form-control" id="tituloArticuloInput" />
             </div>
         </div>
         <div class="row align-items-center justify-items-center mt-3">
             <div class="col-md-6 form-inline">
                 <label class="col-md-6" for="institucionInput">Institución</label>
-                <input type="text" class="col-md-6 form-control" id="institucionInput" />
+                @Html.DropDownList("catalogoEntidades_EstudioRealizado", new SelectList(Model.CatalogoEntidad, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
             </div>
             <div class="col-md-6 form-inline">
                 <label class="col-md-6" for="paisInput">País</label>
-                <input type="text" class="col-md-6 form-control" id="paisInput" />
+                @Html.DropDownList("catalogoPais_EstudioRealizado", new SelectList(Model.CatalogoPais, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
             </div>
         </div>
         <div class="row align-items-center justify-items-center mt-3">
@@ -1319,22 +1317,86 @@
                         <th>Eliminar</th>
                     </tr>
                 </thead>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
+                <tbody>
+                    @{
+                        int contadorPremiosObtenidos = 0;
+
+                        foreach (var premios in Model.Premios)
+                        {
+                            <tr>
+                                <td>
+                                    @premios.NombrePremio
+                                </td>
+                                <td>
+                                    @premios.Ano
+                                </td>
+                                <td>
+                                    @premios.Entidad
+                                </td>
+                                <td>
+                                    @premios.Pais
+                                </td>
+                                <td>
+                                    <button type="button" class="btnAzul" id="btnEditarPremiosObtenidos" data-toggle="modal" data-target="#premiosObtenidosModal-@contadorPremiosObtenidos">Editar</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" id="btnEliminarPremiosObtenidos">Eliminar</button>
+                                </td>
+                            </tr>
+
+                            <!-- Modal de idiomas -->
+                            <div class="modal fade" id="premiosObtenidosModal-@contadorPremiosObtenidos" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Editar participacion</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mx-2 my-2">
+                                                <label>Nombre del premio</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("nombrePremio" + contadorPremiosObtenidos, premios.NombrePremio, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Institución</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.DropDownList("catalogoEntidades_EstudioRealizado", new SelectList(Model.CatalogoEntidad, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Año</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("anoInicio" + contadorPremiosObtenidos, premios.Ano, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>País</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("pais" + contadorPremiosObtenidos, premios.Pais, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btnGrande btnAzul">Guardar Premios Obtenidos</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            contadorPremiosObtenidos++;
+                        }
+                    }
+                </tbody>
             </table>
         </div>
     </div>
@@ -1374,9 +1436,7 @@
             </div>
             <div class="col-md-6 form-inline">
                 <label class="col-md-6">Año</label>
-                <select class="col-md-6 form-control">
-                    <option>2021</option>
-                </select>
+                <input type="text" class="col-md-6 form-control" id="tituloArticuloInput" />
             </div>
         </div>
         <div class="row align-items-center justify-items-center mt-3">
@@ -1546,22 +1606,85 @@
                         <th>Eliminar</th>
                     </tr>
                 </thead>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
+                <tbody>
+                    @{
+                        int contadorPatentes = 0;
+
+                        foreach (var patente in Model.Patentes)
+                        {
+                            <tr>
+                                <td>
+                                    @patente.Nombre
+                                </td>
+                                <td>
+                                    @patente.NumPatente
+                                </td>
+                                <td>
+                                    @patente.Lugar
+                                </td>
+                                <td>
+                                    @patente.Ano
+                                </td>
+                                <td>
+                                    <button type="button" class="btnAzul" id="btnEditarPatentes" data-toggle="modal" data-target="#patentesModal-@contadorPatentes">Editar</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" id="btnEliminarPatentes">Eliminar</button>
+                                </td>
+                            </tr>
+
+                            <!-- Modal de idiomas -->
+                            <div class="modal fade" id="patentesModal-@contadorPatentes" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Editar Patentes</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mx-2 my-2">
+                                                <label>Nombre de la patente</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("nombrePatente" + contadorPatentes, patente.Nombre, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Número de patente</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("numPatente" + contadorPatentes, patente.NumPatente, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Inscrito en</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("inscrito" + contadorPatentes, patente.Lugar, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Año</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("ano" + contadorPatentes, patente.Ano, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btnGrande btnAzul">Guardar Patentes</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            contadorPatentes++;
+                        }
+                    }
+                </tbody>
             </table>
         </div>
     </div>
@@ -1605,20 +1728,75 @@
                         <th>Eliminar</th>
                     </tr>
                 </thead>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
+                <tbody>
+                    @{
+                        int contadorLicenciamientos = 0;
+
+                        foreach (var licenciamiento in Model.Licenciamientos)
+                        {
+                            <tr>
+                                <td>
+                                    @licenciamiento.Producto
+                                </td>
+                                <td>
+                                    @licenciamiento.LicenciadoA
+                                </td>
+                                <td>
+                                    @licenciamiento.Ano
+                                </td> 
+                                <td>
+                                    <button type="button" class="btnAzul" id="btnEditarLicenciamientos" data-toggle="modal" data-target="#licenciamientosModal-@contadorLicenciamientos">Editar</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" id="btnEliminarLicenciamientos">Eliminar</button>
+                                </td>
+                            </tr>
+
+                            <!-- Modal de idiomas -->
+                            <div class="modal fade" id="licenciamientosModal-@contadorLicenciamientos" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Editar Licenciamientos</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mx-2 my-2">
+                                                <label>Producto licenciado</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("productoLicenciado" + contadorLicenciamientos, licenciamiento.Producto, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Licenciada a</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("licenciadaA" + contadorLicenciamientos, licenciamiento.LicenciadoA, htmlAttributes: new { @class = "form-control col" })
+                                            </div> 
+
+                                            <div class="mx-2 my-2">
+                                                <label>Año</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("ano" + contadorLicenciamientos, licenciamiento.Ano, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btnGrande btnAzul">Guardar Licenciamientos</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            contadorLicenciamientos++;
+                        }
+                    }
+                </tbody>
             </table>
         </div>
     </div>
@@ -1639,9 +1817,7 @@
         <div class="row align-items-center justify-items-center mt-3">
             <div class="col-md-6 form-inline">
                 <label class="col-md-6">Año</label>
-                <select class="col-md-6 form-control">
-                    <option>Año</option>
-                </select>
+                <input type="text" class="col-md-6 form-control" id="tituloArticuloInput" />
             </div>
         </div>
         <div class="row align-items-center justify-items-center mt-3">
@@ -1662,20 +1838,75 @@
                         <th>Eliminar</th>
                     </tr>
                 </thead>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
+                <tbody>
+                    @{
+                        int contadorSoftware = 0;
+
+                        foreach (var software in Model.Software)
+                        {
+                            <tr>
+                                <td>
+                                    @software.Titulo
+                                </td>
+                                <td>
+                                    @software.Plataforma
+                                </td>
+                                <td>
+                                    @software.Ano
+                                </td>
+                                <td>
+                                    <button type="button" class="btnAzul" id="btnEditarSoftware" data-toggle="modal" data-target="#softwareModal-@contadorSoftware">Editar</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" id="btnEliminarSoftware">Eliminar</button>
+                                </td>
+                            </tr>
+
+                            <!-- Modal de idiomas -->
+                            <div class="modal fade" id="softwareModal-@contadorSoftware" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Editar Software</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mx-2 my-2">
+                                                <label>Título</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("titulo" + contadorSoftware, software.Titulo, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Licenciada a</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("plataforma" + contadorSoftware, software.Plataforma, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Año</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("ano" + contadorSoftware, software.Ano, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btnGrande btnAzul">Guardar Software</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            contadorSoftware++;
+                        }
+                    }
+                </tbody>
             </table>
         </div>
     </div>
@@ -1690,23 +1921,17 @@
             </div>
             <div class="col-md-6 form-inline">
                 <label class="col-md-6" for="numPatenteInput">Seminario o conferencia</label>
-                <select class="col-md-6 form-control">
-                    <option>Science</option>
-                </select>
+                <input type="text" class="col-md-6 form-control" id="tituloArticuloInput" />
             </div>
         </div>
         <div class="row align-items-center justify-items-center mt-3">
             <div class="col-md-6 form-inline">
                 <label class="col-md-6" for="inscritoEnInput">Año</label>
-                <select class="col-md-6 form-control">
-                    <option>2021</option>
-                </select>
+                <input type="text" class="col-md-6 form-control" id="tituloArticuloInput" />
             </div>
             <div class="col-md-6 form-inline">
                 <label class="col-md-6">País</label>
-                <select class="col-md-6 form-control">
-                    <option>Costa Rica</option>
-                </select>
+                @Html.DropDownList("catalogoPais_EstudioRealizado", new SelectList(Model.CatalogoPais, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
             </div>
         </div>
         <div class="row align-items-center justify-items-center mt-3">
@@ -1728,22 +1953,84 @@
                         <th>Eliminar</th>
                     </tr>
                 </thead>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
+                <tbody>
+                    @{
+                        int contadorPonencias = 0;
+
+                        foreach (var ponencia in Model.Ponencias)
+                        {
+                            <tr>
+                                <td>
+                                    @ponencia.Titulo
+                                </td>
+                                <td>
+                                    @ponencia.Seminario
+                                </td>
+                                <td>
+                                    @ponencia.Ano
+                                </td>
+                                <td>
+                                    @ponencia.NombrePais
+                                </td>
+                                <td>
+                                    <button type="button" class="btnAzul" id="btnEditarPonencias" data-toggle="modal" data-target="#ponenciasModal-@contadorPonencias">Editar</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" id="btnEliminarPonencias">Eliminar</button>
+                                </td>
+                            </tr>
+
+                            <!-- Modal de idiomas -->
+                            <div class="modal fade" id="ponenciasModal-@contadorPonencias" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Editar Ponencias</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mx-2 my-2">
+                                                <label>Título</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("titulo" + contadorPonencias, ponencia.Titulo, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Seminario o conferencia</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("semConf" + contadorPonencias, ponencia.Seminario, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Año</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("ano" + contadorPonencias, ponencia.Ano, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>País</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("pais" + contadorPonencias, ponencia.NombrePais, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btnGrande btnAzul">Guardar Ponencias</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            contadorPonencias++;
+                        }
+                    }
+                </tbody>
             </table>
         </div>
     </div>
