@@ -187,6 +187,30 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
+        public static List<Proyecto> ProyectoXModalidad(String estado, String modalidad)
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder(String.Format("https://localhost:44394/api/Reportes/ResporteModalidad/{0}/{1}", estado, modalidad));
+                var responseTask = client.PostAsync(builder.Uri, null);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Proyecto> proyectos = new List<Proyecto>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    proyectos = JsonConvert.DeserializeObject<List<Proyecto>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return proyectos;
+            }
+        }
+
 
         public JsonResult GetDisciplinas()
         {
@@ -210,6 +234,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         {
             List<TipoProyecto> tipos = ProyectoController.getTiposProyecto();
             return Json(tipos, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetModalidades()
+        {
+            List<ModalidadProyecto> modalidades = ProyectoController.getModalidad();
+            return Json(modalidades, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -30,7 +30,7 @@
                     <option>Proyectos según su ubicación geográfica</option>
                     <option value="ProyectoXBeneficiaria">Proyectos según su población beneficiaria</option>
                     <option value="ProyectoXTipo">Proyectos según tipo de proyecto</option>
-                    <option>Proyectos según modalidad de proyecto</option>
+                    <option value="ProyectoXModalidad">Proyectos según modalidad de proyecto</option>
                     <option>Búsqueda de proyectos por palabras claves</option>
                     <option>Proyectos con informes pendientes</option>
                     <option>Proyectos en lo que participa un investigador en específico según su estado</option>
@@ -140,6 +140,8 @@
                     cargarCatalogo("/Reporte/GetPoblacionesBeneficiarias", "Población Beneficiaria")
                 } else if (this.value == "ProyectoXTipo") {
                     cargarCatalogo("/Reporte/GetTiposProyecto", "Tipo de proyecto")
+                } else if (this.value == "ProyectoXModalidad") {
+                    cargarCatalogo("/Reporte/GetModalidades", "Modalidad del proyecto")
                 }
                 $("estadoDropdown").val("")
             })
