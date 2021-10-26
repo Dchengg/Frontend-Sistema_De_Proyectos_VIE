@@ -154,6 +154,7 @@
     </Compile>
     <Compile Include="Models\Actividad.cs" />
     <Compile Include="Models\Bitacora.cs" />
+    <Compile Include="Models\Escuelas.cs" />
     <Compile Include="Models\TipoHora.cs" />
     <Compile Include="Models\Colaboradores.cs" />
     <Compile Include="Models\Fuente.cs" />
@@ -403,12 +404,14 @@
     <Content Include="Views\SeguimientoProyecto\UIAmpliarObjetivos.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIObjetivosEspecificos.cshtml" />
     <Content Include="Views\Home\UIReportes.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIVisualizacionInvestigador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\AmpliarFechas\" />
     <Folder Include="Views\Bitacora\" />
     <Folder Include="Views\BuscadorProyecto\" />
     <Folder Include="Views\Colaboradores\" />
+    <Folder Include="Views\Escuelas\" />
     <Folder Include="Views\Fuente\" />
     <Folder Include="Views\Horas\" />
     <Folder Include="Views\Incidencia\" />
