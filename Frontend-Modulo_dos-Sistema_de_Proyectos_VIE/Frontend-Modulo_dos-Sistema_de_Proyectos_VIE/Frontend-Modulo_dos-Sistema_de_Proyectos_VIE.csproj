@@ -134,6 +134,7 @@
     <Compile Include="Controllers\ColaboradoresController.cs" />
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
+    <Compile Include="Controllers\DisciplinasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HorasController.cs" />
     <Compile Include="Controllers\IncidenciaController.cs" />
@@ -154,6 +155,7 @@
     </Compile>
     <Compile Include="Models\Actividad.cs" />
     <Compile Include="Models\Bitacora.cs" />
+    <Compile Include="Models\Disciplina.cs" />
     <Compile Include="Models\TipoHora.cs" />
     <Compile Include="Models\Colaboradores.cs" />
     <Compile Include="Models\Fuente.cs" />
@@ -409,6 +411,7 @@
     <Folder Include="Views\Bitacora\" />
     <Folder Include="Views\BuscadorProyecto\" />
     <Folder Include="Views\Colaboradores\" />
+    <Folder Include="Views\Disciplinas\" />
     <Folder Include="Views\Fuente\" />
     <Folder Include="Views\Horas\" />
     <Folder Include="Views\Incidencia\" />

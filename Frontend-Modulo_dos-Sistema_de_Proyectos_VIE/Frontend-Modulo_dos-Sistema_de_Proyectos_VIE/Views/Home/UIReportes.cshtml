@@ -21,7 +21,7 @@
                     <option value="FichaInvestigador" data-estado="No">Ficha de un investigador en específico</option>
                     <option value="ListadoInvestigadores" data-estado="No">Listado de investigadores con la ficha de investigador activa</option>
                     <option>Investigadores por escuela</option>
-                    <option>Investigadores por disciplina científica</option>
+                    <option value="InvestigadoresXDisciplina">Investigadores por disciplina científica</option>
                     <option>Investigadores con informes pendientes</option>
                 </optgroup>
                 <optgroup label="Proyectos">
@@ -46,6 +46,11 @@
         <div class="row formRow" id="criterioRow" name="criterioRow" style="display:none">
             <label class="col-md-4" for="criterioInput">Criterio de búsqueda</label>
             <input type="text" class="col-md-7" form-control" id="criterioInput" name="criterioInput" />
+        </div>
+        <div class="row formRow" id="catalogoRow" name="catologoRow" style="display:none">
+            <label class="col-md-4" for="criterioInput" id="CatalogoLabel"></label>
+            <select id="catalogoDropdown" name="catalogoDropdown">
+            </select>
         </div>
         <div class="row formRow" id="estadoRow" style="display:none">
             <label class="col-md-4">Estado</label>
@@ -91,14 +96,28 @@
     </table>
     <script>
         (function ($) {
+
+            function cargarCatalogo(request, catalogoName) {
+                $.get(request, function (data) {
+                    $("#catalogoDropdown").children().remove()
+                    $.each(data, function (index, value) {
+                        $('<option>').val(value.Id).text(value.DisciplinaCientifica).appendTo('#catalogoDropdown')
+                    })
+                })
+                $("#CatalogoLabel").text(catalogoName)
+                $("#catalogoRow").css("display", "flex")
+            }
+
             $("#reporteDropdown").on('change', function () {
-                $("estadoDropdown").val("")
                 if ($(this).find(':selected').data('estado') == "No") {
                     $("#estadoRow").css("display", "none")
                 } else {
                     $("#estadoRow").css("display", "flex")
                 }
-                $("#criterioRow").css("display", "flex")
+                if (this.value == "InvestigadoresXDisciplina") {
+                    cargarCatalogo("/Reporte/GetDisciplinas", "Disciplinas científicas")
+                }
+                $("estadoDropdown").val("")
             })
         })(jQuery);
     </script>

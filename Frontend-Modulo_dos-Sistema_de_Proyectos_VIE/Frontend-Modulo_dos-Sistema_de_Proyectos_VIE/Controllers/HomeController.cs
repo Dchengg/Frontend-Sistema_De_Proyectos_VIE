@@ -59,6 +59,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             TempData["investigadores"] = investigadores;
             TempData["proyectos"] = proyectos;
             TempData["tipoReporte"] = "Pendiente";
+            TempData["tituloCatalogo"] = "Pendiente";
             List<string> titulos = new List<string>(new string[] { "Número identidad", "Nombre Completo", "Correo Electronico" });
             TempData["titulos"] = titulos;
             return View("UIReportes");
@@ -68,6 +69,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         public ActionResult Reportes(FormCollection ReporteForm)
         {
             String tipoDeReportes = ReporteForm["reporteDropdown"].ToString();
+            String criterio = ReporteForm["catalogoDropdown"].ToString();
+            String estado = ReporteForm["estadoDropdown"].ToString();
             List<Investigador> investigadores = new List<Investigador>();
             List<Proyecto> proyectos = new List<Proyecto>();
             switch(tipoDeReportes){
@@ -75,6 +78,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                     break;
                 case "ListadoInvestigadores":
                     investigadores = ReporteController.InvestigadoresXEstado("Activos");
+                    break;
+                case "InvestigadoresXDisciplina":
+                    investigadores = ReporteController.InvestigadoresXDisciplina(estado, criterio);
                     break;
                 default:
                     break;
@@ -87,20 +93,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             return View("UIReportes");
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        
 
     }
 }
