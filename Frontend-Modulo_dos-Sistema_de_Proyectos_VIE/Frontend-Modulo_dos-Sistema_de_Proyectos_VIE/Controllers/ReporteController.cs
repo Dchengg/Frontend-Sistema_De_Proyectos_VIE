@@ -163,6 +163,31 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
+        public static List<Proyecto> ProyectoXTipo(String estado, String tipoProyecto)
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder(String.Format("https://localhost:44394/api/Reportes/ReporteTIpoProyecto/{0}/{1}", estado, tipoProyecto));
+                var responseTask = client.PostAsync(builder.Uri, null);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Proyecto> proyectos = new List<Proyecto>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    proyectos = JsonConvert.DeserializeObject<List<Proyecto>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return proyectos;
+            }
+        }
+
+
         public JsonResult GetDisciplinas()
         {
             List<Disciplina> disciplinas = DisciplinasController.getDisciplinas();
@@ -179,6 +204,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         {
             List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones();
             return Json(poblaciones, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetTiposProyecto()
+        {
+            List<TipoProyecto> tipos = ProyectoController.getTiposProyecto();
+            return Json(tipos, JsonRequestBehavior.AllowGet);
         }
     }
 }

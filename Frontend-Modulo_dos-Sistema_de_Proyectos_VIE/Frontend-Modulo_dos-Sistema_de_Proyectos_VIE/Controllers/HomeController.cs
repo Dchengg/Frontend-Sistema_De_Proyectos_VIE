@@ -114,6 +114,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                     tipoReporte = "Proyectos";
                     titulos = titulosProyecto;
                     break;
+                case "ProyectoXTipo":
+                    proyectos = ReporteController.ProyectoXTipo(estado, criterio);
+                    tipoReporte = "Proyectos";
+                    titulos = titulosProyecto;
+                    break;
                 default:
                     break;
             }

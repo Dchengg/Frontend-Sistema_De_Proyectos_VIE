@@ -29,7 +29,7 @@
                     <option value="ProyectoXEstado">Proyectos según su estado</option>
                     <option>Proyectos según su ubicación geográfica</option>
                     <option value="ProyectoXBeneficiaria">Proyectos según su población beneficiaria</option>
-                    <option>Proyectos según tipo de proyecto</option>
+                    <option value="ProyectoXTipo">Proyectos según tipo de proyecto</option>
                     <option>Proyectos según modalidad de proyecto</option>
                     <option>Búsqueda de proyectos por palabras claves</option>
                     <option>Proyectos con informes pendientes</option>
@@ -138,6 +138,8 @@
                     cargarCatalogo("/Reporte/GetEscuelas", "Escuela")
                 } else if (this.value == "ProyectoXBeneficiaria") {
                     cargarCatalogo("/Reporte/GetPoblacionesBeneficiarias", "Población Beneficiaria")
+                } else if (this.value == "ProyectoXTipo") {
+                    cargarCatalogo("/Reporte/GetTiposProyecto", "Tipo de proyecto")
                 }
                 $("estadoDropdown").val("")
             })
