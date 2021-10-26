@@ -90,6 +90,65 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Llama a la API para agregar un nuevo investigador asociado al proyecto
+        /// </summary>
+        /// <param name="numIdentidad"></param>
+        /// <param name="idSetDatos"></param>
+        /// <param name="idCondicionDeParticipacion"></param>
+        /// <param name="idEscuela"></param>
+        /// <param name="areaConocimiento"></param>
+        /// <returns>Resultado de inserción</returns>
+        [HttpPost]
+        public static String AgregarInvestigadorAsociado(string numIdentidad, string idSetDatos, string idCondicionDeParticipacion, string idEscuela, string areaConocimiento)
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Investigador/5")
+                {
+
+                    Query = string.Format("numIdentidad={0}&idSetDatos={1}&idCondicionDeParticipacion={2}&idEscuela={3}&areaConocimiento={4}", numIdentidad, idSetDatos, idCondicionDeParticipacion, idEscuela, areaConocimiento)
+                };
+                var values = new Dictionary<string, string>
+                {
+                    {"numIdentidad", numIdentidad},
+                    {"idSetDatos", idSetDatos},
+                    {"idCondicionDeParticipacion", idCondicionDeParticipacion},
+                    {"idEscuela",idEscuela },
+                    {"areaConocimiento", areaConocimiento}
+                };
+                var content = new FormUrlEncodedContent(values);
+                var responseTask = client.PostAsync(builder.Uri, content);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                var responseResult = "Failed";
+                if (result.IsSuccessStatusCode) responseResult = "Sucess";
+                return responseResult;
+            }
+        }
+
+        [HttpDelete]
+        public static String EliminarInvestigadorAsociado(String idInvestigadorAsociado, String idSetDatos)
+        {
+            using (var client = new HttpClient())
+            {
+
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Investigador/1")
+                {
+
+                    Query = string.Format("numIdentidad={0}&idSetDatos={1}", idInvestigadorAsociado, idSetDatos)
+                };
+                var responseTask = client.DeleteAsync(builder.Uri.AbsoluteUri);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                var responseResult = "Failed";
+                if (result.IsSuccessStatusCode) responseResult = "Sucess";
+                return responseResult;
+            }
+        }
+
     }
 }
 
