@@ -151,7 +151,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             using (var client = new HttpClient())
             {
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/Proyecto")
-                {
+                {       
                     Query = string.Format("id={0}", codigo)
                 };
                 var responseTask = client.GetAsync(builder.Uri);

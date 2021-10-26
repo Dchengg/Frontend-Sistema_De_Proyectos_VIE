@@ -27,9 +27,8 @@
                 <optgroup label="Proyectos">
                     <option>Datos de un proyecto en específico</option>
                     <option value="ProyectoXEstado">Proyectos según su estado</option>
-                    <option>Proyectos según su disciplina científica</option>
                     <option>Proyectos según su ubicación geográfica</option>
-                    <option>Proyectos según su poblaciópn beneficiaria</option>
+                    <option value="ProyectoXBeneficiaria">Proyectos según su población beneficiaria</option>
                     <option>Proyectos según tipo de proyecto</option>
                     <option>Proyectos según modalidad de proyecto</option>
                     <option>Búsqueda de proyectos por palabras claves</option>
@@ -134,9 +133,11 @@
                     $("#estadoRow").css("display", "flex")
                 }
                 if (this.value == "InvestigadoresXDisciplina") {
-                    cargarCatalogo("/Reporte/GetDisciplinas", "Disciplinas científicas")
+                    cargarCatalogo("/Reporte/GetDisciplinas", "Disciplina científica")
                 } else if (this.value == "InvestigadoresXEscuela") {
-                    cargarCatalogo("/Reporte/GetEscuelas", "Escuelas")
+                    cargarCatalogo("/Reporte/GetEscuelas", "Escuela")
+                } else if (this.value == "ProyectoXBeneficiaria") {
+                    cargarCatalogo("/Reporte/GetPoblacionesBeneficiarias", "Población Beneficiaria")
                 }
                 $("estadoDropdown").val("")
             })

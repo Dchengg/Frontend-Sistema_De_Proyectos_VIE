@@ -115,7 +115,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
-        public static List<Proyecto> ProyectoXEscuela(String estado)
+        public static List<Proyecto> ProyectoXEstado(String estado)
         {
             using (var client = new HttpClient())
             {
@@ -124,6 +124,30 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 responseTask.Wait();
                 var result = responseTask.Result;
                 List<Proyecto> proyectos= new List<Proyecto>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    proyectos = JsonConvert.DeserializeObject<List<Proyecto>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return proyectos;
+            }
+        }
+
+        public static List<Proyecto> ProyectoXBeneficiaria(String estado, String poblacion)
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder(String.Format("https://localhost:44394/api/Reportes/ReporteBeneficiaria/{0}/{1}", estado, poblacion));
+                var responseTask = client.PostAsync(builder.Uri, null);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Proyecto> proyectos = new List<Proyecto>();
                 if (result.IsSuccessStatusCode)
                 {
                     var response = result.Content.ReadAsStringAsync();
@@ -149,6 +173,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         {
             List<Escuela> escuelas = EscuelaController.getEscuelas();
             return Json(escuelas, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetPoblacionesBeneficiarias()
+        {
+            List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones();
+            return Json(poblaciones, JsonRequestBehavior.AllowGet);
         }
     }
 }

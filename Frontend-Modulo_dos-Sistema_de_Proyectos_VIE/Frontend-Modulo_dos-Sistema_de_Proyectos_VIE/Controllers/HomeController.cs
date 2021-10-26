@@ -105,7 +105,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                     titulos = titulosInvestigador;
                     break;
                 case "ProyectoXEstado":
-                    proyectos = ReporteController.ProyectoXEscuela(estado);
+                    proyectos = ReporteController.ProyectoXEstado(estado);
+                    tipoReporte = "Proyectos";
+                    titulos = titulosProyecto;
+                    break;
+                case "ProyectoXBeneficiaria":
+                    proyectos = ReporteController.ProyectoXBeneficiaria(estado, criterio);
                     tipoReporte = "Proyectos";
                     titulos = titulosProyecto;
                     break;
