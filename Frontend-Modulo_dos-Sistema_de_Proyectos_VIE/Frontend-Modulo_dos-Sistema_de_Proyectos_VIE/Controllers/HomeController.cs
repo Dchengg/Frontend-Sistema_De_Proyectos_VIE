@@ -69,7 +69,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         public ActionResult Reportes(FormCollection ReporteForm)
         {
             String tipoDeReportes = ReporteForm["reporteDropdown"].ToString();
-            String criterio = ReporteForm["catalogoDropdown"].ToString();
+            String criterio = "pendiente";
+            if (ReporteForm["catalogoDropdown"] != null)
+            {
+                criterio = ReporteForm["catalogoDropdown"].ToString();
+            }
             String estado = ReporteForm["estadoDropdown"].ToString();
             List<Investigador> investigadores = new List<Investigador>();
             List<Proyecto> proyectos = new List<Proyecto>();
@@ -84,6 +88,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                     break;
                 case "InvestigadoresXEscuela":
                     investigadores = ReporteController.InvestigadoresXEscuela(estado, criterio);
+                    break;
+                case "InvestigadoresInformes":
+                    investigadores = ReporteController.InvestigadoresInformesPendientes();
                     break;
                 default:
                     break;
