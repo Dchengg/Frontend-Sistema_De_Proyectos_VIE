@@ -32,18 +32,18 @@
                 <!-- Numero de identidad -->
                 <div class="row mt-3">
                     <div class="col-md-4 ">
-                        @Html.DisplayNameFor(model => model.NumeroIdentidad)
-                        @Html.LabelFor(model => model.NumeroIdentidad, new { @class = "control-label " })
+                        @Html.DisplayNameFor(modelo => modelo.NumeroIdentidad)
                     </div>
                     <div class="col-md-4 ">
-                        @Html.EditorFor(model => model.NumeroIdentidad, new { htmlAttributes = new { @class = "form-control " }})
+                        @Html.EditorFor(modelo => modelo.NumeroIdentidad, new { htmlAttributes = new { @class = "form-control " }})
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="numeroIdentidadPrivacidad">
+                            @*TODO: Agregar los botones para indicar los campos privados*@
+                            @*<input class="form-check-input" type="checkbox" value="" id="numeroIdentidadPrivacidad">
                             <label class="form-check-label" for="numeroIdentidadPrivacidad">
                                 Privado <span class="fa fa-lock" />
-                            </label>
+                            </label>*@
                         </div>
                     </div>
                 </div>
@@ -51,17 +51,17 @@
                 <!-- Nombre -->
                 <div class="row mt-3">
                     <div class="col-md-4 ">
-                        <label>Nombre</label>
+                        @Html.DisplayNameFor(modelo => modelo.Nombre)
                     </div>
                     <div class="col-md-4 ">
-                        @Html.TextBoxFor(vista => vista.Nombre, new { @class = "form-control " })
+                        @Html.TextBoxFor(modelo => modelo.Nombre, new { @class = "form-control " })
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="nombrePrivacidad">
+                            @*<input class="form-check-input" type="checkbox" value="" id="nombrePrivacidad">
                             <label class="form-check-label" for="nombrePrivacidad">
                                 Privado <span class="fa fa-lock" />
-                            </label>
+                            </label>*@
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
                 <!-- Primer apellido -->
                 <div class="row mt-3">
                     <div class="col-md-4">
-                        <label>Primer apellido</label>
+                        @Html.DisplayNameFor(modelo => modelo.PrimerApellido)
                     </div>
                     <div class="col-md-4">
                         <div class="mb-3">
@@ -78,10 +78,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="apellido1IdentidadPrivacidad">
+                            @*<input class="form-check-input" type="checkbox" value="" id="apellido1IdentidadPrivacidad">
                             <label class="form-check-label" for="apellido1IdentidadPrivacidad">
                                 Privado <span class="fa fa-lock" />
-                            </label>
+                            </label>*@
                         </div>
                     </div>
                 </div>
@@ -89,13 +89,13 @@
                 <!-- Segundo apellido -->
                 <div class="row mt-3">
                     <div class="col-md-4">
-                        <label>Segundo apellido</label>
+                        @Html.DisplayNameFor(modelo => modelo.SegundoApellido)
                     </div>
                     <div class="col-md-4">
                         @{
                             if (Model.SegundoApellido != null)
                             {
-                                Html.TextBoxFor(vista => vista.SegundoApellido, new { @class = "form-control " });
+                                Html.TextBoxFor(modelo => modelo.SegundoApellido, new { @class = "form-control " });
                             }
                             else
                             {
@@ -105,10 +105,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="apellido2Privacidad">
+                            @*<input class="form-check-input" type="checkbox" value="" id="apellido2Privacidad">
                             <label class="form-check-label" for="apellido2Privacidad">
                                 Privado <span class="fa fa-lock" />
-                            </label>
+                            </label>*@
                         </div>
                     </div>
                 </div>
@@ -116,17 +116,19 @@
                 <!-- Nacionalidad -->
                 <div class="row mt-3">
                     <div class="col-md-4 ">
-                        <label>Nacionalidad</label>
+                        @Html.DisplayNameFor(modelo => modelo.Nacionalidad.Nacionalidad)
                     </div>
                     <div class="col-md-4 ">
-                        @Html.DropDownListFor(model => model.Nacionalidad.IdNacionalidad, new SelectList(Model.Nacionalidad.CatalogoPais, "Value", "Text", Model.Nacionalidad.IdNacionalidad), htmlAttributes: new { @class = "form-control", id = "Nacionalidad" })
+                        @Html.DropDownListFor(modelo => modelo.Nacionalidad.IdNacionalidad, 
+                                              new SelectList(Model.Nacionalidad.CatalogoPais, "Value", "Text", Model.Nacionalidad.IdNacionalidad.ToString()), 
+                                              htmlAttributes: new { @class = "form-control" })
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="nacionalidadPrivacidad">
+                            @*<input class="form-check-input" type="checkbox" value="" id="nacionalidadPrivacidad">
                             <label class="form-check-label" for="nacionalidadPrivacidad">
                                 Privado <span class="fa fa-lock" />
-                            </label>
+                            </label>*@
                         </div>
                     </div>
                 </div>
@@ -134,17 +136,19 @@
                 <!---Pais Nacimiento -->
                 <div class="row mt-3">
                     <div class="col-md-4 ">
-                        <label>Pais Nacimiento</label>
+                        @Html.DisplayNameFor(modelo => modelo.PaisNacimiento.PaisNacimiento)
                     </div>
                     <div class="col-md-4 ">
-                        @Html.DropDownListFor(vista => vista.PaisNacimiento.IdPaisNacimiento, new SelectList(Model.PaisNacimiento.CatalogoPais, "Value", "Text"), htmlAttributes: new { @class = "form-control", id = "PaisNacimiento" })
+                        @Html.DropDownListFor(modelo => modelo.PaisNacimiento.IdPaisNacimiento, 
+                                              new SelectList(Model.PaisNacimiento.CatalogoPais, "Value", "Text", Model.PaisNacimiento.IdPaisNacimiento.ToString()), 
+                                              htmlAttributes: new { @class = "form-control" })
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="paisNacimientoPrivacidad">
+                            @*<input class="form-check-input" type="checkbox" value="" id="paisNacimientoPrivacidad">
                             <label class="form-check-label" for="paisNacimientoPrivacidad">
                                 Privado <span class="fa fa-lock" />
-                            </label>
+                            </label>*@
                         </div>
                     </div>
                 </div>
@@ -152,11 +156,11 @@
                 <!-- Fecha Nacimiento -->
                 <div class="row mt-3">
                     <div class="col-md-4">
-                        <label>Fecha Nacimiento</label>
+                        @Html.DisplayNameFor(modelo => modelo.FechaNacimiento)
                     </div>
                     <div class="col-md-4 ">
                         <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                            @Html.TextBoxFor(vista => vista.FechaNacimiento, new { @class = "form-control" })
+                            @Html.TextBoxFor(modelo => modelo.FechaNacimiento, new { @class = "form-control" })
                             <span class="input-group-addon m-1">
                                 <button type="button" id="btnFechaNacimiento" class="fa fa-calendar-plus-o btn btn-primary"></button>
                             </span>
@@ -164,10 +168,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="fechaNacimientoPrivacidad">
+                            @*<input class="form-check-input" type="checkbox" value="" id="fechaNacimientoPrivacidad">
                             <label class="form-check-label" for="fechaNacimientoPrivacidad">
                                 Privado <span class="fa fa-lock" />
-                            </label>
+                            </label>*@
                         </div>
                     </div>
                 </div>
@@ -196,33 +200,37 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach (var telefono in Model.Telefonos)
-                                            {
-                                                <tr>
-                                                    <td>
-                                                        @Html.DropDownList(telefono.Tipo,
-                                                            new SelectList(telefono.CatalogoTipoTelefono, "Value", "Text"),
-                                                            htmlAttributes: new { @class = "form-control" })
-                                                    </td>
-                                                    <td>@Html.TextBox("NumeroTelefono", telefono.Numero, htmlAttributes: new { @class = "form-control" })</td>
-                                                    <td>
-                                                        <div class="form-check m-2">
-                                                            <input class="form-check-input" type="checkbox" value="" id="telefonoPrivacidad">
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <button type="button" class="btnGrande btnAzul">Editar</button>
-                                                    </td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-danger">Eliminar</button>
-                                                    </td>
-                                                </tr>
+                                            @{
+                                                int contadorTelefono = 0;
+                                                foreach (var telefono in Model.Telefonos)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DropDownList(telefono.Tipo + contadorTelefono,
+                                                                new SelectList(telefono.CatalogoTipoTelefono, "Value", "Text", telefono.IdTipoTelefono.ToString()),
+                                                                htmlAttributes: new { @class = "form-control" })
+                                                        </td>
+                                                        <td>@Html.TextBox("NumeroTelefono", telefono.Numero, htmlAttributes: new { @class = "form-control" })</td>
+                                                        <td>
+                                                            <div class="form-check m-2">
+                                                                <input class="form-check-input" type="checkbox" value="" id="telefonoPrivacidad">
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btnGrande btnAzul">Editar</button>
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-danger">Eliminar</button>
+                                                        </td>
+                                                    </tr>
+                                                }
                                             }
+
                                         </tbody>
                                     </table>
                                 </div>
                                 <hr />
-                                <div class="row">
+                                <div class="row input-group">
                                     <div class="col-4">
                                         @Html.DropDownList("Tipos de teléfono", Model.CatalogoTipoTelefono, htmlAttributes: new { @class = "form-control", id = "TipoTelefonoNuevo" })
                                     </div>
@@ -276,8 +284,8 @@
                                             <tr>
                                                 <td>
                                                     @Html.DropDownList(unidadAcademica.IdUnidadAcademica.ToString(),
-                         new SelectList(unidadAcademica.CatalogoUnidadAcademica, "Value", "Text"),
-                         htmlAttributes: new { @class = "form-control", id = "UnidadAcademica" })
+                                                                       new SelectList(unidadAcademica.CatalogoUnidadAcademica, "Value", "Text", unidadAcademica.IdUnidadAcademica.ToString()),
+                                                                       htmlAttributes: new { @class = "form-control", id = "UnidadAcademica" })
                                                 </td>
                                             </tr>
                                         }
@@ -327,10 +335,10 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="fotoPrivacidad">
+                            @*<input class="form-check-input" type="checkbox" value="" id="fotoPrivacidad">
                             <label class="form-check-label" for="fotoPrivacidad">
                                 Privado <span class="fa fa-lock" />
-                            </label>
+                            </label>*@
                         </div>
                     </div>
                 </div>
@@ -338,20 +346,20 @@
                 <!-- Fecha de ingreso al TEC -->
                 <div class="row mt-3">
                     <div class="col-md-4 ">
-                        <label>Fecha de Ingreso al TEC</label>
+                        @Html.DisplayNameFor(modelo => modelo.FechaDeIngresoInstitucion)
                     </div>
                     <div class="col-md-4 ">
                         <div id="datepicker-group" class="input-group date" data-date-format="dd/mm/yyyy">
-                            @Html.TextBoxFor(vista => vista.FechaDeIngresoInstitucion, new { @class = "form-control" })
+                            @Html.TextBoxFor(modelo => modelo.FechaDeIngresoInstitucion, new { @class = "form-control" })
                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="fechaIngresoPrivacidad">
+                            @*<input class="form-check-input" type="checkbox" value="" id="fechaIngresoPrivacidad">
                             <label class="form-check-label" for="fechaIngresoPrivacidad">
                                 Privado <span class="fa fa-lock" />
-                            </label>
+                            </label>*@
                         </div>
                     </div>
                 </div>
@@ -362,14 +370,14 @@
                         <label>Seudónimo Bibliográfico</label>
                     </div>
                     <div class="col-md-4">
-                        @Html.TextBoxFor(vista => vista.Seudonimo, new { @class = "form-control " })
+                        @Html.TextBoxFor(modelo => modelo.Seudonimo, new { @class = "form-control " })
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
-                            <input class="form-check-input" type="checkbox" value="" id="seudonimoPrivacidad">
+                            @*<input class="form-check-input" type="checkbox" value="" id="seudonimoPrivacidad">
                             <label class="form-check-label" for="seudonimoPrivacidad">
                                 Privado <span class="fa fa-lock" />
-                            </label>
+                            </label>*@
                         </div>
                     </div>
                 </div>
@@ -1313,12 +1321,28 @@
                     <tr id="ROW1">
                         <th>Nombre del premio</th>
                         <th>Año</th>
-                        <th>Institución</th>
+                        <th>Entidad</th>
                         <th>País</th>
                         <th>Editar</th>
                         <th>Eliminar</th>
                     </tr>
                 </thead>
+                @foreach (var premio in Model.Premios)
+                {
+            <tr>
+                <td>@premio.NombrePremio</td>
+                <td>@premio.Ano</td>
+                <td>@Html.DropDownList("entidadesPremio", new SelectList(premio.CatalogoEntidad, "Value", "Text", premio.Entidad), htmlAttributes: new { @class = "form-control" })</td>
+                <td>@Html.DropDownList("paisesPremio", new SelectList(premio.CatalogoPais, "Value", "Text", premio.Pais), htmlAttributes: new { @class = "form-control" })</td>
+
+                <td>
+                    <button type="button" class="btnAzul" id="btnEditarPremio" data-toggle="modal" data-target="#premioModal">Editar</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" id="btnEliminarPremio">Eliminar</button>
+                </td>
+            </tr>
+                }
                 <tr>
                     <th>x</th>
                     <th>x</th>
