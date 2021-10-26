@@ -57,6 +57,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
         public String Apellido1Coordinador { get; set; }
         [JsonProperty("Apellido2Coordinador")]
         public String Apellido2Coordinador { get; set; }
+        [JsonProperty("Id")]
+        public String Id { get; set; }
+
 
         #endregion
     }

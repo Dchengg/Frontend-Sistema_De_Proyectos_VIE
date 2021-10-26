@@ -68,7 +68,7 @@
                             @foreach (var frascati in Model)
                             {
                         <tr>
-                            @using (Html.BeginForm("UIAreasFrascati", "SeguimientoProyecto", new { idArea = frascati.IdArea, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                            @using (Html.BeginForm("UIAreasFrascati", "SeguimientoProyecto", new { idArea = frascati.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
 
                             {
                                 @Html.HttpMethodOverride(HttpVerbs.Delete)

@@ -1057,6 +1057,32 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         }
 
         /// <summary>
+        /// Llama al controlador de investigadores para eliminarlo del proyecto
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="codigoProyecto"></param>
+        /// <returns>Vista actualizada del investigadores asociados sin el investigador eliminado</returns>
+        [HttpDelete]
+        public ActionResult UIInvestigadoresAsociados(string id, String codigoProyecto)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+
+
+            String idSetDatos = Proyecto.Id;
+
+            String result = InvestigadorController.EliminarInvestigadorAsociado(id,idSetDatos);
+
+            
+            List<Investigador> investigadores = InvestigadorController.getInvestigadores(codigoProyecto);
+
+            System.Diagnostics.Debug.WriteLine(id);
+
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIInvestigadoresAsociados", investigadores);
+        }
+
+        /// <summary>
         /// Redirige a la página para ingresar un investigador asociado
         /// </summary>
         /// <param name="codigoProyecto"></param>
@@ -1075,6 +1101,28 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIAgregarInvestigadorAsociado", investigadores);
         }
+
+        [HttpPost]
+        public ActionResult UIAgregarInvestigadorAsociado(FormCollection agregarInvestigadorAso, String codigoProyecto) 
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+            String pickerInvestigador = agregarInvestigadorAso["pickerInvestigador"].ToString();
+            String tipoInvestigador = agregarInvestigadorAso["tipoInvestigador"].ToString();
+            String escuelaInvestigador = agregarInvestigadorAso["escuelaInvestigador"].ToString();
+            String areaConocimiento = agregarInvestigadorAso["areaConocimiento"].ToString();
+            String idSetDatos = Proyecto.Id;
+
+            System.Diagnostics.Debug.WriteLine(pickerInvestigador);
+
+            String result = InvestigadorController.AgregarInvestigadorAsociado(pickerInvestigador, idSetDatos, tipoInvestigador, escuelaInvestigador, areaConocimiento);
+
+            List<Investigador> Investigador = InvestigadorController.getInvestigadores(codigoProyecto);
+
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIInvestigadoresAsociados", Investigador);
+        }
+        
 
         /// <summary>
         /// Redirige a la vista que se encarga de modificar los datos del investigador selecionado

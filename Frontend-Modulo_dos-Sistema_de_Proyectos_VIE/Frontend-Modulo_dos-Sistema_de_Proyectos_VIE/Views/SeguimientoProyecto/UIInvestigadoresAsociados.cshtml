@@ -4,6 +4,9 @@
     ViewBag.Title = "Investigadores Asociados";
     Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
 }
+
+
+
 <div style="width:100%">
     <div class="container-fluid">
         <div class="row formRow">
@@ -36,30 +39,36 @@
                         @foreach (var investigador in Model)
                         {
                     <tr>
-                        @using (Html.BeginForm("UIInvestigadoresAsociados", "SeguimientoProyecto", new { id = investigador.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        @using (Html.BeginForm("UIInvestigadoresAsociados", "SeguimientoProyecto", new { id = investigador.NumIdentidad, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
                         {
 
+
+                            if (!investigador.EstaEliminado.Equals("true"))
+                            {
                             @Html.HttpMethodOverride(HttpVerbs.Delete)
                             <th>@investigador.NumIdentidad</th>
                             <th>@investigador.Nombre</th>
                             <th>@investigador.PrimerApellido</th>
                             <th>@investigador.SegundoApellido</th>
+                            
 
-                        }
+
+
                         <th>
                             <div class="btn-group">
                                 <button type="button" style="width: 100%; display: inline-block; border-color: black;" class="botonEliminar; btn btn-default dropdown-toggle" data-toggle="dropdown"> ...<span class="caret"></span> </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="@Url.Action("UIModificarInvestigadorAsociado","SeguimientoProyecto", new { codigoProyecto=ViewData["CodigoProyecto"]})" class="dropdown-item" style="color: #002854">Modificar investigador</a></li>
-                                    <li><a href="@Url.Action("UIModificarHorasInvestigador","SeguimientoProyecto", new { codigoProyecto=ViewData["CodigoProyecto"],  numEquipo = investigador.Id, numIdentidad =investigador.NumIdentidad, nombreInves= investigador.Nombre + " " +investigador.PrimerApellido+ " "+ investigador.SegundoApellido })" class="dropdown-item" style="color: #002854">Modificar horas</a></li>
-                                    <li><button class="botonEliminar" type="submit"> Eliminar </button></li>
+                                    <li><a href="@Url.Action("UIModificarHorasInvestigador", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"], numEquipo = investigador.Id, numIdentidad = investigador.NumIdentidad, nombreInves = investigador.Nombre + " " + investigador.PrimerApellido + " " + investigador.SegundoApellido })" class="dropdown-item" style="color: #002854">Modificar horas</a></li>
+                                    <li><input type="submit" value="Eliminar" class="fakeLink dropdown-item" style="align-self:auto;"/></li>
+                                    
                                 </ul>
                             </div>
                         </th>
+                            }
+                        }
 
                     </tr>
-                            }
-                    </tr>
+                        }
 
                     </table>
             </div>
@@ -77,4 +86,16 @@
 
 
 
+<style type="text/css">
 
+.fakeLink {
+    border: 0px;
+    background-color: transparent;
+    color: red;
+}
+
+.fakelink:hover {
+    text-decoration: underline;
+}
+
+</style>

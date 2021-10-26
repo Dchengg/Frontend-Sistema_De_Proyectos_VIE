@@ -407,6 +407,7 @@
     <Content Include="Views\SeguimientoProyecto\UIAmpliarObjetivos.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIObjetivosEspecificos.cshtml" />
     <Content Include="Views\Home\UIReportes.cshtml" />
+    <Content Include="Views\SeguimientoProyecto\UIVisualizacionInvestigador.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\AmpliarFechas\" />
