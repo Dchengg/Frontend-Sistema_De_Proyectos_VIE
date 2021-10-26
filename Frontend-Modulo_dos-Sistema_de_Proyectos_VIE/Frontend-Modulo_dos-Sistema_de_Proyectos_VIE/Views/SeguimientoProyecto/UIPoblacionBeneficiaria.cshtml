@@ -28,7 +28,7 @@
                     <select style="margin-left:5px" class="form-control col-xs-5" name="PoblacionDropdown">
                         @foreach (var poblacion in poblacionPicker)
                         {
-                            <option value=@poblacion.Id>@poblacion.NombrePoblacion</option>
+                            <option value=@poblacion.Id>@poblacion.Nombre</option>
 
 
                         }
@@ -61,7 +61,7 @@
                         {
                             @Html.HttpMethodOverride(HttpVerbs.Delete)
                             <th>@poblacion.IdPoblacionBeneficiaria</th>
-                            <th>@poblacion.NombrePoblacion</th>
+                            <th>@poblacion.Nombre</th>
                             <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
                         }
                     </tr>

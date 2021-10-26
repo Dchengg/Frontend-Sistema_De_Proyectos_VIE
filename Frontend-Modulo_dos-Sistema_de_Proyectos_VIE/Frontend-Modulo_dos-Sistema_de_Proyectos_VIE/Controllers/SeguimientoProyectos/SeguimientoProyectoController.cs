@@ -135,15 +135,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <returns>Todas las subáreas frascati asociadas a un área frascati</returns>
         public JsonResult GetSubFrascati(string idAreaFrascati)
         {
-
             List<SubFrascati> SubFrascatis = FrascatiController.getSubFrascatis(idAreaFrascati);
-            List<string> SubFrascatisStr = new List<string>();
-            foreach(SubFrascati subFra in SubFrascatis)
-            {
-                SubFrascatisStr.Add(subFra.SubArea);
-            }
             return Json(SubFrascatis, JsonRequestBehavior.AllowGet);
-
         }
         /// <summary>
         /// Llama al contolador de presupuesto para obtener todos los presupuestos del proyecto 
@@ -1079,7 +1072,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             String result = InvestigadorController.EliminarInvestigadorAsociado(id,idSetDatos);
 
-            
+            String Result = BitacoraController.AgregarBitacora("Se elimino el investigador" + id + " del proyecto" + codigoProyecto, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
             List<Investigador> investigadores = InvestigadorController.getInvestigadores(codigoProyecto);
 
             System.Diagnostics.Debug.WriteLine(id);
@@ -1124,7 +1117,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             String result = InvestigadorController.AgregarInvestigadorAsociado(pickerInvestigador, idSetDatos, tipoInvestigador, escuelaInvestigador, areaConocimiento);
 
             List<Investigador> Investigador = InvestigadorController.getInvestigadores(codigoProyecto);
-
+            String Result = BitacoraController.AgregarBitacora("Se agrego el investigador " + pickerInvestigador + " al proyecto " + codigoProyecto, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIInvestigadoresAsociados", Investigador);

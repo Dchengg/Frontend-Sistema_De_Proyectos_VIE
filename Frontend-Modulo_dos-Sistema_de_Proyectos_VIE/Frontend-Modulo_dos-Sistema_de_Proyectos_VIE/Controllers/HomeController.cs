@@ -59,6 +59,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             TempData["investigadores"] = investigadores;
             TempData["proyectos"] = proyectos;
             TempData["tipoReporte"] = "Pendiente";
+            TempData["tituloCatalogo"] = "Pendiente";
             List<string> titulos = new List<string>(new string[] { "Número identidad", "Nombre Completo", "Correo Electronico" });
             TempData["titulos"] = titulos;
             return View("UIReportes");
@@ -68,39 +69,72 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         public ActionResult Reportes(FormCollection ReporteForm)
         {
             String tipoDeReportes = ReporteForm["reporteDropdown"].ToString();
+            String criterio = "pendiente";
+            if (ReporteForm["catalogoDropdown"] != null)
+            {
+                criterio = ReporteForm["catalogoDropdown"].ToString();
+            }
+            String estado = ReporteForm["estadoDropdown"].ToString();
             List<Investigador> investigadores = new List<Investigador>();
             List<Proyecto> proyectos = new List<Proyecto>();
-            switch(tipoDeReportes){
+            var tipoReporte = "Pendiente";
+            List<string> titulos = new List<string>();
+            List<string> titulosInvestigador = new List<string>(new string[] { "Número de identidad", "Nombre Completo", "Correo Electronico" });
+            List<string> titulosProyecto = new List<string>(new string[] { "Código", "Nombre del proyecto", "Investigador coordinador", "Fecha de inicio", "Fecha de finalización", "Oficial del proyecto" });
+            switch (tipoDeReportes){
                 case "FichaInvestigador":
                     break;
                 case "ListadoInvestigadores":
                     investigadores = ReporteController.InvestigadoresXEstado("Activos");
+                    tipoReporte = "Investigadores";
+                    titulos = titulosInvestigador;
+                    break;
+                case "InvestigadoresXDisciplina":
+                    investigadores = ReporteController.InvestigadoresXDisciplina(estado, criterio);
+                    tipoReporte = "Investigadores";
+                    titulos = titulosInvestigador;
+                    break;
+                case "InvestigadoresXEscuela":
+                    investigadores = ReporteController.InvestigadoresXEscuela(estado, criterio);
+                    tipoReporte = "Investigadores";
+                    titulos = titulosInvestigador;
+                    break;
+                case "InvestigadoresInformes":
+                    investigadores = ReporteController.InvestigadoresInformesPendientes();
+                    tipoReporte = "Investigadores";
+                    titulos = titulosInvestigador;
+                    break;
+                case "ProyectoXEstado":
+                    proyectos = ReporteController.ProyectoXEstado(estado);
+                    tipoReporte = "Proyectos";
+                    titulos = titulosProyecto;
+                    break;
+                case "ProyectoXBeneficiaria":
+                    proyectos = ReporteController.ProyectoXBeneficiaria(estado, criterio);
+                    tipoReporte = "Proyectos";
+                    titulos = titulosProyecto;
+                    break;
+                case "ProyectoXTipo":
+                    proyectos = ReporteController.ProyectoXTipo(estado, criterio);
+                    tipoReporte = "Proyectos";
+                    titulos = titulosProyecto;
+                    break;
+                case "ProyectoXModalidad":
+                    proyectos = ReporteController.ProyectoXModalidad(estado, criterio);
+                    tipoReporte = "Proyectos";
+                    titulos = titulosProyecto;
                     break;
                 default:
                     break;
             }
             TempData["investigadores"] = investigadores;
             TempData["proyectos"] = proyectos;
-            TempData["tipoReporte"] = "Investigadores";
-            List<string> titulos = new List<string>(new string[] { "Número de identidad", "Nombre Completo", "Correo Electronico" });
+            TempData["tipoReporte"] = tipoReporte;
             TempData["titulos"] = titulos;
             return View("UIReportes");
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        
 
     }
 }

@@ -92,7 +92,7 @@
                 <select class="form-control col-xs-5" name="tipoProyectoInput">
                     @foreach (var estado in tipoproyectoPicker)
                     {
-                        <option value=@estado.Id @( @estado.TipoProyecto1 == Model.TipoProyecto ? "selected" : "")>@estado.TipoProyecto1</option>
+                        <option value=@estado.Id @( @estado.Nombre == Model.TipoProyecto ? "selected" : "")>@estado.Nombre</option>
 
 
                     }
@@ -146,7 +146,7 @@
                 <select class="form-control col-xs-5"  name="modalidadInput">
                     @foreach (var estado in modalidadPicker)
                     {
-                        <option value=@estado.Id @( @estado.NombreModalidad == Model.Modalidad ? "selected" : "")>@estado.NombreModalidad</option>
+                        <option value=@estado.Id @( @estado.Nombre == Model.Modalidad ? "selected" : "")>@estado.Nombre</option>
 
 
                     }
