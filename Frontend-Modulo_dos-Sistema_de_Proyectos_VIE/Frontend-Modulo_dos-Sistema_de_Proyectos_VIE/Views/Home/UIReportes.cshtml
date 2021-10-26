@@ -20,7 +20,7 @@
                 <optgroup label="Investigadores">
                     <option value="FichaInvestigador" data-estado="No">Ficha de un investigador en específico</option>
                     <option value="ListadoInvestigadores" data-estado="No">Listado de investigadores con la ficha de investigador activa</option>
-                    <option>Investigadores por escuela</option>
+                    <option value="InvestigadoresXEscuela">Investigadores por escuela</option>
                     <option value="InvestigadoresXDisciplina">Investigadores por disciplina científica</option>
                     <option>Investigadores con informes pendientes</option>
                 </optgroup>
@@ -101,7 +101,8 @@
                 $.get(request, function (data) {
                     $("#catalogoDropdown").children().remove()
                     $.each(data, function (index, value) {
-                        $('<option>').val(value.Id).text(value.DisciplinaCientifica).appendTo('#catalogoDropdown')
+                        console.log(value)
+                        $('<option>').val(value.Id).text(value.Nombre).appendTo('#catalogoDropdown')
                     })
                 })
                 $("#CatalogoLabel").text(catalogoName)
@@ -116,6 +117,8 @@
                 }
                 if (this.value == "InvestigadoresXDisciplina") {
                     cargarCatalogo("/Reporte/GetDisciplinas", "Disciplinas científicas")
+                } else if (this.value == "InvestigadoresXEscuela") {
+                    cargarCatalogo("/Reporte/GetEscuelas", "Escuelas")
                 }
                 $("estadoDropdown").val("")
             })

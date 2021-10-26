@@ -82,6 +82,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 case "InvestigadoresXDisciplina":
                     investigadores = ReporteController.InvestigadoresXDisciplina(estado, criterio);
                     break;
+                case "InvestigadoresXEscuela":
+                    investigadores = ReporteController.InvestigadoresXEscuela(estado, criterio);
+                    break;
                 default:
                     break;
             }
