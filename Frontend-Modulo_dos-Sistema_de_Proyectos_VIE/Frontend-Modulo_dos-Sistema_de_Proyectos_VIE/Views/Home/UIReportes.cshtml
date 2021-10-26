@@ -20,18 +20,17 @@
                 <optgroup label="Investigadores">
                     <option value="FichaInvestigador" data-estado="No">Ficha de un investigador en específico</option>
                     <option value="ListadoInvestigadores" data-estado="No">Listado de investigadores con la ficha de investigador activa</option>
-                    <option>Investigadores por escuela</option>
-                    <option>Investigadores por disciplina científica</option>
-                    <option>Investigadores con informes pendientes</option>
+                    <option value="InvestigadoresXEscuela">Investigadores por escuela</option>
+                    <option value="InvestigadoresXDisciplina">Investigadores por disciplina científica</option>
+                    <option value="InvestigadoresInformes">Investigadores con informes pendientes</option>
                 </optgroup>
                 <optgroup label="Proyectos">
                     <option>Datos de un proyecto en específico</option>
-                    <option>Proyectos según su estado</option>
-                    <option>Proyectos según su disciplina científica</option>
+                    <option value="ProyectoXEstado">Proyectos según su estado</option>
                     <option>Proyectos según su ubicación geográfica</option>
-                    <option>Proyectos según su poblaciópn beneficiaria</option>
-                    <option>Proyectos según tipo de proyecto</option>
-                    <option>Proyectos según modalidad de proyecto</option>
+                    <option value="ProyectoXBeneficiaria">Proyectos según su población beneficiaria</option>
+                    <option value="ProyectoXTipo">Proyectos según tipo de proyecto</option>
+                    <option value="ProyectoXModalidad">Proyectos según modalidad de proyecto</option>
                     <option>Búsqueda de proyectos por palabras claves</option>
                     <option>Proyectos con informes pendientes</option>
                     <option>Proyectos en lo que participa un investigador en específico según su estado</option>
@@ -47,13 +46,17 @@
             <label class="col-md-4" for="criterioInput">Criterio de búsqueda</label>
             <input type="text" class="col-md-7" form-control" id="criterioInput" name="criterioInput" />
         </div>
+        <div class="row formRow" id="catalogoRow" name="catologoRow" style="display:none">
+            <label class="col-md-4" for="criterioInput" id="CatalogoLabel"></label>
+            <select id="catalogoDropdown" name="catalogoDropdown">
+            </select>
+        </div>
         <div class="row formRow" id="estadoRow" style="display:none">
             <label class="col-md-4">Estado</label>
             <select id="estadoDropdown" name="estadoDropdown">
-                <option>Seleccione el estado que desea</option>
-                <option>Todos</option>
-                <option>Activo</option>
-                <option>Inactivo</option>
+                <option value="Todos">Todos</option>
+                <option value="Activos">Activos</option>
+                <option value="Inactivos">Inactivos</option>
             </select>
         </div>
         <div class="row formRow">
@@ -66,7 +69,7 @@
     }
     <table class="table table-striped table-bordered disenoTabla formRow">
         <tr id="ROW1">
-            @foreach(var titulo in titulos)
+            @foreach (var titulo in titulos)
             {
                 <th>@titulo</th>
             }
@@ -88,17 +91,59 @@
                 </tr>
             }
         }
+        else if (tipoReporte == "Proyectos")
+        {
+            foreach (var proyecto in proyectos)
+            {
+                <tr>
+                    <th>@proyecto.Codigo</th>
+                    <th>@proyecto.Nombre</th>
+                    <th>@proyecto.NombreCoordinador @proyecto.Apellido1Coordinador @proyecto.Apellido2Coordinador</th>
+                    <th>@proyecto.FechaInicioEjecucion</th>
+                    <th>@proyecto.FechaFinEjecucion</th>
+                    <th>@proyecto.NombreOficial @proyecto.Apellido1Oficial @proyecto.Apellido2Oficial</th>
+                    <th>
+                        <button class="botonAzul" onclick="location.href = '@Url.Action("UIDatosProyecto","SeguimientoProyecto", new { codigoProyecto=proyecto.Codigo })'">
+                            Ver/Modificar datos del proyecto
+                        </button>
+                    </th>
+                </tr>
+            }
+        }
     </table>
     <script>
         (function ($) {
+
+            function cargarCatalogo(request, catalogoName) {
+                $.get(request, function (data) {
+                    $("#catalogoDropdown").children().remove()
+                    $.each(data, function (index, value) {
+                        console.log(value)
+                        $('<option>').val(value.Id).text(value.Nombre).appendTo('#catalogoDropdown')
+                    })
+                })
+                $("#CatalogoLabel").text(catalogoName)
+                $("#catalogoRow").css("display", "flex")
+            }
+
             $("#reporteDropdown").on('change', function () {
-                $("estadoDropdown").val("")
                 if ($(this).find(':selected').data('estado') == "No") {
                     $("#estadoRow").css("display", "none")
                 } else {
                     $("#estadoRow").css("display", "flex")
                 }
-                $("#criterioRow").css("display", "flex")
+                if (this.value == "InvestigadoresXDisciplina") {
+                    cargarCatalogo("/Reporte/GetDisciplinas", "Disciplina científica")
+                } else if (this.value == "InvestigadoresXEscuela") {
+                    cargarCatalogo("/Reporte/GetEscuelas", "Escuela")
+                } else if (this.value == "ProyectoXBeneficiaria") {
+                    cargarCatalogo("/Reporte/GetPoblacionesBeneficiarias", "Población Beneficiaria")
+                } else if (this.value == "ProyectoXTipo") {
+                    cargarCatalogo("/Reporte/GetTiposProyecto", "Tipo de proyecto")
+                } else if (this.value == "ProyectoXModalidad") {
+                    cargarCatalogo("/Reporte/GetModalidades", "Modalidad del proyecto")
+                }
+                $("estadoDropdown").val("")
             })
         })(jQuery);
     </script>

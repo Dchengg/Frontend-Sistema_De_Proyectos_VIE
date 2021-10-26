@@ -135,15 +135,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <returns>Todas las subáreas frascati asociadas a un área frascati</returns>
         public JsonResult GetSubFrascati(string idAreaFrascati)
         {
-
             List<SubFrascati> SubFrascatis = FrascatiController.getSubFrascatis(idAreaFrascati);
-            List<string> SubFrascatisStr = new List<string>();
-            foreach(SubFrascati subFra in SubFrascatis)
-            {
-                SubFrascatisStr.Add(subFra.SubArea);
-            }
             return Json(SubFrascatis, JsonRequestBehavior.AllowGet);
-
         }
         /// <summary>
         /// Llama al contolador de presupuesto para obtener todos los presupuestos del proyecto 

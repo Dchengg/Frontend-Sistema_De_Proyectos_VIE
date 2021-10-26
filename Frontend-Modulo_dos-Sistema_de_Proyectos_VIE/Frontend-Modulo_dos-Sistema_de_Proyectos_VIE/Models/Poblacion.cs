@@ -17,7 +17,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
         public String IdPoblacionBeneficiaria { get; set; }
 
         [JsonProperty("NombrePoblacion")]
-        public String NombrePoblacion { get; set; }
+        public String Nombre { get; set; }
         #endregion
     }
 }
