@@ -2,90 +2,126 @@
 
 @{
     ViewBag.Title = "Visualizar Investigador";
-    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+    Layout = "~/Views/Shared/MainMenu.cshtml";
     IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Departamento> departamentoList = TempData["departamentoList"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Departamento>;
-    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Escuelas> escuelaList = TempData["departamentoList"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Escuelas>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Escuelas> escuelaList = TempData["escuelaList"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Escuelas>;
 
 }
 
 <div style="width:100%">
     <div class="container-fluid">
         <div class="row formRow">
-            <div class="form-group col-md-12">
-                <label for="nombreProyectoInput">Nombre del proyecto</label>
-                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="nombreInvestigador">Nombre: &nbsp;</label>
+                <input type="text" class="form-control col-xs-5" id="nombreInvestigador" name="nombreInvestigador" disabled value=@Html.DisplayFor(Investigador => Investigador.Nombre) />
+            </div>
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="segundoApellido">Segundo apellido: </label>
+                <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="segundoApellido" name="segundoApellido" disabled value=@Html.DisplayFor(Investigador => Investigador.SegundoApellido) />
+            </div>
+
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="primerApellido">Primer apellido:&nbsp;&nbsp; </label><br><br>
+                <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="primerApellido" name="primerApellido" disabled value=@Html.DisplayFor(Investigador => Investigador.PrimerApellido) />
+            </div>
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="cedulaInvestigador">Sexo:    </label>
+                <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="sexoInvestigador" name="sexoInvestigador" disabled value=@Html.DisplayFor(Investigador => Investigador.Sexo) />
             </div>
         </div>
         <div class="row formRow">
-            <div class="form-inline col-md-8">
-                <label for="codigoProyectoInput">Código del proyecto </label>
-                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="tipoIdentificacion">Tipo de identificación:&nbsp;&nbsp; </label><br><br>
+                <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="tipoIdentificacion" name="tipoIdentificacion" disabled value=@Html.DisplayFor(Investigador => Investigador.PrimerApellido) />
+            </div>
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="cedulaInvestigador">Cédula del investigador:    </label>
+                <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="cedulaInvestigador" name="cedulaInvestigador" disabled value=@Html.DisplayFor(Investigador => Investigador.NumIdentidad) />
             </div>
         </div>
-        @using (Html.BeginForm("UIVisualizacionInvestigador", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
-        {
-    <div class="row formRow">
-        <div class="form-inline col-md-6">
-            <label class="col-xs-5" for="cedulaInvestigador">Cédula del investigador:</label>
-            <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="cedulaInvestigador" name="cedulaInvestigador" value=@Html.DisplayFor(Investigador => Investigador.NumIdentidad) disabled />
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="correoElectronico">Correo electrónico: </label><br><br>
+                <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="correoElectronico" name="correoElectronico" disabled value=@Html.DisplayFor(Investigador => Investigador.CorreoElectronico) />
+            </div>
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="fechaNacimiento">Fecha de nacimiento: &nbsp;   </label>
+                @Html.TextBoxFor(Proyecto => Proyecto.Nombre, "{0:yyyy-MM-dd}", new { @readonly = true, @Name = "fechaNacimiento", @class = "form-control", @type = "date" })
+            </div>
         </div>
-        <div class="form-inline col-md-6">
-            <label for="escuelaInvestigador" class="col-xs-5">Escuelas:</label>
-            <table class="table table-striped table-bordered">
-                <tr id="ROW1">
-                    <th>Escuela</th>
-                </tr>
-                @foreach (var escuela in escuelaList)
-                {
-                    <tr>
-                        <th>@escuela.NombreEscuela</th>
+
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="correoElectronico">Estado actual: </label><br><br>
+                <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="estadoActual" name="estadoActual" disabled value=@Html.DisplayFor(Investigador => Investigador.CorreoElectronico) />
+            </div>
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="paisNacimiento">País de nacimiento: &nbsp;   </label>
+                <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="paisNacimiento" name="paisNacimiento" disabled value=@Html.DisplayFor(Investigador => Investigador.CorreoElectronico) />
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="row formRow">
+
+            <div class="form-inline col-md-6">
+                <label for="escuelaInvestigador" class="col-xs-5">Diciplinas Cientificas:</label>
+                <table class="table table-striped table-bordered">
+                    <tr id="ROW1">
+                        <th>Disciplina </th>
+                        <th>Subdisciplina </th>
+
                     </tr>
-                }
-            </table>
-        </div>
-        <div class="form-inline col-md-6">
-            <label for="escuelaInvestigador" class="col-xs-5">Departamentos:</label>
-            <table class="table table-striped table-bordered">
-                <tr id="ROW1">
-                    <th>Departamento</th>
-                </tr>
-                @foreach (var departamento in departamentoList)
-                {
-                    <tr>
-                        <th>@departamento.NombreProyecto</th>
+                    @foreach (var departamento in departamentoList)
+                    {
+                        <tr>
+                            <th>@departamento.NombreProyecto</th>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="form-inline col-md-6">
+                <label for="escuelaInvestigador" class="col-xs-5">Departamentos:</label>
+                <table class="table table-striped table-bordered">
+                    <tr id="ROW1">
+                        <th>Departamento</th>
+                        <th>Sede</th>
+
                     </tr>
-                }
-            </table>
+                    @foreach (var departamento in departamentoList)
+                    {
+                        <tr>
+                            <th>@departamento.NombreProyecto</th>
+                        </tr>
+                    }
+                </table>
+            </div>
         </div>
-    </div>
 
-            <div class="row formRow">
-                <div class="form-inline col-md-6">
-                    <label class="col-xs-5" for="nombreInvestigador">Nombre del Investigador:</label>
-                    <input type="text" class="form-control col-xs-5" id="nombreInvestigador" name="nombreInvestigador" value=@Html.DisplayFor(Investigador => Investigador.Nombre) disabled />
-                </div>
-                <div class="form-inline col-md-6">
-                    <label class="col-xs-5" for="sexoInvestigador">Sexo: </label>
-                    <input type="text" class="form-control col-xs-5" id="sexoInvestigador" name="sexoInvestigador" value=@Html.DisplayFor(Investigador => Investigador.Sexo) disabled />
-                </div>
-            </div>
 
-            <div class="row formRow">
-                <div class="form-inline col-md-6">
-                    <label class="col-xs-5" for="primerApellido">Primer apellido: </label>
-                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="primerApellido" name="primerApellido" value=@Html.DisplayFor(Investigador => Investigador.PrimerApellido) disabled />
-                </div>
-                <div class="form-inline col-md-6">
-                    <label class="col-xs-5" for="correoElectronico">Correo electrónico: </label>
-                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="correoElectronico" name="correoElectronico"  value=@Html.DisplayFor(Investigador => Investigador.CorreoElectronico) disabled />
-                </div>
-            </div>
+            <div class="form-inline col-md-6">
+                <label for="escuelaInvestigador" class="col-xs-5">Idiomas:</label>
+                <table class="table table-striped table-bordered">
+                    <tr id="ROW1">
+                        <th>Idioma </th>
+                        <th>Nivel de Lectura </th>
+                        <th>Nivel de Habla </th>
+                        <th>Nivel de Escritura </th>
 
-            <div class="row formRow">
-                <div class="form-inline col-md-6">
-                    <label class="col-xs-5" for="segundoApellido">Segundo apellido: </label>
-                    <input style="margin-left:5px" type="text" class="form-control col-xs-5" id="segundoApellido" name="segundoApellido"  value=@Html.DisplayFor(Investigador => Investigador.SegundoApellido) disabled />
-                </div>
+                    </tr>
+                    @foreach (var departamento in departamentoList)
+                    {
+                        <tr>
+                            <th>@departamento.NombreProyecto</th>
+                        </tr>
+                    }
+                </table>
             </div>
 
 
@@ -93,7 +129,10 @@
 
 
 
-        }
+
+
+
+
     </div>
 
 </div>

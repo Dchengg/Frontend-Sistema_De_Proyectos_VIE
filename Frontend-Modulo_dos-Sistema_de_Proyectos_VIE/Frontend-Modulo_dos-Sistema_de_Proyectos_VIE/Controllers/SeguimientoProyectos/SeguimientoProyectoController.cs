@@ -1461,6 +1461,21 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         ViewData["NombreProyecto"] = Proyecto.Nombre;
         return View("UIObjetivosEspecificos");
     }
-#endregion
-}
+
+
+        public ActionResult UIVisualizacionInvestigador(string numIdentificacion)
+        {
+
+            //Investigador investigadores = InvestigadorController.getInvestigadores();
+            List<Departamento> departamentos = DepartamentosController.getDepartamentos();
+            //List<Departamento> departamentos = DepartamentosController.getDepartamentos();
+
+            // TempData["departamentoList"] = investigadores;
+            TempData["departamentoList"] = departamentos;
+
+            ViewData["numIdentificacion"] = numIdentificacion;
+            return View("UIVisualizacionInvestigador");
+        }
+        #endregion
+    }
 }
