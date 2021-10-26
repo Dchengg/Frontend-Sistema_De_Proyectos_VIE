@@ -1373,22 +1373,18 @@
         <h3 class="blue font-weight-bold">Artículos de revista</h3>
         <div class="row align-items-center justify-items-center mt-3">
             <div class="col-md-6 form-inline">
-                <label class="col-md-6" for="nombrePatenteInput">Título del artículo</label>
+                <label class="col-md-6" for="tituloArticuloInput">Título del artículo</label>
                 <input type="text" class="col-md-6 form-control" id="tituloArticuloInput" />
             </div>
             <div class="col-md-6 form-inline">
                 <label class="col-md-6" for="numPatenteInput">Nombre de la revista</label>
-                <select class="col-md-6 form-control">
-                    <option>Science</option>
-                </select>
+                <input type="text" class="col-md-6 form-control" id="tituloArticuloInput" />
             </div>
         </div>
         <div class="row align-items-center justify-items-center mt-3">
             <div class="col-md-6 form-inline">
-                <label class="col-md-6" for="inscritoEnInput">Nombre del índice</label>
-                <select class="col-md-6 form-control">
-                    <option>Índice 1</option>
-                </select>
+                <label class="col-md-6" for="indice">Número del índice</label>
+                <input type="text" class="col-md-6 form-control" id="indice" />
             </div>
             <div class="col-md-6 form-inline">
                 <label class="col-md-6">Volumen</label>
@@ -1419,8 +1415,8 @@
                 <thead class="table-heading">
                     <tr id="ROW1">
                         <th>Título del artículo</th>
-                        <th>Número de la revista</th>
-                        <th>Nombre del índice</th>
+                        <th>Nombre de la revista</th>
+                        <th>Número del índice</th>
                         <th>Volumen</th>
                         <th>Número</th>
                         <th>Año</th>
@@ -1428,26 +1424,104 @@
                         <th>Eliminar</th>
                     </tr>
                 </thead>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
-                <tr>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                    <th>x</th>
-                </tr>
+                <tbody>
+                    @{
+                        int contadorArticulos = 0;
+
+                        foreach (var articulo in Model.Articulos)
+                        {
+                            <tr>
+                                <td>
+                                    @articulo.TituloArticulo
+                                </td>
+                                <td>
+                                    @articulo.NombreRevista
+                                </td>
+                                <td>
+                                    @articulo.NombreIndice
+                                </td>
+                                <td>
+                                    @articulo.Volumen
+                                </td>
+                                <td>
+                                    @articulo.Numero
+                                </td>
+                                <td>
+                                    @articulo.Ano
+                                </td>
+                                <td>
+                                    <button class="btnAzul" id="btnEditarArticulo" data-toggle="modal" data-target="#articuloModal-@contadorArticulos">Editar</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger" id="btnEliminarArticulo">Eliminar</button>
+                                </td>
+                            </tr>
+
+                            <!-- Modal de experiencia -->
+                            <div class="modal fade" id="articuloModal-@contadorArticulos" tabindex="-1" role="dialog">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Editar articulo</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="mx-2 my-2">
+                                                <label>Título del artículo</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("tituloArticulo" + contadorArticulos, articulo.TituloArticulo, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Nombre de la revista</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("nombreRevista" + contadorArticulos, articulo.NombreRevista, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Número del índice</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("indice" + contadorExperiencia, articulo.NombreIndice, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Volumen</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("volumen" + contadorExperiencia, articulo.Volumen, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+
+                                            <div class="mx-2 my-2">
+                                                <label>Número</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("num" + contadorExperiencia, articulo.Numero, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+                                            
+                                            <div class="mx-2 my-2">
+                                                <label>Año</label>
+                                            </div>
+                                            <div class="mx-2 my-2">
+                                                @Html.TextBox("ano" + contadorExperiencia, articulo.Ano, htmlAttributes: new { @class = "form-control col" })
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btnGrande btnAzul">Guardar Experiencia</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            contadorArticulos++;
+                        }
+                    }
+                </tbody>
             </table>
         </div>
     </div>
