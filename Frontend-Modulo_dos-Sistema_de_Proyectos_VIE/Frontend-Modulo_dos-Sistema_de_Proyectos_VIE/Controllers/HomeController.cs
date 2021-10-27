@@ -86,7 +86,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             List<string> titulosInvestigador = new List<string>(new string[] { "Número de identidad", "Nombre Completo", "Correo Electronico" });
             List<string> titulosProyecto = new List<string>(new string[] { "Código", "Nombre del proyecto", "Investigador coordinador", "Fecha de inicio", "Fecha de finalización", "Oficial del proyecto" });
             switch (tipoDeReportes){
-                case "FichaInvestigador":
+                case "InvestigadorXCodigo":
+                    String codigo = ReporteForm["criterioInput"].ToString();
+                    investigadores = ReporteController.InvestigadoresXCodigo(codigo);
+                    tipoReporte = "Investigadores";
+                    titulos = titulosInvestigador;
                     break;
                 case "ListadoInvestigadores":
                     investigadores = ReporteController.InvestigadoresXEstado("Activos");

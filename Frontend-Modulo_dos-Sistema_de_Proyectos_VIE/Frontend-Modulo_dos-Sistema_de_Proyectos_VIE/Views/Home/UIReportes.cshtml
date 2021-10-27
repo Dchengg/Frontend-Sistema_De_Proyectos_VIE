@@ -20,7 +20,7 @@
             <select class="col-md-6" id="reporteDropdown" name="reporteDropdown">
                 <option>Seleccione el reporte que desea realizar</option>
                 <optgroup label="Investigadores">
-                    <option value="FichaInvestigador" data-estado="No">Ficha de un investigador en específico</option>
+                    <option value="InvestigadorXCodigo" data-estado="No">Investigadores por código</option>
                     <option value="ListadoInvestigadores" data-estado="No">Listado de investigadores con la ficha de investigador activa</option>
                     <option value="InvestigadoresXEscuela">Investigadores por escuela</option>
                     <option value="InvestigadoresXDisciplina">Investigadores por disciplina científica</option>
@@ -29,7 +29,7 @@
                     <option value="InvestigadoresCoordinadores" data-estado="No">Investigadores coordinadadores de proyectos</option>
                 </optgroup>
                 <optgroup label="Proyectos">
-                    <option>Datos de un proyecto en específico</option>
+                    <option value="ProyectoXCodigo">Datos de un proyecto en específico</option>
                     <option value="ProyectoXEstado">Proyectos según su estado</option>
                     <option value="ProyectoXUbicacion">Proyectos según su ubicación geográfica</option>
                     <option value="ProyectoXBeneficiaria">Proyectos según su población beneficiaria</option>
@@ -47,7 +47,7 @@
             </select>
         </div>
         <div class="row formRow" id="criterioRow" name="criterioRow" style="display:none">
-            <label class="col-md-4" for="criterioInput">Criterio de búsqueda</label>
+            <label class="col-md-4" for="criterioInput" id="criterioLabel"></label>
             <input type="text" class="col-md-7" form-control" id="criterioInput" name="criterioInput" />
         </div>
         <div class="row formRow" id="catalogoRow" name="catologoRow" style="display:none">
@@ -201,7 +201,10 @@
 
                 }
 
-                if (this.value == "InvestigadoresXDisciplina") {
+                if (this.value == "InvestigadorXCodigo") {
+                    $('#criterioLabel').text("Cédula del investigador")
+                    $('#criterioRow').css("display", "flex")
+                }else if (this.value == "InvestigadoresXDisciplina") {
                     cargarCatalogo("/Reporte/GetDisciplinas", "Disciplina científica", "catalogo");
                 } else if (this.value == "InvestigadoresXEscuela") {
                     cargarCatalogo("/Reporte/GetEscuelas", "Escuela", "catalogo")
