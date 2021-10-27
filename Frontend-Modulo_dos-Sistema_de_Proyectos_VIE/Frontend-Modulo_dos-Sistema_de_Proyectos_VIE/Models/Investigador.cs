@@ -38,6 +38,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
         public String TipoParticipacion { get; set; }
         [JsonProperty("EstaEliminado")]
         public String EstaEliminado { get; set; }
+        [JsonProperty("FechaNacimiento")]
+        public DateTime? FechaNacimiento { get; set; }
         #endregion
     }
 }

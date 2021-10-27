@@ -1458,15 +1458,33 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         {
             System.Diagnostics.Debug.WriteLine(investigador.NumIdentidad);
             System.Diagnostics.Debug.WriteLine(investigador.Sexo);
-            //Investigador investigadores = InvestigadorController.getInvestigadores();
-            List <Departamento> departamentos = DepartamentosController.getDepartamentos();
-            //List<Departamento> departamentos = DepartamentosController.getDepartamentos();
+            List<Investigador> investigadores = ReporteController.getInvestigador(investigador.NumIdentidad);
 
-            // TempData["departamentoList"] = investigadores;
-            TempData["departamentoList"] = departamentos;
+            List<Idioma> idiomas = ReporteController.getIdiomaInvestigador(investigador.NumIdentidad);
+            List<Escuela> escuelas = ReporteController.getEscuelaInvestigador(investigador.NumIdentidad);
+            List<Disciplina> disciplinas = ReporteController.getDisciplinaInvestigador(investigador.NumIdentidad);
+
+            List<Pais> paises = UbicacionGeograficaController.getPaises();
+            String nombrePais = null;
+
+            foreach(var pais in paises)
+            {
+                if (pais.Id.Equals(investigadores[0].PaisNacimiento))
+                {
+                    nombrePais = pais.Nombre;
+                    break;
+                }
+            }
+
+            investigadores[0].PaisNacimiento = nombrePais;
+
+
+            TempData["escuelasList"] = escuelas;
+            TempData["idiomasList"] = idiomas;
+            TempData["disciplinasList"] = disciplinas;
 
             ViewData["numIdentificacion"] = investigador.NumIdentidad;
-            return View("UIVisualizacionInvestigador", investigador);
+            return View("UIVisualizacionInvestigador", investigadores[0]);
         }
 
 

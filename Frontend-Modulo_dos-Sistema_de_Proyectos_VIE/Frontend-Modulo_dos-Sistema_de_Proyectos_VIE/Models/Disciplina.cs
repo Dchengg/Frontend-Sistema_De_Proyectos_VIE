@@ -10,8 +10,10 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
     {
         [JsonProperty("Id")]
         public String Id { get; set; }
-        [JsonProperty("DisciplinaCientifica1")]
+        [JsonProperty("DisciplinaCientifica")]
         public String Nombre { get; set; }
+        [JsonProperty("Subdisciplina")]
+        public String Subdisciplina { get; set; }
 
     }
 }
