@@ -30,16 +30,20 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
         // GET: FichaInvestigador/Create
         public ActionResult Create()
         {
-            return View();
+            var modelo = ViewModelMapper.MapearCatalogosFichaInvestigador();
+            return View(modelo);
         }
 
         // POST: FichaInvestigador/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(FichaInvestigadorViewModel modelo)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ModelState.IsValid)
+                {
+
+                }
 
                 return RedirectToAction("Index");
             }
