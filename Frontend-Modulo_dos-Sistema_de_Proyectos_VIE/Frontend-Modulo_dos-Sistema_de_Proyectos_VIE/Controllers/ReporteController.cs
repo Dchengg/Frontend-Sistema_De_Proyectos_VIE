@@ -283,7 +283,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
-        public static List<Proyecto> CantidadPresupuesto(String fechaInicio, String fechaFinal, String departamento, String tipoDepartamento, String estado)
+        public static List<ReportePresupuesto> CantidadPresupuesto(String fechaInicio, String fechaFinal, String departamento, String tipoDepartamento, String estado)
         {
             using (var client = new HttpClient())
             {
@@ -291,19 +291,19 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 var responseTask = client.PostAsync(builder.Uri, null);
                 responseTask.Wait();
                 var result = responseTask.Result;
-                List<Proyecto> proyectos = new List<Proyecto>();
+                List<ReportePresupuesto> resultados = new List<ReportePresupuesto>();
                 if (result.IsSuccessStatusCode)
                 {
                     var response = result.Content.ReadAsStringAsync();
                     response.Wait();
-                    proyectos = JsonConvert.DeserializeObject<List<Proyecto>>(response.Result);
+                    resultados = JsonConvert.DeserializeObject<List<ReportePresupuesto>>(response.Result);
                     System.Diagnostics.Debug.WriteLine("Success");
                 }
                 else
                 {
                     System.Diagnostics.Debug.WriteLine("Error");
                 }
-                return proyectos;
+                return resultados;
             }
         }
 

@@ -5,6 +5,8 @@
 
     IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Investigador> investigadores = TempData["investigadores"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Investigador>;
     IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Proyecto> proyectos = TempData["proyectos"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Proyecto>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ResultadoReporte> resultadosEspeciales = TempData["resultadosEspeciales"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ResultadoReporte>;
+
     IEnumerable<string> titulos = TempData["titulos"] as IEnumerable<string>;
     string tipoReporte = TempData["tipoReporte"] as string;
 }
@@ -125,6 +127,17 @@
                             Ver/Modificar datos del proyecto
                         </button>
                     </th>
+                </tr>
+            }
+        }else if(tipoReporte == "EspecialPresupuesto")
+        {
+            List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ReportePresupuesto> resultadosPresupuesto = resultadosEspeciales.Cast<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ReportePresupuesto>().ToList();
+            foreach(var resultado in resultadosPresupuesto)
+            {
+                <tr>
+                    <th>@resultado.PresupuestoTotal</th>
+                    <th>@resultado.CodigoProyecto</th>
+                    <th>@resultado.NombreProyecto</th>
                 </tr>
             }
         }
