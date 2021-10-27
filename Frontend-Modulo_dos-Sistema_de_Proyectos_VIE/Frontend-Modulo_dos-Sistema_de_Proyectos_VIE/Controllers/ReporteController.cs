@@ -283,6 +283,30 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
+        public static List<Proyecto> CantidadPresupuesto(String fechaInicio, String fechaFinal, String departamento, String tipoDepartamento, String estado)
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder(String.Format("https://localhost:44394/api/Reportes/ReportePresupuesto/{0}/{1}/{2}/{3}/{4}", fechaInicio, fechaFinal, departamento, tipoDepartamento, estado));
+                var responseTask = client.PostAsync(builder.Uri, null);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Proyecto> proyectos = new List<Proyecto>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    proyectos = JsonConvert.DeserializeObject<List<Proyecto>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return proyectos;
+            }
+        }
+
 
         public JsonResult GetDisciplinas()
         {
@@ -336,6 +360,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         {
             List<Investigador> investigadores = InvestigadorController.getInvestigadores();
             return Json(investigadores, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetTipoDepartamento()
+        {
+            List<TipoDepartamento> tipos = DepartamentosController.getTiposDepartamento();
+            return Json(tipos, JsonRequestBehavior.AllowGet);
         }
     }
 }

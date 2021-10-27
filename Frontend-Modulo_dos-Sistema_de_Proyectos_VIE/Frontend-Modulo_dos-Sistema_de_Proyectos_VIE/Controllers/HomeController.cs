@@ -81,6 +81,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             List<string> titulos = new List<string>();
             List<string> titulosInvestigador = new List<string>(new string[] { "Número de identidad", "Nombre Completo", "Correo Electronico" });
             List<string> titulosProyecto = new List<string>(new string[] { "Código", "Nombre del proyecto", "Investigador coordinador", "Fecha de inicio", "Fecha de finalización", "Oficial del proyecto" });
+            List<string> titulosCantidad = new List<string>(new string[] { "Código", "Nombre del proyecto", "Investigador coordinador", "Fecha de inicio", "Fecha de finalización", "Oficial del proyecto" });
             switch (tipoDeReportes){
                 case "FichaInvestigador":
                     break;
@@ -140,6 +141,19 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                     proyectos = ReporteController.ProyectoXInvestigador(criterio);
                     tipoReporte = "Proyectos";
                     titulos = titulosProyecto;
+                    break;
+                case "CantidadProyectosXEscuela":
+                    proyectos = ReporteController.ProyectoXInvestigador(criterio);
+                    tipoReporte = "Proyectos";
+                    titulos = titulosCantidad;
+                    break;
+                case "CantidadPresupuesto":
+                    var fechaInicio = ReporteForm["fechaInput"].ToString();
+                    var fechaFinal = ReporteForm["fecha2Input"].ToString();
+                    var tipoDepartamento = ReporteForm["catalogo2Dropdown"].ToString();
+                    ReporteController.CantidadPresupuesto(fechaInicio, fechaFinal, criterio, tipoDepartamento, estado);
+                    tipoReporte = "Proyectos";
+                    titulos = titulosCantidad;
                     break;
                 default:
                     break;
