@@ -12,6 +12,32 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
     public class ReporteController : Controller
     {
+
+        public static List<Investigador> InvestigadoresXCodigo(String numIdentidad)
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder(String.Format("https://localhost:44394/api/Reportes/InvestigadorCodigo/{0}", numIdentidad));
+
+                var responseTask = client.PostAsync(builder.Uri, null);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Investigador> investigadores = new List<Investigador>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    investigadores = JsonConvert.DeserializeObject<List<Investigador>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return investigadores;
+            }
+        }
         public static List<Investigador> InvestigadoresXEstado(String estado)
         {
             using (var client = new HttpClient())
@@ -95,6 +121,57 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             using (var client = new HttpClient())
             {
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/Reportes/InvestigadorInformesPendientes/");
+
+                var responseTask = client.PostAsync(builder.Uri, null);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Investigador> investigadores = new List<Investigador>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    investigadores = JsonConvert.DeserializeObject<List<Investigador>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return investigadores;
+            }
+        }
+
+        public static List<Investigador> InvestigadoresXGenero(String genero)
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder(String.Format("https://localhost:44394/api/Reportes/InvestigadorSexo/{0}", genero));
+
+                var responseTask = client.PostAsync(builder.Uri, null);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Investigador> investigadores = new List<Investigador>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    investigadores = JsonConvert.DeserializeObject<List<Investigador>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return investigadores;
+            }
+        }
+
+        public static List<Investigador> InvestigadoresCoordinadores()
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Reportes/InvestigadorCoordinadores/");
 
                 var responseTask = client.PostAsync(builder.Uri, null);
                 responseTask.Wait();
@@ -391,11 +468,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
-        public static List<Proyecto> CantidadPresupuesto(String fechaInicio, String fechaFinal, String departamento, String tipoDepartamento, String estado)
+        public static List<Proyecto> CantidadProyectosXEscuela(String fechaInicio, String fechaFinal, String departamento, String tipoDepartamento, String estado)
         {
             using (var client = new HttpClient())
             {
-                UriBuilder builder = new UriBuilder(String.Format("https://localhost:44394/api/Reportes/ReportePresupuesto/{0}/{1}/{2}/{3}/{4}", fechaInicio, fechaFinal, departamento, tipoDepartamento, estado));
+                UriBuilder builder = new UriBuilder(String.Format("https://localhost:44394/api/Reportes/ReporteCantidadEscuela/{0}/{1}/{2}/{3}/{4}", fechaInicio, fechaFinal, departamento, tipoDepartamento, estado));
                 var responseTask = client.PostAsync(builder.Uri, null);
                 responseTask.Wait();
                 var result = responseTask.Result;
@@ -415,10 +492,58 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
+        public static List<ReportePresupuesto> CantidadPresupuesto(String fechaInicio, String fechaFinal, String departamento, String tipoDepartamento, String estado)
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder(String.Format("https://localhost:44394/api/Reportes/ReportePresupuesto/{0}/{1}/{2}/{3}/{4}", fechaInicio, fechaFinal, departamento, tipoDepartamento, estado));
+                var responseTask = client.PostAsync(builder.Uri, null);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<ReportePresupuesto> resultados = new List<ReportePresupuesto>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    resultados = JsonConvert.DeserializeObject<List<ReportePresupuesto>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return resultados;
+            }
+        }
+
+        public static List<ReporteHoras> CantidadHorasProyecto(String fechaInicio, String fechaFinal, String departamento, String tipoDepartamento, String estado)
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder(String.Format("https://localhost:44394/api/Reportes/ResporteHoras/{0}/{1}/{2}/{3}/{4}", fechaInicio, fechaFinal, departamento, tipoDepartamento, estado));
+                var responseTask = client.PostAsync(builder.Uri, null);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<ReporteHoras> resultados = new List<ReporteHoras>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    resultados = JsonConvert.DeserializeObject<List<ReporteHoras>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return resultados;
+            }
+        }
+
 
         public JsonResult GetDisciplinas()
         {
-            List<Disciplina> disciplinas = DisciplinasController.getDisciplinas();
+            List<DisciplinaCatalogo> disciplinas = DisciplinasController.getDisciplinas();
             return Json(disciplinas, JsonRequestBehavior.AllowGet);
         }
 

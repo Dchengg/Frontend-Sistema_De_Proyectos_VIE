@@ -12,7 +12,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
     public class DisciplinasController : Controller
     {
-        public static List<Disciplina> getDisciplinas()
+        public static List<DisciplinaCatalogo> getDisciplinas()
         {
             using (var client = new HttpClient())
             {
@@ -22,12 +22,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 var responseTask = client.GetAsync(builder.Uri);
                 responseTask.Wait();
                 var result = responseTask.Result;
-                List<Disciplina> disciplinas= new List<Disciplina>();
+                List<DisciplinaCatalogo> disciplinas= new List<DisciplinaCatalogo>();
                 if (result.IsSuccessStatusCode)
                 {
                     var response = result.Content.ReadAsStringAsync();
                     response.Wait();
-                    disciplinas = JsonConvert.DeserializeObject<List<Disciplina>>(response.Result);
+                    disciplinas = JsonConvert.DeserializeObject<List<DisciplinaCatalogo>>(response.Result);
                     System.Diagnostics.Debug.WriteLine("Success");
 
                 }
