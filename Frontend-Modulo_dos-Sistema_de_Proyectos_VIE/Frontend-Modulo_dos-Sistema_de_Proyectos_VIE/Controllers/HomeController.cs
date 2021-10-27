@@ -109,6 +109,13 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                     tipoReporte = "Proyectos";
                     titulos = titulosProyecto;
                     break;
+                case "ProyectoXUbicacion":
+                    var region = ReporteForm["catalogo2Dropdown"].ToString();
+                    var provincia = ReporteForm["catalogo3Dropdown"].ToString();
+                    proyectos = ReporteController.ProyectoXUbicacion(estado, criterio, region, provincia);
+                    tipoReporte = "Proyectos";
+                    titulos = titulosProyecto;
+                    break;
                 case "ProyectoXBeneficiaria":
                     proyectos = ReporteController.ProyectoXBeneficiaria(estado, criterio);
                     tipoReporte = "Proyectos";
