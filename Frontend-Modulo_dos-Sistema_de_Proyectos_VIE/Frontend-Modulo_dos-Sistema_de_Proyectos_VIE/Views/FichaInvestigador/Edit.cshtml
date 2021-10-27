@@ -158,13 +158,13 @@
                     <div class="col-md-4">
                         @Html.DisplayNameFor(modelo => modelo.FechaNacimiento)
                     </div>
-                    <div class="col-md-4 ">
-                        <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                            @Html.TextBoxFor(modelo => modelo.FechaNacimiento, new { @class = "form-control" })
-                            <span class="input-group-addon m-1">
-                                <button type="button" id="btnFechaNacimiento" class="fa fa-calendar-plus-o btn btn-primary"></button>
-                            </span>
+                    <div class="col-md-4 " id="fecha-nacimiento">
+
+                        <div class="input-group date">
+                            @Html.TextBoxFor(modelo => modelo.FechaNacimiento, new { @type = "text", @class = "form-control", @id = "campoFechaNacimiento" })
+                            <span class="input-group-addon m-1"><button type="button" id="btnFechaNacimiento" class="fa fa-calendar-plus-o btn btn-primary"></button></span>
                         </div>
+                       
                     </div>
                     <div class="col-md-4">
                         <div class="form-check m-2">
@@ -217,7 +217,7 @@
                                                             </div>
                                                         </td>
                                                         <td>
-                                                            <button type="button" class="btnGrande btnAzul">Editar</button>
+                                                            <button type="button" class="btnGrande btnAzul">Guardar</button>
                                                         </td>
                                                         <td>
                                                             <button type="button" class="btn btn-danger">Eliminar</button>

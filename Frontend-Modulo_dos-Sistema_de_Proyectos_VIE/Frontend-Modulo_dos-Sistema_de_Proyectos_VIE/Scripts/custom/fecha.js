@@ -1,8 +1,14 @@
-﻿$("#btnFechaNacimiento").on("click", function () {
-    console.log("I'm working");
-    $('.fechaNacimiento-date').datepicker({
-        format: "dd/mm/yyyy",
-        startDate: $("#FechaNacimiento").val(),
-    });
-});
+﻿
+$("#btnFechaNacimiento").on("click",
+    function () {
+        //$('.datepicker').datepicker();
+        console.log("I'm working");
+        $('#fecha-nacimiento .input-group.date').datepicker({
+            format: "dd/mm/yyyy",
+            todayHighlight: false,
+            defaultViewDate: $("#campoFechaNacimiento").val()
+        });
+        
+    }
+);
 

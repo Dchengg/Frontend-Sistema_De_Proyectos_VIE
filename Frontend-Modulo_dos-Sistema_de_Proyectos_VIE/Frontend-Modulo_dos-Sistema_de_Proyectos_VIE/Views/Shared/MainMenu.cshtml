@@ -4,9 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/custom")
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/BuscadorProyectos.css")
     @Styles.Render("~/Content/SeguimientoProyecto.css")
@@ -24,8 +21,8 @@
                 <img src="~/Assets/TEC-logo-white.png" alt="TEC-logo-white" />
                 <ul class="nav nav-sidebar d-flex flex-column">
                     <li class="d-flex flex-row">
-                       <a href="/FichaInvestigador/Edit/@id">
-                           <span class="fa fa-address-book" aria-hidden="true"></span>
+                        <a href="/FichaInvestigador/Edit/@id">
+                            <span class="fa fa-address-book" aria-hidden="true"></span>
                             Ficha del investigador
                         </a>
                     </li>
@@ -72,5 +69,8 @@
             </div>
         </div>
     </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/custom")
 </body>
 </html>
