@@ -143,14 +143,17 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                     titulos = titulosProyecto;
                     break;
                 case "CantidadProyectosXEscuela":
-                    proyectos = ReporteController.ProyectoXInvestigador(criterio);
+                    var fechaInicio = ReporteForm["fechaInput"].ToString();
+                    var fechaFinal = ReporteForm["fecha2Input"].ToString();
+                    var tipoDepartamento = ReporteForm["catalogo2Dropdown"].ToString();
+                    proyectos = ReporteController.CantidadProyectosXEscuela(fechaInicio, fechaFinal, criterio, tipoDepartamento, estado);
                     tipoReporte = "Proyectos";
                     titulos = titulosProyecto;
                     break;
                 case "CantidadPresupuesto":
-                    var fechaInicio = ReporteForm["fechaInput"].ToString();
-                    var fechaFinal = ReporteForm["fecha2Input"].ToString();
-                    var tipoDepartamento = ReporteForm["catalogo2Dropdown"].ToString();
+                    fechaInicio = ReporteForm["fechaInput"].ToString();
+                    fechaFinal = ReporteForm["fecha2Input"].ToString();
+                    tipoDepartamento = ReporteForm["catalogo2Dropdown"].ToString();
                     resultadosEspeciales = ReporteController.CantidadPresupuesto(fechaInicio, fechaFinal, criterio, tipoDepartamento, estado).Cast<ResultadoReporte>().ToList();
                     tipoReporte = "EspecialPresupuesto";
                     titulos.AddRange(new string[] { "Presupuesto Total", "Código del proyecto", "Nombre del proyecto" });
