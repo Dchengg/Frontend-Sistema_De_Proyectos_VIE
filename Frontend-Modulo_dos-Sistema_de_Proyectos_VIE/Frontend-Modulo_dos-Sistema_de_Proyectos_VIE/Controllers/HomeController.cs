@@ -164,8 +164,5 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             TempData["titulos"] = titulos;
             return View("UIReportes");
         }
-
-        
-
     }
 }

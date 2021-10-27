@@ -1390,7 +1390,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         }
 
         [HttpDelete]
-        public ActionResult UIObjetivosEspecificosRiesgo(String codigoProyecto, String objetivoEspecificoID,  String riesgoId)
+         public ActionResult UIObjetivosEspecificosRiesgo(String codigoProyecto, String objetivoEspecificoID,  String riesgoId)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
 
@@ -1454,21 +1454,23 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         ViewData["NombreProyecto"] = Proyecto.Nombre;
         return View("UIObjetivosEspecificos");
     }
-
-
-        public ActionResult UIVisualizacionInvestigador(string numIdentificacion)
+        public ActionResult UIVisualizacionInvestigador(Investigador investigador)
         {
-
+            System.Diagnostics.Debug.WriteLine(investigador.NumIdentidad);
+            System.Diagnostics.Debug.WriteLine(investigador.Sexo);
             //Investigador investigadores = InvestigadorController.getInvestigadores();
-            List<Departamento> departamentos = DepartamentosController.getDepartamentos();
+            List <Departamento> departamentos = DepartamentosController.getDepartamentos();
             //List<Departamento> departamentos = DepartamentosController.getDepartamentos();
 
             // TempData["departamentoList"] = investigadores;
             TempData["departamentoList"] = departamentos;
 
-            ViewData["numIdentificacion"] = numIdentificacion;
-            return View("UIVisualizacionInvestigador");
+            ViewData["numIdentificacion"] = investigador.NumIdentidad;
+            return View("UIVisualizacionInvestigador", investigador);
         }
+
+
+
         #endregion
     }
 }

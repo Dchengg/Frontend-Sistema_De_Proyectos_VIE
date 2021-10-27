@@ -102,7 +102,7 @@
                     <th>@(investigador.Nombre + " " + investigador.PrimerApellido + " " + investigador.SegundoApellido)</th>
                     <th>@investigador.CorreoElectronico</th>
                     <th>
-                        <button class="botonAzul" onclick="">
+                        <button class="botonAzul" onclick="location.href = '@Url.Action("UIVisualizacionInvestigador","SeguimientoProyecto", investigador)'" >
                             Ver ficha del investigador
                         </button>
                     </th>
