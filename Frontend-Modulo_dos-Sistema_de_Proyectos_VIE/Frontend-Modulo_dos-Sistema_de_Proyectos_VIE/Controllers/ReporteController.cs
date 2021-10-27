@@ -259,6 +259,30 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
+        public static List<Proyecto> ProyectoXInvestigador(String investigador)
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder(String.Format("https://localhost:44394/api/Reportes/InvestigadorParticipante/{0}/", investigador));
+                var responseTask = client.PostAsync(builder.Uri, null);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Proyecto> proyectos = new List<Proyecto>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    proyectos = JsonConvert.DeserializeObject<List<Proyecto>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return proyectos;
+            }
+        }
+
 
         public JsonResult GetDisciplinas()
         {
@@ -306,6 +330,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         {
             List<Provincia> provincias = UbicacionGeograficaController.getProvincias();
             return Json(provincias, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetInvestigadores()
+        {
+            List<Investigador> investigadores = InvestigadorController.getInvestigadores();
+            return Json(investigadores, JsonRequestBehavior.AllowGet);
         }
     }
 }

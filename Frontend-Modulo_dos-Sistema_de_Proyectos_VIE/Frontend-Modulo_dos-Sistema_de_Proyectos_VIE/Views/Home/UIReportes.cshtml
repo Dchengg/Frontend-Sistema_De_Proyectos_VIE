@@ -33,7 +33,7 @@
                     <option value="ProyectoXModalidad">Proyectos según modalidad de proyecto</option>
                     <option>Búsqueda de proyectos por palabras claves</option>
                     <option value="ProyectoInformes" data-estado="No">Proyectos con informes pendientes</option>
-                    <option>Proyectos en lo que participa un investigador en específico según su estado</option>
+                    <option value="ProyectoXInvestigador" data-estado="No">Proyectos en lo que participa un investigador en específico según su estado</option>
                 </optgroup>
                 <optgroup label="Otros">
                     <option>Cantidad de proyectos por escuela en un rango de fechas</option>
@@ -166,6 +166,15 @@
                     $("#catalogo3Dropdown").append($('<option>').val("null").text("Todas"))
                     cargarCatalogo("/Reporte/GetRegiones", "Región", "catalogo2");
                     cargarCatalogo("/Reporte/GetProvincias", "Provincia", "catalogo3");
+                } else if (this.value == "ProyectoXInvestigador") {
+                    $.get("/Reporte/GetInvestigadores", function (data) {
+                        $.each(data, function (index, value) {
+                            if (value.SegundoApellido == null) value.SegundoApellido = "";
+                            $('<option>').val(value.NumIdentidad).text(value.Nombre + " " + value.PrimerApellido + " " + value.SegundoApellido).appendTo('#' + "catalogo" + 'Dropdown')
+                        })
+                    })
+                    $('#catalogoLabel').text("Investigador")
+                    $('#catalogoRow').css("display", "flex")
                 }
                 $("estadoDropdown").val("")
             })
