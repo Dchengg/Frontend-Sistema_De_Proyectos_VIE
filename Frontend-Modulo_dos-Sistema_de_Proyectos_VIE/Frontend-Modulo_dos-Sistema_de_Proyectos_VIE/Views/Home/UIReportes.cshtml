@@ -25,6 +25,8 @@
                     <option value="InvestigadoresXEscuela">Investigadores por escuela</option>
                     <option value="InvestigadoresXDisciplina">Investigadores por disciplina científica</option>
                     <option value="InvestigadoresInformes" data-estado="No">Investigadores con informes pendientes</option>
+                    <option value="InvestigadoresXGenero" data-estado="No">Investigadores según género</option>
+                    <option value="InvestigadoresCoordinadores" data-estado="No">Investigadores coordinadadores de proyectos</option>
                 </optgroup>
                 <optgroup label="Proyectos">
                     <option>Datos de un proyecto en específico</option>
@@ -203,7 +205,12 @@
                     cargarCatalogo("/Reporte/GetDisciplinas", "Disciplina científica", "catalogo");
                 } else if (this.value == "InvestigadoresXEscuela") {
                     cargarCatalogo("/Reporte/GetEscuelas", "Escuela", "catalogo")
-                } else if (this.value == "ProyectoXBeneficiaria") {
+                } else if (this.value = "InvestigadoresXGenero") {
+                    $("#catalogoDropdown").append($('<option>').val("Masculino").text("Masculino"))
+                    $("#catalogoDropdown").append($('<option>').val("Femenino").text("Femenino"))
+                    $('#catalogoLabel').text("Género")
+                    $('#catalogoRow').css("display", "flex")
+                }else if (this.value == "ProyectoXBeneficiaria") {
                     cargarCatalogo("/Reporte/GetPoblacionesBeneficiarias", "Población Beneficiaria", "catalogo")
                 } else if (this.value == "ProyectoXTipo") {
                     cargarCatalogo("/Reporte/GetTiposProyecto", "Tipo de proyecto", "catalogo")
