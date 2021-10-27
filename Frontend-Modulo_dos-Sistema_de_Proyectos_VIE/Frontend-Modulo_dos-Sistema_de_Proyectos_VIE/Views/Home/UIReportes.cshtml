@@ -40,7 +40,7 @@
                 <optgroup label="Otros">
                     <option value ="CantidadProyectosXEscuela" data-fechas="Si">Cantidad de proyectos por escuela en un rango de fechas</option>
                     <option data-fechas="Si" value="CantidadPresupuesto">Cantidad de dinero asignado en presupuesto a los proyectos por escuela en un rango de fechas</option>
-                    <option data-fechas="Si">Cantidad de horas asignadas en proyectos a una escuela en un rango de fechas</option>
+                    <option data-fechas="Si" value="CantidadHorasProyecto">Cantidad de horas asignadas en proyectos a una escuela en un rango de fechas</option>
                 </optgroup>
             </select>
         </div>
@@ -133,15 +133,28 @@
                     </th>
                 </tr>
             }
-        }else if(tipoReporte == "EspecialPresupuesto")
+        }
+        else if (tipoReporte == "EspecialPresupuesto")
         {
             List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ReportePresupuesto> resultadosPresupuesto = resultadosEspeciales.Cast<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ReportePresupuesto>().ToList();
-            foreach(var resultado in resultadosPresupuesto)
+            foreach (var resultado in resultadosPresupuesto)
             {
                 <tr>
                     <th>@resultado.PresupuestoTotal</th>
                     <th>@resultado.CodigoProyecto</th>
-                    <th>@resultado.</th>
+                    <th>@resultado.NombreProyecto</th>
+                </tr>
+            }
+        } 
+        else if (tipoReporte == "EspecialHoras")
+        {
+            List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ReporteHoras> resultadosPresupuesto = resultadosEspeciales.Cast<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ReporteHoras>().ToList();
+            foreach (var resultado in resultadosPresupuesto)
+            {
+                <tr>
+                    <th>@resultado.HorasTotales</th>
+                    <th>@resultado.CodigoProyecto</th>
+                    <th>@resultado.NombreProyecto</th>
                 </tr>
             }
         }
@@ -211,7 +224,7 @@
                     })
                     $('#catalogoLabel').text("Investigador")
                     $('#catalogoRow').css("display", "flex")
-                } else if (this.value == "CantidadPresupuesto" || this.value == "CantidadProyectosXEscuela") {
+                } else if (this.value == "CantidadPresupuesto" || this.value == "CantidadProyectosXEscuela" || this.value == "CantidadHorasProyecto") {
                     cargarCatalogo("/Reporte/GetEscuelas", "Escuela", "catalogo")
                     cargarCatalogo("/Reporte/GetTipoDepartamento", "Tipo de departamento", "catalogo2")
                 }

@@ -56,8 +56,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         {
             List<Investigador> investigadores = new List<Investigador>();
             List<Proyecto> proyectos = new List<Proyecto>();
+            List<ResultadoReporte> resultadosEspeciales = new List<ResultadoReporte>();
+
             TempData["investigadores"] = investigadores;
             TempData["proyectos"] = proyectos;
+            TempData["resultadosEspeciales"] = resultadosEspeciales;
             TempData["tipoReporte"] = "Pendiente";
             TempData["tituloCatalogo"] = "Pendiente";
             List<string> titulos = new List<string>(new string[] { "Número identidad", "Nombre Completo", "Correo Electronico" });
@@ -157,6 +160,14 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                     resultadosEspeciales = ReporteController.CantidadPresupuesto(fechaInicio, fechaFinal, criterio, tipoDepartamento, estado).Cast<ResultadoReporte>().ToList();
                     tipoReporte = "EspecialPresupuesto";
                     titulos.AddRange(new string[] { "Presupuesto Total", "Código del proyecto", "Nombre del proyecto" });
+                    break;
+                case "CantidadHorasProyecto":
+                    fechaInicio = ReporteForm["fechaInput"].ToString();
+                    fechaFinal = ReporteForm["fecha2Input"].ToString();
+                    tipoDepartamento = ReporteForm["catalogo2Dropdown"].ToString();
+                    resultadosEspeciales = ReporteController.CantidadHorasProyecto(fechaInicio, fechaFinal, criterio, tipoDepartamento, estado).Cast<ResultadoReporte>().ToList();
+                    tipoReporte = "EspecialHoras";
+                    titulos.AddRange(new string[] { "Cantidad de horas totales", "Código del proyecto", "Nombre del proyecto" });
                     break;
                 default:
                     break;

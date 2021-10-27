@@ -158,6 +158,7 @@
     <Compile Include="Models\Bitacora.cs" />
     <Compile Include="Models\Disciplina.cs" />
     <Compile Include="Models\Escuela.cs" />
+    <Compile Include="Models\ReporteHoras.cs" />
     <Compile Include="Models\ReportePresupuesto.cs" />
     <Compile Include="Models\ResultadoReporte.cs" />
     <Compile Include="Models\TipoHora.cs" />
