@@ -29,13 +29,11 @@
                     <option value="InvestigadoresCoordinadores" data-estado="No">Investigadores coordinadadores de proyectos</option>
                 </optgroup>
                 <optgroup label="Proyectos">
-                    <option value="ProyectoXCodigo">Datos de un proyecto en específico</option>
                     <option value="ProyectoXEstado">Proyectos según su estado</option>
                     <option value="ProyectoXUbicacion">Proyectos según su ubicación geográfica</option>
                     <option value="ProyectoXBeneficiaria">Proyectos según su población beneficiaria</option>
                     <option value="ProyectoXTipo">Proyectos según tipo de proyecto</option>
                     <option value="ProyectoXModalidad">Proyectos según modalidad de proyecto</option>
-                    <option>Búsqueda de proyectos por palabras claves</option>
                     <option value="ProyectoInformes" data-estado="No">Proyectos con informes pendientes</option>
                     <option value="ProyectoXInvestigador" data-estado="No">Proyectos en lo que participa un investigador en específico según su estado</option>
                 </optgroup>
@@ -170,6 +168,8 @@
                 $("#catalogoRow").css("display", "none")
                 $("#catalogo2Row").css("display", "none")
                 $("#catalogo3Row").css("display", "none")
+                $('#criterioRow').css("display", "none")
+                $('#criterioInput').val("")
             }
 
             function cargarCatalogo(request, nombreCatalogo, tipoCatalogo) {
@@ -200,7 +200,6 @@
                     $("#fecha2Row").css("display", "none")
 
                 }
-
                 if (this.value == "InvestigadorXCodigo") {
                     $('#criterioLabel').text("Cédula del investigador")
                     $('#criterioRow').css("display", "flex")
@@ -208,12 +207,13 @@
                     cargarCatalogo("/Reporte/GetDisciplinas", "Disciplina científica", "catalogo");
                 } else if (this.value == "InvestigadoresXEscuela") {
                     cargarCatalogo("/Reporte/GetEscuelas", "Escuela", "catalogo")
-                } else if (this.value = "InvestigadoresXGenero") {
+                } else if (this.value == "InvestigadoresXGenero") {
                     $("#catalogoDropdown").append($('<option>').val("Masculino").text("Masculino"))
                     $("#catalogoDropdown").append($('<option>').val("Femenino").text("Femenino"))
                     $('#catalogoLabel').text("Género")
                     $('#catalogoRow').css("display", "flex")
-                }else if (this.value == "ProyectoXBeneficiaria") {
+                } 
+                else if (this.value == "ProyectoXBeneficiaria") {
                     cargarCatalogo("/Reporte/GetPoblacionesBeneficiarias", "Población Beneficiaria", "catalogo")
                 } else if (this.value == "ProyectoXTipo") {
                     cargarCatalogo("/Reporte/GetTiposProyecto", "Tipo de proyecto", "catalogo")
