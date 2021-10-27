@@ -1,0 +1,246 @@
+﻿
+@{
+    ViewBag.Title = "Reportes";
+    Layout = "~/Views/Shared/MainMenu.cshtml";
+
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Investigador> investigadores = TempData["investigadores"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Investigador>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Proyecto> proyectos = TempData["proyectos"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Proyecto>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ResultadoReporte> resultadosEspeciales = TempData["resultadosEspeciales"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ResultadoReporte>;
+
+    IEnumerable<string> titulos = TempData["titulos"] as IEnumerable<string>;
+    string tipoReporte = TempData["tipoReporte"] as string;
+}
+
+<div class="container-fluid">
+    <h2>Reportes</h2>
+    @using (Html.BeginForm("Reportes", "Home", FormMethod.Post))
+    {
+        <div class="row formRow">
+            <label class="col-md-4">Reporte que desea realizar</label>
+            <select class="col-md-6" id="reporteDropdown" name="reporteDropdown">
+                <option>Seleccione el reporte que desea realizar</option>
+                <optgroup label="Investigadores">
+                    <option value="InvestigadorXCodigo" data-estado="No">Investigadores por código</option>
+                    <option value="ListadoInvestigadores" data-estado="No">Listado de investigadores con la ficha de investigador activa</option>
+                    <option value="InvestigadoresXEscuela">Investigadores por escuela</option>
+                    <option value="InvestigadoresXDisciplina">Investigadores por disciplina científica</option>
+                    <option value="InvestigadoresInformes" data-estado="No">Investigadores con informes pendientes</option>
+                    <option value="InvestigadoresXGenero" data-estado="No">Investigadores según género</option>
+                    <option value="InvestigadoresCoordinadores" data-estado="No">Investigadores coordinadadores de proyectos</option>
+                </optgroup>
+                <optgroup label="Proyectos">
+                    <option value="ProyectoXEstado">Proyectos según su estado</option>
+                    <option value="ProyectoXUbicacion">Proyectos según su ubicación geográfica</option>
+                    <option value="ProyectoXBeneficiaria">Proyectos según su población beneficiaria</option>
+                    <option value="ProyectoXTipo">Proyectos según tipo de proyecto</option>
+                    <option value="ProyectoXModalidad">Proyectos según modalidad de proyecto</option>
+                    <option value="ProyectoInformes" data-estado="No">Proyectos con informes pendientes</option>
+                    <option value="ProyectoXInvestigador" data-estado="No">Proyectos en lo que participa un investigador en específico según su estado</option>
+                </optgroup>
+                <optgroup label="Otros">
+                    <option value ="CantidadProyectosXEscuela" data-fechas="Si">Cantidad de proyectos por escuela en un rango de fechas</option>
+                    <option data-fechas="Si" value="CantidadPresupuesto">Cantidad de dinero asignado en presupuesto a los proyectos por escuela en un rango de fechas</option>
+                    <option data-fechas="Si" value="CantidadHorasProyecto">Cantidad de horas asignadas en proyectos a una escuela en un rango de fechas</option>
+                </optgroup>
+            </select>
+        </div>
+        <div class="row formRow" id="criterioRow" name="criterioRow" style="display:none">
+            <label class="col-md-4" for="criterioInput" id="criterioLabel"></label>
+            <input type="text" class="col-md-7" form-control" id="criterioInput" name="criterioInput" />
+        </div>
+        <div class="row formRow" id="catalogoRow" name="catologoRow" style="display:none">
+            <label class="col-md-4" for="catalogoDropdown" id="catalogoLabel"></label>
+            <select id="catalogoDropdown" name="catalogoDropdown">
+            </select>
+        </div>
+        <div class="row formRow" id="catalogo2Row" name="catologo2Row" style="display:none">
+            <label class="col-md-4" for="catalogo2Dropdown" id="catalogo2Label"></label>
+            <select id="catalogo2Dropdown" name="catalogo2Dropdown">
+            </select>
+        </div>
+        <div class="row formRow" id="catalogo3Row" name="catologo3Row" style="display:none">
+            <label class="col-md-4" for="catalogo3Dropdown" id="catalogo3Label"></label>
+            <select id="catalogo3Dropdown" name="catalogo3Dropdown">
+            </select>
+        </div>
+        <div class="row formRow" id="fechaRow" name="fechaRow" style="display:none">
+            <label class="col-md-4" for="fechaInput" id="fechaLabel">Fecha de inicio</label>
+            <input type="date" id="fechaInput" name="fechaInput" class="form-control"/>
+        </div>
+        <div class="row formRow" id="fecha2Row" name="fecha2Row" style="display:none">
+            <label class="col-md-4" for="fecha2Input" id="fecha2Label">Fecha de finalización</label>
+            <input type="date" id="fecha2Input" name="fecha2Input" class="form-control"/>
+        </div>
+        <div class="row formRow" id="estadoRow" style="display:none">
+            <label class="col-md-4">Estado</label>
+            <select id="estadoDropdown" name="estadoDropdown">
+                <option value="Todos">Todos</option>
+                <option value="Activos">Activos</option>
+                <option value="Inactivos">Inactivos</option>
+            </select>
+        </div>
+        <div class="row formRow">
+            <div class="col-md-4">
+                <button type="submit">
+                    Seleccionar
+                </button>
+            </div>
+        </div>
+    }
+    <div class="row formRow" id="cantidadRow" name="cantidadRow">
+        <label class="col-md-4" for="cantidadInput" id="fecha2Label">Cantidad de registros encontrados</label>
+        <input type="text" id="cantidadInput" name="cantidadInput" class="form-control" value="@(proyectos.Count()+@investigadores.Count()+@resultadosEspeciales.Count())"disabled/>
+    </div>
+    <table class="table table-striped table-bordered disenoTabla formRow">
+        <tr id="ROW1">
+            @foreach (var titulo in titulos)
+            {
+                <th>@titulo</th>
+            }
+            <th></th>
+        </tr>
+        @if (tipoReporte == "Investigadores")
+        {
+            foreach (var investigador in investigadores)
+            {
+                <tr>
+                    <th>@investigador.NumIdentidad</th>
+                    <th>@(investigador.Nombre + " " + investigador.PrimerApellido + " " + investigador.SegundoApellido)</th>
+                    <th>@investigador.CorreoElectronico</th>
+                    <th>
+                        <button class="botonAzul" onclick="location.href = '@Url.Action("UIVisualizacionInvestigador","SeguimientoProyecto", investigador)'" >
+                            Ver ficha del investigador
+                        </button>
+                    </th>
+                </tr>
+            }
+        }
+        else if (tipoReporte == "Proyectos")
+        {
+            foreach (var proyecto in proyectos)
+            {
+                <tr>
+                    <th>@proyecto.Codigo</th>
+                    <th>@proyecto.Nombre</th>
+                    <th>@proyecto.NombreCoordinador @proyecto.Apellido1Coordinador @proyecto.Apellido2Coordinador</th>
+                    <th>@proyecto.FechaInicioEjecucion</th>
+                    <th>@proyecto.FechaFinEjecucion</th>
+                    <th>@proyecto.NombreOficial @proyecto.Apellido1Oficial @proyecto.Apellido2Oficial</th>
+                    <th>
+                        <button class="botonAzul" onclick="location.href = '@Url.Action("UIDatosProyecto","SeguimientoProyecto", new { codigoProyecto=proyecto.Codigo })'">
+                            Ver/Modificar datos del proyecto
+                        </button>
+                    </th>
+                </tr>
+            }
+        }
+        else if (tipoReporte == "EspecialPresupuesto")
+        {
+            List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ReportePresupuesto> resultadosPresupuesto = resultadosEspeciales.Cast<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ReportePresupuesto>().ToList();
+            foreach (var resultado in resultadosPresupuesto)
+            {
+                <tr>
+                    <th>@resultado.PresupuestoTotal</th>
+                    <th>@resultado.CodigoProyecto</th>
+                    <th>@resultado.NombreProyecto</th>
+                </tr>
+            }
+        } 
+        else if (tipoReporte == "EspecialHoras")
+        {
+            List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ReporteHoras> resultadosPresupuesto = resultadosEspeciales.Cast<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ReporteHoras>().ToList();
+            foreach (var resultado in resultadosPresupuesto)
+            {
+                <tr>
+                    <th>@resultado.HorasTotales</th>
+                    <th>@resultado.CodigoProyecto</th>
+                    <th>@resultado.NombreProyecto</th>
+                </tr>
+            }
+        }
+    </table>
+    <script>
+        (function ($) {
+            function resetDropdowns() {
+                $('#catalogoDropdown').children().remove()
+                $('#catalogo2Dropdown').children().remove()
+                $('#catalogo3Dropdown').children().remove()
+                $("#catalogoRow").css("display", "none")
+                $("#catalogo2Row").css("display", "none")
+                $("#catalogo3Row").css("display", "none")
+                $('#criterioRow').css("display", "none")
+                $('#criterioInput').val("")
+            }
+
+            function cargarCatalogo(request, nombreCatalogo, tipoCatalogo) {
+                $.get(request, function (data) {
+                    $.each(data, function (index, value) {
+                        console.log(value)
+                        $('<option>').val(value.Id).text(value.Nombre).appendTo('#' + tipoCatalogo + 'Dropdown')
+                    })
+                })
+                $('#' + tipoCatalogo + 'Label').text(nombreCatalogo)
+                $('#' + tipoCatalogo + 'Row').css("display", "flex")
+            }
+
+            $("#reporteDropdown").on('change', function () {
+                resetDropdowns();
+                if ($(this).find(':selected').data('estado') == "No") {
+                    $("#estadoRow").css("display", "none")
+                } else {
+                    $("#estadoRow").css("display", "flex")
+                }
+
+                if ($(this).find(':selected').data('fechas') == "Si") {
+                    $("#fechaRow").css("display", "flex")
+                    $("#fecha2Row").css("display", "flex")
+
+                } else {
+                    $("#fechaRow").css("display", "none")
+                    $("#fecha2Row").css("display", "none")
+
+                }
+                if (this.value == "InvestigadorXCodigo") {
+                    $('#criterioLabel').text("Cédula del investigador")
+                    $('#criterioRow').css("display", "flex")
+                }else if (this.value == "InvestigadoresXDisciplina") {
+                    cargarCatalogo("/Reporte/GetDisciplinas", "Disciplina científica", "catalogo");
+                } else if (this.value == "InvestigadoresXEscuela") {
+                    cargarCatalogo("/Reporte/GetEscuelas", "Escuela", "catalogo")
+                } else if (this.value == "InvestigadoresXGenero") {
+                    $("#catalogoDropdown").append($('<option>').val("Masculino").text("Masculino"))
+                    $("#catalogoDropdown").append($('<option>').val("Femenino").text("Femenino"))
+                    $('#catalogoLabel').text("Género")
+                    $('#catalogoRow').css("display", "flex")
+                } 
+                else if (this.value == "ProyectoXBeneficiaria") {
+                    cargarCatalogo("/Reporte/GetPoblacionesBeneficiarias", "Población Beneficiaria", "catalogo")
+                } else if (this.value == "ProyectoXTipo") {
+                    cargarCatalogo("/Reporte/GetTiposProyecto", "Tipo de proyecto", "catalogo")
+                } else if (this.value == "ProyectoXModalidad") {
+                    cargarCatalogo("/Reporte/GetModalidades", "Modalidad del proyecto", "catalogo")
+                } else if (this.value == "ProyectoXUbicacion") {
+                    cargarCatalogo("/Reporte/GetPaises", "Pais", "catalogo");
+                    $("#catalogo2Dropdown").append($('<option>').val("null").text("Todas"))
+                    $("#catalogo3Dropdown").append($('<option>').val("null").text("Todas"))
+                    cargarCatalogo("/Reporte/GetRegiones", "Región", "catalogo2");
+                    cargarCatalogo("/Reporte/GetProvincias", "Provincia", "catalogo3");
+                } else if (this.value == "ProyectoXInvestigador") {
+                    $.get("/Reporte/GetInvestigadores", function (data) {
+                        $.each(data, function (index, value) {
+                            if (value.SegundoApellido == null) value.SegundoApellido = "";
+                            $('<option>').val(value.NumIdentidad).text(value.Nombre + " " + value.PrimerApellido + " " + value.SegundoApellido).appendTo('#' + "catalogo" + 'Dropdown')
+                        })
+                    })
+                    $('#catalogoLabel').text("Investigador")
+                    $('#catalogoRow').css("display", "flex")
+                } else if (this.value == "CantidadPresupuesto" || this.value == "CantidadProyectosXEscuela" || this.value == "CantidadHorasProyecto") {
+                    cargarCatalogo("/Reporte/GetEscuelas", "Escuela", "catalogo")
+                    cargarCatalogo("/Reporte/GetTipoDepartamento", "Tipo de departamento", "catalogo2")
+                }
+                $("estadoDropdown").val("")
+            })
+        })(jQuery);
+    </script>
+</div>
+

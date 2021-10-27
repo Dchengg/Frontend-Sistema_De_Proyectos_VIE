@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Contratos";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+}
+
+
+<div style="width:100%">
+    <div class="container-fluid">
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <input type="text" class="form-control" id="nombreProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto </label>
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
+            </div>
+        </div>
+        @using (Html.BeginForm("UIContratos", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        {
+            <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    <label for="codigoProyectoInput">Titulo del contrato</label>
+                    <input style="margin-left:5px" type="text" class="form-control" id="títuloContrato" />
+                </div>
+            </div>
+
+            <div>
+                <div class="row formRow">
+                    <div class="wrapperBotonAgregar">
+                        
+                        <button class="botonAgregar" style="height:40px;" type="submit">
+                            <i class="fas fa-file-upload" ></i> Subir Contrato
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="row formRow">
+                    <div class="wrapperBotonAgregar">
+                        <button class="botonAgregar" type="submit">Agregar Contrato</button>
+                    </div>
+                </div>
+            </div>
+        }
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="UIDepartamentos"></label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered disenoTabla">
+                        <tr id="ROW1">
+                            <th>Título de contrato</th>
+                            <th>Fecha cuando se agrego</th>
+                            <th></th>
+                            <th> </th>
+                        </tr>
+
+
+                        <tr>
+
+                            <th>xxxxx</th>
+                            <th>xx/xx/xxxx</th>
+                            <th><div class="wrapperBotonAgregar"> <button class="botonAgregar" type="submit"> <i class="fas fa-file-download"></i> Descargar </button></div></th>
+                            <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

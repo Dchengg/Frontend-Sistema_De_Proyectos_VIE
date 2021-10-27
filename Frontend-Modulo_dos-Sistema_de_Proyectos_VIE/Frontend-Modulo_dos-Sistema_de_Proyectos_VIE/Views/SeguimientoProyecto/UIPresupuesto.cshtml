@@ -1,0 +1,131 @@
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Presupuesto>
+
+
+@{
+    ViewBag.Title = "Presupuesto";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Fuente> fuentePicker = TempData["fuentePicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Fuente>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Partida> partidaPicker = TempData["partidaPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Partida>;
+
+}
+
+
+<div style="width:100%">
+    <div class="container-fluid">
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto</label>
+                <input type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
+            </div>
+        </div>
+        @using (Html.BeginForm("UIPresupuesto", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        {
+            <div class="row formRow">
+                <div class="form-inline col-md">
+                    <div class="form-inline">
+                        <label class="col-xs-5">Fuentes de Financiamiento:  </label><hr>
+                        <select class="form-control col-xs-5" name="fuentesDropdown" id="fuentesDropdown">
+
+                            @foreach (var fuente in fuentePicker)
+                            {
+                                <option value=@fuente.Id>@fuente.FuenteFinanciamiento</option>
+
+                            }
+                        </select>
+                    </div>
+
+                    <hr />
+                    <div class="form-inline" id="partidaRow">
+                        <label class="col-xs-5">Partida:  </label><hr>
+                        <select class="form-control col-xs-5" name="partidaDropdown" id="partidaDropdown">
+                            @foreach (var partida in partidaPicker)
+                            {
+                                <option value=@partida.Id>@partida.Partida1</option>
+
+                            }
+                        </select>
+                    </div>
+                    <hr />
+
+                    <div class="form-inline" style="display:none" id="organizacionRow">
+                        <label class="col-xs-5">Organización:  </label><hr>
+                        <input type="text" class="form-control" id="organizacionField" name="organizacionField" />
+                    </div>
+                </div>
+            </div>
+            <div class="row formRow">
+                <div class="form-inline col-md">
+                    <label for="palabraInput">Año:  </label><hr>
+                    <input type="number" name="anoInput" min="1900" max="2099" step="1" value="2021" /><hr>
+                    <label for="palabraInput">Monto:</label><hr> <label>₡</label>
+                    <input type="number" class="form-control" step="5" min=0 id="montoInput" name="montoInput"><br>
+                </div>
+
+            </div>
+            <div class="row formRow">
+                <div class="wrapperBotonAgregar">
+                    <button class="botonAgregar" type="submit">Agregar Presupuesto</button>
+                </div>
+            </div>
+        }
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="areasFrascati"></label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered disenoTabla">
+                        <tr id="ROW1">
+                            <th>Código de Presupuesto</th>
+                            <th>Fuentes de Financiamiento</th>
+                            <th>Partida</th>
+                            <th>Organizacion</th>
+
+                            <th>Año</th>
+                            <th>Monto</th>
+
+                            <th> </th>
+                        </tr>
+                        @foreach (var presupuesto in Model)
+                        {
+                    <tr>
+                        @using (Html.BeginForm("UIPresupuesto", "SeguimientoProyecto", new { idPresupuesto = presupuesto.id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        {
+                            @Html.HttpMethodOverride(HttpVerbs.Delete)
+                            <th>@presupuesto.id</th>
+                            <th>@presupuesto.FuenteFinanciamiento</th>
+                            <th>@presupuesto.Partida</th>
+                            <th>@presupuesto.Organizacion</th>
+
+                            <th>@presupuesto.Ano</th>
+                            <th>@presupuesto.Monto</th>
+
+                            <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                        }
+                    </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function ($) {
+            $("#fuentesDropdown").on('change', function () {
+                if (this.value == 1) {
+                    $("#partidaRow").css('display', 'flex')
+                    $("#organizacionRow").css('display', 'none')
+                } else {
+                    $("#partidaRow").css('display', 'none')
+                    $("#organizacionRow").css('display', 'flex')
+                }
+            })
+        })(jQuery);
+    </script>
+</div>

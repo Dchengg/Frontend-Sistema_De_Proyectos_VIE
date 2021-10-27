@@ -1,0 +1,77 @@
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ObjetivoEspecifico>
+
+@{
+    ViewBag.Title = "Ampliar Objetivos";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+}
+
+<div style="width:100%">
+    <div class="container-fluid">
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto </label>
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
+            </div>
+        </div>
+        @using (Html.BeginForm("UIAmpliarObjetivos", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        {
+
+            <div class="row formRow">
+                <div class="form-group col-md-12">
+                    <label for="objetivoGeneral">Objetivo general del proyecto: </label>
+                    @Html.TextAreaFor(Proyecto => ViewData["ObjetivoGeneral"], new { @readonly = true, @Name = "objetivoGeneralInput", @class = "form-control fullRowInput", @rows = "5" })
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="form-group col-md-12">
+                    <label for="nuevoObjetivoGeneral">Nuevo objetivo general del proyecto: </label>
+                    <textarea class="form-control fullRowInput" id="nuevoObjetivoGeneral" name="nuevoObjetivoGeneral" rows="3"> </textarea>
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="form-group col-md-12">
+                    <div class="wrapperBotonAgregar">
+                        <button class="botonAgregar" type="submit">Guardar cambios</button>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="ampliarObjetivos"></label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered disenoTabla" style="table-layout: auto;">
+                        <tr id="ROW1">
+                            <th>Objetivo específico</th>
+                            <th> </th>
+                        </tr>
+                        @foreach (var objetivo in Model)
+                        {
+                    <tr>
+                        
+                            <th>@objetivo.Objetivo</th>
+                            <th>
+                                <div class="wrapperBotonAgregar">
+                                    <a class="btn botonAgregar" style="text-align:center" href="@Url.Action("UIObjetivosEspecificos", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"], objetivoEspecificoID =  objetivo.Id, objetivoText =  objetivo.Objetivo})"> Ver más </a>
+
+                                </div>
+                            </th>
+                            
+                    </tr>
+                        }
+          
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

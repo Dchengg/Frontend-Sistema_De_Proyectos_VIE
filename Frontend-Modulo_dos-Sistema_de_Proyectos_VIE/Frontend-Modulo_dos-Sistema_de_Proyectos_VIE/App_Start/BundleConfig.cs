@@ -20,10 +20,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/umd/popper.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.min.css",
                       "~/Content/site.css"));
         }
     }

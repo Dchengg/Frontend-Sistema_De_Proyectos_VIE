@@ -1,0 +1,162 @@
+﻿@model Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Proyecto
+
+@{
+    ViewBag.Title = "Datos del proyecto";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ObjetivoEspecifico> objetivosEspecificos = ViewData["objetivosEspecificos"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ObjetivoEspecifico>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.EstadoProyecto> estadoPicker = TempData["estadoPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.EstadoProyecto>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoProceso> procesoPicker = TempData["procesoPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoProceso>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoProyecto> tipoproyectoPicker = TempData["tipoproyectoPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoProyecto>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ModalidadProyecto> modalidadPicker = TempData["modalidadPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ModalidadProyecto>;
+
+}
+
+<div style="width:100%" class="window-content">
+    @using (Html.BeginForm("UIDatosProyecto", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+    {
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@Html.DisplayFor(Proyecto => Proyecto.Codigo)" disabled />
+            </div>
+            <div class="form-inline col-md-4">
+                <label for="fechaIngresoInput">Fecha de ingreso</label>
+                @Html.TextBoxFor(Proyecto => Proyecto.FechaIngreso, "{0:yyyy-MM-dd}", new { @Name = "fechaIngresoInput", @class = "form-control", @type = "date" })
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <textarea class="form-control fullRowInput" name="nombreProyectoInput" id="nombreProyectoInput" rows="3">@Html.DisplayFor(Proyecto => Proyecto.Nombre)</textarea>
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="descripcionInput">Descripción</label>
+                @Html.TextAreaFor(Proyecto => Proyecto.Descripcion, new { @Name = "descripcionInput", @class = "form-control fullRowInput", @rows = "8" })
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="justificacionInput">Justificación</label>
+                @Html.TextAreaFor(Proyecto => Proyecto.Justificacion, new { @Name = "justificacionInput", @class = "form-control fullRowInput", @rows = "8" })
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="objGeneralInput">Objetivo General</label>
+                @Html.TextAreaFor(Proyecto => Proyecto.ObjetivoGeneral, new { @Name = "objetivoGeneralInput", @class = "form-control fullRowInput", @rows = "8" })
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="obsEspecificosInput">Objetivos Especificos</label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <tr id="ROW1">
+                            <th>Objetivo Especifico</th>
+                        </tr>
+                        @foreach (var objetivo in objetivosEspecificos)
+                        {
+                            <tr>
+                                <th>@objetivo.Objetivo</th>
+                            </tr>
+                        }
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5">Estado del proyecto</label>
+                <select class="form-control col-xs-5"  name="estadoInput">
+
+                    @foreach (var estado in estadoPicker)
+                    {
+                        <option  value=@estado.Id @( @estado.EstadoDeProyecto == Model.Estado ? "selected" : "")>@estado.EstadoDeProyecto</option>
+
+                    }
+
+
+
+                </select>
+            </div>
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="numActaVIEInput">Número de acta VIE</label>
+                <input type="text" class="form-control col-xs-5" id="numActaVIEInput" name ="numActaVIEInput" value="@Html.DisplayFor(Proyecto => Proyecto.NumeroActaVIE,new { @Name = "numActaVIEInput"})" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5">Tipos de proyecto</label>
+                <select class="form-control col-xs-5" name="tipoProyectoInput">
+                    @foreach (var estado in tipoproyectoPicker)
+                    {
+                        <option value=@estado.Id @( @estado.Nombre == Model.TipoProyecto ? "selected" : "")>@estado.Nombre</option>
+
+
+                    }
+                </select>
+            </div>
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="numActaEscuelaInput">Número de acta escuela</label>
+                <input type="text" class="form-control col-xs-5" id="numActaEscuelaInput"  name="numActaEscuelaInput" value="@Html.DisplayFor(Proyecto => Proyecto.NumeroActaEscuela,new { @Name = "numActaEscuelaInput"})" disabled/>
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5">Tipos de proceso</label>
+                <select class="form-control col-xs-5"  name="tipoProcesoInput">
+                    @foreach (var estado in procesoPicker)
+                    {
+                        <option value=@estado.Id @( @estado.TipoDeProceso == Model.TipoDeProceso ? "selected" : "")>@estado.TipoDeProceso</option>
+
+
+                    }
+                </select>
+            </div>
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="fechaAprobaciónInput">Fecha de aprobación</label>
+                @Html.TextBoxFor(Proyecto => Proyecto.FechaAprobacion, "{0:yyyy-MM-dd}", new { @Name = "fechaAprovacionInput", @class = "form-control", @type = "date" })
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="fechaSuspensionInput">Fecha de suspensión</label>
+                @Html.TextBoxFor(Proyecto => Proyecto.FechaSuspension, "{0:yyyy-MM-dd}", new { @Name = "fechaSuspencionInput", @class = "form-control", @type = "date" })
+            </div>
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="fechaInicioInput">Fecha de inicio</label>
+                @Html.TextBoxFor(Proyecto => Proyecto.FechaInicioEjecucion, "{0:yyyy-MM-dd}", new { @Name = "fechaEjecucionInput", @class = "form-control", @type = "date" })
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="oficialProyectoInput">Oficial del proyecto</label>
+                <input type="text" class="form-control col-xs-5" id="oficialProyectoInput" value="@Html.DisplayFor(Proyecto => Proyecto.NombreOficial)" disabled />
+            </div>
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5" for="fechaFinalInput">Fecha de finalización</label>
+                @Html.TextBoxFor(Proyecto => Proyecto.FechaFinEjecucion, "{0:yyyy-MM-dd}", new { @Name = "fechaFinalizacionInput", @class = "form-control", @type = "date" })
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <label class="col-xs-5">Modalidad del proyecto</label>
+                <select class="form-control col-xs-5"  name="modalidadInput">
+                    @foreach (var estado in modalidadPicker)
+                    {
+                        <option value=@estado.Id @( @estado.Nombre == Model.Modalidad ? "selected" : "")>@estado.Nombre</option>
+
+
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-6">
+                <button type="submit"  style="margin: 0" class="btn botonAzul">Guardar</button>
+            </div>
+        </div>
+    }
+</div>

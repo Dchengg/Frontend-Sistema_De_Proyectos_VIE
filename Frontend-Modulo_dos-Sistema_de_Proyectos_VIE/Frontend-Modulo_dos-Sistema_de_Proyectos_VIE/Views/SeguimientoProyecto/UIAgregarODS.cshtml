@@ -1,0 +1,91 @@
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ODS>
+@{
+    ViewBag.Title = "Objetivos de Desarrollo Sostenible";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ODS> odsPicker = TempData["odsPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.ODS>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.SubODS> subodsPicker = TempData["subodsPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.SubODS>;
+
+}
+
+<div style="width:100%">
+    <div class="container-fluid">
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto</label>
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
+            </div>
+        </div>
+        @using (Html.BeginForm("UIAgregarODS", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        {
+            <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    <label class="col-xs-5">Áreas de Prioridad</label>
+                    <select style="margin-left:5px" class="form-control col-xs-5" name="areaDropdown">
+                        @foreach (var ods in odsPicker)
+                        {
+                            <option value=@ods.Id>@ods.ODS1</option>
+
+
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    <label class="col-xs-5">Sub-áreas</label>
+                    <select style="margin-left:5px" class="form-control col-xs-5" name="subAreaDropdown">
+                        @foreach (var subods in subodsPicker)
+                        {
+                            <option value=@subods.Id>@subods.area</option>
+
+
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row formRow">
+                <div class="wrapperBotonAgregar">
+                    <button class="botonAgregar" type="submit">Agregar ODS</button>
+                </div>
+            </div>
+        }
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="agregarODS"></label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered disenoTabla">
+                        <tr id="ROW1">
+                            <th>Código de área</th>
+                            <th>Sub-área</th>
+                            <th>Área</th>
+                            <th> </th>
+                        </tr>
+                        @foreach (var ods in Model)
+                        {
+                    <tr>
+                        @using (Html.BeginForm("UIAgregarODS", "SeguimientoProyecto", new { idODS = ods.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        {
+                            @Html.HttpMethodOverride(HttpVerbs.Delete)
+                            <th>@ods.Id</th>
+                            <th>@ods.SubArea</th>
+                            <th>@ods.Area</th>
+                            <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                        }
+                    </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+     </div>
+</div>
+
+

@@ -1,0 +1,118 @@
+﻿﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.UbicacionGeografica>
+@{
+    ViewBag.Title = "Ubicación Geográfica";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Pais> paisPicker = TempData["Paises"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Pais>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Provincia> provinciaPicker = TempData["Provincia"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Provincia>;
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Region> regionPicker = TempData["Regiones"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Region>;
+}
+
+<div style="width:100%">
+    <div class="container-fluid">
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto </label>
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
+            </div>
+        </div>
+        @using (Html.BeginForm("UIUbicacionGeografica", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        {
+            <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    <label for="codigoProyectoInput">País </label>
+                    <select style="margin-left:5px" class="form-control col-xs-5" id="paisDropdown" name="paisDropdown">
+                        @foreach (var pais in paisPicker)
+                        {
+                            <option value=@pais.Id>@pais.Nombre</option>
+
+
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="row formRow" id="regionRow">
+                <div class="form-inline col-md-8">
+                    <label for="codigoProyectoInput">Región </label>
+                    <select style="margin-left:5px" class="form-control col-xs-5" id="regionDropdown" name="regionDropdown">
+                        @foreach (var region in regionPicker)
+                        {
+                    <option value=@region.Id>@region.Nombre</option>}
+                    </select>
+                </div>
+            </div>
+
+            <div class="row formRow" id="provinciaRow">
+                <div class="form-inline col-md-8">
+                    <label for="codigoProyectoInput">Provincia </label>
+                    <select style="margin-left:5px" class="form-control col-xs-5" id="provinciaDropdown" name="provinciaDropdown">
+                        @foreach (var provincia in provinciaPicker)
+                        {
+                            <option value=@provincia.Id>@provincia.Nombre</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+
+            <div class="row formRow">
+                <div class="wrapperBotonAgregar">
+                    <button class="botonAgregar" type="submit">Agregar Ubicación</button>
+                </div>
+            </div>
+        }
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="UIDepartamentos"></label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered disenoTabla">
+                        <tr id="ROW1">
+                            <th>Código</th>
+                            <th>País</th>
+                            <th>Región</th>
+                            <th>Provincia</th>
+                            <th> </th>
+                        </tr>
+
+                        @foreach (var ubicacion in Model)
+                        {
+                            <tr>
+                                @using (Html.BeginForm("UIUbicacionGeografica", "SeguimientoProyecto", new { idUbicacion = ubicacion.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                                {
+                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                <th>@ubicacion.Id</th>
+                                <th>@ubicacion.NombrePais</th>
+                                <th>@ubicacion.NombreRegion</th>
+                                <th>@ubicacion.Nombre</th>
+                                <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th> 
+                                }
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function ($) {
+            $("#paisDropdown").on('change', function () {
+                if ($("#paisDropdown option:selected").text() == "Costa Rica") {
+                    $("#regionRow").css("display", "flex")
+                    $("#provinciaRow").css("display", "flex")
+                } else {
+                    $("#regionRow").css("display", "none")
+                    $("#provinciaRow").css("display", "none")
+                }
+            })
+        })(jQuery);
+    </script>
+</div>
+

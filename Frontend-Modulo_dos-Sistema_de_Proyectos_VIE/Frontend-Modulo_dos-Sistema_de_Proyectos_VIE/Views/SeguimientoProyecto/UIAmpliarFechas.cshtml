@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Ampliar Fechas";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+}
+
+<div style="width:100%">
+    <div class="container-fluid">
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto </label>
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
+            </div>
+        </div>
+        @using (Html.BeginForm("UIAmpliarFechas", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        {
+
+            <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    <label for="fechaFinalizacionActual">Fecha de finalización actual del proyecto: </label>
+                    <div>
+                        <input style="margin-left:5px" type="date" class="form-control" id="fechaActualFinalizacion"  name="fechaActualFinalizacion" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    <label for="fechaFinalizacionActual">Fecha de aporbación de la ampliación: </label>
+                    <div>
+                        <input style="margin-left:5px" type="date" class="form-control" id="fechaAprovacion"  name="fechaAprovacion" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    <label for="fechaFinalizacionActual">Nueva fecha de finalización del proyecto: </label>
+                    <div>
+                        <input style="margin-left:5px" type="date" class="form-control" id="fechaFinalizacion"  name="fechaFinalizacion" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="form-group col-md-12">
+                    <label for="nombreProyectoInput">Observaciones: </label>
+                    <textarea class="form-control fullRowInput" id="observacionesAmpliarFechas" name="observacionesAmpliarFechas" rows="3"> </textarea>
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="wrapperBotonAgregar">
+                    <button class="botonAgregar" type="submit">Agregar Ampliación</button>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+

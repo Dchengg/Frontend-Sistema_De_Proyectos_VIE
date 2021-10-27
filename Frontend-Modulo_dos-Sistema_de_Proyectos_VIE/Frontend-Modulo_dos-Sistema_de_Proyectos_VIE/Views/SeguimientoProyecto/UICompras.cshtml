@@ -1,0 +1,88 @@
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Compras>
+@{
+    ViewBag.Title = "Compras";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+}
+
+<div style="width:100%">
+    <div class="container-fluid">
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto</label>
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled />
+            </div>
+        </div>
+        @using (Html.BeginForm("UICompras", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        {
+            <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    <label for="codigoProyectoInput">Nombre del Producto</label>
+                    <input style="margin-left:5px" type="text" class="form-control" id="nombreDelProducto" name="nombreDelProducto" />
+                </div>
+            </div>
+            <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    <label for="codigoProyectoInput">Cantidad</label>
+                    <input style="margin-left:5px" type="text" class="form-control" id="cantidadDelProducto" name="cantidadDelProducto" />
+                </div>
+            </div>
+            <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    <label for="codigoProyectoInput">Precio total de la compra</label>
+                    <input style="margin-left:5px" type="text" class="form-control" id="precioTotalDeLaCompra" name="precioTotalDeLaCompra" />
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="wrapperBotonAgregar">
+                    <button class="botonAgregar" type="submit">Agregar Compra</button>
+                </div>
+            </div>
+        }
+
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="totalComprasInput">Total de compras</label>
+                <input type="text" class="form-control" id="totalComprasInput" value="@ViewData["Total"]" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="areasFrascati"></label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered disenoTabla" style="table-layout: auto;">
+                        <tr id="ROW1">
+                            <th>Nombre del producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th> </th>
+                        </tr>
+
+                        @foreach (var compra in Model)
+                        {
+                            <tr>
+                                @using (Html.BeginForm("UICompras", "SeguimientoProyecto", new { idCompra = compra.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                                {
+                                    @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                    <th>@compra.NombreProducto</th>
+                                    <th>@compra.Cantidad</th>
+                                    <th>@compra.PrecioTotal</th>
+                                    <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                                }
+
+                            </tr>
+
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

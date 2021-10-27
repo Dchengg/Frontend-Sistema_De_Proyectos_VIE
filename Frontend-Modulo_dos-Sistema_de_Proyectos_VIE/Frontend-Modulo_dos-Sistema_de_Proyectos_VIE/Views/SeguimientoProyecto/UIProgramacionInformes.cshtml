@@ -1,0 +1,102 @@
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Informe>
+@{
+    ViewBag.Title = "Programación de Informes";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoInforme> informePicker = TempData["informePicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.TipoInforme>;
+
+}
+
+<div style="width:100%">
+    <div class="container-fluid">
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto </label>
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
+            </div>
+        </div>
+        @using (Html.BeginForm("UIProgramacionInformes", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        {
+            <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    <label for="codigoProyectoInput">Tipo de informe </label>
+                    <select style="margin-left:5px" class="form-control col-xs-5" name="tipoInformeDropdown">
+                        @foreach (var tipo in informePicker)
+                        {
+                            <option value=@tipo.Id>@tipo.TipoInforme1</option>
+
+
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="row formRow">
+                <div class="form-inline col-md-12">
+                    <label for="tituloDelInforme">Título del informe </label>
+                    <div>
+                        <input style="margin-left:5px" type="text" class="form-control" id="títuloDelInforme" name="títuloDelInforme" />
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="row formRow">
+                    <div class="form-inline col-md-12">
+                        <label for="fechaProgramada">Fecha programada </label>
+                        <div>
+                            <input style="margin-left:5px" type="date" class="form-control" id="fechaProgramada"  name="fechaProgramada" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row formRow">
+                <div class="wrapperBotonAgregar">
+                    <button class="botonAgregar" type="submit">Agregar Programación de Informe</button>
+                </div>
+            </div>
+        }
+
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="areasFrascati"></label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered disenoTabla" style="table-layout: auto;">
+                        <tr id="ROW1">
+                            <th>Título del informe</th>
+                            <th>Fecha prevista</th>
+                            <th>Fecha de entrega</th>
+                            <th>Estado</th>
+                            <th>Tipo de informe</th>
+                            <th> </th>
+                        </tr>
+
+                        @foreach (var Informe in Model)
+                        {
+                            
+                            <tr>
+                            @using (Html.BeginForm("UIProgramacionInformes", "SeguimientoProyecto", new { idInforme = Informe.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                            {
+                                @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                <th>@Informe.TituloInforme</th>
+                                <th>@Informe.FechaProgramada</th>
+                                <th>@Informe.FechaEntrega</th>
+                                <th>@Informe.Estado</th>
+                                <th>@Informe.TipoInforme</th>
+                                <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                            }
+                            </tr>
+
+                        }
+
+                        </table>
+                </div>
+            </div>
+    </div>
+    </div>
+</div>

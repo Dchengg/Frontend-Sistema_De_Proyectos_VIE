@@ -1,0 +1,67 @@
+﻿    @model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.PalabrasClave>
+@{
+    ViewBag.Title = "Palabras Clave";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+
+}
+
+<div style="width:100%">
+    <div class="container-fluid">
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre de proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto</label>
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyecto" disabled />
+            </div>
+        </div>
+        @using (Html.BeginForm("UIPalabrasClave", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        {
+            <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    
+                        <label for="palabraInput">Palabra Clave:</label>
+                        <input style="margin-left:5px" type="text"  class="form-control" id="palabraInput" name="palabraInput"><br>
+                </div>
+            </div>
+            <div class="row formRow">
+                <div class="wrapperBotonAgregar">
+                    <button style="width: 150px;" class="botonAgregar" type="submit">Agregar Palabra</button>
+                </div>
+            </div>
+        }
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="areasFrascati"></label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered disenoTabla">
+                        <tr id="ROW1">
+                            <th>Código de Palabra</th>
+                            <th>Palabra</th>
+                            <th> </th>
+                        </tr>
+                        @foreach (var palabraClave in Model)
+                        {
+                        <tr>
+                            @using (Html.BeginForm("UIPalabrasClave", "SeguimientoProyecto", new { idPalabraClave = palabraClave.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                            {
+                                @Html.HttpMethodOverride(HttpVerbs.Delete)
+                                <th>@palabraClave.Id</th>
+                                <th>@palabraClave.PalabraClave</th>
+                                <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                            }
+                        </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

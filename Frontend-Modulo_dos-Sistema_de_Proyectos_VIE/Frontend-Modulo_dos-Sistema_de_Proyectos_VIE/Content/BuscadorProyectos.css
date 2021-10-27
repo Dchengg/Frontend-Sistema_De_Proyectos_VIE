@@ -1,0 +1,37 @@
+﻿.mainMenu {
+    position: fixed !important;
+    height: 100%;
+}
+
+.mainMenu a i{
+    font-size: 25px;
+    margin-right: 20px;
+}
+
+
+.mainMenu a{
+   display: flex !important;
+   flex-direction: row;
+   align-content: center;
+   text-decoration: none !important;
+}
+
+.content-page{
+    margin-left: 22%;
+    margin-top: 5%;
+}
+
+.mainMenu span{
+    margin-right: 20px; 
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 25px;
+}
+
+.mainMenu img{
+    display: block;
+    margin: auto;
+    padding: 20px 0px;
+    width: 50%;
+}
+

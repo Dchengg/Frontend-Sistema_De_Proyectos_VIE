@@ -1,0 +1,160 @@
+﻿.body{
+   font-family: Helvetica;
+   padding: 0;
+}
+
+.page-title {
+    padding: 2%;
+    background: rgba(234, 234, 234, 0.5);
+    width: 100%;
+}
+
+.page-title h3 {
+    font-family: Helvetica;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 12px;
+    color: #002854;
+}
+
+.sideMenu {
+    background: #002854;
+    border-radius: 3px;
+    width: 20%;
+    padding:0;
+}
+
+.sideMenu a {
+    display: flex;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 20px 15px !important;
+}
+
+.sideMenu li a:hover{
+    background-color: #001833 !important;
+    color: white !important;
+}
+
+.sideMenu li a:focus {
+    background-color: #012f63 !important;
+    color: white !important;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.sideMenu li{
+    width: 100%;
+}
+
+.sideMenu a:hover{
+    color: #000000
+}
+
+.sideMenu a:focus {
+    color: #000000;
+    border-left: 5px solid #EF3341
+}
+    
+.regresarBtn {
+    border-radius: 0px 5px 5px 0px;
+    font-weight: bold;
+    width: 15%;
+    color: #ffffff;
+    border-color: #EF3341;
+    background-color: #EF3341;
+}
+
+.regresarBtn:hover {
+    color: #ffffff !important;
+    background-color: #BD242F !important;
+}
+    
+.window-content{
+    margin-bottom: 5%;
+}
+
+.formRow{
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 10%;
+    margin-top: 4%;
+}
+
+.fullRowInput{
+    max-width: none;
+    width:100%
+}
+
+.wrapperBotonAgregar {
+    text-align: center;
+}
+
+.botonAgregar {
+    height: 30px;
+    background-color: #002854;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    color: white;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+.botonEliminar {
+    width: 100px;
+    height: 25px;
+    background-color: #EF3341;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    color: white;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+.disenoTabla {
+    table-layout: fixed;
+}
+
+.table tr#ROW1 {
+    background-color: #002854;
+    color: white;
+}
+
+.botonAzul {
+    background-color: #002854;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    border-color: transparent;
+    color: white;
+    margin: 0 auto;
+    display: block;
+}
+
+.botonAzul:hover {
+    background-color: #001833 !important;
+    color: white !important;
+}
+
+.botonAzul:focus {
+    background-color: #012f63 !important;
+    color: white !important;
+}
+

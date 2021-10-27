@@ -1,0 +1,76 @@
+﻿@model List<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Poblacion>
+@{
+    ViewBag.Title = "Población Beneficiaria";
+    Layout = "~/Views/Shared/UIProyectoSideMenu.cshtml";
+    IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Poblacion> poblacionPicker = TempData["poblacionPicker"] as IEnumerable<Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.Poblacion>;
+
+}
+
+<div style="width:100%">
+    <div class="container-fluid">
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="nombreProyectoInput">Nombre del proyecto</label>
+                <input type="text" class="form-control" id="codigoProyectoInput" value="@ViewData["NombreProyecto"]" disabled />
+            </div>
+        </div>
+        <div class="row formRow">
+            <div class="form-inline col-md-8">
+                <label for="codigoProyectoInput">Código del proyecto</label>
+                <input style="margin-left:5px" type="text" class="form-control" value="@ViewData["CodigoProyecto"]" id="codigoProyectoInput" disabled/>
+            </div>
+        </div>
+        @using (Html.BeginForm("UIPoblacionBeneficiaria", "SeguimientoProyecto", new { codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+        {
+            <div class="row formRow">
+                <div class="form-inline col-md-8">
+                    <label class="col-xs-5">Población beneficiaria</label>
+                    <select style="margin-left:5px" class="form-control col-xs-5" name="PoblacionDropdown">
+                        @foreach (var poblacion in poblacionPicker)
+                        {
+                            <option value=@poblacion.Id>@poblacion.Nombre</option>
+
+
+                        }
+                    </select>
+                </div>
+
+            </div>
+            <div class="row formRow">
+                <div class="wrapperBotonAgregar">
+                    <button style="width: 150px;" class="botonAgregar" type="submit">Agregar Población</button>
+                </div>
+            </div>
+        }
+        <div class="row formRow">
+            <div class="form-group col-md-12">
+                <label for="areasFrascati"></label>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered disenoTabla">
+                        <tr id="ROW1">
+                            <th>Código Población</th>
+                            <th>Población</th>
+                            <th> </th>
+                        </tr>
+                        @foreach (var poblacion in Model)
+                        {
+  
+
+                    <tr>
+                        @using (Html.BeginForm("UIPoblacionBeneficiaria", "SeguimientoProyecto", new { idPoblacion = poblacion.Id, codigoProyecto = ViewData["CodigoProyecto"] }, FormMethod.Post))
+                        {
+                            @Html.HttpMethodOverride(HttpVerbs.Delete)
+                            <th>@poblacion.IdPoblacionBeneficiaria</th>
+                            <th>@poblacion.Nombre</th>
+                            <th> <div> <button class="botonEliminar" type="submit"> Eliminar </button></div></th>
+                        }
+                    </tr>
+                        }
+                       
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
