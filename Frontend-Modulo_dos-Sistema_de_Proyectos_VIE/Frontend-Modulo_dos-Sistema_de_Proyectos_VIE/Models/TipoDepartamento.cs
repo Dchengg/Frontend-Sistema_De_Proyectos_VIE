@@ -13,7 +13,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models
         public String Id { get; set; }
         [JsonProperty("TipoDepartamento1")]
 
-        public String TipoDepartamento1 { get; set; }
+        public String Nombre { get; set; }
 
         #endregion
     }

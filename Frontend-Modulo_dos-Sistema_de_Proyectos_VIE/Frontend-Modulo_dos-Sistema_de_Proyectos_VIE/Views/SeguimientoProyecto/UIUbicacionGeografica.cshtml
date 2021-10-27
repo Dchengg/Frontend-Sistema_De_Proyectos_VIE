@@ -30,7 +30,7 @@
                     <select style="margin-left:5px" class="form-control col-xs-5" id="paisDropdown" name="paisDropdown">
                         @foreach (var pais in paisPicker)
                         {
-                            <option value=@pais.Id>@pais.NombrePais</option>
+                            <option value=@pais.Id>@pais.Nombre</option>
 
 
                         }
@@ -44,7 +44,7 @@
                     <select style="margin-left:5px" class="form-control col-xs-5" id="regionDropdown" name="regionDropdown">
                         @foreach (var region in regionPicker)
                         {
-                    <option value=@region.Id>@region.NombreRegion</option>}
+                    <option value=@region.Id>@region.Nombre</option>}
                     </select>
                 </div>
             </div>

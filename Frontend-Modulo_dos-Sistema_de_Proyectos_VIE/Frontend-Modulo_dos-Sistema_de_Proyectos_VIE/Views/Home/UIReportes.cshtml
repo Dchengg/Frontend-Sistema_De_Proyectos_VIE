@@ -22,23 +22,23 @@
                     <option value="ListadoInvestigadores" data-estado="No">Listado de investigadores con la ficha de investigador activa</option>
                     <option value="InvestigadoresXEscuela">Investigadores por escuela</option>
                     <option value="InvestigadoresXDisciplina">Investigadores por disciplina científica</option>
-                    <option value="InvestigadoresInformes">Investigadores con informes pendientes</option>
+                    <option value="InvestigadoresInformes" data-estado="No">Investigadores con informes pendientes</option>
                 </optgroup>
                 <optgroup label="Proyectos">
                     <option>Datos de un proyecto en específico</option>
                     <option value="ProyectoXEstado">Proyectos según su estado</option>
-                    <option>Proyectos según su ubicación geográfica</option>
+                    <option value="ProyectoXUbicacion">Proyectos según su ubicación geográfica</option>
                     <option value="ProyectoXBeneficiaria">Proyectos según su población beneficiaria</option>
                     <option value="ProyectoXTipo">Proyectos según tipo de proyecto</option>
                     <option value="ProyectoXModalidad">Proyectos según modalidad de proyecto</option>
                     <option>Búsqueda de proyectos por palabras claves</option>
-                    <option>Proyectos con informes pendientes</option>
-                    <option>Proyectos en lo que participa un investigador en específico según su estado</option>
+                    <option value="ProyectoInformes" data-estado="No">Proyectos con informes pendientes</option>
+                    <option value="ProyectoXInvestigador" data-estado="No">Proyectos en lo que participa un investigador en específico según su estado</option>
                 </optgroup>
                 <optgroup label="Otros">
-                    <option>Cantidad de proyectos por escuela en un rango de fechas</option>
-                    <option>Cantidad de dinero asignado en presupuesto a los proyectos por escuela en un rango de fechas</option>
-                    <option>Cantidad de horas asignadas en proyectos a una escuela en un rango de fechas</option>
+                    <option value ="CantidadProyectosXEscuela" data-fechas="Si">Cantidad de proyectos por escuela en un rango de fechas</option>
+                    <option data-fechas="Si" value="CantidadPresupuesto">Cantidad de dinero asignado en presupuesto a los proyectos por escuela en un rango de fechas</option>
+                    <option data-fechas="Si">Cantidad de horas asignadas en proyectos a una escuela en un rango de fechas</option>
                 </optgroup>
             </select>
         </div>
@@ -47,9 +47,27 @@
             <input type="text" class="col-md-7" form-control" id="criterioInput" name="criterioInput" />
         </div>
         <div class="row formRow" id="catalogoRow" name="catologoRow" style="display:none">
-            <label class="col-md-4" for="criterioInput" id="CatalogoLabel"></label>
+            <label class="col-md-4" for="catalogoDropdown" id="catalogoLabel"></label>
             <select id="catalogoDropdown" name="catalogoDropdown">
             </select>
+        </div>
+        <div class="row formRow" id="catalogo2Row" name="catologo2Row" style="display:none">
+            <label class="col-md-4" for="catalogo2Dropdown" id="catalogo2Label"></label>
+            <select id="catalogo2Dropdown" name="catalogo2Dropdown">
+            </select>
+        </div>
+        <div class="row formRow" id="catalogo3Row" name="catologo3Row" style="display:none">
+            <label class="col-md-4" for="catalogo3Dropdown" id="catalogo3Label"></label>
+            <select id="catalogo3Dropdown" name="catalogo3Dropdown">
+            </select>
+        </div>
+        <div class="row formRow" id="fechaRow" name="fechaRow" style="display:none">
+            <label class="col-md-4" for="fechaInput" id="fechaLabel">Fecha de inicio</label>
+            <input type="date" id="fechaInput" name="fechaInput" class="form-control"/>
+        </div>
+        <div class="row formRow" id="fecha2Row" name="fecha2Row" style="display:none">
+            <label class="col-md-4" for="fecha2Input" id="fecha2Label">Fecha de finalización</label>
+            <input type="date" id="fecha2Input" name="fecha2Input" class="form-control"/>
         </div>
         <div class="row formRow" id="estadoRow" style="display:none">
             <label class="col-md-4">Estado</label>
@@ -113,35 +131,72 @@
     </table>
     <script>
         (function ($) {
+            function resetDropdowns() {
+                $('#catalogoDropdown').children().remove()
+                $('#catalogo2Dropdown').children().remove()
+                $('#catalogo3Dropdown').children().remove()
+                $("#catalogoRow").css("display", "none")
+                $("#catalogo2Row").css("display", "none")
+                $("#catalogo3Row").css("display", "none")
+            }
 
-            function cargarCatalogo(request, catalogoName) {
+            function cargarCatalogo(request, nombreCatalogo, tipoCatalogo) {
                 $.get(request, function (data) {
-                    $("#catalogoDropdown").children().remove()
                     $.each(data, function (index, value) {
                         console.log(value)
-                        $('<option>').val(value.Id).text(value.Nombre).appendTo('#catalogoDropdown')
+                        $('<option>').val(value.Id).text(value.Nombre).appendTo('#' + tipoCatalogo + 'Dropdown')
                     })
                 })
-                $("#CatalogoLabel").text(catalogoName)
-                $("#catalogoRow").css("display", "flex")
+                $('#' + tipoCatalogo + 'Label').text(nombreCatalogo)
+                $('#' + tipoCatalogo + 'Row').css("display", "flex")
             }
 
             $("#reporteDropdown").on('change', function () {
+                resetDropdowns();
                 if ($(this).find(':selected').data('estado') == "No") {
                     $("#estadoRow").css("display", "none")
                 } else {
                     $("#estadoRow").css("display", "flex")
                 }
+
+                if ($(this).find(':selected').data('fechas') == "Si") {
+                    $("#fechaRow").css("display", "flex")
+                    $("#fecha2Row").css("display", "flex")
+
+                } else {
+                    $("#fechaRow").css("display", "none")
+                    $("#fecha2Row").css("display", "none")
+
+                }
+
                 if (this.value == "InvestigadoresXDisciplina") {
-                    cargarCatalogo("/Reporte/GetDisciplinas", "Disciplina científica")
-                } else if (this.value == "InvestigadoresXEscuela") {
-                    cargarCatalogo("/Reporte/GetEscuelas", "Escuela")
+                    cargarCatalogo("/Reporte/GetDisciplinas", "Disciplina científica", "catalogo");
+                } else if (this.value == "InvestigadoresXEscuela" || this.value == "CantidadProyectosXEscuela") {
+                    cargarCatalogo("/Reporte/GetEscuelas", "Escuela", "catalogo")
                 } else if (this.value == "ProyectoXBeneficiaria") {
-                    cargarCatalogo("/Reporte/GetPoblacionesBeneficiarias", "Población Beneficiaria")
+                    cargarCatalogo("/Reporte/GetPoblacionesBeneficiarias", "Población Beneficiaria", "catalogo")
                 } else if (this.value == "ProyectoXTipo") {
-                    cargarCatalogo("/Reporte/GetTiposProyecto", "Tipo de proyecto")
+                    cargarCatalogo("/Reporte/GetTiposProyecto", "Tipo de proyecto", "catalogo")
                 } else if (this.value == "ProyectoXModalidad") {
-                    cargarCatalogo("/Reporte/GetModalidades", "Modalidad del proyecto")
+                    cargarCatalogo("/Reporte/GetModalidades", "Modalidad del proyecto", "catalogo")
+                } else if (this.value == "ProyectoXUbicacion") {
+                    cargarCatalogo("/Reporte/GetPaises", "Pais", "catalogo");
+                    $("#catalogo2Dropdown").append($('<option>').val("null").text("Todas"))
+                    $("#catalogo3Dropdown").append($('<option>').val("null").text("Todas"))
+                    cargarCatalogo("/Reporte/GetRegiones", "Región", "catalogo2");
+                    cargarCatalogo("/Reporte/GetProvincias", "Provincia", "catalogo3");
+                } else if (this.value == "ProyectoXInvestigador") {
+                    $.get("/Reporte/GetInvestigadores", function (data) {
+                        $.each(data, function (index, value) {
+                            if (value.SegundoApellido == null) value.SegundoApellido = "";
+                            $('<option>').val(value.NumIdentidad).text(value.Nombre + " " + value.PrimerApellido + " " + value.SegundoApellido).appendTo('#' + "catalogo" + 'Dropdown')
+                        })
+                    })
+                    $('#catalogoLabel').text("Investigador")
+                    $('#catalogoRow').css("display", "flex")
+                } else if (this.value == "CantidadPresupuesto") {
+                    cargarCatalogo("/Reporte/GetEscuelas", "Escuela", "catalogo")
+                    cargarCatalogo("/Reporte/GetTipoDepartamento", "Tipo de departamento", "catalogo2")
                 }
                 $("estadoDropdown").val("")
             })

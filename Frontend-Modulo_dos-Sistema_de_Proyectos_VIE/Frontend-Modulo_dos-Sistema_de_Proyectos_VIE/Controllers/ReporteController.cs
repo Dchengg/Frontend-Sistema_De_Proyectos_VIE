@@ -139,6 +139,30 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
+        public static List<Proyecto> ProyectoXUbicacion(String estado, String pais, String region, String provincia)
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder(String.Format("https://localhost:44394/api/Reportes/ReporteUbicacion/{0}/{1}/{2}/{3}", estado, pais, region, provincia));
+                var responseTask = client.PostAsync(builder.Uri, null);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Proyecto> proyectos = new List<Proyecto>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    proyectos = JsonConvert.DeserializeObject<List<Proyecto>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return proyectos;
+            }
+        }
+
         public static List<Proyecto> ProyectoXBeneficiaria(String estado, String poblacion)
         {
             using (var client = new HttpClient())
@@ -211,6 +235,78 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
+        public static List<Proyecto> ProyectoInformes()
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Reportes/ProyectoInformesPendientes/");
+                var responseTask = client.PostAsync(builder.Uri, null);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Proyecto> proyectos = new List<Proyecto>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    proyectos = JsonConvert.DeserializeObject<List<Proyecto>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return proyectos;
+            }
+        }
+
+        public static List<Proyecto> ProyectoXInvestigador(String investigador)
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder(String.Format("https://localhost:44394/api/Reportes/InvestigadorParticipante/{0}/", investigador));
+                var responseTask = client.PostAsync(builder.Uri, null);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Proyecto> proyectos = new List<Proyecto>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    proyectos = JsonConvert.DeserializeObject<List<Proyecto>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return proyectos;
+            }
+        }
+
+        public static List<Proyecto> CantidadPresupuesto(String fechaInicio, String fechaFinal, String departamento, String tipoDepartamento, String estado)
+        {
+            using (var client = new HttpClient())
+            {
+                UriBuilder builder = new UriBuilder(String.Format("https://localhost:44394/api/Reportes/ReportePresupuesto/{0}/{1}/{2}/{3}/{4}", fechaInicio, fechaFinal, departamento, tipoDepartamento, estado));
+                var responseTask = client.PostAsync(builder.Uri, null);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                List<Proyecto> proyectos = new List<Proyecto>();
+                if (result.IsSuccessStatusCode)
+                {
+                    var response = result.Content.ReadAsStringAsync();
+                    response.Wait();
+                    proyectos = JsonConvert.DeserializeObject<List<Proyecto>>(response.Result);
+                    System.Diagnostics.Debug.WriteLine("Success");
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("Error");
+                }
+                return proyectos;
+            }
+        }
+
 
         public JsonResult GetDisciplinas()
         {
@@ -240,6 +336,36 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         {
             List<ModalidadProyecto> modalidades = ProyectoController.getModalidad();
             return Json(modalidades, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetPaises()
+        {
+            List<Pais> paises  = UbicacionGeograficaController.getPaises();
+            return Json(paises, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetRegiones()
+        {
+            List<Region> regiones = UbicacionGeograficaController.getRegiones();
+            return Json(regiones, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetProvincias()
+        {
+            List<Provincia> provincias = UbicacionGeograficaController.getProvincias();
+            return Json(provincias, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetInvestigadores()
+        {
+            List<Investigador> investigadores = InvestigadorController.getInvestigadores();
+            return Json(investigadores, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetTipoDepartamento()
+        {
+            List<TipoDepartamento> tipos = DepartamentosController.getTiposDepartamento();
+            return Json(tipos, JsonRequestBehavior.AllowGet);
         }
     }
 }
