@@ -320,8 +320,9 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\FichaInvestigador\Edit.cshtml" />
     <Content Include="Views\Convocatoria\Index.cshtml" />
-    <Content Include="Views\FichaInvestigador\Index.cshtml" />
     <Content Include="Views\FichaInvestigador\Create.cshtml" />
+    <Content Include="Views\FichaInvestigador\Delete.cshtml" />
+    <Content Include="Views\FichaInvestigador\Lista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Inicio\" />

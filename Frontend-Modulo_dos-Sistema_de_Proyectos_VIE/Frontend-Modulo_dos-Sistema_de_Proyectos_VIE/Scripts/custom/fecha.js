@@ -1,14 +1,29 @@
 ﻿
+function getDateObject(dateString) {
+    const arreglo = dateString.split("/");
+    const date = {
+        year: arreglo[2] + "",
+        month: arreglo[1] + "",
+        day: arreglo[0] + ""
+    }
+    return date
+}
+
 $("#btnFechaNacimiento").on("click",
     function () {
-        //$('.datepicker').datepicker();
         console.log("I'm working");
+        var date = getDateObject($("#campoFechaNacimiento").val().split(" ")[0])
+
         $('#fecha-nacimiento .input-group.date').datepicker({
-            format: "dd/mm/yyyy",
+            useCurrent: false,
             todayHighlight: false,
-            defaultViewDate: $("#campoFechaNacimiento").val()
+            format: "dd/mm/yyyy",
+            defaultViewDate: {
+                year: date.year,
+                month: date.month,
+                day: date.day
+            },
         });
-        
     }
 );
 

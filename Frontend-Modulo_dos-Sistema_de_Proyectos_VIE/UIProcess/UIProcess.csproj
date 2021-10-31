@@ -113,6 +113,7 @@
     <Compile Include="Modelos\UipCatalogoTituloAcademico.cs" />
     <Compile Include="Modelos\UipCatalogoUnidadAcademica.cs" />
     <Compile Include="Modelos\UipCatalogosGlobal.cs" />
+    <Compile Include="Modelos\UipInvestigadorListar.cs" />
     <Compile Include="Modelos\UipLibro.cs" />
     <Compile Include="Modelos\UipLicenciamiento.cs" />
     <Compile Include="Modelos\UipNacionalidad.cs" />

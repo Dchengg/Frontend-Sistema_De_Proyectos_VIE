@@ -16,7 +16,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
         // Métodos
 
         // GET: FichaInvestigador
-        public ActionResult Index()
+        public ActionResult Lista()
         {
             return View();
         }
@@ -92,14 +92,14 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
         }
 
         // GET: FichaInvestigador/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(string numeroIdentidad)
         {
             return View();
         }
 
         // POST: FichaInvestigador/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(FichaInvestigadorViewModel modelo)
         {
             try
             {
