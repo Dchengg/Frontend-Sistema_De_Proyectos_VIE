@@ -14,8 +14,10 @@ namespace UIProcess.Modelos
         [DataMember]
         public string NumeroIdentidad { get; set; }
         [DataMember]
-        public string TipoIdentificacion { get; set; }
+        public string Nombre { get; set; }
         [DataMember]
-        public string NombreApellido { get; set; }
+        public string PrimerApellido { get; set; }
+        [DataMember]
+        public byte[] Fotografia { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
         // Métodos
 
         // GET: FichaInvestigador
-        public ActionResult Lista()
+        public ActionResult Index()
         {
             return View();
         }
@@ -56,6 +56,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
         // GET: FichaInvestigador/Edit/5
         public ActionResult Edit(string id)
         {
+            
             UipRespuesta<UipInvestigadorConsultar> respuesta = Consultor.ConsultarInvestigador(id);
             if (respuesta.estaSinErrores())
             {
@@ -67,6 +68,26 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
                 // Manejo de un error
                 return RedirectToAction("Error", routeValues: new { respuesta });
             }
+        }
+
+        [HttpPost]
+        public ActionResult EditarTelefono(IEnumerable<TelefonoViewModel> telefonos)
+        {
+            Console.WriteLine(telefonos);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EliminarTelefono(TelefonoViewModel telefono)
+        {
+            Console.WriteLine(telefono);
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AgregarTelefono(IEnumerable<TelefonoViewModel> telefonos)
+        {
+            return View(telefonos);
         }
 
         // GET: FichaInvestigador/Error
@@ -91,25 +112,39 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
             }
         }
 
-        // GET: FichaInvestigador/Delete/5
-        public ActionResult Delete(string numeroIdentidad)
+        // GET: FichaInvestigador/List
+        public ActionResult List()
         {
-            return View();
+            UipRespuesta<List<UipInvestigadorListar>> respuesta = Consultor.ConsultarListaInvestigadores();
+            if (respuesta.estaSinErrores())
+            {
+                List<InvestigadorListarViewModel> lista = new List<InvestigadorListarViewModel>();
+                foreach (var item in respuesta.ObjetoRespuesta)
+                {
+                    lista.Add(new InvestigadorListarViewModel());
+                }
+                List<InvestigadorListarViewModel> modeloListarInvestigadores = ViewModelMapper.MapearListaInvestigadores(respuesta.ObjetoRespuesta);
+                return View(modeloListarInvestigadores);
+            }
+            else
+            {
+                // Manejo de un error
+                return RedirectToAction("Error", routeValues: new { respuesta });
+            }
         }
 
         // POST: FichaInvestigador/Delete/5
         [HttpPost]
-        public ActionResult Delete(FichaInvestigadorViewModel modelo)
+        public ActionResult Delete(string id)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                Consultor.EliminarInvestigador(id);
+                return RedirectToAction("List");                
             }
             catch
             {
-                return View();
+                return RedirectToAction("Error");
             }
         }
     }

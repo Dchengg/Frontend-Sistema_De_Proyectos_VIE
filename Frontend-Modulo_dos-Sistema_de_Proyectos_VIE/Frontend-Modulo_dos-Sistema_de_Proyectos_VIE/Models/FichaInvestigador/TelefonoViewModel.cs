@@ -9,7 +9,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         [Required]
         [Display(Name = "Tipo de teléfono")]
         public string Tipo { get; set; }
+
+        [HiddenInput]
         public int IdTipoTelefono { get; set; }
+
+        [Display(Name = "Tipo de teléfono")]
         public IEnumerable<SelectListItem> CatalogoTipoTelefono { get; set; }
 
         [Required]

@@ -118,6 +118,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Configuracion\PerfilCatalogos.cs" />
     <Compile Include="Configuracion\PerfilInvestigador.cs" />
+    <Compile Include="Configuracion\PerfilInvestigadorListar.cs" />
     <Compile Include="Controllers\Convocatoria\ConvocatoriaController.cs" />
     <Compile Include="Controllers\FichaInvestigador\FichaInvestigadorController.cs" />
     <Compile Include="Controllers\InicioController\InicioController.cs" />
@@ -135,6 +136,7 @@
     <Compile Include="Models\FichaInvestigador\ExperienciaAcademicaViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\FichaInvestigadorViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\IdiomaViewModel.cs" />
+    <Compile Include="Models\FichaInvestigador\InvestigadorListarViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\LibroViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\LicenciamientoViewModel.cs" />
     <Compile Include="Models\FichaInvestigador\NacionalidadViewModel.cs" />
@@ -179,7 +181,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\custom\fecha.js" />
-    <Content Include="Scripts\custom\perfilesAcademicos.js" />
+    <Content Include="Scripts\custom\modales.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -321,8 +323,8 @@
     <Content Include="Views\FichaInvestigador\Edit.cshtml" />
     <Content Include="Views\Convocatoria\Index.cshtml" />
     <Content Include="Views\FichaInvestigador\Create.cshtml" />
-    <Content Include="Views\FichaInvestigador\Delete.cshtml" />
-    <Content Include="Views\FichaInvestigador\Lista.cshtml" />
+    <Content Include="Views\FichaInvestigador\EditarTelefono.cshtml" />
+    <Content Include="Views\FichaInvestigador\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Inicio\" />

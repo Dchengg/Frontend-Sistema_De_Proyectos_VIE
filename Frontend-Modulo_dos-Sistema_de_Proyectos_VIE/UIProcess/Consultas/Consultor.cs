@@ -89,5 +89,40 @@ namespace UIProcess.Consultas
             }
 
         }
+
+        public static UipRespuesta<List<UipInvestigadorListar>> ConsultarListaInvestigadores()
+        {
+            try
+            {
+                HttpResponseMessage respuesta = Api.GetAsync("Investigador/").Result;
+                return respuesta.Content.ReadAsAsync<UipRespuesta<List<UipInvestigadorListar>>>().Result;
+            }
+            catch (HttpRequestException)
+            {
+                return new UipRespuesta<List<UipInvestigadorListar>>()
+                {
+                    CodigoRespuesta = -101,
+                    MensajeRespuesta = "Hubo un error al realizar la solicitud al servidor. Verifique que está conectado e inténtelo de nuevo.",
+                    ObjetoRespuesta = null,
+                    Estado = false
+                };
+            }
+            catch (AggregateException)
+            {
+                return new UipRespuesta<List<UipInvestigadorListar>>()
+                {
+                    CodigoRespuesta = -102,
+                    MensajeRespuesta = "Hubo un error durante la lectura de la lista de los investigadores, inténtelo de nuevo.",
+                    ObjetoRespuesta = null,
+                    Estado = false
+                };
+            }
+
+        }
+
+        public static void EliminarInvestigador(string id)
+        {
+            HttpResponseMessage respuesta = Api.DeleteAsync("Investigador/"+id).Result;
+        }
     }
 }

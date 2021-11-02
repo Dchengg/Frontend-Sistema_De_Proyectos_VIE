@@ -11,9 +11,9 @@ namespace UIProcess.Utilitarios
     {
         private static (int, string)[] sexos = new (int, string)[]
         {
-          (0, "Masculino"),
-          (1, "Femenino"),
-          (2, "Prefiero no decir")
+          (0, "MASCULINO"),
+          (1, "FEMENINO"),
+          (2, "PREFIERO NO DECIR")
         };
 
         private static List<SelectListItem> generarCatalogo((int,string)[] arreglo)
