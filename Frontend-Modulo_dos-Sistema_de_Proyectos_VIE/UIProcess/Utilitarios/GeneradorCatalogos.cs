@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace UIProcess.Utilitarios
@@ -16,7 +12,7 @@ namespace UIProcess.Utilitarios
           (2, "PREFIERO NO DECIR")
         };
 
-        private static List<SelectListItem> generarCatalogo((int,string)[] arreglo)
+        private static List<SelectListItem> generarCatalogo((int, string)[] arreglo)
         {
             var lista = new List<SelectListItem>();
             foreach (var item in arreglo)
@@ -40,7 +36,7 @@ namespace UIProcess.Utilitarios
             var arreglo = new (int, string)[100];
             for (int i = 1; i <= 100; i++)
             {
-                arreglo[i-1] = ( i, i.ToString());
+                arreglo[i - 1] = (i, i.ToString());
             }
             return generarCatalogo(arreglo);
         }

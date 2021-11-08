@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Web;
+﻿using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
 using Newtonsoft.Json;
-using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Web.Mvc;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoProyectos
@@ -19,7 +17,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <returns>Lista de las áreas frascati del proyecto</returns>
         public static List<Frascati> getFrascatis(string idAreaFrascati)
         {
-            using (var client = new HttpClient()) {
+            using (var client = new HttpClient())
+            {
 
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/Frascati")
                 {
@@ -80,7 +79,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             {
 
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/subfrascati");
-              
+
 
                 var responseTask = client.GetAsync(builder.Uri);
                 responseTask.Wait();
@@ -150,7 +149,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/Frascati/3")
                 {
-                   
+
                     Query = string.Format("codigoProyecto={0}&area={1}&subArea={2}", codigoProyecto, area, subArea)
                 };
                 var values = new Dictionary<string, string>
@@ -173,7 +172,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="idAreaFrascati"></param>
         /// <returns>String de respuesta de exito o fracaso de agregar el área frascati a la base de datos</returns>
-        public static String EliminarAreaFrascati(String idAreaFrascati) {
+        public static String EliminarAreaFrascati(String idAreaFrascati)
+        {
             using (var client = new HttpClient())
             {
 

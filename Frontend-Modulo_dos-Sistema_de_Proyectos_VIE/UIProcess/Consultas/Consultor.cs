@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 using UIProcess.Modelos;
 
 namespace UIProcess.Consultas
@@ -122,7 +119,7 @@ namespace UIProcess.Consultas
 
         public static void EliminarInvestigador(string id)
         {
-            HttpResponseMessage respuesta = Api.DeleteAsync("Investigador/"+id).Result;
+            HttpResponseMessage respuesta = Api.DeleteAsync("Investigador/" + id).Result;
         }
     }
 }

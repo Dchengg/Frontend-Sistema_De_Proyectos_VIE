@@ -91,7 +91,6 @@
     <Compile Include="Modelos\UipCorreo.cs" />
     <Compile Include="Modelos\UipEstudioRealizado.cs" />
     <Compile Include="Modelos\UipExperienciaAcademica.cs" />
-    <Compile Include="Modelos\UipFichaInvestigador.cs" />
     <Compile Include="Modelos\UipIdioma.cs" />
     <Compile Include="Modelos\UipInvestigadorConsultar.cs" />
     <Compile Include="Modelos\UipCatalogoDisciplinaCientifica.cs" />

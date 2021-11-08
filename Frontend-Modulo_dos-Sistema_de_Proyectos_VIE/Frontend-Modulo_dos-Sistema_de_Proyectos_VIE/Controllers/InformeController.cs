@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Web;
+﻿using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
 using Newtonsoft.Json;
-using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Web.Mvc;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
@@ -82,7 +80,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             {
 
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/Informe/AgregarInforme");
-                
+
                 var values = new Dictionary<string, string>
                 {
                     {"tituloInforme", tituloInforme},

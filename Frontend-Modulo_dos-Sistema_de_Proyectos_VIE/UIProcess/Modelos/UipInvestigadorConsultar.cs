@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Web;
 
 namespace UIProcess.Modelos
 {
@@ -27,7 +25,7 @@ namespace UIProcess.Modelos
         [DataMember]
         public UipPaisNacimiento PaisNacimiento { get; set; }
         [DataMember]
-        public UipNacionalidad Nacionalidad {get; set;}
+        public UipNacionalidad Nacionalidad { get; set; }
         [DataMember]
         public string Sexo { get; set; }
         [DataMember]

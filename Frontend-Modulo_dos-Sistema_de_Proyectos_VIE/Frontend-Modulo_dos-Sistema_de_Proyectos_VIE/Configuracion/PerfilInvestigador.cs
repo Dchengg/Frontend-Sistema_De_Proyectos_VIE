@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AutoMapper;
-using UIProcess.Modelos;
+﻿using AutoMapper;
 using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador;
+using System.Collections.Generic;
 using System.Web.Mvc;
-using UIProcess.Interfaces;
+using UIProcess.Modelos;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Configuracion
 {
@@ -40,7 +35,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Configuracion
             return nuevaLista;
         }
     }
-    
+
 
     public class NacionalidadResolver : IValueResolver<UipCatalogosInvestigador,
                                                      NacionalidadViewModel,
@@ -117,7 +112,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Configuracion
         }
     }
 
-    
+
 
     public class PerfilInvestigador : Profile
     {
@@ -145,7 +140,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Configuracion
             CreateMap<UipInvestigadorConsultar, SexoViewModel>()
                 .ForMember(dest => dest.Sexo, act => act.MapFrom(src => src.Sexo))
                 .ForMember(dest => dest.CatalogoSexo, act => act.MapFrom(src => CatalogosSingleton.Instancia.CatalogoSexo));
-           // CreateMap<CatalogosSingleton, SexoViewModel>();
+            // CreateMap<CatalogosSingleton, SexoViewModel>();
 
             // Categorias académicas
             CreateMap<UipCategoriaAcademica, CategoriaAcademicaViewModel>()
@@ -236,15 +231,15 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Configuracion
 
             // General
             CreateMap<UipInvestigadorConsultar, FichaInvestigadorViewModel>()
-                .ForMember(dest => dest.Sexo, act => act.MapFrom(src => new SexoViewModel() 
-                { 
-                    Sexo = src.Sexo, 
-                    CatalogoSexo = CatalogosSingleton.Instancia.CatalogoSexo 
+                .ForMember(dest => dest.Sexo, act => act.MapFrom(src => new SexoViewModel()
+                {
+                    Sexo = src.Sexo,
+                    CatalogoSexo = CatalogosSingleton.Instancia.CatalogoSexo
                 }))
-                .ForMember(dest => dest.PorcentajeNombramiento, act => act.MapFrom(src => new PorcentajeNombramientoViewModel() 
-                { 
-                    PorcentajeNombramiento = src.PorcentajeNombramiento, 
-                    CatalogoPorcentajeNombramiento = CatalogosSingleton.Instancia.CatalogoPorcentajeNombramiento 
+                .ForMember(dest => dest.PorcentajeNombramiento, act => act.MapFrom(src => new PorcentajeNombramientoViewModel()
+                {
+                    PorcentajeNombramiento = src.PorcentajeNombramiento,
+                    CatalogoPorcentajeNombramiento = CatalogosSingleton.Instancia.CatalogoPorcentajeNombramiento
                 }));
             CreateMap<CatalogosSingleton, FichaInvestigadorViewModel>();
 

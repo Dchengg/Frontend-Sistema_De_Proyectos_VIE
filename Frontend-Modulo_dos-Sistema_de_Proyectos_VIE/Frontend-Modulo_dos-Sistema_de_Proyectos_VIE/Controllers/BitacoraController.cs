@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Web;
-using System.Web.Mvc;
-using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
+﻿using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Web.Mvc;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
@@ -72,7 +70,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 var responseTask = client.PostAsync(builder.Uri, content);
                 responseTask.Wait();
                 var result = responseTask.Result;
-                var responseResult = "Failed";  
+                var responseResult = "Failed";
                 if (result.IsSuccessStatusCode) responseResult = "Sucess";
                 return responseResult;
             }

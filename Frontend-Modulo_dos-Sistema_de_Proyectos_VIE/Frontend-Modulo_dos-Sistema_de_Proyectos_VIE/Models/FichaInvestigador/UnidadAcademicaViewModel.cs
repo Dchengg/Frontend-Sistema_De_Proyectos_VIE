@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using UIProcess.Modelos;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 {
@@ -17,6 +13,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         public string NombreSede { get; set; }
         public int IdUnidadAcademica { get; set; }
         public IEnumerable<SelectListItem> CatalogoUnidadAcademica { get; set; }
-        
+
     }
 }

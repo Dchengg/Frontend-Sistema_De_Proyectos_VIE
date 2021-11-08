@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Web.Mvc;
-using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
@@ -118,7 +117,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 return tipo;
             }
         }
-        public static List<ModalidadProyecto> getModalidad ()
+        public static List<ModalidadProyecto> getModalidad()
         {
             using (var client = new HttpClient())
             {
@@ -151,7 +150,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             using (var client = new HttpClient())
             {
                 UriBuilder builder = new UriBuilder("https://localhost:44394/api/Proyecto")
-                {       
+                {
                     Query = string.Format("id={0}", codigo)
                 };
                 var responseTask = client.GetAsync(builder.Uri);
@@ -169,7 +168,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 {
                     System.Diagnostics.Debug.WriteLine("ERROR");
                     System.Diagnostics.Debug.WriteLine(result);
-                
+
                 }
                 return proyecto[0];
             }
@@ -215,7 +214,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 var responseTask = client.GetAsync(builder.Uri);
                 responseTask.Wait();
                 var result = responseTask.Result;
-                List<Proyecto> proyectos= new List<Proyecto>();
+                List<Proyecto> proyectos = new List<Proyecto>();
                 if (result.IsSuccessStatusCode)
                 {
                     var response = result.Content.ReadAsStringAsync();
@@ -233,7 +232,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
         [HttpPost]
-        public static String ModificarProyecto(string codigoProyecto,string  nuevaFechaIngreso, string nuevoNombre, string nuevoObjetivoGeneral, string nuevoIdEstado, string nuevoIdTipoProyecto, string nuevoIdTipoProceso, string nuevoIdModalidad, string nuevaActaVIE, string nuevaActaEscuela, string nuevaFechaAprobacion, string nuevaFechaInicio, string nuevaDescripcion, string nuevaJustificacion)
+        public static String ModificarProyecto(string codigoProyecto, string nuevaFechaIngreso, string nuevoNombre, string nuevoObjetivoGeneral, string nuevoIdEstado, string nuevoIdTipoProyecto, string nuevoIdTipoProceso, string nuevoIdModalidad, string nuevaActaVIE, string nuevaActaEscuela, string nuevaFechaAprobacion, string nuevaFechaInicio, string nuevaDescripcion, string nuevaJustificacion)
         {
 
             using (var client = new HttpClient())
@@ -259,7 +258,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                     {"nuevaFechaInicio", nuevaFechaInicio},
 
 
-                    
+
                     {"nuevaDescripcion", nuevaDescripcion},
                     {"nuevaJustificacion", nuevaJustificacion}
 

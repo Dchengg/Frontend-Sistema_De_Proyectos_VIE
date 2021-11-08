@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using UIProcess.Modelos;
-using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador;
-using AutoMapper;
+﻿using AutoMapper;
 using System.Web.Mvc;
 using UIProcess.Interfaces;
+using UIProcess.Modelos;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Configuracion
 {
@@ -24,7 +19,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Configuracion
         {
             CreateMap<ISelectListItem, SelectListItem>()
                 .ConvertUsing<CatalogoItemConverter>();
-            CreateMap<UipCatalogosInvestigador, CatalogosSingleton>();   
+            CreateMap<UipCatalogosInvestigador, CatalogosSingleton>();
         }
     }
 }

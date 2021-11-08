@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Web;
+﻿using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
 using Newtonsoft.Json;
-using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
+using System;
+using System.Collections.Generic;
+using System.Net.Http;
 using System.Web.Mvc;
 
 
@@ -18,7 +16,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>lista de ubicaciones geográficas</returns>
-        public static List<UbicacionGeografica>  GetUbicacionesGeograficas(String codigoProyecto)
+        public static List<UbicacionGeografica> GetUbicacionesGeograficas(String codigoProyecto)
         {
             using (var client = new HttpClient())
             {
@@ -138,7 +136,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 };
                 var values = new Dictionary<string, string>
                 {
-                    
+
                     {"idPais", idPais},
                     {"idRegion", idRegion},
                     {"idProvincia", idProvincia },

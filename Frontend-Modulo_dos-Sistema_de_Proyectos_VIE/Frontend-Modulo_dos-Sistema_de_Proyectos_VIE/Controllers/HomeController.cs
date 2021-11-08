@@ -1,12 +1,8 @@
+using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Web;
 using System.Web.Mvc;
-using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
-using System.Collections.Generic;
-using Newtonsoft.Json;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
@@ -85,7 +81,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             List<string> titulos = new List<string>();
             List<string> titulosInvestigador = new List<string>(new string[] { "Número de identidad", "Nombre Completo", "Correo Electronico" });
             List<string> titulosProyecto = new List<string>(new string[] { "Código", "Nombre del proyecto", "Investigador coordinador", "Fecha de inicio", "Fecha de finalización", "Oficial del proyecto" });
-            switch (tipoDeReportes){
+            switch (tipoDeReportes)
+            {
                 case "InvestigadorXCodigo":
                     String codigo = ReporteForm["criterioInput"].ToString();
                     investigadores = ReporteController.InvestigadoresXCodigo(codigo);

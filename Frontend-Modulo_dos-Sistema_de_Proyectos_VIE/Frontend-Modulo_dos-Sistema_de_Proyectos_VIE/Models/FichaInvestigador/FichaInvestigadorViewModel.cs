@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
@@ -53,7 +51,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
 
         public List<CategoriaAcademicaViewModel> CategoriasAcademicas { get; set; }
 
-        public List<UnidadAcademicaViewModel> UnidadesAcademicas{ get; set; }
+        public List<UnidadAcademicaViewModel> UnidadesAcademicas { get; set; }
 
         [Required]
         [Display(Name = "Fecha de ingreso a la institución")]
@@ -70,7 +68,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         public PorcentajeNombramientoViewModel PorcentajeNombramiento { get; set; }
 
         public List<PerfilAcademicoViewModel> PerfilesAcademicos { get; set; }
-        
+
         public List<EstudioRealizadoViewModel> EstudiosRealizados { get; set; }
 
         public IEnumerable<SelectListItem> CatalogoInstitucion { get; set; }

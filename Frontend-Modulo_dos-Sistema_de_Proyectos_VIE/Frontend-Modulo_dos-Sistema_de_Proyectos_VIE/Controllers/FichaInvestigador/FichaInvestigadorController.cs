@@ -1,10 +1,6 @@
-﻿using AutoMapper;
-using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador;
+﻿using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Web;
 using System.Web.Mvc;
 using UIProcess.Consultas;
 using UIProcess.Modelos;
@@ -56,7 +52,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
         // GET: FichaInvestigador/Edit/5
         public ActionResult Edit(string id)
         {
-            
+
             UipRespuesta<UipInvestigadorConsultar> respuesta = Consultor.ConsultarInvestigador(id);
             if (respuesta.estaSinErrores())
             {
@@ -140,7 +136,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
             try
             {
                 Consultor.EliminarInvestigador(id);
-                return RedirectToAction("List");                
+                return RedirectToAction("List");
             }
             catch
             {

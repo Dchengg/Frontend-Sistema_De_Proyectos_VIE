@@ -1,12 +1,9 @@
 ﻿using Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Web;
 using System.Web.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 {
@@ -64,7 +61,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
             }
         }
 
-        public static List<Investigador> InvestigadoresXDisciplina(String estado,String disciplina)
+        public static List<Investigador> InvestigadoresXDisciplina(String estado, String disciplina)
         {
             using (var client = new HttpClient())
             {
@@ -196,7 +193,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
         {
             using (var client = new HttpClient())
             {
-                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Reportes/GetIdentidad/") 
+                UriBuilder builder = new UriBuilder("https://localhost:44394/api/Reportes/GetIdentidad/")
                 {
                     Query = string.Format("numIdentidad={0}", numIdentidad)
                 };
@@ -244,7 +241,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 }
                 return disciplinas;
             }
-            
+
         }
 
         public static List<Escuela> getEscuelaInvestigador(string numIdentidad)
@@ -308,7 +305,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
                 var responseTask = client.PostAsync(builder.Uri, null);
                 responseTask.Wait();
                 var result = responseTask.Result;
-                List<Proyecto> proyectos= new List<Proyecto>();
+                List<Proyecto> proyectos = new List<Proyecto>();
                 if (result.IsSuccessStatusCode)
                 {
                     var response = result.Content.ReadAsStringAsync();
@@ -573,7 +570,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers
 
         public JsonResult GetPaises()
         {
-            List<Pais> paises  = UbicacionGeograficaController.getPaises();
+            List<Pais> paises = UbicacionGeograficaController.getPaises();
             return Json(paises, JsonRequestBehavior.AllowGet);
         }
 

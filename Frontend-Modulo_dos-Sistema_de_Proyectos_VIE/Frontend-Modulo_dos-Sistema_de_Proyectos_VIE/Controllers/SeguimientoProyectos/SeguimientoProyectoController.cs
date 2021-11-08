@@ -20,9 +20,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de los objetivos del proyecto</returns>
         public ActionResult UIDatosProyecto(String codigoProyecto)
-         {
+        {
 
-            List<EstadoProyecto>estadoPicker = ProyectoController.getEstadoProyecto();
+            List<EstadoProyecto> estadoPicker = ProyectoController.getEstadoProyecto();
 
             TempData["estadoPicker"] = estadoPicker;
 
@@ -66,17 +66,17 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             String objetivoGeneralInput = formProyecto["objetivoGeneralInput"].ToString();
 
-            
-                        String fechaIngresoInput = formProyecto["fechaIngresoInput"].ToString();
+
+            String fechaIngresoInput = formProyecto["fechaIngresoInput"].ToString();
             String estadoInput = formProyecto["estadoInput"].ToString();
             String tipoProcesoInput = formProyecto["tipoProcesoInput"].ToString();
             String tipoProyectoInput = formProyecto["tipoProyectoInput"].ToString();
-                            String fechaAprovacionInput = formProyecto["fechaAprovacionInput"].ToString();
+            String fechaAprovacionInput = formProyecto["fechaAprovacionInput"].ToString();
             String fechaEjecucionInput = formProyecto["fechaEjecucionInput"].ToString();
 
             String modalidadInput = formProyecto["modalidadInput"].ToString();
 
-        String resultPost =  ProyectoController.ModificarProyecto(codigoProyecto, fechaIngresoInput, nombreProyectoInput, objetivoGeneralInput, estadoInput, tipoProyectoInput, tipoProcesoInput, modalidadInput, Proyecto.NumeroActaVIE, Proyecto.NumeroActaEscuela, fechaAprovacionInput, fechaEjecucionInput, descripcionInput, justificacionInput);
+            String resultPost = ProyectoController.ModificarProyecto(codigoProyecto, fechaIngresoInput, nombreProyectoInput, objetivoGeneralInput, estadoInput, tipoProyectoInput, tipoProcesoInput, modalidadInput, Proyecto.NumeroActaVIE, Proyecto.NumeroActaEscuela, fechaAprovacionInput, fechaEjecucionInput, descripcionInput, justificacionInput);
 
 
             System.Diagnostics.Debug.WriteLine(resultPost);
@@ -174,7 +174,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             String organizacionField = formPresupuesto["organizacionField"].ToString();
             String anoInput = formPresupuesto["anoInput"].ToString();
             PresupuestoController.AgregarPresupuesto(fuentes, organizacionField, partida, anoInput, montoInput, codigoProyecto);
-            String Result = BitacoraController.AgregarBitacora("Agrego un presupuesto: "+ fuentes, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+            String Result = BitacoraController.AgregarBitacora("Agrego un presupuesto: " + fuentes, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             List<Fuente> fuentePicker = PresupuestoController.getFuente();
             TempData["fuentePicker"] = fuentePicker;
@@ -187,7 +187,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View("UIPresupuesto", Presupuesto);
         }
         [HttpDelete]
-        public ActionResult UIPresupuesto(String idPresupuesto,String codigoProyecto)
+        public ActionResult UIPresupuesto(String idPresupuesto, String codigoProyecto)
         {
 
             PresupuestoController.EliminarPresupuesto(idPresupuesto);
@@ -242,7 +242,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="idArea"></param>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las áreas frascati del proyecto con el área frascati eliminado</returns>
-        
+
         [HttpDelete]
         public ActionResult UIAreasFrascati(String idArea, string codigoProyecto)
         {
@@ -295,15 +295,15 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de los ODS del proyecto  </returns>           
         [HttpDelete]
-        public ActionResult UIAgregarODS(String idODS,String codigoProyecto)
+        public ActionResult UIAgregarODS(String idODS, String codigoProyecto)
         {
             List<ODS> odsPicker = ODSController.getODS();
 
             TempData["odsPicker"] = odsPicker;
 
-                String resultPost = ODSController.EliminarODS(idODS);
-                System.Diagnostics.Debug.WriteLine(resultPost);
-                List<SubODS> subodsPicker = ODSController.getsubODS();
+            String resultPost = ODSController.EliminarODS(idODS);
+            System.Diagnostics.Debug.WriteLine(resultPost);
+            List<SubODS> subodsPicker = ODSController.getsubODS();
 
             TempData["subodsPicker"] = subodsPicker;
             List<ODS> ODSs = ODSController.getODSs(codigoProyecto);
@@ -389,14 +389,14 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             String Result = PalabrasClaveController.AgregarPalabraClave(palabraClave, codigoProyecto);
             System.Diagnostics.Debug.WriteLine(Result);
-            BitacoraController.AgregarBitacora("Se agrego la Palabra Clave: "+ palabraClave, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+            BitacoraController.AgregarBitacora("Se agrego la Palabra Clave: " + palabraClave, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<PalabrasClave> palabrasClave = PalabrasClaveController.getPalabrasClave(codigoProyecto);
-            
+
             ViewData["NombreProyecto"] = Proyecto.Nombre;
-            return View("UIPalabrasClave",palabrasClave);
+            return View("UIPalabrasClave", palabrasClave);
         }
         /// <summary>
         /// Elimina la palabra clave selecionada de la interfaz y llama al controlador para eliminarla en la base de datos
@@ -410,7 +410,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             String resultPost = PalabrasClaveController.EliminarPalabraClave(idPalabraClave);
             System.Diagnostics.Debug.WriteLine(resultPost);
-            BitacoraController.AgregarBitacora("Se elimino  una Palabra Clave: "+ idPalabraClave, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+            BitacoraController.AgregarBitacora("Se elimino  una Palabra Clave: " + idPalabraClave, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<PalabrasClave> palabrasClave = PalabrasClaveController.getPalabrasClave(codigoProyecto);
@@ -436,7 +436,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Poblacion> poblacionPicker = PoblacionBeneficiariaController.getPoblaciones();
-            BitacoraController.AgregarBitacora("Se agrego  una Poblacion Beneficiaria "+ poblacion, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+            BitacoraController.AgregarBitacora("Se agrego  una Poblacion Beneficiaria " + poblacion, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             TempData["poblacionPicker"] = poblacionPicker;
 
@@ -459,7 +459,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             System.Diagnostics.Debug.WriteLine(resultPost);
 
 
-            BitacoraController.AgregarBitacora("Se elimino  una Poblacion Beneficiaria: "+ idPoblacion, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+            BitacoraController.AgregarBitacora("Se elimino  una Poblacion Beneficiaria: " + idPoblacion, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
 
             List<Poblacion> poblaciones = PoblacionBeneficiariaController.getPoblaciones(codigoProyecto);
@@ -479,12 +479,13 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las compras del proyecto</returns>
-        public ActionResult UICompras(String codigoProyecto) {
-            
+        public ActionResult UICompras(String codigoProyecto)
+        {
+
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Compras> compras = ComprasController.getCompras(codigoProyecto);
             long total = 0;
-            foreach(Compras elem in compras)
+            foreach (Compras elem in compras)
             {
                 int precio = Int32.Parse(elem.PrecioTotal);
                 total = total + precio;
@@ -512,7 +513,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
 
             ViewData["CodigoProyecto"] = codigoProyecto;
-            BitacoraController.AgregarBitacora("Se agrego  una compra de: "+ nombreDelProducto, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+            BitacoraController.AgregarBitacora("Se agrego  una compra de: " + nombreDelProducto, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             String Result = ComprasController.AgregarCompra(nombreDelProducto, cantidadDelProducto, precioTotalDeLaCompra, codigoProyecto);
             System.Diagnostics.Debug.WriteLine(Result);
@@ -545,7 +546,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             String resultPost = ComprasController.EliminarCompra(idCompra);
             System.Diagnostics.Debug.WriteLine(resultPost);
-            BitacoraController.AgregarBitacora("Se elimino  la compra: "+ idCompra, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+            BitacoraController.AgregarBitacora("Se elimino  la compra: " + idCompra, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Compras> compras = ComprasController.getCompras(codigoProyecto);
@@ -568,8 +569,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las bitácoras del proyecto</returns>
-        public ActionResult UIBitacora(String codigoProyecto) {
-            
+        public ActionResult UIBitacora(String codigoProyecto)
+        {
+
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Bitacora> bitacora = BitacoraController.getBitacora(codigoProyecto);
 
@@ -593,7 +595,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Bitacora> bitacora = BitacoraController.getBitacora(codigoProyecto);
- 
+
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIBitacora", bitacora);
@@ -632,9 +634,10 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de las incidencias del proyecto</returns>
-        public ActionResult UIIncidencias(String codigoProyecto){
+        public ActionResult UIIncidencias(String codigoProyecto)
+        {
             List<Incidencia> incidencias = IncidenciaController.getIncidencias(codigoProyecto);
-           
+
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
@@ -677,7 +680,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             String Result = IncidenciaController.eliminarIncidencia(idIncidencia);
             System.Diagnostics.Debug.WriteLine(Result);
 
-            BitacoraController.AgregarBitacora("Se eliminó la incidencia: " +  idIncidencia, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+            BitacoraController.AgregarBitacora("Se eliminó la incidencia: " + idIncidencia, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Incidencia> incidencias = IncidenciaController.getIncidencias(codigoProyecto);
@@ -692,7 +695,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista con todos los informes tanto entregados como programados</returns>
-        public ActionResult UIProgramacionInformes(String codigoProyecto){
+        public ActionResult UIProgramacionInformes(String codigoProyecto)
+        {
 
             List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
 
@@ -700,7 +704,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Informe> informes = InformeController.getInformes(codigoProyecto);
-            
+
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIProgramacionInformes", informes);
@@ -718,20 +722,20 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             String idTipoInforme = formProgramacionInformes["tipoInformeDropdown"].ToString();
             System.Diagnostics.Debug.WriteLine(idTipoInforme);
-            
+
             String títuloDelInforme = formProgramacionInformes["títuloDelInforme"].ToString();
             System.Diagnostics.Debug.WriteLine(títuloDelInforme);
 
             String fechaProgramada = formProgramacionInformes["fechaProgramada"].ToString();
             System.Diagnostics.Debug.WriteLine(fechaProgramada);
-           
+
 
             List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
 
             TempData["informePicker"] = informePicker;
             String Result = BitacoraController.AgregarBitacora("Se agrego un Informe: " + títuloDelInforme, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
-            String resultPost = InformeController.AgregarInforme(títuloDelInforme,idTipoInforme,fechaProgramada, "pendiente", "pendiente", "pendiente", codigoProyecto);
+            String resultPost = InformeController.AgregarInforme(títuloDelInforme, idTipoInforme, fechaProgramada, "pendiente", "pendiente", "pendiente", codigoProyecto);
             System.Diagnostics.Debug.WriteLine(resultPost);
 
             List<Informe> informes = InformeController.getInformes(codigoProyecto);
@@ -768,13 +772,14 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista con el nuevo departamento agregado</returns>
         [HttpPost]
-        public ActionResult UIDepartamentos(FormCollection formDepartamentoDropdown, String codigoProyecto) {
+        public ActionResult UIDepartamentos(FormCollection formDepartamentoDropdown, String codigoProyecto)
+        {
 
             String departamento = formDepartamentoDropdown["DepartamentoDropdown"].ToString();
             System.Diagnostics.Debug.WriteLine(departamento);
             String idTipoDepartamento = formDepartamentoDropdown["tipoDepartamentoDropdown"].ToString();
             System.Diagnostics.Debug.WriteLine(idTipoDepartamento);
-            String resultPost = DepartamentosController.AgregarDepartamento(idTipoDepartamento, departamento, codigoProyecto );
+            String resultPost = DepartamentosController.AgregarDepartamento(idTipoDepartamento, departamento, codigoProyecto);
             System.Diagnostics.Debug.WriteLine(resultPost);
             List<Departamento> departamentos = DepartamentosController.getDepartamento(codigoProyecto);
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
@@ -823,7 +828,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de los departamentos del proyecto</returns>
-        public ActionResult UIDepartamentos( String codigoProyecto)
+        public ActionResult UIDepartamentos(String codigoProyecto)
         {
 
             List<Departamento> departamentos = DepartamentosController.getDepartamento(codigoProyecto);
@@ -847,7 +852,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de la ubicación geográfica del proyecto</returns>
-        public ActionResult UIUbicacionGeografica(String codigoProyecto){
+        public ActionResult UIUbicacionGeografica(String codigoProyecto)
+        {
 
             List<Pais> paises = UbicacionGeograficaController.getPaises();
             List<Region> regiones = UbicacionGeograficaController.getRegiones();
@@ -888,11 +894,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             String pais = formUbicacionGeografica["paisDropdown"].ToString();
             String provincia;
             String region;
-            String nombrePais =" ";
+            String nombrePais = " ";
 
-            foreach(var elem in paises)
+            foreach (var elem in paises)
             {
-                if(elem.Id == pais)
+                if (elem.Id == pais)
                 {
                     nombrePais = elem.Nombre;
                     break;
@@ -901,7 +907,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             System.Diagnostics.Debug.WriteLine(pais);
 
-            if (nombrePais.Equals("Costa Rica")){
+            if (nombrePais.Equals("Costa Rica"))
+            {
                 provincia = formUbicacionGeografica["provinciaDropdown"].ToString();
                 region = formUbicacionGeografica["regionDropdown"].ToString();
             }
@@ -951,8 +958,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de los contratos del proyecto</returns>
-        public ActionResult UIContratos(String codigoProyecto){
-            
+        public ActionResult UIContratos(String codigoProyecto)
+        {
+
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
@@ -965,7 +973,8 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>  
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de los informes y para ingresar algun informe</returns>
-        public ActionResult UIIngresarInforme(String codigoProyecto) {
+        public ActionResult UIIngresarInforme(String codigoProyecto)
+        {
 
             List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
 
@@ -981,7 +990,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         [HttpPost]
         public ActionResult UIIngresarInforme(FormCollection informeDatos, String codigoProyecto)
         {
-                      
+
 
             List<TipoInforme> informePicker = InformeController.getTiposDeInforme();
 
@@ -999,8 +1008,9 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista para ampliar fechas</returns>
-        public ActionResult UIAmpliarFechas(String codigoProyecto) {
-            
+        public ActionResult UIAmpliarFechas(String codigoProyecto)
+        {
+
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
             ViewData["NombreProyecto"] = Proyecto.Nombre;
@@ -1029,10 +1039,10 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             String observacionesAmpliarFechas = formAmpliarFechas["observacionesAmpliarFechas"].ToString();
             System.Diagnostics.Debug.WriteLine(observacionesAmpliarFechas);
 
-            
+
             String resultPost = AmpliarFechasController.AmpliarFechas(fechaAprovacion, fechaFinalizacion, fechaActualFinalizacion, observacionesAmpliarFechas, codigoProyecto);
             System.Diagnostics.Debug.WriteLine(resultPost);
-            String Result = BitacoraController.AgregarBitacora("Se ampliaron fechas de "+ fechaAprovacion + " a " + " " + fechaFinalizacion, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+            String Result = BitacoraController.AgregarBitacora("Se ampliaron fechas de " + fechaAprovacion + " a " + " " + fechaFinalizacion, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
@@ -1070,7 +1080,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
             String idSetDatos = Proyecto.Id;
 
-            String result = InvestigadorController.EliminarInvestigadorAsociado(id,idSetDatos);
+            String result = InvestigadorController.EliminarInvestigadorAsociado(id, idSetDatos);
 
             String Result = BitacoraController.AgregarBitacora("Se elimino el investigador" + id + " del proyecto" + codigoProyecto, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
             List<Investigador> investigadores = InvestigadorController.getInvestigadores(codigoProyecto);
@@ -1103,7 +1113,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         }
 
         [HttpPost]
-        public ActionResult UIAgregarInvestigadorAsociado(FormCollection agregarInvestigadorAso, String codigoProyecto) 
+        public ActionResult UIAgregarInvestigadorAsociado(FormCollection agregarInvestigadorAso, String codigoProyecto)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             String pickerInvestigador = agregarInvestigadorAso["pickerInvestigador"].ToString();
@@ -1122,14 +1132,14 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIInvestigadoresAsociados", Investigador);
         }
-        
+
 
         /// <summary>
         /// Redirige a la vista que se encarga de modificar los datos del investigador selecionado
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista para modificar los datos del investigador seleccionado</returns>
-        public ActionResult UIModificarInvestigadorAsociado(string codigoProyecto) 
+        public ActionResult UIModificarInvestigadorAsociado(string codigoProyecto)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             ViewData["CodigoProyecto"] = codigoProyecto;
@@ -1156,7 +1166,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista de los investigadores asociados y el investigador coordinador para poder cambiar al coordinador</returns>
-       [HttpPost]
+        [HttpPost]
 
         public ActionResult UICambiarInvestigadorCoordinador(String idInvestigador, String codigoProyecto)
         {
@@ -1176,7 +1186,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         /// </summary>
         /// <param name="codigoProyecto"></param>
         /// <returns>Vista con el cronograma del proyecto</returns>
-        public ActionResult UICronograma(String codigoProyecto) 
+        public ActionResult UICronograma(String codigoProyecto)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
             List<Actividad> Actividades = ObjetivosEspecificosController.getActividades(codigoProyecto);
@@ -1223,7 +1233,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["CodigoProyecto"] = codigoProyecto;
 
             ViewData["numEquipo"] = numEquipo;
-            String Result = BitacoraController.AgregarBitacora("Se eliminaron las horas de investigador: "+ nombreInves  + " " + idHoras, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+            String Result = BitacoraController.AgregarBitacora("Se eliminaron las horas de investigador: " + nombreInves + " " + idHoras, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
 
             ViewData["NombreProyecto"] = Proyecto.Nombre;
@@ -1246,7 +1256,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             String horaInput = formHoras["horaInput"].ToString();
 
             HorasController.AgregarHoras(numEquipo, tipoHoraInput, fechaInicioInput, fechaFinalizacionInput, horaInput);
-            BitacoraController.AgregarBitacora("Se agregaron " +horaInput+" horas de investigador a " + nombreInves, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+            BitacoraController.AgregarBitacora("Se agregaron " + horaInput + " horas de investigador a " + nombreInves, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             List<Horas> horas = HorasController.getHoras(codigoProyecto, numIdentidad);
             ViewData["numEquipo"] = numEquipo;
@@ -1314,7 +1324,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             return View("UIObjetivosEspecificos");
         }
         [HttpPost]
-        public ActionResult UIObjetivosEspecificosMeta(FormCollection formAgregarMeta,String codigoProyecto, String objetivoEspecificoID)
+        public ActionResult UIObjetivosEspecificosMeta(FormCollection formAgregarMeta, String codigoProyecto, String objetivoEspecificoID)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
 
@@ -1328,7 +1338,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
 
 
             ObjetivosEspecificosController.AgregarMeta(nombreInput, cumplidaInput, objetivoEspecificoID, descripcionInput);
-            BitacoraController.AgregarBitacora("Se agrego la meta " + nombreInput , "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+            BitacoraController.AgregarBitacora("Se agrego la meta " + nombreInput, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
             List<Meta> metas = ObjetivosEspecificosController.getMetas(objetivoEspecificoID);
             TempData["metas"] = metas;
@@ -1390,7 +1400,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
         }
 
         [HttpDelete]
-         public ActionResult UIObjetivosEspecificosRiesgo(String codigoProyecto, String objetivoEspecificoID,  String riesgoId)
+        public ActionResult UIObjetivosEspecificosRiesgo(String codigoProyecto, String objetivoEspecificoID, String riesgoId)
         {
             Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
 
@@ -1421,39 +1431,39 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             ViewData["NombreProyecto"] = Proyecto.Nombre;
             return View("UIObjetivosEspecificos");
         }
-     
-    [HttpDelete]
-    public ActionResult UIObjetivosEspecificosMeta(String codigoProyecto, String objetivoEspecificoID, String metaId)
-    {
-        Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
+
+        [HttpDelete]
+        public ActionResult UIObjetivosEspecificosMeta(String codigoProyecto, String objetivoEspecificoID, String metaId)
+        {
+            Proyecto Proyecto = ProyectoController.getProyecto(codigoProyecto);
 
 
 
 
 
-        ObjetivosEspecificosController.EliminarMeta(metaId);
+            ObjetivosEspecificosController.EliminarMeta(metaId);
 
-        List<Meta> metas = ObjetivosEspecificosController.getMetas(objetivoEspecificoID);
-        TempData["metas"] = metas;
+            List<Meta> metas = ObjetivosEspecificosController.getMetas(objetivoEspecificoID);
+            TempData["metas"] = metas;
 
-        List<Riesgo> riesgo = ObjetivosEspecificosController.getRiesgo(objetivoEspecificoID);
-        TempData["riesgo"] = riesgo;
+            List<Riesgo> riesgo = ObjetivosEspecificosController.getRiesgo(objetivoEspecificoID);
+            TempData["riesgo"] = riesgo;
 
-        List<Producto> productos = ObjetivosEspecificosController.getProductos(objetivoEspecificoID);
-        TempData["productos"] = productos;
+            List<Producto> productos = ObjetivosEspecificosController.getProductos(objetivoEspecificoID);
+            TempData["productos"] = productos;
 
-        BitacoraController.AgregarBitacora("Se elimino el resigo " + metaId, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
+            BitacoraController.AgregarBitacora("Se elimino el resigo " + metaId, "Sample", "11111", DateTime.Now.ToString(), codigoProyecto);
 
-        List<ObjetivoEspecifico> obj = ObjetivosEspecificosController.getGetObjetivoByCodigo(objetivoEspecificoID);
+            List<ObjetivoEspecifico> obj = ObjetivosEspecificosController.getGetObjetivoByCodigo(objetivoEspecificoID);
             ViewData["metodologiaText"] = obj[0].Metodologia;
             ViewData["objetivoText"] = obj[0].Objetivo;
             ViewData["ObjetivoGeneral"] = Proyecto.ObjetivoGeneral;
 
             ViewData["CodigoObjetivo"] = objetivoEspecificoID;
-        ViewData["CodigoProyecto"] = codigoProyecto;
-        ViewData["NombreProyecto"] = Proyecto.Nombre;
-        return View("UIObjetivosEspecificos");
-    }
+            ViewData["CodigoProyecto"] = codigoProyecto;
+            ViewData["NombreProyecto"] = Proyecto.Nombre;
+            return View("UIObjetivosEspecificos");
+        }
         public ActionResult UIVisualizacionInvestigador(Investigador investigador)
         {
             System.Diagnostics.Debug.WriteLine(investigador.NumIdentidad);
@@ -1467,7 +1477,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.SeguimientoPr
             List<Pais> paises = UbicacionGeograficaController.getPaises();
             String nombrePais = null;
 
-            foreach(var pais in paises)
+            foreach (var pais in paises)
             {
                 if (pais.Id.Equals(investigadores[0].PaisNacimiento))
                 {
