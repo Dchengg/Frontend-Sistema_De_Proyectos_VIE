@@ -17,7 +17,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Models.FichaInvestigador
         public int AnoInicio { get; set; }
 
         [Required]
-        [Display(Name = "Año de termino")]
-        public int AnoTermino { get; set; }
+        [Display(Name = "Año de finalización")]
+        public int AnoFinalizacion { get; set; }
     }
 }

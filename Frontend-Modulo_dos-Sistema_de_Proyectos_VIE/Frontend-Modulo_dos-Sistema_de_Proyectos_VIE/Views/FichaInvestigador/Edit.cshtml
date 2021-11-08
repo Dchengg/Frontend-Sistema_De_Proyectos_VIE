@@ -98,7 +98,7 @@
                         }
                         else
                         {
-                            <input class="form-control" placeholder="No indica segundo apelldio" />
+                            <input class="form-control" placeholder="No indica segundo apellido" />
                         }
                     }
                 </div>
@@ -171,6 +171,7 @@
                                 <thead>
                                     <tr>
                                         <th>Unidad académica</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -182,11 +183,23 @@
                                                                    new SelectList(unidadAcademica.CatalogoUnidadAcademica, "Value", "Text", unidadAcademica.IdUnidadAcademica.ToString()),
                                                                    htmlAttributes: new { @class = "form-control", id = "UnidadAcademica" })
                                             </td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger">Eliminar</button>
+                                            </td>
                                         </tr>
+                                        
                                     }
                                 </tbody>
                             </table>
-
+                            <hr />
+                            <p>Agregar nueva unidad académica</p>
+                            <div class="row ">
+                                @Html.DropDownList("agregarUnidadAcademica",new SelectList(Model.UnidadesAcademicas[0].CatalogoUnidadAcademica, "Value", "Text"),
+                                                    htmlAttributes: new { @class = "form-control", id = "AgregarUnidadAcademica" })
+                            </div>
+                            <div class="row d-flex flex-row-reverse">
+                                <button type="button" class="btnAzul m-3 ">Agregar unidad académica</button>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btnGrande btnAzul">Guardar cambios</button>
@@ -301,12 +314,16 @@
                                 <div class="row">
                                     <input class="form-control" placeholder="Correo electrónico" />
                                 </div>
+                                <label>Privado</label>
+                                <div class="form-check ml-1">
+                                    <input class="form-check-input" type="checkbox" value="" id="telefonoPrivacidad">
+                                </div>
                                 <div class="row d-flex flex-row-reverse">
                                     <button type="button" class="btnAzul m-3 ">Agregar correo</button>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary">Guardar cambios</button>
+                                <button type="button" class="btnAzul btnGrande">Guardar cambios</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
@@ -369,7 +386,7 @@
                     </div>
                 </div>
 
-                <!-- Categorias academicas (Debe agregarse correctamente el catálogo, ahorita no está global -->      
+                <!-- Categorias academicas (Debe agregarse un catálogo a nivel general de la ficha, ahorita solo esta a nivel de CategoriaAcademicaViewModel) -->      
                 <div class="row mt-3">
                     <div class="col-md-6 ">
                         <label>Categoría académica</label>
@@ -394,7 +411,9 @@
                 </div>
 
             </div>
-
+        </div>
+        <div class="d-flex justify-content-center mt-3">
+            <button type="button" class="btnAzul btnGrande">Guardar información personal</button> 
         </div>
     </div>
 
@@ -493,7 +512,7 @@
                             <label>Tipo de perfil</label>
                         </div>
                         <div class="mx-2 my-2">
-                            <!-- Se debe agregar a nivel global de FichaInvestigadorViewModel -->
+                            <!-- Se debe agregar a nivel de FichaInvestigadorViewModel, de momento solo esta a nivel de PerfilAcademicoViewModel-->
                             @Html.DropDownList("catTipoPerfil",
                                    new SelectList(Model.PerfilesAcademicos[0].CatalogoTipoPerfil, "Value", "Text"),
                                    htmlAttributes: new { @class = "form-control", id = "CategoriaAcademica" })
@@ -532,7 +551,7 @@
         <div class="row align-items-center justify-items-center mt-3">
             <div class="col-md-4 form-inline">
                 <label class="col-md-6" for="gradoAcadInput">Título académico</label>
-                <!-- Se debe agregar correctamente el catálogo a nivel de FichaInvestigadorViewModel -->
+                <!-- Se debe agregar correctamente el catálogo a nivel de FichaInvestigadorViewModel, ahorita esta solo a nivel de EstudioRealizadoViewModel -->
                 @Html.DropDownList("catalogoTituloAcademico_EstudioRealizado", new SelectList(Model.EstudiosRealizados[0].CatalogoTituloAcademico, "Value", "Text"), htmlAttributes: new { @class = "form-control col-md-6 form-inline" })
             </div>
             <div class="col-md-4 form-inline">
@@ -855,8 +874,6 @@
                 <tbody>
                     @{
                         int contadorExperiencia = 0;
-                        int a = 2012;
-                        int b = 2014;
                         foreach (var experiencia in Model.ExperienciasAcademicas)
                         {
                             <tr>
@@ -870,15 +887,7 @@
                                     @experiencia.AnoInicio
                                 </td>
                                 <td>
-                                    @{ 
-                                        if (contadorExperiencia == 0) {
-                                            <p>@a</p>;
-                                        } else
-                                        {
-                                                <p>@b</p>
-                                        }
-                                    }
-                                    @*@experiencia.AnoTermino*@
+                                   @experiencia.AnoFinalizacion
                                 </td>
                                 <td>
                                     <button type="button" class="btnAzul" id="btnEditarExperiencia" data-toggle="modal" data-target="#experienciaModal-@contadorExperiencia">Editar</button>
@@ -893,7 +902,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Editar experiencia</h5>
+                                            <h5 class="modal-title">Editar experiencia académica</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -924,7 +933,7 @@
                                                 <label>Año de Término</label>
                                             </div>
                                             <div class="mx-2 my-2">
-                                                @Html.TextBox("anoTermino" + contadorExperiencia, experiencia.AnoTermino, htmlAttributes: new { @class = "form-control col" })
+                                                @Html.TextBox("anoTermino" + contadorExperiencia, experiencia.AnoFinalizacion, htmlAttributes: new { @class = "form-control col" })
                                             </div>
 
                                         </div>
@@ -1018,7 +1027,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Editar participacion</h5>
+                                            <h5 class="modal-title">Editar participación</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -1144,7 +1153,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Editar participacion</h5>
+                                            <h5 class="modal-title">Editar premio</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -1211,12 +1220,14 @@
             </div>
             <div class="col-md-6 form-inline">
                 <label class="col-md-6" for="numPatenteInput">Nombre de la revista</label>
+                <!-- Se debe agregar un catalogo de revista a nivel de FichaInvestigadorViewModel, ahorita esta solo a nivel de ArticuloViewModel -->
                 @Html.DropDownList("catRevistaArticuloAgregar", new SelectList(Model.Articulos[0].CatalogoRevista, "Value", "Text"), new { @class = "form-control col" })
             </div>
         </div>
         <div class="row align-items-center justify-items-center mt-3">
             <div class="col-md-6 form-inline">
                 <label class="col-md-6" for="indice">Número del índice</label>
+                <!-- Se debe agregar un catalogo de indices de revista a nivel de FichaInvestigadorViewModel, ahorita esta solo a nivel de ArticuloViewModel -->
                 @Html.DropDownList("catIndiceArticuloAgregar", new SelectList(Model.Articulos[0].CatalogoIndiceRevista, "Value", "Text"), new { @class = "form-control col" })
             </div>
             <div class="col-md-6 form-inline">
@@ -1293,7 +1304,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Editar articulo</h5>
+                                            <h5 class="modal-title">Editar artículo</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -1342,7 +1353,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btnGrande btnAzul">Guardar Experiencia</button>
+                                            <button type="button" class="btnGrande btnAzul">Guardar artículo</button>
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                         </div>
                                     </div>
@@ -1432,7 +1443,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Editar Patentes</h5>
+                                            <h5 class="modal-title">Editar patente</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -1468,7 +1479,7 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btnGrande btnAzul">Guardar Patentes</button>
+                                            <button type="button" class="btnGrande btnAzul">Guardar patente</button>
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                         </div>
                                     </div>
@@ -1550,7 +1561,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Editar Licenciamientos</h5>
+                                            <h5 class="modal-title">Editar licenciamiento</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -1579,7 +1590,7 @@
 
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btnGrande btnAzul">Guardar Licenciamientos</button>
+                                            <button type="button" class="btnGrande btnAzul">Guardar licenciamiento</button>
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                         </div>
                                     </div>
@@ -1660,7 +1671,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Editar Software</h5>
+                                            <h5 class="modal-title">Editar software</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -1778,7 +1789,7 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Editar Ponencias</h5>
+                                            <h5 class="modal-title">Editar ponencia</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -1813,7 +1824,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btnGrande btnAzul">Guardar Ponencias</button>
+                                            <button type="button" class="btnGrande btnAzul">Guardar ponencia</button>
                                             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
                                         </div>
                                     </div>

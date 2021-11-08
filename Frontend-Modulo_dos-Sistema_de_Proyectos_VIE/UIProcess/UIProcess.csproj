@@ -82,7 +82,6 @@
     <Compile Include="Consultas\Consultor.cs" />
     <Compile Include="Interfaces\ISelectListItem.cs" />
     <Compile Include="Modelos\CatalogosSingleton.cs" />
-    <Compile Include="Modelos\FichaInvestigadorDTO.cs" />
     <Compile Include="Modelos\UipArticulo.cs" />
     <Compile Include="Modelos\UipCatalogoCategoriaAcademica.cs" />
     <Compile Include="Modelos\UipCatalogoPorcentajeNombramiento.cs" />
