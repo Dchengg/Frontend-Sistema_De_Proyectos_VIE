@@ -47,27 +47,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
-    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -127,19 +116,6 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Web.Services" />
-    <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Net.Http">
-    </Reference>
-    <Reference Include="System.Net.Http.WebRequest">
-    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -152,14 +128,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\ViewModelMapper.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Configuracion\PerfilCatalogos.cs" />
-    <Compile Include="Configuracion\PerfilInvestigador.cs" />
-    <Compile Include="Configuracion\PerfilInvestigadorListar.cs" />
-    <Compile Include="Controllers\Convocatoria\ConvocatoriaController.cs" />
-    <Compile Include="Controllers\FichaInvestigador\FichaInvestigadorController.cs" />
-    <Compile Include="Controllers\InicioController\InicioController.cs" />
     <Compile Include="Controllers\AmpliarFechasController.cs" />
     <Compile Include="Controllers\BitacoraController.cs" />
     <Compile Include="Controllers\ColaboradoresController.cs" />
@@ -185,34 +154,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="GlobalVariables.cs" />
-    <Compile Include="Models\Convocatoria\oConvocatoria.cs" />
-    <Compile Include="Models\FichaInvestigador\ArticuloViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\CatalogoTelefonoViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\CategoriaAcademicaViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\CorreoViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\EstudioRealizadoViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\ExperienciaAcademicaViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\FichaInvestigadorViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\IdiomaViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\InvestigadorListarViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\LibroViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\LicenciamientoViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\NacionalidadViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\PaisViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\ParticipacionViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\PatenteViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\PerfilAcademicoViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\PonenciaViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\PorcentajeNombramientoViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\PremioViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\SexoViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\SituacionLaboralViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\SoftwareViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\TelefonoViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\TipoIdentificacionViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\CatalogosViewModel.cs" />
-    <Compile Include="Models\FichaInvestigador\UnidadAcademicaViewModel.cs" />
     <Compile Include="Models\Actividad.cs" />
     <Compile Include="Models\Bitacora.cs" />
     <Compile Include="Models\Disciplina.cs" />
@@ -258,7 +199,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\TEC-logo-white.png" />
-    <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\all.css" />
     <Content Include="Content\all.min.css" />
     <Content Include="Content\bootstrap-grid.css" />
@@ -270,9 +210,6 @@
     <Content Include="Content\brands.css" />
     <Content Include="Content\brands.min.css" />
     <Content Include="Content\BuscadorProyectos.css" />
-    <Content Include="Content\FichaInvestigador.css" />
-    <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="Content\fontawesome.min.css" />
     <Content Include="Content\regular.css" />
@@ -285,16 +222,12 @@
     <Content Include="Content\v4-shims.css" />
     <Content Include="Content\v4-shims.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\custom\fecha.js" />
-    <Content Include="Scripts\custom\modales.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -331,12 +264,6 @@
     <Content Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </Content>
-    <Content Include="fonts\FontAwesome.otf" />
-    <Content Include="fonts\fontawesome-webfont.woff2" />
-    <Content Include="fonts\fontawesome-webfont.woff" />
-    <Content Include="fonts\fontawesome-webfont.ttf" />
-    <Content Include="fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\bootstrap-datepicker.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -433,16 +360,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Inicio\About.cshtml" />
-    <Content Include="Views\Inicio\Contact.cshtml" />
-    <Content Include="Views\Inicio\Index.cshtml" />
-    <Content Include="Views\Shared\ProyectoSideMenu.cshtml" />
-    <Content Include="Views\SeguimientoProyecto\DatosProyecto.cshtml" />
     <Content Include="Views\Shared\MainMenu.cshtml" />
-    <Content Include="Views\Inicio\BuscadorProyectos.cshtml" />
-    <Content Include="Views\SeguimientoProyecto\AreaFrascati.cshtml" />
-    <Content Include="Views\SeguimientoProyecto\agregarODS.cshtml" />
-    <Content Include="Views\SeguimientoProyecto\poblacionBeneficiaria.cshtml" />
     <Content Include="Views\Shared\UIProyectoSideMenu.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIAgregarODS.cshtml" />
     <Content Include="Views\SeguimientoProyecto\UIAreaFrascati.cshtml" />
@@ -462,11 +380,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\FichaInvestigador\Edit.cshtml" />
-    <Content Include="Views\Convocatoria\Index.cshtml" />
-    <Content Include="Views\FichaInvestigador\Create.cshtml" />
-    <Content Include="Views\FichaInvestigador\EditarTelefono.cshtml" />
-    <Content Include="Views\FichaInvestigador\List.cshtml" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
     <Content Include="webfonts\fa-solid-900.svg" />
@@ -502,7 +415,6 @@
     <Content Include="Views\SeguimientoProyecto\UIVisualizacionInvestigador.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\Inicio\" />
     <Folder Include="Views\AmpliarFechas\" />
     <Folder Include="Views\Bitacora\" />
     <Folder Include="Views\BuscadorProyecto\" />
@@ -531,12 +443,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UIProcess\UIProcess.csproj">
-      <Project>{3702fe83-eff4-4251-aaab-b9392c6d3c31}</Project>
-      <Name>UIProcess</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
