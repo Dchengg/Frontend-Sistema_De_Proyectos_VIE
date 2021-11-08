@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3702FE83-EFF4-4251-AAAB-B9392C6D3C31}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>UIProcess</RootNamespace>
+    <AssemblyName>UIProcess</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.4.3.1\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuracion\PerfilCatalogos.cs" />
+    <Compile Include="Consultas\Consultor.cs" />
+    <Compile Include="Interfaces\ISelectListItem.cs" />
+    <Compile Include="Modelos\CatalogosSingleton.cs" />
+    <Compile Include="Modelos\UipArticulo.cs" />
+    <Compile Include="Modelos\UipCatalogoCategoriaAcademica.cs" />
+    <Compile Include="Modelos\UipCatalogoPorcentajeNombramiento.cs" />
+    <Compile Include="Modelos\UipCatalogoSexo.cs" />
+    <Compile Include="Modelos\UipCatalogoTipoTelefono.cs" />
+    <Compile Include="Modelos\UipCategoriaAcademica.cs" />
+    <Compile Include="Modelos\UipCorreo.cs" />
+    <Compile Include="Modelos\UipEstudioRealizado.cs" />
+    <Compile Include="Modelos\UipExperienciaAcademica.cs" />
+    <Compile Include="Modelos\UipFichaInvestigador.cs" />
+    <Compile Include="Modelos\UipIdioma.cs" />
+    <Compile Include="Modelos\UipInvestigadorConsultar.cs" />
+    <Compile Include="Modelos\UipCatalogoDisciplinaCientifica.cs" />
+    <Compile Include="Modelos\UipCatalogoEditorial.cs" />
+    <Compile Include="Modelos\UipCatalogoEntidad.cs" />
+    <Compile Include="Modelos\UipCatalogoIdioma.cs" />
+    <Compile Include="Modelos\UipCatalogoIndiceRevista.cs" />
+    <Compile Include="Modelos\UipCatalogoInstitucion.cs" />
+    <Compile Include="Modelos\UipCatalogoNivelIdioma.cs" />
+    <Compile Include="Modelos\UipCatalogoPais.cs" />
+    <Compile Include="Modelos\UipCatalogoParticipacionLibro.cs" />
+    <Compile Include="Modelos\UipCatalogoRevista.cs" />
+    <Compile Include="Modelos\UipCatalogosInvestigador.cs" />
+    <Compile Include="Modelos\UipCatalogoSituacionLaboral.cs" />
+    <Compile Include="Modelos\UipCatalogoSubdisciplinaCientifica.cs" />
+    <Compile Include="Modelos\UipCatalogoTipoIdentificacion.cs" />
+    <Compile Include="Modelos\UipCatalogoTipoPerfil.cs" />
+    <Compile Include="Modelos\UipCatalogoTituloAcademico.cs" />
+    <Compile Include="Modelos\UipCatalogoUnidadAcademica.cs" />
+    <Compile Include="Modelos\UipCatalogosGlobal.cs" />
+    <Compile Include="Modelos\UipInvestigadorListar.cs" />
+    <Compile Include="Modelos\UipLibro.cs" />
+    <Compile Include="Modelos\UipLicenciamiento.cs" />
+    <Compile Include="Modelos\UipNacionalidad.cs" />
+    <Compile Include="Modelos\UipPaisNacimiento.cs" />
+    <Compile Include="Modelos\UipParticipacion.cs" />
+    <Compile Include="Modelos\UipPatente.cs" />
+    <Compile Include="Modelos\UipPerfilAcademico.cs" />
+    <Compile Include="Modelos\UipPonencia.cs" />
+    <Compile Include="Modelos\UipPremio.cs" />
+    <Compile Include="Modelos\UipRespuesta.cs" />
+    <Compile Include="Modelos\UipSituacionLaboral.cs" />
+    <Compile Include="Modelos\UipSoftware.cs" />
+    <Compile Include="Modelos\UipSubdisciplina.cs" />
+    <Compile Include="Modelos\UipTelefono.cs" />
+    <Compile Include="Modelos\UipTipoIdentificacion.cs" />
+    <Compile Include="Modelos\UipUnidadAcademica.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilitarios\GeneradorCatalogos.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
