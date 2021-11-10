@@ -11,7 +11,6 @@ function getDateObject(dateString) {
 
 $("#btnFechaNacimiento").on("click",
     function () {
-        console.log("I'm working");
         var date = getDateObject($("#campoFechaNacimiento").val().split(" ")[0])
 
         $('#fecha-nacimiento .input-group.date').datepicker({

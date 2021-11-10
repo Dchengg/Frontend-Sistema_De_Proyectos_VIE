@@ -17,6 +17,10 @@ namespace UIProcess.Consultas
             Api.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
+        /// <summary>
+        /// Consulta los catálogos necesarios para la vista del investigador de la API
+        /// </summary>
+        /// <returns>Objeto UipRespuesta con los catálogos, un código y un mensaje de respuesta</returns>
         public static UipRespuesta<UipCatalogosInvestigador> ConsultarCatalogos()
         {
             try
@@ -47,6 +51,11 @@ namespace UIProcess.Consultas
 
         }
 
+        /// <summary>
+        /// Consulta los datos de un investigador en la API dado el número de identidad.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Objeto UipRespuesta con los datos del investigador, un código y un mensaje de respuesta</returns>
         public static UipRespuesta<UipInvestigadorConsultar> ConsultarInvestigador(string id)
         {
             try
@@ -87,6 +96,11 @@ namespace UIProcess.Consultas
 
         }
 
+        /// <summary>
+        /// Consulta a la API una lista de datos generales de todos los investigadores registrados en el sistema.
+        /// </summary>
+        /// <returns>Objeto UipRespuesta con la lista de datos generales de investigadores, 
+        ///          un código y un mensaje de respuesta</returns>
         public static UipRespuesta<List<UipInvestigadorListar>> ConsultarListaInvestigadores()
         {
             try
@@ -117,6 +131,10 @@ namespace UIProcess.Consultas
 
         }
 
+        /// <summary>
+        /// Realiza la solicitud a la API de eliminar a un investigador dado su número de identidad
+        /// </summary>
+        /// <param name="id"></param>
         public static void EliminarInvestigador(string id)
         {
             HttpResponseMessage respuesta = Api.DeleteAsync("Investigador/" + id).Result;

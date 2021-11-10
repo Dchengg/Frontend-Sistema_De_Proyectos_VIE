@@ -5,6 +5,10 @@ using UIProcess.Modelos;
 
 namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Configuracion
 {
+    /// <summary>
+    /// Convierte los datos de clases con la interfaz ISelectListItem a objetos de tipo
+    /// SelectListItem para formar los catálogos de la vista.
+    /// </summary>
     public class CatalogoItemConverter : ITypeConverter<ISelectListItem, SelectListItem>
     {
         public SelectListItem Convert(ISelectListItem source, SelectListItem destination, ResolutionContext context)

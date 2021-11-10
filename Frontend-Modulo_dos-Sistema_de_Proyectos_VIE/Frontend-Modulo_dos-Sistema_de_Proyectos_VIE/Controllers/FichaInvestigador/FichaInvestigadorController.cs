@@ -26,8 +26,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
         // GET: FichaInvestigador/Create
         public ActionResult Create()
         {
-            var modelo = ViewModelMapper.MapearCatalogosFichaInvestigador();
-            return View(modelo);
+            return View();
         }
 
         // POST: FichaInvestigador/Create
@@ -36,11 +35,6 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-
-                }
-
                 return RedirectToAction("Index");
             }
             catch
@@ -49,6 +43,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
             }
         }
 
+        /// <summary>
+        /// Controlador para la vista de edición de la ficha del investigador.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>ActionResult</returns>
         // GET: FichaInvestigador/Edit/5
         public ActionResult Edit(string id)
         {
@@ -66,6 +65,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
             }
         }
 
+        /// <summary>
+        /// Envía la solicitud de guardar los cambios realizados a los teléfonos del investigador
+        /// al backend (Incompleto)
+        /// </summary>
+        /// <param name="telefonos"></param>
+        /// <returns>Retorna la vista con el cambio aplicado</returns>
         [HttpPost]
         public ActionResult EditarTelefono(IEnumerable<TelefonoViewModel> telefonos)
         {
@@ -73,6 +78,12 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
             return View();
         }
 
+        /// <summary>
+        /// Envía la solicitud de eliminar un teléfono del investigador al backend
+        /// (Incompleto)
+        /// </summary>
+        /// <param name="telefono"></param>
+        /// <returns>Retorna la vista con el teléfono eliminado</returns>
         [HttpPost]
         public ActionResult EliminarTelefono(TelefonoViewModel telefono)
         {
@@ -80,6 +91,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
             return View();
         }
 
+        /// <summary>
+        /// Envía la solicitud de agregar un nuevo teléfono (Incompleto)
+        /// </summary>
+        /// <param name="telefonos"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult AgregarTelefono(IEnumerable<TelefonoViewModel> telefonos)
         {
@@ -92,6 +108,7 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
             return View(objeto);
         }
 
+        
         // POST: FichaInvestigador/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
@@ -108,6 +125,10 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
             }
         }
 
+        /// <summary>
+        /// Lista los investigadores registrados en el sistema.
+        /// </summary>
+        /// <returns>Vista con la lista de los investigadores registrados en el sistema</returns>
         // GET: FichaInvestigador/List
         public ActionResult List()
         {
@@ -129,6 +150,11 @@ namespace Frontend_Modulo_dos_Sistema_de_Proyectos_VIE.Controllers.FichaInvestig
             }
         }
 
+        /// <summary>
+        /// Elimina el investigador del sistema dado el número de identidad
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>La vista sin el investigador eliminado</returns>
         // POST: FichaInvestigador/Delete/5
         [HttpPost]
         public ActionResult Delete(string id)

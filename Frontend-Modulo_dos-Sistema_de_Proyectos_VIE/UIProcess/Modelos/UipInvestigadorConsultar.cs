@@ -74,53 +74,5 @@ namespace UIProcess.Modelos
         public List<UipSubdisciplina> SubdisciplinasCientificas { get; set; }
         [DataMember]
         public List<UipPerfilAcademico> PerfilesAcademicos { get; set; }
-
-        //public UipInvestigadorConsultar(string numeroIdentidad, byte[] fotografia, string nombre, string primerApellido,
-        //                              string segundoApellido, DateTime fechaNacimiento, int idTipoIdentificacion,
-        //                              string tipoIdentificacion, int idPaisNacimiento, string paisNacimiento, int idNacionalidad,
-        //                              string nacionalidad, string apartadoPostal, string seudonimo, DateTime fechaDeIngresoInstitucion,
-        //                              int idSituacionLaboral, string situacionLaboral, int porcentajeNombramiento, bool datosPersonales,
-        //                              List<UipEstudioRealizado> estudiosRealizados, List<UipIdioma> idiomas, List<UipExperienciaAcademica> experienciasAcademicas,
-        //                              List<UipParticipacion> participaciones, List<UipPremio> premios,
-        //                              List<UipArticulo> articulos, List<UipPatente> patentes, List<UipLibro> libros, List<UipPonencia> ponencias, List<UipSoftware> software,
-        //                              List<UipLicenciamiento> licenciamientos, List<UipCategoriaAcademica> categoriasAcademicas,
-        //                              List<UipUnidadAcademica> unidadesAcademicas, List<UipSubdisciplina> subdisciplinasCientificas,
-        //                              List<UipPerfilAcademico> perfilesAcademicos)
-        //{
-        //    NumeroIdentidad = numeroIdentidad;
-        //    Fotografia = fotografia;
-        //    Nombre = nombre;
-        //    PrimerApellido = primerApellido;
-        //    SegundoApellido = segundoApellido;
-        //    FechaNacimiento = fechaNacimiento;
-        //    IdTipoIdentificacion = idTipoIdentificacion;
-        //    TipoIdentificacion = tipoIdentificacion;
-        //    IdPaisNacimiento = idPaisNacimiento;
-        //    PaisNacimiento = paisNacimiento;
-        //    IdNacionalidad = idNacionalidad;
-        //    Nacionalidad = nacionalidad;
-        //    ApartadoPostal = apartadoPostal;
-        //    Seudonimo = seudonimo;
-        //    FechaDeIngresoInstitucion = fechaDeIngresoInstitucion;
-        //    IdSituacionLaboral = idSituacionLaboral;
-        //    SituacionLaboral = situacionLaboral;
-        //    PorcentajeNombramiento = porcentajeNombramiento;
-        //    DatosPersonales = datosPersonales;
-        //    EstudiosRealizados = estudiosRealizados;
-        //    Idiomas = idiomas;
-        //    ExperienciasAcademicas = experienciasAcademicas;
-        //    Participaciones = participaciones;
-        //    Premios = premios;
-        //    Articulos = articulos;
-        //    Patentes = patentes;
-        //    Libros = libros;
-        //    Ponencias = ponencias;
-        //    Software = software;
-        //    Licenciamientos = licenciamientos;
-        //    CategoriasAcademicas = categoriasAcademicas;
-        //    UnidadesAcademicas = unidadesAcademicas;
-        //    SubdisciplinasCientificas = subdisciplinasCientificas;
-        //    PerfilesAcademicos = perfilesAcademicos;
-        //}
     }
 }
